@@ -1,1 +1,0 @@
-__src__/router/index.ts

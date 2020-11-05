@@ -1,1 +1,0 @@
-__src__/components/HelloWorld.vue

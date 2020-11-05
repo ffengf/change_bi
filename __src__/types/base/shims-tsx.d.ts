@@ -1,1 +1,0 @@
-__src__/types/base/shims-tsx.d.ts

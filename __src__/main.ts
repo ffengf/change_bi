@@ -1,1 +1,0 @@
-__src__/main.ts

@@ -1,1 +1,0 @@
-__src__/i18n/index.ts
