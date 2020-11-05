@@ -1,0 +1,1 @@
+__src__/types/base/shims-vue.d.ts

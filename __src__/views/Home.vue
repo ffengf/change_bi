@@ -1,0 +1,1 @@
+__src__/views/Home.vue
