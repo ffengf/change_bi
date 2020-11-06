@@ -18,7 +18,7 @@ function copyDir(src, dist, callback) {
 				var _dist = dist + '/' + path;
 				const stat = fs.statSync(_src)
 				if (stat.isFile()) {
-					console.log(fs.readFileSync(_src,'utf-8'))
+					console.log("copy:",_src)
 					fs.writeFileSync(_dist, fs.readFileSync(_src,'utf-8'));
 				} else if (stat.isDirectory()) {
 					copyDir(_src, _dist, callback)
@@ -27,4 +27,5 @@ function copyDir(src, dist, callback) {
 		}
 	}
 }
-copyDir('src','__src__')
+
+exports.copyDir = copyDir

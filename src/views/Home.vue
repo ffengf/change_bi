@@ -2,6 +2,8 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+	<h1 :value="$t('创建')">{{ $t('这是一个页面') }}</h1>
+	<h1 :value="$t('创建')">{{ $t('这是一个页面') }}</h1>
   </div>
 </template>
 
