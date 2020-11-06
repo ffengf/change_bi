@@ -21,20 +21,15 @@ const zh_to_en = Object.fromEntries(Object.entries(zh).map(([k, v]) => ([v, k]))
 const reg_arr = values.map(e => ({ key: e, reg: create_reg(e) }))
 
 if (values.duplicate().length !== 0) {
-	console.log('-----------------------------------------------------------------------------------------')
-	console.log(values.duplicate(), 'fail:redefinition')
-	console.log('-----------------------------------------------------------------------------------------')
+	print('\x1B[31m%s\x1B[0m',values.duplicate(), 'fail:redefinition')
 } else {
 	copyDir(input_src, output_src)
-	console.log('-----------------------------------------------------------------------------------------')
-	console.log('copy:success')
-	console.log('-----------------------------------------------------------------------------------------')
+
+	print('\x1B[32m%s\x1B[0m','copy:success')
 
 	start(output_src)
 
-	console.log('-----------------------------------------------------------------------------------------')
-	console.log('done:success')
-	console.log('-----------------------------------------------------------------------------------------')
+	print('\x1B[32m%s\x1B[0m','done:success')
 }
 
 
@@ -44,7 +39,6 @@ function reset(v) {
 		if (e.reg.test(v)) {
 			str = str.replace(e.reg, ($1)=>{
 				return $1.replace(e.key,zh_to_en[e.key])
-				// return `$t("${zh_to_en[e.key]}")`
 			})
 		}
 	})
@@ -62,7 +56,7 @@ function start(src) {
 		if (reg.test(src)) {
 			const file_value = fs.readFileSync(src, 'utf-8')
 			fs.writeFileSync(src, reset(file_value))
-			console.log(`${src}:reset success`)
+			console.log('\x1B[32m%s\x1B[0m',`${src}:reset success`)
 		} else {
 			console.log(`${src}:continue`)
 		}
@@ -72,4 +66,11 @@ function start(src) {
 			start(`${src}/${ele}`)
 		})
 	}
+}
+
+
+function print(...str){
+	console.log('-----------------------------------------------------------------------------------------')
+	console.log(...str)
+	console.log('-----------------------------------------------------------------------------------------')
 }

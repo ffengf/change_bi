@@ -19,11 +19,11 @@ if (values.duplicate().length === 0) {
 	const str = `exports.dev = ${JSON.stringify(zh_to_zh)}`
 	fs.writeFileSync('./src/i18n/lang/dev.js', str)
 	console.log('-----------------------------------------------------------------------------------------')
-	console.log('success')
+	console.log('\x1B[32m%s\x1B[0m','success')
 	console.log('-----------------------------------------------------------------------------------------')
 } else {
 	console.log('-----------------------------------------------------------------------------------------')
-	console.log(values.duplicate(),'fail:redefinition')
+	console.log('\x1B[31m%s\x1B[0m',values.duplicate(),'fail:redefinition')
 	console.log('-----------------------------------------------------------------------------------------')
 }
 
