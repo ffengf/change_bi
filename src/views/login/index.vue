@@ -1,10 +1,97 @@
 <template>
-    <div id="login" class="pd5">
-		<div class="img_box hidden-md-and-down">
-			<img src="@/assets/img/login.png" alt="" srcset="">
-		</div>
-		<div class="box">
-			123
+    <div id="login" class="flexC">
+		<div class="w75vw min_width1100 login_div">
+			<div class="img_box sm-down">
+				<img src="@/assets/img/login.png" alt="" srcset="">
+			</div>
+			<div class="line sm-down"></div>
+			<div class="box">
+				
+				1231111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+				123
+				123
+				123v123
+				<br>
+				<br>
+				<br>
+				<br>
+
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+
+				<br>
+				<br>
+				<br>
+
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+
+				<br>
+				<br>
+				<br>
+
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+
+				<br>
+				<br>
+				<br>
+
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+
+				<br>
+				<br>
+				<br>
+
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+
+				<br>
+				<br>
+				<br>
+
+				<br>
+			</div>
 		</div>
     </div>
 </template>
@@ -19,26 +106,35 @@ export default class extends Vue {
 
 <style lang='less' scoped>
 #login{
-	box-sizing: border-box;
-	height: 35rem;
-	width: 100vw;
-	display: flex;
-	padding-top: 2rem;
-	padding-bottom: 2rem;
+	.login_div{
+		display: flex;
+		padding:2rem 0;
+	}
 	.img_box{
-		height: 100%;
-		width: 50%;
+		height:600px;
+		width:auto;
 		box-sizing: border-box;
-		padding: 0 8rem;
-		border-right: 1px solid #ebebeb;
 		img{
 			height: 100%;
-			width: 100%;
+			object-fit: contain;
 		}
 	}
 	.box{
 		width: 50%;
 		height: 100%;
+	}
+	.line{
+		height:auto;
+		width:1px;
+		background:#ebebeb;
+	}
+}
+@media only screen and (max-width: 768px){
+	.min_width1100 {
+		min-width:auto!important;
+	}
+	.w75vw{
+		width:100vw;
 	}
 }
 </style>
