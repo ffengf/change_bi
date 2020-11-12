@@ -1,15 +1,14 @@
 <template>
-    <div id="header">
+    <div id="header" class="pd5">
         <img
             src="@/assets/img/logo.png"
             class="logo"
             alt="logo"
-			v-if="isPc"
         />
-		<div @click="key = true" v-if="isPhone">
+		<div @click="key = true" class="hidden-md-and-up">
 			<i class="el-icon-menu"></i>
 		</div>
-        <div v-if="isPc">
+        <div class="hidden-sm-and-down">
             <el-menu mode="horizontal" class="tab" router>
                 <template v-for="ele in tab">
                     <el-submenu :key="ele.index" :index="ele.index">
@@ -24,10 +23,10 @@
                 </template>
             </el-menu>
         </div>
-        <div class="inp" v-if="isPc">
+        <div class="inp hidden-md-and-down" >
             <el-autocomplete
                 popper-class="my-autocomplete"
-                :placeholder="$t('请输入内容')"
+                :placeholder="$t('搜索读书会')"
 				v-model="input"
             >
                 <i class="el-input__icon el-icon-search" slot="suffix"> </i>
@@ -65,7 +64,7 @@
             <el-button class="btn" size="mini" type="success">{{ $t('登录') }}</el-button>
             <el-button class="btn" type="text">{{ $t('注册') }}</el-button>
         </div>
-        <el-drawer :visible.sync="key" direction="ltr" :withHeader="false" :showClose="false" size="60%" class="drawer">
+        <el-drawer append-to-body :visible.sync="key" direction="ltr" :withHeader="false" :showClose="false" size="60%" class="drawer">
             <el-menu router>
                 <template v-for="ele in tab">
                     <el-submenu :key="ele.index" :index="ele.index">
@@ -105,6 +104,20 @@ export default class extends Vue {
                     index: "/read/2",
                 },
             ],
+		},
+		{
+            name: this.$t("读书会申请"),
+            index: "/a",
+            children: [
+                {
+                    name: this.$t("创造与批评俱乐部"),
+                    index: "/a/1",
+                },
+                {
+                    name: this.$t("xxx读书会"),
+                    index: "/a/2",
+                },
+            ],
         },
         {
             name: this.$t("每日连载"),
@@ -139,7 +152,7 @@ export default class extends Vue {
     ];
 
 	language(e:string){
-		// this.$i18n.locale = e
+		this.$i18n.locale = e
 	}
 
     created() {}
@@ -149,13 +162,12 @@ export default class extends Vue {
 <style lang="less" scoped>
 #header {
     box-sizing: border-box;
-    width: 100vw;
-    height: 7vh;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
     display: flex;
     justify-content: space-between;
-    padding: 0 10vw;
-    align-items: center;
+	align-items: center;
     .el-icon-menu {
         font-size: 30px;
     }
@@ -167,7 +179,7 @@ export default class extends Vue {
         justify-content: space-between;
         align-items: center;
         overflow: hidden;
-        width: 16rem;
+        width: 10rem;
         .line {
             width: 1px;
             height: 2vh;
@@ -182,14 +194,10 @@ export default class extends Vue {
 
 @media screen and (max-width: 1080px) {
     #header {
-        padding: 0;
-        justify-content: space-around;
-    }
+        justify-content: space-between;
+	}
+	.inp{
+		display: none;
+	}
 }
-// @media screen and (max-width: 768px) {
-//     #header {
-//         padding: 0 10px;
-// 		justify-content: space-between;
-//     }
-// }
 </style>

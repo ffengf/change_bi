@@ -16,7 +16,7 @@ exports.zh = {
 	lianzais:"SWICH连载",
 	login:"登录",
 	sign:"注册",
-	shuru:"请输入内容",
+	shuru:"搜索读书会",
 	gonggao:"公告",
 	question:"常见问题",
 	answer:"1：1问题与反馈",

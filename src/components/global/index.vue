@@ -1,6 +1,6 @@
 <template>
     <div id="page">
-        <el-scrollbar class="el-scrollbar" style="height: 100%" ref="box">
+        <el-scrollbar style="height: 100%">
             <el-container class="container">
                 <el-header>
                     <Header />
@@ -45,15 +45,16 @@ export default class extends Vue {
         padding: 0;
     }
     .el-header {
-        height: 7vh !important;
+        height: 3.5rem !important;
         width: 100vw;
         position: fixed;
         top: 0;
         left: 0;
 		background: #ffffff;
+		z-index: 10;
     }
     .el-main {
-        margin-top: 7vh;
+        margin-top: 3.5rem;
         width: 100vw;
     }
     .el-footer {
@@ -64,6 +65,9 @@ export default class extends Vue {
 </style>
 <style lang="less">
 #page {
+	.el-scrollbar__bar{
+		z-index: 1000;
+	}
     .el-scrollbar /deep/ {
         .el-scrollbar__wrap {
             overflow-x: hidden !important;

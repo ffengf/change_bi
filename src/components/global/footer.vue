@@ -16,6 +16,6 @@ export default class extends Vue {
 #footer{
 	height: 100%;
 	width: 100%;
-	background: #ccc;
+	border: 1px solid #e1e1e1;
 }
 </style>

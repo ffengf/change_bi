@@ -77,3 +77,18 @@ abbr,
 acronym {
 	border: 0;
 }
+
+html{
+	font-size: 20px;
+}
+
+
+.pd5{
+	padding: 0 5rem;
+	box-sizing: border-box;
+}
+@media screen and (max-width: 768px) {
+	.pd5{
+		padding: 0;
+	}
+}
