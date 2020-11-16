@@ -43,7 +43,10 @@ export default class extends Vue {
     .el-main,
     .el-footer {
         padding: 0;
-    }
+	}
+	// .container{
+	// 	overflow-x: hidden ;
+	// }
     .el-header {
         height: 3.5rem !important;
         width: 100vw;
@@ -55,11 +58,11 @@ export default class extends Vue {
     }
     .el-main {
         margin-top: 3.5rem;
-        width: 100vw;
+		width: 100vw;
     }
     .el-footer {
         height: 30vh !important;
-        width: 100vw;
+        width: 100%;
     }
 }
 </style>

@@ -58,8 +58,8 @@
                         </el-dropdown-menu>
                     </el-dropdown>
                 </div>
-                <el-button class="btn" size="mini" type="success">{{ $t('登录') }}</el-button>
-                <el-button class="btn" type="text">{{ $t('注册') }}</el-button>
+                <el-button class="btn" size="mini" type="success" @click="$router.push('/login/signin')">{{ $t('登录') }}</el-button>
+                <el-button class="btn" type="text" @click="$router.push('/login/signup')">{{ $t('注册') }}</el-button>
             </div>
             <el-drawer append-to-body :visible.sync="key" direction="ltr" :withHeader="false" :showClose="false" size="60%" class="drawer">
                 <el-menu router>
@@ -87,8 +87,8 @@
                 alt="logo"
             />
             <div class="right">
-                <el-button class="btn" size="mini" type="success">{{ $t('登录') }}</el-button>
-                <el-button class="btn" type="text">{{ $t('注册') }}</el-button>
+                <el-button class="btn" size="mini" type="success" @click="$router.push('/login/signin')">{{ $t('登录') }}</el-button>
+                <el-button class="btn" type="text" @click="$router.push('/login/signup')">{{ $t('注册') }}</el-button>
             </div>
         </div>
     </div>

@@ -29,8 +29,12 @@
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "babel-polyfill": "^6.26.0",
+    "element-theme": "^2.0.1",
+    "element-theme-chalk": "^2.14.1",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
+    "node-sass": "^5.0.0",
+    "sass-loader": "^10.1.0",
     "typescript": "~3.9.3",
     "vue-template-compiler": "^2.6.11"
   },

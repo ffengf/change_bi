@@ -82,6 +82,22 @@ html{
 	font-size: 20px;
 }
 
+.login_warpper > h1 {
+	color: #000000;
+	font-size: 46px;
+	font-weight: 300;
+	margin-bottom: 2rem;
+}
+
+.login_warpper  h2{
+	font-weight: 300;
+	color: #324b9b;
+	font-size: 25.5px;
+}
+
+.login_warpper h2 > em {
+	font-weight: 400;
+}
 
 .pd5{
 	padding: 0 5rem;

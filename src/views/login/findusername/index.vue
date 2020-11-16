@@ -1,6 +1,6 @@
 <template>
-    <div id="footer">
-		this is footer
+    <div>
+		find name
     </div>
 </template>
 
@@ -12,11 +12,4 @@ export default class extends Vue {
 }
 </script>
 
-<style scoped>
-#footer{
-	height: 100%;
-	width: 100%;
-	border: 1px solid #e1e1e1;
-	box-sizing: border-box;
-}
-</style>
+<style lang="less" scoped>
