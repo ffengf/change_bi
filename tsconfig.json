@@ -11,7 +11,8 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
 	"sourceMap": true,
-    "baseUrl": ".",
+	"baseUrl": ".",
+	"noImplicitAny":false,
     "types": [
       "webpack-env"
     ],
@@ -30,7 +31,7 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
-    "src/**/*.vue",
+    "src/**/*.vue", "src/components/form/indexjsx",
   ],
   "exclude": [
 	"node_modules"

@@ -59,7 +59,7 @@
                     </el-dropdown>
                 </div>
                 <el-button class="btn" size="mini" type="success" @click="$router.push('/login/signin')">{{ $t('登录') }}</el-button>
-                <el-button class="btn" type="text" @click="$router.push('/login/signup')">{{ $t('注册') }}</el-button>
+                <el-button class="btn color_000" type="text" @click="$router.push('/login/signup')">{{ $t('注册') }}</el-button>
             </div>
             <el-drawer append-to-body :visible.sync="key" direction="ltr" :withHeader="false" :showClose="false" size="60%" class="drawer">
                 <el-menu router>
@@ -224,4 +224,5 @@ export default class extends Vue {
 .sm-up{
     padding:0 10px;
 }
+
 </style>

@@ -1,8 +1,8 @@
 import 'babel-polyfill'
-
+import "vue-tsx-support/enable-check";
 import Vue from 'vue';
 import Element from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
+
 import App from './App.vue';
 import router from './router';
 import i18n from '@/i18n'
@@ -12,6 +12,7 @@ import "@/assets/style/reset.css"
 import "@/assets/style/element_phone.less"
 import "@/assets/style/reset_ele.less"
 import 'element-ui/lib/theme-chalk/display.css';
+import '@/assets/style/element-variables.scss'
 import { OtherModule } from './store/other';
 
 

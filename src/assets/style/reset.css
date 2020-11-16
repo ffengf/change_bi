@@ -117,6 +117,14 @@ html{
 		padding: 0;
 	}
 }
+
+.color_80{
+	color: #808080;
+}
+.color_000{
+	color: #000000;
+}
+
 .flexC{
 	display: flex;
 	align-items: center;

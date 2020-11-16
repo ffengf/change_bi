@@ -39,14 +39,6 @@ export default class extends Vue {
 #page {
 	width: 100vw;
 	height: 100vh;
-    .el-header,
-    .el-main,
-    .el-footer {
-        padding: 0;
-	}
-	// .container{
-	// 	overflow-x: hidden ;
-	// }
     .el-header {
         height: 3.5rem !important;
         width: 100vw;
