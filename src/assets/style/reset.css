@@ -119,6 +119,10 @@ html{
 	}
 }
 
+.color_success{
+	color: #3fa535;
+}
+
 .color_80{
 	color: #808080;
 }
@@ -160,10 +164,17 @@ html{
 	.sm-up {
 		display: none!important;
 	}
+
 }
 @media only screen and (max-width: 768px){
 	.sm-down {
 		display: none!important;
+	}
+	.min_width1100{
+		min-width: auto !important;
+	}
+	.w75vw{
+		width: auto!important;
 	}
 }
 

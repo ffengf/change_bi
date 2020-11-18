@@ -1,6 +1,6 @@
 <template>
     <div id="footer">
-		this is footer
+
     </div>
 </template>
 
@@ -16,7 +16,8 @@ export default class extends Vue {
 #footer{
 	height: 100%;
 	width: 100%;
-	border: 1px solid #e1e1e1;
+	border-top: 1px solid #e1e1e1;
 	box-sizing: border-box;
+	background: #ccc;
 }
 </style>

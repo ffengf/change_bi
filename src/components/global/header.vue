@@ -131,20 +131,20 @@ export default class extends Vue {
                 },
             ],
         },
-        {
-            name: this.$t("读书会申请"),
-            index: "/c",
-            children: [
-                {
-                    name: this.$t("创造与批评俱乐部"),
-                    index: "/c/1",
-                },
-                {
-                    name: this.$t("xxx读书会"),
-                    index: "/c/2",
-                },
-            ],
-        },
+        // {
+        //     name: this.$t("读书会申请"),
+        //     index: "/c",
+        //     children: [
+        //         {
+        //             name: this.$t("创造与批评俱乐部"),
+        //             index: "/c/1",
+        //         },
+        //         {
+        //             name: this.$t("xxx读书会"),
+        //             index: "/c/2",
+        //         },
+        //     ],
+        // },
         {
             name: this.$t("每日连载"),
             index: "/lianzai",
