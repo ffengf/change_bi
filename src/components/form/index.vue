@@ -25,13 +25,70 @@
 </template>
 
 <script lang="ts">
+type a = []
+interface element<T>{
+	prop:string
+	type:number
+	show?:((T:T) => boolean) | boolean
+	[propName:string]:any
+}
+
+interface data<T> {
+	info: T;
+	element:element<T>[]
+}
+
+interface info {
+	radio:number
+	input:string
+	aaa:string
+}
+
+const data:data<info> = {
+    info: {
+        radio: 1,
+		input: "",
+		aaa:""
+    },
+    element: [
+        {
+            prop: "radio",
+            type: 1,
+            values: [
+                {
+                    label: "男111",
+                    value: 1,
+                },
+                {
+                    label: "女222",
+                    value: 0,
+                },
+			],
+			show:true
+		},
+		{
+            prop: "aaa",
+			type: 2,
+			show:true
+        },
+        {
+            prop: "input",
+            type: 2,
+            show({ radio,input }) {
+				return radio === 0 ? true : false;
+            },
+        },
+    ],
+};
+
 import { Vue, Component } from "vue-property-decorator";
 @Component
 export default class extends Vue {
     data = {
         info: {
             radio: 1,
-            input: "",
+			input: "",
+			aaa:""
         },
         element: [
             {
@@ -47,7 +104,12 @@ export default class extends Vue {
                         value: 0,
                     },
                 ],
-            },
+			},
+			{
+				prop: "aaa",
+				type: 2,
+				// show:true
+			},
             {
                 prop: "input",
                 type: 2,

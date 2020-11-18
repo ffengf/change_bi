@@ -89,10 +89,11 @@ html{
 	margin-bottom: 2rem;
 }
 
-.login_warpper  h2{
+.login_warpper > h2{
 	font-weight: 300;
 	color: #324b9b;
 	font-size: 25.5px;
+	margin-bottom: 2rem;
 }
 
 .login_warpper h2 > em {
@@ -139,6 +140,12 @@ html{
 	align-items: center;
 	justify-content: space-between;
 }
+
+.flex_column{
+	display: flex;
+	flex-direction: column;
+}
+
 .w75vw{
 	width:75vw
 }
