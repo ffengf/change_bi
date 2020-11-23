@@ -53,8 +53,8 @@
 		</div>
 		<div class="carousel">
             <el-carousel arrow="always">
-                <el-carousel-item v-for="item in img_list" :key="item">
-                    <el-image class="img" :src="item" />
+                <el-carousel-item v-for="i in item" :key="i">
+                    <el-image class="img" :src="i.url" />
                 </el-carousel-item>
             </el-carousel>
         </div>
@@ -191,7 +191,6 @@ export default class extends Vue {
 					height: 14rem;
 					margin-top: 1rem;
 					cursor: pointer;
-					border: none !important;
 					display: flex;
 					flex-direction: column;
 					.img{
@@ -229,7 +228,6 @@ export default class extends Vue {
 				width: 30%;
 				height: 18rem;
 				cursor: pointer;
-				border: none !important;
 				text-align: center;
 				display: flex;
 				flex-direction: column;
@@ -266,10 +264,7 @@ export default class extends Vue {
     height: 100%;
 }
 
-.line{
-	height: 0.2rem;
-	width: 100%;
-}
+
 @media only screen and (max-width: 769px){
 
 	.right {

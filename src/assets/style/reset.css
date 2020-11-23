@@ -119,6 +119,11 @@ html{
 	}
 }
 
+.line{
+	height: 0.2rem;
+	width: 100%;
+}
+
 .color_success{
 	color: #3fa535;
 }

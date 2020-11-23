@@ -1,5 +1,6 @@
 <template>
-    <el-form>
+	<el-input v-bind="ele" v-on="ele" />
+    <!-- <el-form>
         <template v-for="ele in data.element">
             <el-form-item
                 v-if="ele.show ? ele.show(data.info) : true"
@@ -17,11 +18,11 @@
                     </el-radio-group>
                 </template>
                 <template v-if="ele.type === 2">
-                    <el-input v-model="data.info[ele.prop]" />
+                    <el-input  v-model="data.info[ele.prop]" :disable="ele.disable" />
                 </template>
             </el-form-item>
         </template>
-    </el-form>
+    </el-form> -->
 </template>
 
 <script lang="ts">
@@ -45,6 +46,9 @@ interface info {
 }
 
 const data:data<info> = {
+
+
+
     info: {
         radio: 1,
 		input: "",
@@ -74,9 +78,10 @@ const data:data<info> = {
         {
             prop: "input",
             type: 2,
-            show({ radio,input }) {
-				return radio === 0 ? true : false;
-            },
+            // show({ radio,input }) {
+			// 	return radio === 0 ? true : false;
+			// },
+			disable:true
         },
     ],
 };
@@ -84,6 +89,17 @@ const data:data<info> = {
 import { Vue, Component } from "vue-property-decorator";
 @Component
 export default class extends Vue {
+
+	ele = {
+		disabled:false,
+		placeholder:'hello wolrd',
+		value:"123123",
+		input:(e)=>{
+			console.log(e)
+			this.ele.value = e
+		}
+	}
+
     data = {
         info: {
             radio: 1,
@@ -105,17 +121,14 @@ export default class extends Vue {
                     },
                 ],
 			},
-			{
-				prop: "aaa",
-				type: 2,
-				// show:true
-			},
             {
                 prop: "input",
                 type: 2,
-                show({ radio }: any) {
-                    return radio === 0 ? true : false;
-                },
+                // show({ radio }: any) {
+                //     return radio === 0 ? true : false;
+				// },
+				"show-password":true,
+				disabled:true
             },
         ],
     };

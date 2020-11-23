@@ -5,6 +5,7 @@
                 src="@/assets/img/logo.png"
                 class="logo"
                 alt="logo"
+				@click="$router.push('/')"
             />
             <div>
                 <el-menu mode="horizontal" class="tab" router>
@@ -85,6 +86,7 @@
                 src="@/assets/img/logo.png"
                 class="logo_sm"
                 alt="logo"
+				@click="$router.push('/')"
             />
             <div class="right">
                 <el-button class="btn" size="mini" type="success" @click="$router.push('/login/signin')">{{ $t('登录') }}</el-button>
@@ -223,6 +225,9 @@ export default class extends Vue {
 }
 .sm-up{
     padding:0 10px;
+}
+img{
+	cursor: pointer;
 }
 
 </style>
