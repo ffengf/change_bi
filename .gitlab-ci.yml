@@ -14,7 +14,7 @@ build-job:
     - cp -r $CI_PROJECT_DIR/dist/* $DEPLOY_PATH                    # 将打包完成的文件复制到部署路径
     - sudo nginx -s reload                                         # 重启Nginx
   tags:
-    - switch_web_runner                                            # gitlab-runner tag
+    - switch_web                                                   # gitlab-runner tag
   only:
     - main                                                         # 允许部署的分支
   environment:
