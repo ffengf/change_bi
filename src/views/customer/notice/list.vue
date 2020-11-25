@@ -1,6 +1,5 @@
 <template>
     <div class="list">
-		<el-button type="success" class="top_btn">질문하기</el-button>
 		<div class="box">
 			<div class="top">
 				<span class="color_success">답변대</span>
@@ -72,10 +71,15 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component, Emit, Model } from "vue-property-decorator";
 @Component
 export default class extends Vue {
-
+	@Model("update:keys", { type: Boolean, required: true })
+	readonly keys!: boolean;
+    @Emit("update:keys")
+    change_keys(keys: boolean) {
+        return keys;
+	}
 }
 </script>
 
@@ -86,11 +90,6 @@ export default class extends Vue {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	.top_btn{
-		align-self: flex-end;
-		height: 2rem;
-		width: 7rem;
-	}
 	.box{
 		width: 100%;
 		height: 4.2rem;

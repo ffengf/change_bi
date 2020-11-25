@@ -10,7 +10,7 @@
                     <el-input v-model="info.password" :placeholder="$t('密码')" show-password></el-input>
                 </el-form-item>
 				<el-form-item>
-					<div class="flexBC">
+					<div class="flexBC info_box">
 						<el-checkbox v-model="info.check">{{$t('记住密码')}}</el-checkbox>
 						<div>
 							<el-link type="info" :underline="false" @click="$router.push('/login/findusername')">找回账号</el-link>
@@ -20,9 +20,9 @@
 					</div>
                 </el-form-item>
             </el-form>
-			<el-button type="success">{{ $t('登录') }}</el-button>
+			<el-button type="success" style="margin-top:1rem">{{ $t('登录') }}</el-button>
 			<el-divider><em class="color_80">or</em></el-divider>
-			<el-button type="primary" plain @click="$router.push('/login/signup')">{{ $t('注册') }}</el-button>
+			<el-button type="default" plain @click="$router.push('/login/signup')">{{ $t('注册') }}</el-button>
         </div>
     </div>
 </template>
@@ -41,5 +41,7 @@ export default class extends Vue {
 </script>
 
 <style lang="less" scoped>
-
+.info_box{
+	margin-top: -1.1rem;
+}
 </style>

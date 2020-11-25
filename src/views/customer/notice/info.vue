@@ -1,12 +1,14 @@
 <template>
     <div>
 		<div class="item">
-			<p>회원가입</p>
-			<h1>Q. 클럽신청에 조건이 있나요?</h1>
-			<i class="icon el-icon-arrow-up" @click="show" v-if="key"></i>
-			<i class="icon el-icon-arrow-down" @click="show" v-else></i>
+			<div class="top">
+				<span class="color_success">#3fa535</span>
+				<span class="lines"></span>
+				<span>2020.05.01</span>
+			</div>
+			<h1>Q.hello wolrd</h1>
 		</div>
-		<h2 v-if="key">
+		<h2>
 			자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
 			자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
 			자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
@@ -19,18 +21,23 @@
 			자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
 			자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
 		</h2>
+		<div class="btn_box">
+			<el-button class="btns aaa" type="default" plain>이전 글</el-button>
+			<el-button class="btns" type="success" @click="change_keys(true)">목록으로</el-button>
+			<el-button class="btns aaa" type="default" plain>다음 글</el-button>
+		</div>
 	</div>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component, Prop, Model, Emit } from "vue-property-decorator";
 @Component
 export default class extends Vue {
-	key = false
-
-
-	show(){
-		this.key = !this.key
+	@Model("update:keys", { type: Boolean, required: true })
+	readonly keys!: boolean;
+    @Emit("update:keys")
+    change_keys(keys: boolean) {
+        return keys;
 	}
 }
 </script>
@@ -40,7 +47,7 @@ export default class extends Vue {
 <style lang='less' scoped>
 .item{
 	height: 4.3rem;
-	border-top:1px solid #324b9b ;
+	margin-top: -1rem;
 	position: relative;
 	p{
 		color: #3fa535;
@@ -48,9 +55,8 @@ export default class extends Vue {
 		margin-top: 1rem;
 	}
 	h1{
-		color: #324b9b;
+		// color: #324b9b;
 		font-weight: bold;
-		font-style: normal;
 	}
 	.icon{
 		position: absolute;
@@ -70,5 +76,29 @@ h2{
 	font-style: normal;
 	width: 100%;
 	border-top: 1px solid #324b9b;
+	min-height: 21rem;
+	border-bottom: 1px solid #324b9b;
+}
+.btn_box{
+	margin-top: 2.5rem;
+	margin-bottom: 6rem;
+	display: flex;
+	justify-content: space-between;
+	> * {
+		width: 10rem;
+	}
+}
+.top{
+	margin-top: 0.7rem;
+	span{
+		font-size: 11.5px;
+	}
+	.lines{
+		display: inline-block;
+		height: 0.5rem;
+		width: 1px;
+		background: #000;
+		margin: 0 0.3rem;
+	}
 }
 </style>

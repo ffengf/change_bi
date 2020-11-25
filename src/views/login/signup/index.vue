@@ -6,7 +6,7 @@
 				<el-form-item prop="username" label="ID">
                     <div class="flex">
 						<el-input v-model="info.username" :placeholder="$t('用户名')"></el-input>
-						<el-button type="primary" plain>{{ $t('查重') }}</el-button>
+						<el-button type="default" plain>{{ $t('查重') }}</el-button>
 					</div>
                 </el-form-item>
 				<el-form-item prop="password" :label="$t('密码')">
@@ -35,7 +35,7 @@
 				<el-form-item prop="password" :label="$t('手机号')">
                     <div class="flex">
 						<el-input v-model="info.password" :placeholder="$t('手机号')" ></el-input>
-						<el-button type="primary" plain>{{ $t('发送信息') }}</el-button>
+						<el-button type="default" plain>{{ $t('发送信息') }}</el-button>
 					</div>
                 </el-form-item>
 				<el-form-item prop="password" :label="$t('验证码')">
@@ -44,7 +44,7 @@
 				<el-form-item prop="password" :label="$t('地址')">
                     <div class="flex">
 						<el-input v-model="info.password" :placeholder="$t('邮编')" disabled></el-input>
-						<el-button type="primary" plain>{{ $t('搜索') }}</el-button>
+						<el-button type="default" plain>{{ $t('搜索') }}</el-button>
 					</div>
 					<el-input v-model="info.password" :placeholder="$t('地址')" disabled></el-input>
 					<el-input v-model="info.password" :placeholder="$t('详细地址')" disabled></el-input>

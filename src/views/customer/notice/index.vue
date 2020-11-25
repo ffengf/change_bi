@@ -1,109 +1,37 @@
 <template>
     <div class="notice">
-		<div class="box">
-			<div class="top">
-				<span class="color_success">#3fa535</span>
-				<span class="lines">2020.05.01</span>
-			</div>
-			<h1>xxxxxxxxxxxxxxxxxxxxxxxxx</h1>
-		</div>
-		<div class="box">
-			<div class="top">
-				<span class="color_success">#3fa535</span>
-				<span class="lines">2020.05.01</span>
-			</div>
-			<h1>xxxxxxxxxxxxxxxxxxxxxxxxx</h1>
-		</div>
-		<div class="box">
-			<div class="top">
-				<span class="color_success">#3fa535</span>
-				<span class="lines">2020.05.01</span>
-			</div>
-			<h1>xxxxxxxxxxxxxxxxxxxxxxxxx</h1>
-		</div>
-
-		<div class="box">
-			<div class="top">
-				<span class="color_success">#3fa535</span>
-				<span class="lines">2020.05.01</span>
-			</div>
-			<h1>xxxxxxxxxxxxxxxxxxxxxxxxx</h1>
-		</div>
-		<div class="box">
-			<div class="top">
-				<span class="color_success">#3fa535</span>
-				<span class="lines">2020.05.01</span>
-			</div>
-			<h1>xxxxxxxxxxxxxxxxxxxxxxxxx</h1>
-		</div>
-		<div class="box">
-			<div class="top">
-				<span class="color_success">#3fa535</span>
-				<span class="lines">2020.05.01</span>
-			</div>
-			<h1>xxxxxxxxxxxxxxxxxxxxxxxxx</h1>
-		</div>
-		<div class="box">
-			<div class="top">
-				<span class="color_success">#3fa535</span>
-				<span class="lines">2020.05.01</span>
-			</div>
-			<h1>xxxxxxxxxxxxxxxxxxxxxxxxx</h1>
-		</div>
-		<div class="box">
-			<div class="top">
-				<span class="color_success">#3fa535</span>
-				<span class="lines">2020.05.01</span>
-			</div>
-			<h1>xxxxxxxxxxxxxxxxxxxxxxxxx</h1>
-		</div>
-
-		<el-button type="success" class="btn">{{ $t('更多') }}</el-button>
+		<List :keys.sync="key" v-if="key" />
+		<Info :keys.sync="key" v-else />
     </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
-@Component
+import { Vue, Component, Watch } from "vue-property-decorator";
+import List from "./list.vue"
+import Info from "./info.vue"
+@Component({
+	components:{
+		List,
+		Info,
+	}
+})
 export default class extends Vue {
+	key = true
 
+	@Watch('key')
+	watch_key(key:boolean){
+		const tabs = document.getElementById('customer_tab') as HTMLElement
+		if(key){
+			tabs.style.display = 'flex'
+		}else{
+			tabs.style.display = 'none'
+		}
+	}
 }
 </script>
 
 
 
 <style lang='less' scoped>
-.notice{
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	.box{
-		width: 100%;
-		height: 3rem;
-		border-bottom: 1px solid #324b9b;
-		margin-top: 0.5rem;
-		cursor: pointer;
-		.top{
-			span{
-				font-size: 11.5px;
-			}
-			.lines{
-				border-left: 1px solid #000;
-				margin-left: 0.3rem;
-				padding-left: 0.3rem;
-			}
-		}
-		h1{
-			font-size: 16.5px;
-			font-weight: 500;
-			margin-top: 0.01rem;
-		}
-	}
-	.btn{
-		width: 10rem;
-		align-self: center;
-		margin-top: 2.5rem;
-		margin-bottom: 6rem;
-	}
-}
+
 </style>

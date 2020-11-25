@@ -1,3 +1,10 @@
+
+@import "./font.less";
+
+*{
+	font-family: NotoSansKR-Medium;
+}
+
 body,
 div,
 dl,
@@ -78,117 +85,156 @@ acronym {
 	border: 0;
 }
 
-html{
+html {
 	font-size: 20px;
 }
 
-.login_warpper > h1 {
+.login_warpper>h1 {
 	color: #000000;
 	font-size: 46px;
 	font-weight: 300;
 	margin-bottom: 2rem;
 }
 
-.login_warpper > h2{
+.login_warpper>h2 {
 	font-weight: 300;
 	color: #324b9b;
 	font-size: 25.5px;
 	margin-bottom: 2rem;
 }
 
-.login_warpper h2 > em {
+.login_warpper h2>em {
 	font-weight: 400;
 }
 
-.pd5{
+.pd5 {
 	padding: 0 5rem;
 	box-sizing: border-box;
 }
+
 @media screen and (max-width: 1025px) {
-	.pd5{
-		padding: 0;
-	}
-}
-.pd10{
-	padding: 0 10rem;
-	box-sizing: border-box;
-}
-@media screen and (max-width: 1024px) {
-	.pd10{
+	.pd5 {
 		padding: 0;
 	}
 }
 
-.line{
+.pd10 {
+	padding: 0 10rem;
+	box-sizing: border-box;
+}
+
+@media screen and (max-width: 1024px) {
+	.pd10 {
+		padding: 0;
+	}
+}
+
+.line {
 	height: 0.2rem;
 	width: 100%;
 }
 
-.color_success{
+.color_success {
 	color: #3fa535;
 }
 
-.color_primary{
-	color:#324b9b;
+.color_primary {
+	color: #324b9b;
 }
 
-.color_80{
+.color_80 {
 	color: #808080;
 }
-.color_000{
+
+.color_000 {
 	color: #000000;
 }
 
-.flexC{
+.flexC {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
-.flex{
+
+.flex {
 	display: flex;
 	align-items: center;
 }
-.flexBC{
+
+.flexBC {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 }
 
-.flex_column{
+.flex_column {
 	display: flex;
 	flex-direction: column;
 }
 
-.w75vw{
-	width:75vw
-}
-.w100vw{
-	width:100vw
-}
-.min_width1100{
-	min-width:1100px
+.w75vw {
+	width: 75vw
 }
 
-em{
+.w70vw {
+	width: 70vw
+}
+
+.w100vw {
+	width: 100vw
+}
+
+.min_width1100 {
+	min-width: 1100px
+}
+
+.min_width1000 {
+	min-width: 1000px
+}
+small{
+	font-weight: 500;
+}
+em {
 	font-weight: 550;
 }
 
-@media only screen and (min-width: 1025px){
+.mt20{
+	margin-top: 1rem;
+}
+
+.mt10{
+	margin-top: 0.5rem;
+}
+
+.mt5{
+	margin-top: 0.25rem;
+}
+
+@media only screen and (min-width: 1025px) {
 	.sm-up {
-		display: none!important;
+		display: none !important;
 	}
 
 }
-@media only screen and (max-width: 1024px){
+
+@media only screen and (max-width: 1024px) {
 	.sm-down {
-		display: none!important;
+		display: none !important;
 	}
-	.min_width1100{
+
+	.min_width1100 {
 		min-width: auto !important;
 	}
-	.w75vw{
-		width: 100vw!important;
+
+	.w75vw {
+		width: 100vw !important;
+	}
+
+	.w70vw {
+		width: 100vw !important
+	}
+
+	.min_width1000 {
+		min-width: auto !important
 	}
 }
-
-

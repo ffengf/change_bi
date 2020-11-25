@@ -11,7 +11,7 @@
 			<Item />
 			<Item />
 		</ul>
-		<el-button type="success" class="btn">{{ $t('更多') }}</el-button>
+		<el-button type="success" class="btn">더보기</el-button>
     </div>
 </template>
 

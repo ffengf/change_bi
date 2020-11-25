@@ -8,7 +8,7 @@ import router from './router';
 import i18n from '@/i18n'
 import { Device } from "@/mixin/size"
 import store from './store';
-import "@/assets/style/reset.css"
+import "@/assets/style/reset.less"
 import "@/assets/style/element_phone.less"
 import "@/assets/style/reset_ele.less"
 import 'element-ui/lib/theme-chalk/display.css';
