@@ -42,9 +42,9 @@
                             <i class="el-icon-service"></i>
                         </span>
                         <el-dropdown-menu slot="dropdown">
-                            <el-dropdown-item command="/customer/notice">{{ $t('公告') }}</el-dropdown-item>
-                            <el-dropdown-item command="/customer/problem">{{ $t('常见问题') }}</el-dropdown-item>
-                            <el-dropdown-item command="/customer/answer">{{ $t('1：1问题与反馈') }}</el-dropdown-item>
+                            <el-dropdown-item command="/customer/notice">공지사항</el-dropdown-item>
+                            <el-dropdown-item command="/customer/problem">자주묻는질문</el-dropdown-item>
+                            <el-dropdown-item command="/customer/answer">1:1문의</el-dropdown-item>
                         </el-dropdown-menu>
                     </el-dropdown>
                 </div>

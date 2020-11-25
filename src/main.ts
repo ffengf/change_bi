@@ -25,12 +25,9 @@ import { OtherModule } from './store/other';
 // document.oncut = function(){ return false; };
 // // 禁止粘贴
 // document.onpaste = function(){ return false; };
-Vue.config.productionTip = false;
+Vue.config.productionTip = true;
 
 Vue.use(Element)
-
-Vue.mixin(Device)
-OtherModule.check()
 
 export const app = new Vue({
 	router,
