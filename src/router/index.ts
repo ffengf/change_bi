@@ -54,6 +54,41 @@ const routes: RouteConfig[] = [
 					},
 				]
 			},
+			{
+				path: '/customer',
+				name: 'customer',
+				meta:{
+					title:'고객센터'
+				},
+				component: () => import('@/views/customer/index.vue'),
+				redirect: '/customer/notice',
+				children:[
+					{
+						path: 'notice',
+						name: 'notice',
+						meta:{
+							title:'공지사항'
+						},
+						component: () => import('@/views/customer/notice/index.vue'),
+					},
+					{
+						path: 'problem',
+						name: 'problem',
+						meta:{
+							title:'자주 묻는 질문'
+						},
+						component: () => import('@/views/customer/problem/index.vue'),
+					},
+					{
+						path: 'answer',
+						name: 'answer',
+						meta:{
+							title:'1:1 문의'
+						},
+						component: () => import('@/views/customer/answer/index.vue'),
+					},
+				]
+			},
 		]
 	},
 ];

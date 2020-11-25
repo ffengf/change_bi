@@ -53,7 +53,7 @@
 		</div>
 		<div class="carousel">
             <el-carousel arrow="always">
-                <el-carousel-item v-for="i in item" :key="i">
+                <el-carousel-item v-for="(i,key) in item" :key="key">
                     <el-image class="img" :src="i.url" />
                 </el-carousel-item>
             </el-carousel>
@@ -145,7 +145,6 @@ export default class extends Vue {
 				width: 61px;
 				height: 22px;
 				margin: 32px 129px 45px 1px;
-				font-family: NotoSansKR;
 				font-size: 24px;
 				font-weight: 500;
 				font-stretch: normal;
@@ -159,7 +158,6 @@ export default class extends Vue {
 				width: 127px;
 				height: 34px;
 				margin: 21px 64px 144px 0;
-				font-family: NotoSansKR;
 				font-size: 16px;
 				font-weight: 500;
 				font-stretch: normal;

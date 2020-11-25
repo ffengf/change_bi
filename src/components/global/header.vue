@@ -37,14 +37,14 @@
             </div>
             <div class="right">
                 <div class="icon">
-                    <el-dropdown trigger="click">
+                    <el-dropdown trigger="click" @command="customer">
                         <span class="el-dropdown-link">
                             <i class="el-icon-service"></i>
                         </span>
                         <el-dropdown-menu slot="dropdown">
-                            <el-dropdown-item>{{ $t('公告') }}</el-dropdown-item>
-                            <el-dropdown-item>{{ $t('常见问题') }}</el-dropdown-item>
-                            <el-dropdown-item>{{ $t('1：1问题与反馈') }}</el-dropdown-item>
+                            <el-dropdown-item command="/customer/notice">{{ $t('公告') }}</el-dropdown-item>
+                            <el-dropdown-item command="/customer/problem">{{ $t('常见问题') }}</el-dropdown-item>
+                            <el-dropdown-item command="/customer/answer">{{ $t('1：1问题与反馈') }}</el-dropdown-item>
                         </el-dropdown-menu>
                     </el-dropdown>
                 </div>
@@ -181,6 +181,10 @@ export default class extends Vue {
 
 	language(e:string){
 		this.$i18n.locale = e
+	}
+
+	customer(link:string){
+		this.$router.push(link)
 	}
 
     created() {}

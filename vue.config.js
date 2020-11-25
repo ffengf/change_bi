@@ -18,7 +18,7 @@ module.exports = {
 		config
 			.plugin('html')
 			.tap(args => {
-				args[0].title = 'workwiz'
+				args[0].title = 'switch'
 				return args
 			})
 	},
@@ -32,6 +32,7 @@ module.exports = {
 					'^/api': ''
 				}
 			}
-		}
+		},
+		port:8000,
 	}
 }
