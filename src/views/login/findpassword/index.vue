@@ -39,20 +39,24 @@
             </div>
         </template>
         <template v-if="step === 2">
-            <h1>{{ $t("重置密码") }}</h1>
-            <h2>새로운비밀번호를입력해주세요.</h2>
+            <h1>비밀번호변경</h1>
+            <h2>
+				<p>새로운</p>
+				<p><strong>비밀번호</strong>를</p>
+				<p>입력해주세요.</p>
+			</h2>
             <div class="flex_column">
                 <el-form ref="form" :model="info" :rules="rules">
                     <el-form-item prop="password">
                         <el-input
                             v-model="info.password"
-                            :placeholder="$t('密码')"
+                            placeholder="영문,숫자,특수문자포함8자이상입력"
                         ></el-input>
                     </el-form-item>
                     <el-form-item prop="username">
                         <el-input
                             v-model="info.password"
-                            :placeholder="$t('再次输入密码')"
+                            placeholder="휴대폰번호('-'는빼고입력해주세요)"
                         ></el-input>
                     </el-form-item>
                 </el-form>
