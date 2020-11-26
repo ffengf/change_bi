@@ -75,7 +75,7 @@ export default class extends Vue {
 		{
 			url:'http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071011.png',
 			title:"你好你好",
-			info:"你好你好你好你sdfbsdfb好你好你asdfsdfhsfgn好你好你好你好你好你sfgnsfgn好你好你好你好你好你好"
+			info:"클럽 창작과비평 독서모임 1기 모집"
 		},
 		{
 			url:'https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png',
@@ -99,7 +99,7 @@ export default class extends Vue {
 		{
 			url:'http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071011.png',
 			title:"你好你好",
-			info:"你好你好你好你sdfbsdfb好你好你asdfsdfhsfgn好你好你好你好你好你sfgnsfgn好你好你好你好你好你好"
+			info:"클럽 창작과비평 독서모임 1기 모집"
 		},
 		{
 			url:'https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png',

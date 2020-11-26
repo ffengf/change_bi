@@ -68,8 +68,14 @@ export default class extends Vue {}
     .right {
         width: 50%;
         height: 100%;
-        box-sizing: border-box;
-        padding: 3rem 5rem 0 5rem;
+		box-sizing: border-box;
+		display: flex;
+		justify-content: center;
+		margin:	3rem 0;
+		.box{
+			width: 18rem;
+		}
+        // padding: 3rem 4rem 0 4rem;
     }
     .line {
         height: auto;
