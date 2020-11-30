@@ -53,7 +53,6 @@ export default class extends Vue {
 		width: 100vw;
     }
     .el-footer {
-        // height: 30vh !important;
         width: 100%;
     }
 }

@@ -89,6 +89,33 @@ const routes: RouteConfig[] = [
 					},
 				]
 			},
+			{
+				path: '/club',
+				name: 'club',
+				meta:{
+					title:'모임신청'
+				},
+				component: () => import('@/views/club/index.vue'),
+				redirect: '/club/creation',
+				children:[
+					{
+						path: 'creation',
+						name: 'creation',
+						meta:{
+							title:'클럽창작과비평'
+						},
+						component: () => import('@/views/club/creation/index.vue'),
+					},
+					{
+						path: 'apply',
+						name: 'apply',
+						meta:{
+							title:'북클럽필라멘트'
+						},
+						component: () => import('@/views/club/apply/index.vue'),
+					},
+				]
+			}
 		]
 	},
 ];

@@ -1,0 +1,377 @@
+<template>
+    <div class="creation">
+		<div class="warpper w70vw min_width1000">
+			<h1>클럽 창작과비평</h1>
+			<div class="line"></div>
+			<h2>
+				<p>한 계절이 지나고</p>
+				<p>당신의 문학이 더 깊어집니다</p>
+				<p>당신의 관점이 더 넓어집니다</p>
+			</h2>
+			<h3>
+				<p>우리 함께 문학과 세상에 대해 이야기해요.</p>
+				<p>두 계절 동안 함께 『창작과비평』을 읽어 나갈 분들을 모집합니다.</p>
+			</h3>
+			<a href="#href" class="btn">신청하기</a>
+		</div>
+		<div class="content w70vw min_width1000">
+			<div class="left">
+				<img src="@/assets/img/left.png" alt="">
+			</div>
+			<h1 class="mid">
+				<p><span>클럽 창작과비평은</span> 계간 『창작과비평』을 함께 읽는 활동입니다. 『창작과비평』은 1966년 창간 이래 우리 문학과 지식계에 큰 발자취를</p>
+				<p>남겨온, 한국을 대표하는 문예지입니다. 주요 작가들의 시와 소설 신작은 물론 최근 정치 · 사회 이슈에 대한 심도 있는 비평 등 다양한 글을</p>
+				<p>만날 수 있습니다. 클럽 창작과비평 클러버가 되면 『창작과비평』 종이책을 제공받고, 정해진 미션에 따라 같이 읽어나가는 활동을 하게 </p>
+				<p>됩니다. 매년 2월, 8월 클러버를 모집하며, 한 기수당 6개월간 2개 호를 함께 읽습니다.</p>
+			</h1>
+			<div class="right">
+				<img src="@/assets/img/right.png" alt="">
+			</div>
+		</div>
+		<h1 class="title w70vw min_width1000">클럽 창작과 비평 활동</h1>
+		<ul class="list w70vw min_width1000">
+			<li class="item">
+				<div class="v1">
+					<h2>첫째</h2>
+					<div class="line"></div>
+					<h1>미션</h1>
+					<div class="line"></div>
+					<p>매주 미션이 주어집니다. ‘이번 호에서 가장 마음에 들었던 시 한편을 고르고, 좋았던 문장 소개하기’, ‘내가 문학초점을 기획한다면 어떤 작품들을 다루고 싶은지’ 등 각 챕터를 읽어나가기 위한 간단한 미션이 설정되어 있습니다. 어렵지 않게 차근차근 읽어나갈 수 있도록 클럽지기가 매주 미션을 안내할 예정이에요!</p>
+				</div>
+				<div class="v2">
+					<img src="@/assets/img/club/1.png" alt="">
+				</div>
+			</li>
+			<li class="item">
+				<div class="v1">
+					<h2>첫째</h2>
+					<div class="line"></div>
+					<h1>미션</h1>
+					<div class="line"></div>
+					<p>매주 미션이 주어집니다. ‘이번 호에서 가장 마음에 들었던 시 한편을 고르고, 좋았던 문장 소개하기’, ‘내가 문학초점을 기획한다면 어떤 작품들을 다루고 싶은지’ 등 각 챕터를 읽어나가기 위한 간단한 미션이 설정되어 있습니다. 어렵지 않게 차근차근 읽어나갈 수 있도록 클럽지기가 매주 미션을 안내할 예정이에요!</p>
+				</div>
+				<div class="v2">
+					<img src="@/assets/img/club/2.png" alt="">
+				</div>
+			</li>
+			<li class="item">
+				<div class="v1">
+					<h2>첫째</h2>
+					<div class="line"></div>
+					<h1>미션</h1>
+					<div class="line"></div>
+					<p>매주 미션이 주어집니다. ‘이번 호에서 가장 마음에 들었던 시 한편을 고르고, 좋았던 문장 소개하기’, ‘내가 문학초점을 기획한다면 어떤 작품들을 다루고 싶은지’ 등 각 챕터를 읽어나가기 위한 간단한 미션이 설정되어 있습니다. 어렵지 않게 차근차근 읽어나갈 수 있도록 클럽지기가 매주 미션을 안내할 예정이에요!</p>
+				</div>
+				<div class="v2">
+					<img src="@/assets/img/club/3.png" alt="">
+				</div>
+			</li>
+			<li class="item">
+				<div class="v1">
+					<h2>첫째</h2>
+					<div class="line"></div>
+					<h1>미션</h1>
+					<div class="line"></div>
+					<p>매주 미션이 주어집니다. ‘이번 호에서 가장 마음에 들었던 시 한편을 고르고, 좋았던 문장 소개하기’, ‘내가 문학초점을 기획한다면 어떤 작품들을 다루고 싶은지’ 등 각 챕터를 읽어나가기 위한 간단한 미션이 설정되어 있습니다. 어렵지 않게 차근차근 읽어나갈 수 있도록 클럽지기가 매주 미션을 안내할 예정이에요!</p>
+				</div>
+				<div class="v2">
+					<img src="@/assets/img/club/4.png" alt="">
+				</div>
+			</li>
+			<li class="item">
+				<div class="v1">
+					<h2>첫째</h2>
+					<div class="line"></div>
+					<h1>미션</h1>
+					<div class="line"></div>
+					<p>매주 미션이 주어집니다. ‘이번 호에서 가장 마음에 들었던 시 한편을 고르고, 좋았던 문장 소개하기’, ‘내가 문학초점을 기획한다면 어떤 작품들을 다루고 싶은지’ 등 각 챕터를 읽어나가기 위한 간단한 미션이 설정되어 있습니다. 어렵지 않게 차근차근 읽어나갈 수 있도록 클럽지기가 매주 미션을 안내할 예정이에요!</p>
+				</div>
+				<div class="v2">
+					<img src="@/assets/img/club/1.png" alt="">
+				</div>
+			</li>
+		</ul>
+		<div class="box" id="href">
+			<div class="w70vw min_width1000 ccc">
+				<h1>신청하기</h1>
+				<div class="line"></div>
+				<div class="btn_box">
+					<el-button type="primary" class="btn">신청하기</el-button>
+					<el-button type="default" class="btn">신청하기</el-button>
+					<el-button type="default" class="btn">신청하기</el-button>
+				</div>
+			</div>
+		</div>
+		<ul class="box_list w70vw min_width1000">
+			<li class="item">
+				<img src="https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png" alt="">
+				<h1>클럽 창작과비평 제3장</h1>
+				<h2>
+					<span>모집 중</span>
+					<span>|</span>
+					<span>2021. 01. 01 ~ 2020. 01. 31</span>
+				</h2>
+				<h3>클럽 창작과비평 프롤로그 프로그램 입니다.</h3>
+			</li>
+		</ul>
+    </div>
+</template>
+
+<script lang="ts">
+import { Vue, Component } from "vue-property-decorator";
+import Rview from "@/components/routerView/index.vue";
+import Bread from "@/components/bread/index.vue"
+@Component({
+    components: {
+		Rview,
+		Bread,
+	},
+})
+export default class extends Vue {
+
+}
+</script>
+
+
+
+<style lang='less' scoped>
+.creation{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	.warpper{
+		height: 27.5rem;
+		border-bottom: 1px solid #324b9b;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		h1{
+			font-family: NotoSansKR;
+			font-size: 48px;
+			font-weight: 500;
+			font-stretch: normal;
+			font-style: normal;
+			letter-spacing: -2.4px;
+			color: #3fa535;
+		}
+		.line{
+			background: #3fa535;
+			width: 1.25rem;
+			margin-top: 2.75rem;
+			height: 2px;
+		}
+		h2{
+			margin-top: 2rem;
+			color: #324b9b;
+			font-family: NanumSquareRoundL;
+			font-size: 50px;
+			font-weight: normal;
+			font-stretch: normal;
+			font-style: normal;
+			line-height: normal;
+			text-align: center;
+			line-height: 55px;
+		}
+		h3{
+			color: #3fa535;
+			font-family: NotoSansKR;
+			font-size: 16px;
+			font-weight: 500;
+			font-stretch: normal;
+			font-style: normal;
+			line-height: 1.5;
+			letter-spacing: -0.4px;
+			text-align: center;
+			margin-top: 2rem;
+		}
+		.btn{
+			margin-top: 2rem;
+			width: 10rem;
+			height: 2rem;
+			display: block;
+			color: #fff;
+			background-color: #324b9b;
+			border-color: #324b9b;
+			color: #ffffff;
+			text-decoration: none;
+			text-align: center;
+			line-height: 2rem;
+			font-size: 14px;
+		}
+	}
+	.content{
+		height: 5rem;
+		// width: 100%;
+		display: flex;
+		justify-content: space-between;
+		margin-top: 7rem;
+		margin-bottom: 6.6rem;
+		box-sizing: border-box;
+		white-space:nowrap;
+		.left,.right{
+			position: relative;
+		}
+		.left{
+			margin-right: 1rem;
+			img{
+				position: relative;
+				top: -1rem;
+			}
+		}
+		.right{
+			margin-left: 1rem;
+			img{
+				position: relative;
+				bottom: -5rem;
+			}
+		}
+		.mid{
+			width: 46.25rem;
+			flex: 1;
+			height: 5rem;
+			font-family: NotoSansKR;
+			font-size: 16px;
+			font-weight: normal;
+			font-stretch: normal;
+			font-style: normal;
+			line-height: 1.75;
+			letter-spacing: -0.4px;
+			text-align: left;
+			span{
+				color: #3fa535;
+			}
+		}
+	}
+	.title{
+		font-family: NotoSansKR;
+		font-size: 30px;
+		font-weight: 500;
+		font-stretch: normal;
+		font-style: normal;
+		line-height: 0.8;
+		letter-spacing: -1.5px;
+		text-align: left;
+		color: #3fa535;
+		margin-bottom: 2.15rem;
+	}
+	.list{
+		// width: 100%;
+		.item{
+			box-sizing: border-box;
+			display: flex;
+			height: 16.5rem;
+			justify-content: space-between;
+			margin-bottom: 5rem;
+			flex-direction: row;
+			.v1,.v2{
+				box-sizing: border-box;
+				padding-top: 1.5rem;
+			}
+			.v1{
+				width: 48%;
+				border-top: 4px solid #324b9b;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				h2{
+					color: #3fa535;
+					font-family: NotoSansKR;
+					font-size: 16px;
+					font-weight: normal;
+					font-stretch: normal;
+					font-style: normal;
+					line-height: normal;
+					letter-spacing: -1.2px;
+				}
+				.line{
+					background: #324b9b;
+					height: 2px;
+					width: 25px;
+				}
+				h1{
+					color: #3fa535;
+					font-family: NotoSansKR;
+					font-size: 36px;
+					font-weight: normal;
+					font-stretch: normal;
+					font-style: normal;
+					line-height: normal;
+					letter-spacing: -2.7px;
+					text-align: left;
+				}
+				p{
+					font-family: NotoSansKR;
+					font-size: 16px;
+					font-weight: normal;
+					font-stretch: normal;
+					font-style: normal;
+					line-height: 1.75;
+					letter-spacing: -0.4px;
+					text-align: left;
+					color: #000000;
+				}
+			}
+			.v2{
+				width: 48%;
+				border-top: 4px solid #3fa535;
+			}
+		}
+		.item:nth-of-type(2n){
+			flex-direction: row-reverse;
+		}
+	}
+	.box{
+		width: 100vw;
+		height: 7.25rem;
+		background: #3fa535;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		.ccc{
+			position: relative;
+			h1{
+				margin-top: 2rem;
+				font-family: NotoSansKR;
+				font-size: 30px;
+				font-weight: 500;
+				font-stretch: normal;
+				font-style: normal;
+				letter-spacing: -1.5px;
+				text-align: left;
+				color: #ffffff;
+			}
+			.line{
+				width: 17px;
+				height: 2px;
+				background: #ffdb7b;
+				margin-top: 1.25rem;
+			}
+			.btn_box{
+				position: absolute;
+				display: flex;
+				top: 50%;
+				right: 0;
+				> *{
+					width: 8rem;
+					height: 2rem;
+				}
+			}
+		}
+	}
+	.box_list{
+		display: flex;
+		flex-wrap: wrap;
+		.item{
+			width: 33%;
+			overflow: hidden;
+			img{
+				width: 16rem;
+				height: 11rem;
+			}
+			h1{
+				margin-top: 1.25rem;
+			}
+		}
+	}
+}
+</style>

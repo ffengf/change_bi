@@ -1,14 +1,14 @@
 <template>
     <div id="index">
         <div class="carousel">
-            <el-carousel arrow="always">
+            <el-carousel arrow="always" height="23rem">
                 <el-carousel-item v-for="item in img_list" :key="item">
                     <el-image class="img" :src="item" />
                 </el-carousel-item>
             </el-carousel>
         </div>
         <div class="flexC">
-			<div class="news w75vw min_width1100 flexBC">
+			<div class="news w70vw min_width1000 flexBC">
 				<div class="left sm-down">
 					<div class="line"></div>
 					<h1>{{ $t('咨询') }}</h1>
@@ -34,7 +34,7 @@
 			</div>
 		</div>
 		<div class="flexC">
-			<div class="serial w75vw min_width1100">
+			<div class="serial w70vw min_width1000">
 				<div class="top">
 					<h1>{{ $t('今日连载') }}</h1>
 					<el-link icon="el-icon-plus" :underline="false" type="success">{{ $t('更多') }}</el-link>
@@ -52,7 +52,7 @@
 			<img class="img" src="@/assets/img/index_img.png"  />
 		</div>
 		<div class="carousel">
-            <el-carousel arrow="always">
+            <el-carousel arrow="always" height="23rem">
                 <el-carousel-item v-for="(i,key) in item" :key="key">
                     <el-image class="img" :src="i.url" />
                 </el-carousel-item>
@@ -73,7 +73,7 @@ export default class extends Vue {
 
 	item = [
 		{
-			url:'http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071011.png',
+			url:'https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png',
 			title:"你好你好",
 			info:"클럽 창작과비평 독서모임 1기 모집"
 		},

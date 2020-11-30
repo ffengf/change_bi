@@ -25,10 +25,10 @@
             <div class="inp">
                 <el-autocomplete
                     popper-class="my-autocomplete"
-                    :placeholder="$t('搜索读书会')"
+                    placeholder="독서모임을검색해보세요."
                     v-model="input"
                 >
-                    <i class="el-input__icon el-icon-search" slot="suffix"> </i>
+                    <i class="el-input__icon el-icon-search" slot="suffix"></i>
                     <template slot-scope="props">
                         <div class="name">{{ props.item.value }}</div>
                         <span class="addr">{{ props.item.address }}</span>
@@ -45,17 +45,6 @@
                             <el-dropdown-item command="/customer/notice">공지사항</el-dropdown-item>
                             <el-dropdown-item command="/customer/problem">자주묻는질문</el-dropdown-item>
                             <el-dropdown-item command="/customer/answer">1:1문의</el-dropdown-item>
-                        </el-dropdown-menu>
-                    </el-dropdown>
-                </div>
-                <div class="icon">
-                    <el-dropdown trigger="click" @command="language">
-                        <span class="el-dropdown-link">
-                            <i class="iconfont icon-diqiu"></i>
-                        </span>
-                        <el-dropdown-menu slot="dropdown">
-                            <el-dropdown-item command="zh">Chinese</el-dropdown-item>
-                            <el-dropdown-item command="ko">韩语</el-dropdown-item>
                         </el-dropdown-menu>
                     </el-dropdown>
                 </div>
@@ -105,48 +94,20 @@ export default class extends Vue {
     input = "";
 
     tab = [
-        {
-            name: this.$t("读书会申请"),
-            index: "/read",
-            children: [
-                {
-                    name: this.$t("创造与批评俱乐部"),
-                    index: "/read/1",
-                },
-                {
-                    name: this.$t("xxx读书会"),
-                    index: "/read/2",
-                },
-            ],
-		},
 		{
-            name: this.$t("读书会申请"),
-            index: "/a",
+            name: '모임신청',
+            index: "/club",
             children: [
                 {
-                    name: this.$t("创造与批评俱乐部"),
-                    index: "/a/1",
+                    name: '클럽창작과비평',
+                    index: "/club/creation",
                 },
                 {
-                    name: this.$t("xxx读书会"),
-                    index: "/a/2",
+                    name: '북클럽필라멘트',
+                    index: "/club/apply",
                 },
             ],
         },
-        // {
-        //     name: this.$t("读书会申请"),
-        //     index: "/c",
-        //     children: [
-        //         {
-        //             name: this.$t("创造与批评俱乐部"),
-        //             index: "/c/1",
-        //         },
-        //         {
-        //             name: this.$t("xxx读书会"),
-        //             index: "/c/2",
-        //         },
-        //     ],
-        // },
         {
             name: this.$t("每日连载"),
             index: "/lianzai",
@@ -176,7 +137,21 @@ export default class extends Vue {
                     index: "/lianzai/s",
                 },
             ],
-        },
+		},
+		{
+            name: '活动',
+            index: "/read",
+            children: [
+                {
+                    name: this.$t("创造与批评俱乐部"),
+                    index: "/read/1",
+                },
+                {
+                    name: this.$t("xxx读书会"),
+                    index: "/read/2",
+                },
+            ],
+		},
     ];
 
 	language(e:string){
@@ -198,7 +173,13 @@ export default class extends Vue {
     height: 100%;
     overflow: hidden;
     display: flex;
-    align-items: center;
+	align-items: center;
+	.inp{
+		/deep/.el-input__inner{
+			width: 10rem;
+			font-size: 13px;
+		}
+	}
     .el-icon-menu {
         font-size: 30px;
     }
