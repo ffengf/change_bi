@@ -1,16 +1,16 @@
 <template>
     <div class="creation">
 		<div class="warpper w70vw min_width1000">
-			<h1>클럽 창작과비평</h1>
+			<h1>북클럽 필라멘트</h1>
 			<div class="line"></div>
 			<h2>
-				<p>한 계절이 지나고</p>
-				<p>당신의 문학이 더 깊어집니다</p>
-				<p>당신의 관점이 더 넓어집니다</p>
+				<p>책으로 연결되는 우리</p>
+				<p>경험으로 연결되는 책</p>
+				<p>『필라멘트』</p>
 			</h2>
 			<h3>
-				<p>우리 함께 문학과 세상에 대해 이야기해요.</p>
-				<p>두 계절 동안 함께 『창작과비평』을 읽어 나갈 분들을 모집합니다.</p>
+				<p>필라멘트는</p>
+				<p>책에 담긴 생각을 나의 생활과 경험으로 이어지게 합니다.</p>
 			</h3>
 			<a href="#href" class="btn">신청하기</a>
 		</div>
@@ -91,6 +91,88 @@
 				</div>
 			</li>
 		</ul>
+		<div class="flow w70vw min_width1000">
+			<h1>사용설명서</h1>
+			<div class="line"></div>
+			<h2>
+				<p>연결되고 싶은 책, </p>
+				<p>북메이트, 클럽을 고르셨다면,</p>
+				<p>일단, 신청해보세요.</p>
+			</h2>
+			<div class="flow_box">
+				<div class="item">
+					<img src="@/assets/img/club/book/1.png" alt="">
+					<div class="line"></div>
+					<h1>클럽 찾기</h1>
+					<h2>
+						<p>연결되고 싶은 클럽을</p>
+						<p>찾아보세요.</p>
+					</h2>
+				</div>
+				<img src="@/assets/img/club/book/0.png" alt="" srcset="">
+				<div class="item">
+					<img src="@/assets/img/club/book/2.png" alt="">
+					<div class="line"></div>
+					<h1>클럽 신청</h1>
+					<h2>
+						<p>신청하기를 누르고, </p>
+						<p>결제까지 마치면 연결 완료.</p>
+					</h2>
+				</div>
+				<img src="@/assets/img/club/book/0.png" alt="" srcset="">
+				<div class="item">
+					<img src="@/assets/img/club/book/3.png" alt="">
+					<div class="line"></div>
+					<h1>혼자 읽는 책</h1>
+					<h2>
+						<p>자신만의 속도에 맞춰</p>
+						<p>책 한 권을 읽어요.</p>
+					</h2>
+				</div>
+				<img src="@/assets/img/club/book/0.png" alt="" srcset="">
+				<div class="item">
+					<img src="@/assets/img/club/book/4.png" alt="">
+					<div class="line"></div>
+					<h1>다함께 미션 수행</h1>
+					<h2>
+						<p>북메이트의 안내에 따라</p>
+						<p>미션을 인증해주세요.</p>
+					</h2>
+				</div>
+				<img src="@/assets/img/club/book/0.png" alt="" srcset="">
+				<div class="item">
+					<img src="@/assets/img/club/book/5.png" alt="">
+					<div class="line"></div>
+					<h1>독서 모임<span class="small">(온/오프라인)</span></h1>
+					<h2>
+						<p>때때로 얼굴을 마주 보고</p>
+						<p>이야기 나눌 거예요.</p>
+					</h2>
+				</div>
+			</div>
+			<div class="text_box">
+				<div>
+					<h1>어떤 미션을 하게 되나요?</h1>
+					<h2>
+						<p>클럽에 따라 인증 방법은 다양하게 구성됩니다. 글을 쓰거나 사진을 찍거나,</p>
+						<p>영상을 촬영해야 할지도 몰라요. 일주일 동안 그림을 그리고, 달리기를 하고,</p>
+						<p>한밤에 야식을 먹게 될 수도 있다는 사실!</p>
+					</h2>
+				</div>
+				<div>
+					<h1>
+						<p>인증이란? 서로의 ‘작심삼개월’을</p>
+						<p>즐거워하고 응원하는 일.</p>
+					</h1>
+					<h2>
+						<p>① 북메이트의 안내에 따라 게시판에 미션을 인증해주세요. </p>
+						<p>② 미션을 인증하기까지의 희로애락, 미션을 인증하는 순간의 쾌감, </p>
+						<p class="mr-left">미션 성공과 실패의 웃픈 이야기, 그리고 책 수다는 댓글로, 대댓글로! </p>
+						<p>③ 프로 댓글러에게는 깜짝, 깜찍 선물을 드려요.</p>
+					</h2>
+				</div>
+			</div>
+		</div>
 		<div class="box" id="href">
 			<div class="w70vw min_width1000 ccc">
 				<h1>신청하기</h1>
@@ -371,6 +453,116 @@ export default class extends Vue {
 			flex-direction: row-reverse;
 		}
 	}
+	.flow{
+		margin-bottom: 6rem;
+		> h1{
+			color: #324b9b;
+			font-family: NotoSansKR;
+			font-size: 30px;
+			font-weight: 500;
+			font-stretch: normal;
+			font-style: normal;
+			line-height: 0.8;
+			letter-spacing: -1.5px;
+			text-align: left;
+		}
+		.line{
+			margin: 2.15rem 0;
+			background: #3fa535;
+		}
+		> h2{
+			color: #324b9b;
+			font-family: NotoSansKR;
+			font-size: 21px;
+			font-weight: normal;
+			font-stretch: normal;
+			font-style: normal;
+			letter-spacing: -0.53px;
+			text-align: left;
+		}
+		.flow_box{
+			width: 100%;
+			margin: 5rem 0;
+			display: flex;
+			justify-content: space-between;
+			.item{
+				width: 15%;
+				display: flex;
+				flex-direction: column;
+				img{
+					height: 5rem;
+					width: 5rem;
+					align-items: center;
+					align-self: center;
+				}
+				.line{
+					height: 2px;
+					width: 8rem;
+					background: #324b9b;
+					margin:1.25rem 0 0.75rem 0 ;
+				}
+				>h1{
+					font-family: NotoSansKR;
+					font-size: 24px;
+					font-weight: 500;
+					font-stretch: normal;
+					font-style: normal;
+					letter-spacing: -0.6px;
+					text-align: left;
+					color: #3fa535;
+					white-space:nowrap;
+					.small{
+						font-size: 14px;
+					}
+				}
+				>h2{
+					margin-top: 0.8rem;
+					font-family: NotoSansKR;
+					font-size: 14px;
+					font-weight: normal;
+					font-stretch: normal;
+					font-style: normal;
+					letter-spacing: -0.35px;
+					text-align: left;
+					p{
+						white-space:nowrap;
+					}
+				}
+			}
+			>img{
+				margin-top: 2.5rem ;
+				width: 0.5rem;
+				height: 0.75rem;
+			}
+		}
+		.text_box{
+			display: flex;
+			justify-content: space-between;
+			h1{
+				color: #324b9b;
+				font-family: NotoSansKR;
+				font-size: 28px;
+				font-weight: 500;
+				font-stretch: normal;
+				font-style: normal;
+				letter-spacing: -0.7px;
+				text-align: left;
+			}
+			h2{
+				margin-top: 2.2rem;
+				font-family: NotoSansKR;
+				font-size: 16px;
+				font-weight: normal;
+				font-stretch: normal;
+				font-style: normal;
+				line-height: 1.63;
+				letter-spacing: -0.4px;
+				.mr-left{
+					margin-left: 1rem;
+				}
+			}
+		}
+	}
 	.box{
 		width: 100vw;
 		height: 7.25rem;
@@ -403,6 +595,7 @@ export default class extends Vue {
 				top: 50%;
 				right: 0;
 				> *{
+					margin: 0 1px;
 					width: 8rem;
 					height: 2rem;
 				}

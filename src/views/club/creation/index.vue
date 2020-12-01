@@ -403,6 +403,7 @@ export default class extends Vue {
 				top: 50%;
 				right: 0;
 				> *{
+					margin: 0 1px;
 					width: 8rem;
 					height: 2rem;
 				}
