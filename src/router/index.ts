@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
-
+import Rview from "@/components/routerView/index.vue";
 Vue.use(VueRouter);
 
 //跳转相同路由报错
@@ -104,7 +104,17 @@ const routes: RouteConfig[] = [
 						meta:{
 							title:'클럽창작과비평'
 						},
-						component: () => import('@/views/club/creation/index.vue'),
+						component: Rview,
+						children:[
+							{
+								path: '',
+								component: () => import('@/views/club/creation/index.vue'),
+							},
+							{
+								path:'info/:id',
+								component: () => import('@/views/club/info/index.vue'),
+							}
+						]
 					},
 					{
 						path: 'apply',
@@ -112,7 +122,17 @@ const routes: RouteConfig[] = [
 						meta:{
 							title:'북클럽필라멘트'
 						},
-						component: () => import('@/views/club/apply/index.vue'),
+						component: Rview,
+						children:[
+							{
+								path: '',
+								component: () => import('@/views/club/apply/index.vue'),
+							},
+							{
+								path:'info/:id',
+								component: () => import('@/views/club/info/index.vue'),
+							}
+						]
 					},
 				]
 			},

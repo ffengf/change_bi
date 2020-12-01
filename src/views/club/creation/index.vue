@@ -137,7 +137,7 @@
 			</div>
 		</div>
 		<ul class="box_list w70vw min_width1000">
-			<el-card shadow="hover" class="item">
+			<el-card shadow="hover" class="item" @click="fn">
 				<img src="https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png" alt="">
 				<h1>클럽 창작과비평 제3장</h1>
 				<h2>
@@ -147,7 +147,7 @@
 				</h2>
 				<h3>클럽 창작과비평 프롤로그 프로그램 입니다.클럽 창작과비평 프롤로그 프로그램 입니다.</h3>
 			</el-card>
-			<el-card shadow="hover" class="item">
+			<el-card shadow="hover" class="item" @click="fn">
 				<img src="https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png" alt="">
 				<h1>클럽 창작과비평 제3장</h1>
 				<h2>
@@ -157,7 +157,7 @@
 				</h2>
 				<h3>클럽 창작과비평 프롤로그 프로그램 입니다.클럽 창작과비평 프롤로그 프로그램 입니다.</h3>
 			</el-card>
-			<el-card shadow="hover" class="item">
+			<el-card shadow="hover" class="item" @click="fn">
 				<img src="https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png" alt="">
 				<h1>클럽 창작과비평 제3장</h1>
 				<h2>
@@ -167,7 +167,7 @@
 				</h2>
 				<h3> 창작과비평 프롤로그 프로그램 입로그램 입니다.클럽 창작과비평 프롤로그 프로그램그램그 프로그램 입니다.</h3>
 			</el-card>
-			<el-card shadow="hover" class="item">
+			<el-card shadow="hover" class="item" @click="fn">
 				<img src="https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png" alt="">
 				<h1>클럽 창작과비평 제3장</h1>
 				<h2>
@@ -177,7 +177,7 @@
 				</h2>
 				<h3>클럽 창작과비평 프롤로그 프로그램 입니다.클럽 창작과비평 프롤로그 프로그램 입니다.</h3>
 			</el-card>
-			<el-card shadow="hover" class="item">
+			<el-card shadow="hover" class="item" @click="fn">
 				<img src="https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png" alt="">
 				<h1>클럽 창작과비평 제3장</h1>
 				<h2>
@@ -187,7 +187,7 @@
 				</h2>
 				<h3>클럽 창작과비평 프롤로그 프로그램 입니다.클럽 창작과비평 프롤로그 프로그램 입니다.</h3>
 			</el-card>
-			<el-card shadow="hover" class="item">
+			<el-card shadow="hover" class="item" @click="fn">
 				<img src="https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png" alt="">
 				<h1>클럽 창작과비평 제3장</h1>
 				<h2>
@@ -213,7 +213,9 @@ import Bread from "@/components/bread/index.vue"
 	},
 })
 export default class extends Vue {
-
+	fn(){
+		console.log(123)
+	}
 }
 </script>
 
