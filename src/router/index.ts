@@ -115,6 +115,25 @@ const routes: RouteConfig[] = [
 						component: () => import('@/views/club/apply/index.vue'),
 					},
 				]
+			},
+			{
+				path: '/user',
+				name: 'user',
+				meta:{
+					title:'我的'
+				},
+				component: () => import('@/views/user/index.vue'),
+				redirect: '/user/myclub',
+				children:[
+					{
+						path: 'myclub',
+						name: 'myclub',
+						meta:{
+							title:'读书会'
+						},
+						component: () => import('@/views/user/myclub/index.vue'),
+					}
+				]
 			}
 		]
 	},
