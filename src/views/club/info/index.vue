@@ -37,8 +37,8 @@
 						<div>결제방법</div>
 						<el-select v-model="value" placeholder="신용카드">
 							<el-option>123</el-option>
-							<el-option>123</el-option>
-							<el-option>123</el-option>
+							<el-option>111</el-option>
+							<el-option>222</el-option>
 						</el-select>
 					</div>
 					<div class="line"></div>
@@ -59,7 +59,7 @@ import { Vue, Component, Watch } from "vue-property-decorator";
 export default class extends Vue {
 
 	info = {
-		money:true
+		money:false
 	}
 	value = ''
 
