@@ -103,7 +103,37 @@
 			</div>
 		</div>
 		<ul class="box_list w70vw min_width1000">
-			<li class="item">
+			<el-card shadow="hover" class="item">
+				<img src="https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png" alt="">
+				<h1>클럽 창작과비평 제3장</h1>
+				<h2>
+					<span class="orange">모집 중</span>
+					<span>|</span>
+					<span>2021. 01. 01 ~ 2020. 01. 31</span>
+				</h2>
+				<h3>클럽 창작과비평 프롤로그 프로그램 입니다.클럽 창작과비평 프롤로그 프로그램 입니다.</h3>
+			</el-card>
+			<el-card shadow="hover" class="item">
+				<img src="https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png" alt="">
+				<h1>클럽 창작과비평 제3장</h1>
+				<h2>
+					<span class="blue">모집 중</span>
+					<span>|</span>
+					<span>2021. 01. 01 ~ 2020. 01. 31</span>
+				</h2>
+				<h3>클럽 창작과비평 프롤로그 프로그램 입니다.클럽 창작과비평 프롤로그 프로그램 입니다.</h3>
+			</el-card>
+			<el-card shadow="hover" class="item">
+				<img src="https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png" alt="">
+				<h1>클럽 창작과비평 제3장</h1>
+				<h2>
+					<span class="green">모집 중</span>
+					<span>|</span>
+					<span>2021. 01. 01 ~ 2020. 01. 31</span>
+				</h2>
+				<h3> 창작과비평 프롤로그 프로그램 입로그램 입니다.클럽 창작과비평 프롤로그 프로그램그램그 프로그램 입니다.</h3>
+			</el-card>
+			<el-card shadow="hover" class="item">
 				<img src="https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png" alt="">
 				<h1>클럽 창작과비평 제3장</h1>
 				<h2>
@@ -111,9 +141,30 @@
 					<span>|</span>
 					<span>2021. 01. 01 ~ 2020. 01. 31</span>
 				</h2>
-				<h3>클럽 창작과비평 프롤로그 프로그램 입니다.</h3>
-			</li>
+				<h3>클럽 창작과비평 프롤로그 프로그램 입니다.클럽 창작과비평 프롤로그 프로그램 입니다.</h3>
+			</el-card>
+			<el-card shadow="hover" class="item">
+				<img src="https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png" alt="">
+				<h1>클럽 창작과비평 제3장</h1>
+				<h2>
+					<span>모집 중</span>
+					<span>|</span>
+					<span>2021. 01. 01 ~ 2020. 01. 31</span>
+				</h2>
+				<h3>클럽 창작과비평 프롤로그 프로그램 입니다.클럽 창작과비평 프롤로그 프로그램 입니다.</h3>
+			</el-card>
+			<el-card shadow="hover" class="item">
+				<img src="https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png" alt="">
+				<h1>클럽 창작과비평 제3장</h1>
+				<h2>
+					<span>모집 중</span>
+					<span>|</span>
+					<span>2021. 01. 01 ~ 2020. 01. 31</span>
+				</h2>
+				<h3>클럽 창작과비평 프롤로그 프로그램 입니다.클럽 창작과비평 프롤로그 프로그램 입니다.클럽 창작과비평 프롤로그 프로그램 입니다.클럽 창작과비평 프롤로그 프로그램 입니다.클럽 창작과비평 프롤로그 프로그램 입니다.클럽 창작과비평 프롤로그 프로그램 입니다.클럽 창작과비평 프롤로그 프로그램 입니다.클럽 창작과비평 프롤로그 프로그램 입니다.</h3>
+			</el-card>
 		</ul>
+		<el-button type="success" class="more">더 보기</el-button>
     </div>
 </template>
 
@@ -361,17 +412,71 @@ export default class extends Vue {
 	.box_list{
 		display: flex;
 		flex-wrap: wrap;
+		justify-content: space-between;
 		.item{
-			width: 33%;
+			width: 32%;
 			overflow: hidden;
+			cursor: pointer;
+			margin-top: 3.5rem;
+			box-sizing: border-box;
+			/deep/.el-card__body{
+				padding: 0.5rem!important;
+				box-sizing: border-box !important;
+			}
 			img{
-				width: 16rem;
+				width: 15rem;
 				height: 11rem;
 			}
 			h1{
 				margin-top: 1.25rem;
+				font-family: NotoSansKR;
+				font-size: 19px;
+				font-weight: 500;
+				font-stretch: normal;
+				font-style: normal;
+				letter-spacing: -0.95px;
+				text-align: left;
+			}
+			h2{
+				margin-top: 0.6rem;
+				font-family: NotoSansKR;
+				font-size: 12px;
+				font-weight: normal;
+				font-stretch: normal;
+				font-style: normal;
+				letter-spacing: -0.3px;
+				text-align: left;
+				span:nth-of-type(2){
+					margin: 0 0.3rem;
+				}
+			}
+			h3{
+				margin-top: 0.8rem;
+				font-family: NotoSansKR;
+				font-size: 13px;
+				font-weight: normal;
+				font-stretch: normal;
+				font-style: normal;
+				letter-spacing: -0.33px;
+				text-align: left;
+				color: #858585;
 			}
 		}
 	}
+	.more{
+		margin-top: 2.5rem;
+		margin-bottom: 6rem;
+		width: 10rem;
+		height: 2.2rem;
+	}
+}
+.green{
+	color: #3fa535;
+}
+.blue{
+	color: #324b9b;
+}
+.orange{
+	color: #df5400;
 }
 </style>
