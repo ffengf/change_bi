@@ -231,7 +231,7 @@ export default class extends Vue {
 		flex-direction: column;
 		align-items: center;
 		h1{
-			font-family: NotoSansKR;
+			font-family: NotoSansKR-Medium;
 			font-size: 48px;
 			font-weight: 500;
 			font-stretch: normal;
@@ -259,7 +259,7 @@ export default class extends Vue {
 		}
 		h3{
 			color: #3fa535;
-			font-family: NotoSansKR;
+			font-family: NotoSansKR-Medium;
 			font-size: 16px;
 			font-weight: 500;
 			font-stretch: normal;
