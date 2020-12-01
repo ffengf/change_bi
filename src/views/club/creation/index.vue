@@ -32,11 +32,19 @@
 		<ul class="list w70vw min_width1000">
 			<li class="item">
 				<div class="v1">
-					<h2>첫째</h2>
-					<div class="line"></div>
-					<h1>미션</h1>
-					<div class="line"></div>
-					<p>매주 미션이 주어집니다. ‘이번 호에서 가장 마음에 들었던 시 한편을 고르고, 좋았던 문장 소개하기’, ‘내가 문학초점을 기획한다면 어떤 작품들을 다루고 싶은지’ 등 각 챕터를 읽어나가기 위한 간단한 미션이 설정되어 있습니다. 어렵지 않게 차근차근 읽어나갈 수 있도록 클럽지기가 매주 미션을 안내할 예정이에요!</p>
+					<div class="top">
+						<h2>첫째</h2>
+						<div class="line"></div>
+						<h1>미션</h1>
+						<div class="line"></div>
+					</div>
+					<h3>
+						<p>매주 미션이 주어집니다. ‘이번 호에서 가장 마음에 들었던 시 한편을 고르고, </p>
+						<p>좋았던 문장 소개하기’, ‘내가 문학초점을 기획한다면 어떤 작품들을 다루고</p>
+						<p>싶은지’ 등 각 챕터를 읽어나가기 위한 간단한 미션이 설정되어 있습니다. </p>
+						<p>어렵지 않게 차근차근 읽어나갈 수 있도록 클럽지기가 매주 미션을 안내할 </p>
+						<p>예정이에요!</p>
+					</h3>
 				</div>
 				<div class="v2">
 					<img src="@/assets/img/club/1.png" alt="">
@@ -44,11 +52,18 @@
 			</li>
 			<li class="item">
 				<div class="v1">
-					<h2>첫째</h2>
-					<div class="line"></div>
-					<h1>미션</h1>
-					<div class="line"></div>
-					<p>매주 미션이 주어집니다. ‘이번 호에서 가장 마음에 들었던 시 한편을 고르고, 좋았던 문장 소개하기’, ‘내가 문학초점을 기획한다면 어떤 작품들을 다루고 싶은지’ 등 각 챕터를 읽어나가기 위한 간단한 미션이 설정되어 있습니다. 어렵지 않게 차근차근 읽어나갈 수 있도록 클럽지기가 매주 미션을 안내할 예정이에요!</p>
+					<div class="top">
+						<h2>둘째</h2>
+						<div class="line"></div>
+						<h1>참여 단위</h1>
+						<div class="line"></div>
+					</div>
+					<h3>
+						<p>클럽 창작과비평은 개별/조별 신청이 가능합니다. 혼자서 활동에 참여하고  </p>
+						<p>싶은 분들은 ‘개인 신청’을, 독서모임이나 학회 친구들과 함께 활동을 하고</p>
+						<p>싶은 분들은 ‘조 신청’을 해주시면 됩니다. 조 신청의 경우 조장이 대표자가 </p>
+						<p>되어 클럽지기와 소통하게 됩니다.</p>
+					</h3>
 				</div>
 				<div class="v2">
 					<img src="@/assets/img/club/2.png" alt="">
@@ -56,11 +71,19 @@
 			</li>
 			<li class="item">
 				<div class="v1">
-					<h2>첫째</h2>
-					<div class="line"></div>
-					<h1>미션</h1>
-					<div class="line"></div>
-					<p>매주 미션이 주어집니다. ‘이번 호에서 가장 마음에 들었던 시 한편을 고르고, 좋았던 문장 소개하기’, ‘내가 문학초점을 기획한다면 어떤 작품들을 다루고 싶은지’ 등 각 챕터를 읽어나가기 위한 간단한 미션이 설정되어 있습니다. 어렵지 않게 차근차근 읽어나갈 수 있도록 클럽지기가 매주 미션을 안내할 예정이에요!</p>
+					<div class="top">
+						<h2>셋째</h2>
+						<div class="line"></div>
+						<h1>레포트 / 합평회</h1>
+						<div class="line"></div>
+					</div>
+					<h3>
+						<p>미션 중간에 특별 미션으로 레포트 또는 합평회를 소화하게 됩니다. 개인</p>
+						<p>신청으로 활동하는 클러버는 일정에 맞추어 레포트를 제출하게 됩니다. 조</p>
+						<p>단위로 신청한 모임에서는 자체적으로 합평회를 진행합니다. 레포트와</p>
+						<p>합평회, 조금은 어렵게 느껴지신다고요? 걱정 마세요! 레포트는 샘플을,</p>
+						<p>합평회는 가이드를 마련해서 제공할 예정이에요. :)</p>
+					</h3>
 				</div>
 				<div class="v2">
 					<img src="@/assets/img/club/3.png" alt="">
@@ -68,11 +91,17 @@
 			</li>
 			<li class="item">
 				<div class="v1">
-					<h2>첫째</h2>
-					<div class="line"></div>
-					<h1>미션</h1>
-					<div class="line"></div>
-					<p>매주 미션이 주어집니다. ‘이번 호에서 가장 마음에 들었던 시 한편을 고르고, 좋았던 문장 소개하기’, ‘내가 문학초점을 기획한다면 어떤 작품들을 다루고 싶은지’ 등 각 챕터를 읽어나가기 위한 간단한 미션이 설정되어 있습니다. 어렵지 않게 차근차근 읽어나갈 수 있도록 클럽지기가 매주 미션을 안내할 예정이에요!</p>
+					<div class="top">
+						<h2>넷째</h2>
+						<div class="line"></div>
+						<h1>편집위원과 함께하는 합평회</h1>
+						<div class="line"></div>
+					</div>
+					<h3>
+						<p>매 계절, 『창작과비평』을 기획하고 만드는 편집위원, 편집자와 함께하는</p>
+						<p>합평회가 준비되어 있습니다. 소수 정예 참여로 더욱 밀도 있는 이야기를 </p>
+						<p>나눌 수 있습니다. +_+</p>
+					</h3>
 				</div>
 				<div class="v2">
 					<img src="@/assets/img/club/4.png" alt="">
@@ -80,11 +109,16 @@
 			</li>
 			<li class="item">
 				<div class="v1">
-					<h2>첫째</h2>
-					<div class="line"></div>
-					<h1>미션</h1>
-					<div class="line"></div>
-					<p>매주 미션이 주어집니다. ‘이번 호에서 가장 마음에 들었던 시 한편을 고르고, 좋았던 문장 소개하기’, ‘내가 문학초점을 기획한다면 어떤 작품들을 다루고 싶은지’ 등 각 챕터를 읽어나가기 위한 간단한 미션이 설정되어 있습니다. 어렵지 않게 차근차근 읽어나갈 수 있도록 클럽지기가 매주 미션을 안내할 예정이에요!</p>
+					<div class="top">
+						<h2>다섯째</h2>
+						<div class="line"></div>
+						<h1>작가와의 만남</h1>
+						<div class="line"></div>
+					</div>
+					<h3>
+						<p>매 계절, 각 호에 수록된 작가 또는 글의 특성에 맞게 작가와의 만남이</p>
+						<p>진행됩니다.</p>
+					</h3>
 				</div>
 				<div class="v2">
 					<img src="@/assets/img/club/1.png" alt="">
@@ -306,7 +340,6 @@ export default class extends Vue {
 		margin-bottom: 2.15rem;
 	}
 	.list{
-		// width: 100%;
 		.item{
 			box-sizing: border-box;
 			display: flex;
@@ -324,33 +357,42 @@ export default class extends Vue {
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
-				h2{
-					color: #3fa535;
-					font-family: NotoSansKR;
-					font-size: 16px;
-					font-weight: normal;
-					font-stretch: normal;
-					font-style: normal;
-					line-height: normal;
-					letter-spacing: -1.2px;
+				.top{
+					h2{
+						color: #3fa535;
+						font-family: NotoSansKR;
+						font-size: 16px;
+						font-weight: normal;
+						font-stretch: normal;
+						font-style: normal;
+						line-height: normal;
+						letter-spacing: -1.2px;
+					}
+					.line{
+						background: #324b9b;
+						height: 2px;
+						width: 25px;
+					}
+					.line:nth-of-type(1){
+						margin: 0.75rem 0 1.5rem 0;
+					}
+					.line:nth-of-type(2){
+						margin: 0;
+						margin-top: 1.25rem;
+					}
+					h1{
+						color: #3fa535;
+						font-family: NotoSansKR;
+						font-size: 36px;
+						font-weight: normal;
+						font-stretch: normal;
+						font-style: normal;
+						line-height: normal;
+						letter-spacing: -2.7px;
+						text-align: left;
+					}
 				}
-				.line{
-					background: #324b9b;
-					height: 2px;
-					width: 25px;
-				}
-				h1{
-					color: #3fa535;
-					font-family: NotoSansKR;
-					font-size: 36px;
-					font-weight: normal;
-					font-stretch: normal;
-					font-style: normal;
-					line-height: normal;
-					letter-spacing: -2.7px;
-					text-align: left;
-				}
-				p{
+				h3{
 					font-family: NotoSansKR;
 					font-size: 16px;
 					font-weight: normal;

@@ -32,11 +32,17 @@
 		<ul class="list w70vw min_width1000">
 			<li class="item">
 				<div class="v1">
-					<h2>첫째</h2>
-					<div class="line"></div>
-					<h1>미션</h1>
-					<div class="line"></div>
-					<p>매주 미션이 주어집니다. ‘이번 호에서 가장 마음에 들었던 시 한편을 고르고, 좋았던 문장 소개하기’, ‘내가 문학초점을 기획한다면 어떤 작품들을 다루고 싶은지’ 등 각 챕터를 읽어나가기 위한 간단한 미션이 설정되어 있습니다. 어렵지 않게 차근차근 읽어나갈 수 있도록 클럽지기가 매주 미션을 안내할 예정이에요!</p>
+					<div class="top">
+						<h2>하나</h2>
+						<div class="line"></div>
+						<h1>필라멘트는 시즌ing</h1>
+						<div class="line"></div>
+					</div>
+					<h3>
+						<p>함께 뿌리고 거두는 재미. 작심삼일은 누구나 하니까, 우린 ‘작심삼개월’</p>
+						<p>해봐요. 하다가 실패해도 나 혼자만 그런 건 아닐 테니까. </p>
+						<p>3개월 뒤에 같이 또 시작하면 되니까.</p>
+					</h3>
 				</div>
 				<div class="v2">
 					<img src="@/assets/img/club/1.png" alt="">
@@ -44,11 +50,17 @@
 			</li>
 			<li class="item">
 				<div class="v1">
-					<h2>첫째</h2>
-					<div class="line"></div>
-					<h1>미션</h1>
-					<div class="line"></div>
-					<p>매주 미션이 주어집니다. ‘이번 호에서 가장 마음에 들었던 시 한편을 고르고, 좋았던 문장 소개하기’, ‘내가 문학초점을 기획한다면 어떤 작품들을 다루고 싶은지’ 등 각 챕터를 읽어나가기 위한 간단한 미션이 설정되어 있습니다. 어렵지 않게 차근차근 읽어나갈 수 있도록 클럽지기가 매주 미션을 안내할 예정이에요!</p>
+					<div class="top">
+						<h2>둘</h2>
+						<div class="line"></div>
+						<h1>1달, 1권, 1미션 그리고 1모임</h1>
+						<div class="line"></div>
+					</div>
+					<h3>
+						<p>등하교, 출퇴근, 살림하고 놀기도 빠듯한 우리! 한 달 동안 한 권의 책을</p>
+						<p>천천히 읽으며 가벼운 미션을 인증한 후, 조금 더 풍성한 대화 모임을</p>
+						<p>꾸립니다.</p>
+					</h3>
 				</div>
 				<div class="v2">
 					<img src="@/assets/img/club/2.png" alt="">
@@ -56,38 +68,19 @@
 			</li>
 			<li class="item">
 				<div class="v1">
-					<h2>첫째</h2>
-					<div class="line"></div>
-					<h1>미션</h1>
-					<div class="line"></div>
-					<p>매주 미션이 주어집니다. ‘이번 호에서 가장 마음에 들었던 시 한편을 고르고, 좋았던 문장 소개하기’, ‘내가 문학초점을 기획한다면 어떤 작품들을 다루고 싶은지’ 등 각 챕터를 읽어나가기 위한 간단한 미션이 설정되어 있습니다. 어렵지 않게 차근차근 읽어나갈 수 있도록 클럽지기가 매주 미션을 안내할 예정이에요!</p>
+					<div class="top">
+						<h2>셋</h2>
+						<div class="line"></div>
+						<h1>함께이면서 혼자인 우리</h1>
+						<div class="line"></div>
+					</div>
+					<h3>
+						<p>‘같은 목표’가 아니라 ‘각자의 목표’를 지향하는 우리! 저마다의 속도로 읽고,</p>
+						<p>실천하고, 응원하고 친해지다 보면 어느새 누구나 부러워하는 커뮤니티!</p>
+					</h3>
 				</div>
 				<div class="v2">
 					<img src="@/assets/img/club/3.png" alt="">
-				</div>
-			</li>
-			<li class="item">
-				<div class="v1">
-					<h2>첫째</h2>
-					<div class="line"></div>
-					<h1>미션</h1>
-					<div class="line"></div>
-					<p>매주 미션이 주어집니다. ‘이번 호에서 가장 마음에 들었던 시 한편을 고르고, 좋았던 문장 소개하기’, ‘내가 문학초점을 기획한다면 어떤 작품들을 다루고 싶은지’ 등 각 챕터를 읽어나가기 위한 간단한 미션이 설정되어 있습니다. 어렵지 않게 차근차근 읽어나갈 수 있도록 클럽지기가 매주 미션을 안내할 예정이에요!</p>
-				</div>
-				<div class="v2">
-					<img src="@/assets/img/club/4.png" alt="">
-				</div>
-			</li>
-			<li class="item">
-				<div class="v1">
-					<h2>첫째</h2>
-					<div class="line"></div>
-					<h1>미션</h1>
-					<div class="line"></div>
-					<p>매주 미션이 주어집니다. ‘이번 호에서 가장 마음에 들었던 시 한편을 고르고, 좋았던 문장 소개하기’, ‘내가 문학초점을 기획한다면 어떤 작품들을 다루고 싶은지’ 등 각 챕터를 읽어나가기 위한 간단한 미션이 설정되어 있습니다. 어렵지 않게 차근차근 읽어나갈 수 있도록 클럽지기가 매주 미션을 안내할 예정이에요!</p>
-				</div>
-				<div class="v2">
-					<img src="@/assets/img/club/1.png" alt="">
 				</div>
 			</li>
 		</ul>
@@ -406,33 +399,42 @@ export default class extends Vue {
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
-				h2{
-					color: #3fa535;
-					font-family: NotoSansKR;
-					font-size: 16px;
-					font-weight: normal;
-					font-stretch: normal;
-					font-style: normal;
-					line-height: normal;
-					letter-spacing: -1.2px;
+				.top{
+					h2{
+						color: #3fa535;
+						font-family: NotoSansKR;
+						font-size: 16px;
+						font-weight: normal;
+						font-stretch: normal;
+						font-style: normal;
+						line-height: normal;
+						letter-spacing: -1.2px;
+					}
+					.line{
+						background: #324b9b;
+						height: 2px;
+						width: 25px;
+					}
+					.line:nth-of-type(1){
+						margin: 0.75rem 0 1.5rem 0;
+					}
+					.line:nth-of-type(2){
+						margin: 0;
+						margin-top: 1.25rem;
+					}
+					h1{
+						color: #3fa535;
+						font-family: NotoSansKR;
+						font-size: 36px;
+						font-weight: normal;
+						font-stretch: normal;
+						font-style: normal;
+						line-height: normal;
+						letter-spacing: -2.7px;
+						text-align: left;
+					}
 				}
-				.line{
-					background: #324b9b;
-					height: 2px;
-					width: 25px;
-				}
-				h1{
-					color: #3fa535;
-					font-family: NotoSansKR;
-					font-size: 36px;
-					font-weight: normal;
-					font-stretch: normal;
-					font-style: normal;
-					line-height: normal;
-					letter-spacing: -2.7px;
-					text-align: left;
-				}
-				p{
+				h3{
 					font-family: NotoSansKR;
 					font-size: 16px;
 					font-weight: normal;
