@@ -48,4 +48,12 @@ export default class extends Vue {
 		width: 100%;
 	}
 }
+@media only screen and (max-width: 1025px){
+	#club{
+		width:100%;
+		.line{
+			width:100%;
+		}
+	}
+}
 </style>
