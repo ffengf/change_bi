@@ -112,6 +112,9 @@ const routes: RouteConfig[] = [
 							},
 							{
 								path:'info/:id',
+								meta:{
+									title:'info'
+								},
 								component: () => import('@/views/club/info/index.vue'),
 							}
 						]
@@ -130,6 +133,9 @@ const routes: RouteConfig[] = [
 							},
 							{
 								path:'info/:id',
+								meta:{
+									title:'info'
+								},
 								component: () => import('@/views/club/info/index.vue'),
 							}
 						]
