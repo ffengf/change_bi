@@ -39,7 +39,6 @@
                 <div class="icon">
                     <el-dropdown trigger="click" @command="customer">
                         <span class="el-dropdown-link">
-                            <!-- <i class="el-icon-service"></i> -->
 							<img src="@/assets/img/customer.png" alt="" srcset="">
                         </span>
                         <el-dropdown-menu slot="dropdown">
