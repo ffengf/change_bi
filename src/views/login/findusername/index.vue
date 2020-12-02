@@ -3,9 +3,9 @@
         <template v-if="step === 1">
             <h1>아이디찾기</h1>
             <h2>
-                <p>가입시입력한</p>
-                <p><strong>휴대폰번호를</strong></p>
-                <p>입력하세요.</p>
+                <p class="kr-li">가입 시 입력한</p>
+                <p><em class="kr-me">휴대폰 번호</em><em class="kr-li">를</em></p>
+                <p class="kr-li">입력하세요.</p>
             </h2>
             <div class="flex_column">
                 <el-form ref="form" :model="info" :rules="rules">
@@ -14,10 +14,10 @@
                             <el-input
                                 class="width_70"
                                 v-model="info.password"
-                                placeholder="휴대폰번호('-'는빼고입력해주세요)"
+                                placeholder="휴대폰 번호('-'는 빼고 입력해주세요)"
                             ></el-input>
                             <el-button type="default" size="small" plain
-                                >인증번호발송</el-button
+                                >인증번호 발송</el-button
                             >
                         </div>
                     </el-form-item>
@@ -25,7 +25,7 @@
                         <el-input
                             class="width_70"
                             v-model="info.password"
-                            placeholder="인증번호6자리"
+                            placeholder="인증번호 6자리"
                         ></el-input>
                     </el-form-item>
                 </el-form>
@@ -37,8 +37,8 @@
         <template v-if="step === 2">
             <h1>{{ $t("找回账号结果") }}</h1>
             <h2>
-                <p><strong>가입아이디</strong>를</p>
-                <p>확인해주세요.</p>
+                <p><strong class="kr-me">가입 아이디</strong><em class="kr-li">를</em></p>
+                <p class="kr-li">확인해 주세요.</p>
             </h2>
             <div class="box">
                 <span class="h1">아이디</span>
@@ -50,7 +50,7 @@
                     type="default"
                     plain
                     @click="$router.push('/login/findpassword')"
-                    >비밀번호찾기</el-button
+                    >비밀번호 찾기</el-button
                 >
                 <el-button type="success" @click="$router.push('/login/signin')"
                     >로그인하기</el-button

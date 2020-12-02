@@ -3,7 +3,7 @@
 		<div class="warpper w70vw min_width1000">
 			<h1>클럽 창작과비평</h1>
 			<div class="line"></div>
-			<h2>
+			<h2 class="na">
 				<p>한 계절이 지나고</p>
 				<p>당신의 문학이 더 깊어집니다</p>
 				<p>당신의 관점이 더 넓어집니다</p>
@@ -130,9 +130,9 @@
 				<h1>신청하기</h1>
 				<div class="line"></div>
 				<div class="btn_box">
-					<el-button type="primary" class="btn">신청하기</el-button>
-					<el-button type="default" class="btn">신청하기</el-button>
-					<el-button type="default" class="btn">신청하기</el-button>
+					<el-button type="primary" class="btn">전체</el-button>
+					<el-button type="default" class="btn">모집 중</el-button>
+					<el-button type="default" class="btn">진행 중</el-button>
 				</div>
 			</div>
 		</div>
@@ -244,7 +244,7 @@ export default class extends Vue {
 		.line{
 			background: #3fa535;
 			width: 1.25rem;
-			margin-top: 2.75rem;
+			margin-top: 1.75rem;
 			height: 2px;
 		}
 		h2{
@@ -274,7 +274,7 @@ export default class extends Vue {
 		.btn{
 			margin-top: 2rem;
 			width: 10rem;
-			height: 2rem;
+			height: 2.2rem;
 			display: block;
 			color: #fff;
 			background-color: #324b9b;
@@ -282,7 +282,7 @@ export default class extends Vue {
 			color: #ffffff;
 			text-decoration: none;
 			text-align: center;
-			line-height: 2rem;
+			line-height: 2.2rem;
 			font-size: 14px;
 		}
 	}

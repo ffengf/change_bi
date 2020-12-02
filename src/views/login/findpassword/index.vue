@@ -1,11 +1,11 @@
 <template>
     <div class="login_warpper">
         <template v-if="step === 1">
-            <h1>비밀번호찾기</h1>
+            <h1>비밀번호 찾기</h1>
             <h2>
-                <p>가입시입력한</p>
-                <p><strong>아이디</strong>와<strong>휴대폰번호</strong>를</p>
-                <p>입력하세요.</p>
+                <p class="kr-li">가입 시 입력한</p>
+                <p><strong class="kr-me">아이디</strong><em class="kr-li">와</em><strong class="kr-me">휴대폰 번호</strong><em class="kr-li">를</em></p>
+                <p class="kr-li">입력하세요.</p>
             </h2>
             <div class="flex_column">
                 <el-form ref="form" :model="info" :rules="rules">
@@ -19,7 +19,7 @@
                         <div class="flex">
                             <el-input
                                 v-model="info.password"
-                                placeholder="휴대폰번호('-'는빼고입력해주세요)"
+                                placeholder="휴대폰 번호('-'는 빼고 입력해주세요)"
                             ></el-input>
                             <el-button type="default" plain>{{
                                 $t("发送信息")
@@ -29,7 +29,7 @@
                     <el-form-item prop="password">
                         <el-input
                             v-model="info.password"
-                            placeholder="인증번호6자리"
+                            placeholder="인증번호 6자리"
                         ></el-input>
                     </el-form-item>
                 </el-form>
@@ -39,24 +39,24 @@
             </div>
         </template>
         <template v-if="step === 2">
-            <h1>비밀번호변경</h1>
+            <h1>비밀번호 변경</h1>
             <h2>
-				<p>새로운</p>
-				<p><strong>비밀번호</strong>를</p>
-				<p>입력해주세요.</p>
+				<p class="kr-li">새로운</p>
+				<p>비밀번호<em class="kr-li">를</em></p>
+				<p class="kr-li">입력해주세요.</p>
 			</h2>
             <div class="flex_column">
                 <el-form ref="form" :model="info" :rules="rules">
                     <el-form-item prop="password">
                         <el-input
                             v-model="info.password"
-                            placeholder="영문,숫자,특수문자포함8자이상입력"
+                            placeholder="영문,숫자,특수문자 포함8자 이상 입력"
                         ></el-input>
                     </el-form-item>
                     <el-form-item prop="username">
                         <el-input
                             v-model="info.password"
-                            placeholder="휴대폰번호('-'는빼고입력해주세요)"
+                            placeholder="휴대폰 번호('-'는 빼고 입력해주세요)"
                         ></el-input>
                     </el-form-item>
                 </el-form>

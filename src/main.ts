@@ -15,7 +15,6 @@ import 'element-ui/lib/theme-chalk/display.css';
 import '@/assets/style/element-variables.scss'
 import { OtherModule } from './store/other';
 
-
 // document.oncontextmenu = function(){ return false; };
 // // 禁止文字选择
 // document.onselectstart = function(){ return false; };

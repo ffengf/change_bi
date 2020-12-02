@@ -46,7 +46,7 @@ export default class extends Vue {
 		cursor: pointer;
 		text-align: center;
 		line-height: 3rem;
-		color: #324b9b;
+		font-family: NotoSansKR-Medium;
 		.item{
 			border: 1px solid #324b9b;
 			width: 34%;

@@ -3,9 +3,9 @@
         <div class="w75vw min_width1100 login_div">
             <div class="img_box sm-down">
                 <h1>
-                    <span>스위치와 함께하는 최고의 독서 경험, </span><br /><em
-                        >지금 시작해볼까요?</em
-                    >
+					<p class="kr-li">스위치와 함께하는</p>
+					<p class="kr-li">최고의 독서 경험,</p>
+					<p>지금 시작해볼까요?</p>
                 </h1>
                 <img src="@/assets/img/login.png" alt="" srcset="" />
             </div>
@@ -55,10 +55,6 @@ export default class extends Vue {}
             letter-spacing: -3.75px;
             text-align: left;
             color: #3fa535;
-			font-weight: 500;
-			span{
-				font-weight: 300;
-			}
         }
         img {
             margin: 70px 0;
@@ -68,13 +64,13 @@ export default class extends Vue {}
     .right {
         width: 50%;
         height: 100%;
-		box-sizing: border-box;
-		display: flex;
-		justify-content: center;
-		margin:	3rem 0;
-		.box{
-			width: 18rem;
-		}
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        margin: 3rem 0;
+        .box {
+            width: 18rem;
+        }
         // padding: 3rem 4rem 0 4rem;
     }
     .line {

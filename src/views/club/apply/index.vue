@@ -3,7 +3,7 @@
 		<div class="warpper w70vw min_width1000">
 			<h1>북클럽 필라멘트</h1>
 			<div class="line"></div>
-			<h2>
+			<h2 class="na">
 				<p>책으로 연결되는 우리</p>
 				<p>경험으로 연결되는 책</p>
 				<p>『필라멘트』</p>
@@ -19,16 +19,16 @@
 				<img src="@/assets/img/left.png" alt="">
 			</div>
 			<h1 class="mid">
-				<p><span>클럽 창작과비평은</span> 계간 『창작과비평』을 함께 읽는 활동입니다. 『창작과비평』은 1966년 창간 이래 우리 문학과 지식계에 큰 발자취를</p>
-				<p>남겨온, 한국을 대표하는 문예지입니다. 주요 작가들의 시와 소설 신작은 물론 최근 정치 · 사회 이슈에 대한 심도 있는 비평 등 다양한 글을</p>
-				<p>만날 수 있습니다. 클럽 창작과비평 클러버가 되면 『창작과비평』 종이책을 제공받고, 정해진 미션에 따라 같이 읽어나가는 활동을 하게 </p>
-				<p>됩니다. 매년 2월, 8월 클러버를 모집하며, 한 기수당 6개월간 2개 호를 함께 읽습니다.</p>
+				<p>습관처럼 책을 사고 있진 않나요? 책을 의무적으로 읽고 있다고요? 우리는 도대체 왜 책을 읽기 시작했을까요?</p>
+				<p>'책'과 '나'를 연결하기란 쉽지 않아요. 그런데도 우리는 책을 펼칠 때마다 꿈꿉니다. 이 책으로 인해 나와 세상이 조금은 변화하기를요.</p>
+				<p>필라멘트는 생각했어요. 독서는 책을 읽는 것이 아니라 책을 경험하는 것이다.</p>
+				<p>독서라는 경험을 통해 나와 세상을 환하게 밝힐 당신을 필라멘트는 기다립니다. 어려워하지 마세요. 연결되면 시작할 수 있어요.</p>
 			</h1>
 			<div class="right">
 				<img src="@/assets/img/right.png" alt="">
 			</div>
 		</div>
-		<h1 class="title w70vw min_width1000">클럽 창작과 비평 활동</h1>
+		<h1 class="title w70vw min_width1000">북클럽 필라멘트 활동</h1>
 		<ul class="list w70vw min_width1000">
 			<li class="item">
 				<div class="v1">
@@ -171,9 +171,9 @@
 				<h1>신청하기</h1>
 				<div class="line"></div>
 				<div class="btn_box">
-					<el-button type="primary" class="btn">신청하기</el-button>
-					<el-button type="default" class="btn">신청하기</el-button>
-					<el-button type="default" class="btn">신청하기</el-button>
+					<el-button type="primary" class="btn">전체</el-button>
+					<el-button type="default" class="btn">모집 중</el-button>
+					<el-button type="default" class="btn">진행 중</el-button>
 				</div>
 			</div>
 		</div>
@@ -233,7 +233,7 @@ export default class extends Vue {
 		.line{
 			background: #3fa535;
 			width: 1.25rem;
-			margin-top: 2.75rem;
+			margin-top: 1.75rem;
 			height: 2px;
 		}
 		h2{
@@ -263,7 +263,7 @@ export default class extends Vue {
 		.btn{
 			margin-top: 2rem;
 			width: 10rem;
-			height: 2rem;
+			height: 2.2rem;
 			display: block;
 			color: #fff;
 			background-color: #324b9b;
@@ -271,7 +271,7 @@ export default class extends Vue {
 			color: #ffffff;
 			text-decoration: none;
 			text-align: center;
-			line-height: 2rem;
+			line-height: 2.2rem;
 			font-size: 14px;
 		}
 	}
@@ -391,7 +391,7 @@ export default class extends Vue {
 					font-stretch: normal;
 					font-style: normal;
 					line-height: 1.75;
-					letter-spacing: -0.4px;
+					letter-spacing: -1px;
 					text-align: left;
 					color: #000000;
 				}

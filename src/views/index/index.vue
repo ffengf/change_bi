@@ -11,14 +11,17 @@
 			<div class="news w70vw min_width1000 flexBC">
 				<div class="left sm-down">
 					<div class="line"></div>
-					<h1>{{ $t('咨询') }}</h1>
+					<h1>새소식</h1>
 					<div style="font-weight: 600;">一</div>
-					<h2>{{ $t('查看最新资讯') }}</h2>
+					<h2>
+						<p>스위치의 새로운 소식을</p>
+						<p>살펴보세요.</p>
+					</h2>
 				</div>
 				<div class="right">
-					<div class="sm-up color_success">{{ $t('查看最新资讯') }}</div>
+					<div class="sm-up color_success">새소식</div>
 					<div class="position">
-						<el-link icon="el-icon-plus" :underline="false" type="success">{{ $t('更多') }}</el-link>
+						<!-- <el-link icon="el-icon-plus" :underline="false" type="success">{{ $t('更多') }}</el-link> -->
 					</div>
 					<div class="line"></div>
 					<ul>
@@ -36,20 +39,23 @@
 		<div class="flexC">
 			<div class="serial w70vw min_width1000">
 				<div class="top">
-					<h1>{{ $t('今日连载') }}</h1>
-					<el-link icon="el-icon-plus" :underline="false" type="success">{{ $t('更多') }}</el-link>
+					<h1>오늘의 연재</h1>
+					<el-link :underline="false" type="success"><em>+</em>  <em style="color:#000">더 보기</em></el-link>
 				</div>
 				<ul class="bottom">
 					<el-card class="item" shadow="hover" v-for="(ele,index) in items" :key="index">
 						<img class="img" :src="ele.url" />
 						<h1>{{ ele.title }}</h1>
-						<p>{{ ele.info }}</p>
+						<p class="kr-re">{{ ele.info }}</p>
 					</el-card>
 				</ul>
 			</div>
 		</div>
-        <div class="img_box sm-down">
-			<img class="img" src="@/assets/img/index_img.png"  />
+        <div class="img_box flexC">
+			<div class="bb w70vw min_width1000">
+				<img class="img" src="@/assets/img/index_img.png"/>
+				<el-button type="success" class="btn">스위치 알아보기</el-button>
+			</div>
 		</div>
 		<div class="carousel">
             <el-carousel arrow="always" height="23rem">
@@ -74,22 +80,22 @@ export default class extends Vue {
 	item = [
 		{
 			url:'https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png',
-			title:"你好你好",
+			title:"김민수 장편소설 ‘함께’ 13화",
 			info:"클럽 창작과비평 독서모임 1기 모집"
 		},
 		{
 			url:'https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png',
-			title:"你好你好",
+			title:"김민수 장편소설 ‘함께’ 13화",
 			info:"你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好"
 		},
 		{
 			url:'https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png',
-			title:"你好你好",
+			title:"김민수 장편소설 ‘함께’ 13화",
 			info:"你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好"
 		},
 		{
 			url:'https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png',
-			title:"你好你好",
+			title:"김민수 장편소설 ‘함께’ 13화",
 			info:"你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好"
 		}
 	]
@@ -98,17 +104,17 @@ export default class extends Vue {
 	items = [
 		{
 			url:'http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071011.png',
-			title:"你好你好",
+			title:"김민수 장편소설 ‘함께’ 13화",
 			info:"클럽 창작과비평 독서모임 1기 모집"
 		},
 		{
 			url:'https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png',
-			title:"你好你好",
+			title:"김민수 장편소설 ‘함께’ 13화",
 			info:"你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好"
 		},
 		{
 			url:'https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png',
-			title:"你好你好",
+			title:"김민수 장편소설 ‘함께’ 13화",
 			info:"你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好"
 		},
 	]
@@ -142,8 +148,6 @@ export default class extends Vue {
 				background: #324b9b;
 			}
 			h1{
-				width: 61px;
-				height: 22px;
 				margin: 32px 129px 45px 1px;
 				font-size: 24px;
 				font-weight: 500;
@@ -158,7 +162,7 @@ export default class extends Vue {
 				width: 127px;
 				height: 34px;
 				margin: 21px 64px 144px 0;
-				font-size: 16px;
+				font-size: 14px;
 				font-weight: 500;
 				font-stretch: normal;
 				font-style: normal;
@@ -236,9 +240,15 @@ export default class extends Vue {
 					border-radius: 50%;
 				}
 				h1{
-					margin-top: 0.5rem;
-					font-size: 24px;
-					font-weight: 550;
+					font-family: NotoSansKR;
+					font-size: 19px;
+					font-weight: 500;
+					font-stretch: normal;
+					font-style: normal;
+					line-height: 2.16;
+					letter-spacing: -0.95px;
+					text-align: center;
+					color: #000000;
 				}
 				p{
 					margin-top: 0.7rem;
@@ -249,11 +259,25 @@ export default class extends Vue {
 		}
 	}
     .img_box {
-        width: 100vw;
-        .img {
-            height: 6rem;
-            object-fit: cover;
-        }
+		width: 100vw;
+		background: linear-gradient(to left,rgb(247, 247, 247),rgb(240, 240, 240));
+		height: 6rem;
+        .bb{
+			position: relative;
+			height: 100%;
+			.img {
+				height: 6rem;
+				width: 100%;
+			}
+			.btn{
+				position: absolute;
+				top: 50%;
+				right: 0;
+				z-index: 1;
+				transform: translateY(-50%);
+				width: 11rem;
+			}
+		}
     }
 }
 

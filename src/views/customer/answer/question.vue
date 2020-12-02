@@ -40,6 +40,9 @@ export default class extends Vue {
 .question{
 	/deep/.el-input__inner{
 		border: 1px solid #ccc !important;
+		padding: 5px !important;
+		padding-left: 10px!important;
+		font-family: NotoSansKR-Regular !important;;
 	}
 	.line{
 		height: 1px;
@@ -47,9 +50,14 @@ export default class extends Vue {
 	}
 	.box{
 		display: flex;
+		align-items: center;
 		.inp{
 			width: 50%;
 			margin-right:0.4rem ;
+		}
+		.success_btn{
+			border: 1px solid #65b75d;
+			width: 5rem;
 		}
 	}
 	.btn_box{
@@ -61,4 +69,5 @@ export default class extends Vue {
 		}
 	}
 }
+
 </style>
