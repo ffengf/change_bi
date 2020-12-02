@@ -252,6 +252,7 @@ export default class extends Vue {
 						box-sizing: border-box!important;
 						height: 2rem;
 						width: 7.5rem;
+
 					}
 				}
 				.line{

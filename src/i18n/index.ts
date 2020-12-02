@@ -7,7 +7,7 @@ import locale from 'element-ui/lib/locale'
 Vue.use(VueI18n)
 
 const i18n = new VueI18n({
-	locale: 'dev',
+	locale: 'ko',
 	messages
 })
 

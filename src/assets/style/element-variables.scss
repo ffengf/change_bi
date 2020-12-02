@@ -121,7 +121,7 @@ $--checkbox-input-width: 14px !default;
 $--checkbox-input-border-radius: 0;
 $--checkbox-input-fill: $--color-white !default;
 $--checkbox-input-border: $--border-base !default;
-$--checkbox-input-border-color: $--border-color-base !default;
+$--checkbox-input-border-color: #000;
 $--checkbox-icon-color: $--color-white !default;
 
 $--checkbox-disabled-input-border-color: $--border-color-base !default;
@@ -132,12 +132,12 @@ $--checkbox-disabled-checked-input-fill: $--border-color-extra-light !default;
 $--checkbox-disabled-checked-input-border-color: $--border-color-base !default;
 $--checkbox-disabled-checked-icon-color: $--color-text-placeholder !default;
 
-$--checkbox-checked-text-color: $--color-primary !default;
-$--checkbox-checked-input-border-color: $--color-primary !default;
-$--checkbox-checked-input-fill: $--color-primary !default;
-$--checkbox-checked-icon-color: $--fill-base !default;
+$--checkbox-checked-text-color: $--color-success !default;
+$--checkbox-checked-input-border-color: #000;
+$--checkbox-checked-input-fill: $--color-success !default;
+$--checkbox-checked-icon-color: $--color-success !default;
 
-$--checkbox-input-border-color-hover: $--color-primary !default;
+$--checkbox-input-border-color-hover: $--color-success !default;
 
 $--checkbox-bordered-height: 40px !default;
 $--checkbox-bordered-padding: 9px 20px 9px 10px !default;
@@ -182,12 +182,12 @@ $--radio-disabled-checked-input-border-color: $--disabled-border-base !default;
 $--radio-disabled-checked-input-fill: $--disabled-fill-base !default;
 $--radio-disabled-checked-icon-color: $--color-text-placeholder !default;
 
-$--radio-checked-text-color: $--color-primary !default;
-$--radio-checked-input-border-color: $--color-primary !default;
-$--radio-checked-input-fill: $--color-white !default;
-$--radio-checked-icon-color: $--color-primary !default;
+$--radio-checked-text-color: #000;
+$--radio-checked-input-border-color: #d7d7d7;
+$--radio-checked-input-fill: #fff;
+$--radio-checked-icon-color: #fff;
 
-$--radio-input-border-color-hover: $--color-primary !default;
+$--radio-input-border-color-hover: #000;
 
 $--radio-bordered-height: 40px !default;
 $--radio-bordered-padding: 12px 20px 0 10px !default;
