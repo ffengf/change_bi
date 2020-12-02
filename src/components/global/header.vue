@@ -8,7 +8,7 @@
 				@click="$router.push('/')"
             />
             <div>
-                <el-menu mode="horizontal" class="tab" router>
+                <el-menu mode="horizontal" class="tab" router text-color="#000">
                     <template v-for="ele in tab">
                         <el-submenu :key="ele.index" :index="ele.index">
                             <template slot="title">{{ ele.name }}</template>
@@ -39,7 +39,8 @@
                 <div class="icon">
                     <el-dropdown trigger="click" @command="customer">
                         <span class="el-dropdown-link">
-                            <i class="el-icon-service"></i>
+                            <!-- <i class="el-icon-service"></i> -->
+							<img src="@/assets/img/customer.png" alt="" srcset="">
                         </span>
                         <el-dropdown-menu slot="dropdown">
                             <el-dropdown-item command="/customer/notice">공지사항</el-dropdown-item>
@@ -109,7 +110,7 @@ export default class extends Vue {
             ],
         },
         {
-            name: this.$t("每日连载"),
+            name: '매일연재',
             index: "/lianzai",
             children: [
                 {
@@ -139,7 +140,7 @@ export default class extends Vue {
             ],
 		},
 		{
-            name: '活动',
+            name: '이벤트',
             index: "/read",
             children: [
                 {
@@ -174,10 +175,26 @@ export default class extends Vue {
     overflow: hidden;
     display: flex;
 	align-items: center;
+	/deep/.el-submenu__title{
+		font-size: 16px;
+		font-weight: 500;
+		font-stretch: normal;
+		font-style: normal;
+		// line-height: 1.88;
+		letter-spacing: -1.2px;
+		font-family: NotoSansKR-Medium;
+	}
+	/deep/.el-icon-arrow-down:before{
+		content: '';
+	}
 	.inp{
 		/deep/.el-input__inner{
 			width: 10rem;
 			font-size: 13px;
+		}
+		.el-icon-search{
+			font-size: 28px;
+			font-weight: 900;
 		}
 	}
     .el-icon-menu {
