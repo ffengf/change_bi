@@ -4,46 +4,54 @@
             <h1>아이디찾기</h1>
             <h2>
                 <p class="kr-li">가입 시 입력한</p>
-                <p><em class="kr-me">휴대폰 번호</em><em class="kr-li">를</em></p>
+                <p>
+                    <em class="kr-me">휴대폰 번호</em><em class="kr-li">를</em>
+                </p>
                 <p class="kr-li">입력하세요.</p>
             </h2>
             <div class="flex_column">
                 <el-form ref="form" :model="info" :rules="rules">
-                    <el-form-item prop="username">
+                    <el-form-item prop="phone">
                         <div class="flex">
                             <el-input
                                 class="width_70"
-                                v-model="info.password"
+                                v-model="info.phone"
                                 placeholder="휴대폰 번호('-'는 빼고 입력해주세요)"
                             ></el-input>
-                            <el-button type="default" size="small" plain
+                            <el-button type="default" size="small" plain @click="send_tel_pass"
                                 >인증번호 발송</el-button
                             >
                         </div>
                     </el-form-item>
-                    <el-form-item prop="password">
+                    <el-form-item prop="code">
                         <el-input
                             class="width_70"
-                            v-model="info.password"
+                            v-model="info.code"
                             placeholder="인증번호 6자리"
                         ></el-input>
                     </el-form-item>
                 </el-form>
-                <el-button type="success" style="margin-top:2rem" @click="step = 2">{{
-                    $t("确认")
-                }}</el-button>
+                <el-button
+                    type="success"
+                    style="margin-top: 2rem"
+                    @click="submit"
+                    >확인</el-button
+                >
             </div>
         </template>
         <template v-if="step === 2">
-            <h1>{{ $t("找回账号结果") }}</h1>
+            <h1>아이디 찾기 결과-找回账号结果</h1>
             <h2>
-                <p><strong class="kr-me">가입 아이디</strong><em class="kr-li">를</em></p>
+                <p>
+                    <strong class="kr-me">가입 아이디</strong
+                    ><em class="kr-li">를</em>
+                </p>
                 <p class="kr-li">확인해 주세요.</p>
             </h2>
             <div class="box">
                 <span class="h1">아이디</span>
-                <span class="h2">11123awedf</span>
-                <h3>2018.01.01</h3>
+                <span class="h2">{{ user_info.username }}</span>
+                <h3>{{ user_info.create_time }}</h3>
             </div>
             <div class="btn_box">
                 <el-button
@@ -61,15 +69,53 @@
 </template>
 
 <script lang="ts">
+import { api_user } from "@/api/user";
+import { ElForm } from "element-ui/types/form";
 import { Vue, Component } from "vue-property-decorator";
 @Component
 export default class extends Vue {
-    rules = {};
-    info = {
-        username: "",
-        password: "",
-        check: true,
+    validatePhone(rule, value: string, callback) {
+        if (value.length !== 11) {
+            callback(new Error("输入11位"));
+        } else {
+            callback();
+        }
+    }
+    rules = {
+        phone: [{ required: true, validator: this.validatePhone }],
+        code: [{ required: true }],
     };
+    info = {
+        phone: "",
+        code: "",
+    };
+    user_info = {
+        username: "",
+        create_time: "",
+	};
+	btn_loadding = {
+		send:false
+	}
+
+	async send_tel_pass() {
+        (this.$refs["form"] as ElForm).validateField("phone", async (rules) => {
+            this.btn_loadding.send = true;
+			try {
+				await api_user.send_sms({
+					phone: this.info.phone,
+				});
+				this.btn_loadding.send = false;
+				this.$message.success("发送成功，输入验证码");
+			} catch (e) {
+				this.btn_loadding.send = false;
+			}
+        });
+    }
+
+    async submit() {
+		this.user_info = await api_user.find_account(this.info);
+		this.step = 2
+    }
 
     step = 1;
 }

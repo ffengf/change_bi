@@ -35,8 +35,11 @@ class User extends Http {
 		return this.post(data)
 	}
 
-	find_account(data: any) {
-		return this.get(data, '/user/find_account/')
+	find_account(data: { phone:string, code:string }) {
+		return this.get<{
+			username:string
+			create_time:string
+		}>(data, '/user/find_account/')
 	}
 
 	send_sms(data: { phone: string }) {
