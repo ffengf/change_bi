@@ -48,8 +48,13 @@
                         </el-dropdown-menu>
                     </el-dropdown>
                 </div>
-                <el-button class="btn" size="mini" type="success" @click="$router.push('/login/signin')">{{ $t('登录') }}</el-button>
-                <el-button class="btn color_000" type="text" @click="$router.push('/login/signup')">{{ $t('注册') }}</el-button>
+                <template v-if="user_info === null">
+					<el-button class="btn" size="mini" type="success" @click="$router.push('/login/signin')">로그인</el-button>
+					<el-button class="btn color_000" type="text" @click="$router.push('/login/signup')">회원가입</el-button>
+				</template>
+				<template v-else>
+					success
+				</template>
             </div>
             <el-drawer append-to-body :visible.sync="key" direction="ltr" :withHeader="false" :showClose="false" size="60%" class="drawer">
                 <el-menu router>
@@ -77,15 +82,19 @@
                 alt="logo"
 				@click="$router.push('/')"
             />
-            <div class="right">
-                <el-button class="btn" size="mini" type="success" @click="$router.push('/login/signin')">{{ $t('登录') }}</el-button>
-                <el-button class="btn" type="text" @click="$router.push('/login/signup')">{{ $t('注册') }}</el-button>
+            <div class="right" v-if="user_info === null">
+                <el-button class="btn" size="mini" type="success" @click="$router.push('/login/signin')">로그인</el-button>
+                <el-button class="btn" type="text" @click="$router.push('/login/signup')">회원가입</el-button>
             </div>
+			<div class="right" v-else>
+				success
+			</div>
         </div>
     </div>
 </template>
 
 <script lang="ts">
+import { UserModule } from "@/store/user";
 import { Vue, Component } from "vue-property-decorator";
 @Component
 export default class extends Vue {
@@ -154,9 +163,10 @@ export default class extends Vue {
 		},
     ];
 
-	language(e:string){
-		this.$i18n.locale = e
+	get user_info(){
+		return UserModule.info
 	}
+
 
 	customer(link:string){
 		this.$router.push(link)
