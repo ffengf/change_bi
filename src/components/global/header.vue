@@ -61,8 +61,8 @@
             <el-drawer append-to-body :visible.sync="key" direction="ltr" :withHeader="false" :showClose="false" size="60%" class="drawer">
                 <el-menu router>
                     <template v-for="ele in tab">
-                        <el-submenu :key="ele.index" :index="ele.index">
-                            <template slot="title">{{ ele.name }}</template>
+                        <el-submenu :key="ele.index" :index="ele.index" v-if="ele.children">
+                            <template slot="title"><h1>{{ ele.name }}</h1></template>
                             <el-menu-item
                                 v-for="e in ele.children"
                                 :index="e.index"
@@ -70,6 +70,7 @@
                                 >{{ e.name }}</el-menu-item
                             >
                         </el-submenu>
+						<el-menu-item :index="ele.index" :key="ele.index"  v-else ><h1>{{ ele.name }}</h1></el-menu-item>
                     </template>
                 </el-menu>
             </el-drawer>

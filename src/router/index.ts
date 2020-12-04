@@ -160,6 +160,19 @@ const routes: RouteConfig[] = [
 						component: () => import('@/views/user/myclub/index.vue'),
 					}
 				]
+			},
+			{
+				path: '/serial',
+				name: 'serial',
+				redirect: '/serial/date',
+				component: () => import('@/views/serial/index.vue'),
+				children:[
+					{
+						path:'date',
+						name:'date',
+						component:() => import('@/views/serial/date/index.vue')
+					}
+				]
 			}
 		]
 	},

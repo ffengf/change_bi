@@ -4,7 +4,7 @@
 			<div class="bread_box w70vw min_width1000">
 				<Bread class="bread" />
 			</div>
-			<div class="line mt10"></div>
+			<div class="line mt10 w70vw"></div>
 			<div class="body">
 				<Rview />
 			</div>
@@ -30,7 +30,6 @@ export default class extends Vue {
 
 
 <style lang='less' scoped>
-// w70vw min_width1000
 #club{
 	width: 100vw;
 	margin-top: 3.75rem;
@@ -42,7 +41,6 @@ export default class extends Vue {
 	}
 	.line{
 		background: #324b9b;
-		width: 50rem;
 	}
 	.body{
 		margin-top: 2rem;
