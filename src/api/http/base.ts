@@ -15,6 +15,9 @@ const server = axios.create({
 
 
 server.interceptors.request.use(config => {
+	if(config.url?.includes('/user/') && config.method === 'patch' ){
+		config.headers.Authorization = `token=${config?.data?.token}`
+	}
 	return config;
 }, err => {
 	return Promise.reject(err);
@@ -24,18 +27,15 @@ server.interceptors.response.use(({ data, status }) => {
 		Vue.$message.error(data.msg)
 		return Promise.reject(data)
 	}
-	if (status === 204) {
-		Vue.$message.success('删除成功')
-	}
 	return data
 }, err => {
 	if (err?.response?.status === 401) {
-		Vue.$message.error(`401错误`)
+		Vue.$message.error(`401:error`)
 		return Promise.reject(err)
 	}
 	if (err?.response?.status === 403) {
 		Vue.$router.push('/login')
-		Vue.$message.error('登录过期')
+		Vue.$message.error('token:error')
 		return Promise.reject(err)
 	}
 	Vue.$message.error(`fail:serve error`)

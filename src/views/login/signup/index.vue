@@ -1,5 +1,5 @@
 <template>
-    <div class="login_warpper" id="sign_up" v-if="type === 0">
+    <div class="login_warpper kr-re" id="sign_up" v-if="type === 0">
         <h1>注册</h1>
         <div class="flex_column">
             <el-form
@@ -220,9 +220,9 @@
 		<el-dialog
 			title="服务使用条款"
 			:visible.sync="key_1"
-			width="70%"
+			width="50%"
 		>
-			<span>key1</span>
+			<span v-html="content.use"></span>
 			<span slot="footer" class="dialog-footer">
 				<el-button type="primary" @click="key_1 = false">确 定</el-button>
 			</span>
@@ -231,9 +231,9 @@
 		<el-dialog
 			title="隐私政策"
 			:visible.sync="key_2"
-			width="70%"
+			width="50%"
 		>
-			<span>key2key2key2key2key2key2key2key2key2key2key2key2key2key2key2key2key2key2key2</span>
+			<span v-html="content.privacy"></span>
 			<span slot="footer" class="dialog-footer">
 				<el-button type="primary" @click="key_2 = false">确 定</el-button>
 			</span>
@@ -265,7 +265,7 @@
 </template>
 
 <script lang="ts">
-import { api_user, sign_up } from "@/api/user";
+import { api_user, sign_up,api_service } from "@/api";
 import { ElForm } from "element-ui/types/form";
 import { Vue, Component, Watch } from "vue-property-decorator";
 import { mapObjIndexed } from "ramda"
@@ -284,8 +284,6 @@ export default class extends Vue {
         check_sms: false,
     };
 
-	key_1 = false
-	key_2 = false
 
 	validatePass_8(rules, value, callback){
 		const reg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/
@@ -362,7 +360,6 @@ export default class extends Vue {
     }
     async send_tel_pass() {
         (this.$refs["form"] as ElForm).validateField("phone", async (rules) => {
-			console.log(rules)
 			this.btn_loadding.send = true;
             if (rules === "") {
                 try {
@@ -507,7 +504,31 @@ export default class extends Vue {
                 },
             }).embed(this.$refs["daumBox"]);
         }, 100);
-    }
+	}
+
+	key_1 = false
+	key_2 = false
+
+	content = {
+		use:"",
+		privacy:""
+	}
+
+	async get_content(){
+		const [use,privacy] = await Promise.all([
+			api_service.get_use(),
+			api_service.get_privacy()
+		])
+		this.content = {
+			use:use.content,
+			privacy:privacy.content,
+		}
+	}
+
+
+	async created(){
+		this.get_content()
+	}
 }
 </script>
 
@@ -554,7 +575,8 @@ export default class extends Vue {
         width: 70%;
     }
     .btn {
-        min-width: 84px;
+		min-width: 84px;
+		width: 5rem;
     }
 }
 

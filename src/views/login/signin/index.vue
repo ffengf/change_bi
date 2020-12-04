@@ -20,7 +20,7 @@
 					</div>
                 </el-form-item>
             </el-form>
-			<el-button type="success" style="margin-top:1rem" @click="submit">로그인</el-button>
+			<el-button type="success" style="margin-top:1rem" @click="submit" :loading="btn_loadding.submit">로그인</el-button>
 			<el-divider><em class="color_80">or</em></el-divider>
 			<el-button type="default" plain @click="$router.push('/login/signup')">회원가입</el-button>
         </div>
@@ -53,15 +53,22 @@ export default class extends Vue {
 		check:true,
 	};
 
+	btn_loadding = {
+        submit: false,
+    };
+
 	async submit(){
 		await (this.$refs["form"] as ElForm).validate();
+		this.btn_loadding.submit = true
 		const { check,...info } = this.info
 		if(check){
 			StorageDb.setLocal('login_info',info)
 		}else{
 			StorageDb.removeLocal('login_info')
 		}
-		await UserModule.login(info)
+		await UserModule.login(info).finally(()=>{
+			this.btn_loadding.submit = false
+		})
 		this.$message.success('success')
 		this.$router.push('/')
 	}
