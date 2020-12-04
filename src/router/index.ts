@@ -171,6 +171,16 @@ const routes: RouteConfig[] = [
 						path:'date',
 						name:'date',
 						component:() => import('@/views/serial/date/index.vue')
+					},
+					{
+						path:'book_info/:id',
+						name:'book_info',
+						component:() => import('@/views/serial/book_info/index.vue')
+					},
+					{
+						path:'chapter_info/:book_id/:info_id',
+						name:'chapter_info',
+						component:() => import('@/views/serial/chapter_info/index.vue')
 					}
 				]
 			}
