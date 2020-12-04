@@ -38,7 +38,7 @@ server.interceptors.response.use(({ data, status }) => {
 		Vue.$message.error('登录过期')
 		return Promise.reject(err)
 	}
-	Vue.$message.error(`请求错误`)
+	Vue.$message.error(`fail:serve error`)
 	return Promise.reject(err)
 })
 

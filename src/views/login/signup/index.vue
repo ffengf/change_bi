@@ -99,7 +99,7 @@
                     <div class="flex">
                         <el-input
                             class="inp"
-                            v-model="info.address"
+                            v-model="info.address_code"
                             placeholder="우편번호를 검색해주세요."
                             disabled
                         ></el-input>
@@ -112,7 +112,7 @@
                         >
                     </div>
                     <el-input
-                        v-model="info.address_code"
+                        v-model="info.address"
                         placeholder="주소"
                         disabled
                     ></el-input>
@@ -174,6 +174,7 @@
                                 type="text"
                                 class="look"
                                 style="margin-left: 1rem"
+								@click="key_1 = true"
                                 >자세히보기</el-button
                             >
                         </el-checkbox>
@@ -183,6 +184,7 @@
                                 type="text"
                                 class="look"
                                 style="margin-left: 1rem"
+								@click="key_2 = true"
                                 >자세히보기</el-button
                             >
                         </el-checkbox>
@@ -214,6 +216,28 @@
                 >
             </span>
         </el-dialog>
+
+		<el-dialog
+			title="服务使用条款"
+			:visible.sync="key_1"
+			width="70%"
+		>
+			<span>key1</span>
+			<span slot="footer" class="dialog-footer">
+				<el-button type="primary" @click="key_1 = false">确 定</el-button>
+			</span>
+		</el-dialog>
+
+		<el-dialog
+			title="隐私政策"
+			:visible.sync="key_2"
+			width="70%"
+		>
+			<span>key2key2key2key2key2key2key2key2key2key2key2key2key2key2key2key2key2key2key2</span>
+			<span slot="footer" class="dialog-footer">
+				<el-button type="primary" @click="key_2 = false">确 定</el-button>
+			</span>
+		</el-dialog>
     </div>
 	<div class="login_warpper success" v-else>
 		<img src="@/assets/img/success.png" alt="">
@@ -230,7 +254,7 @@
 			<el-button
 				type="default"
 				plain
-				@click="$router.push('/login/findpassword')"
+				@click="$router.push('/')"
 				>홈으로 이동</el-button
 			>
 			<el-button type="success" @click="$router.push('/login/signin')"
@@ -259,6 +283,18 @@ export default class extends Vue {
         send: false,
         check_sms: false,
     };
+
+	key_1 = false
+	key_2 = false
+
+	validatePass_8(rules, value, callback){
+		const reg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/
+		if(reg.test(value)){
+			callback()
+		}else{
+			callback(new Error("简单了"));
+		}
+	}
 
     validatePass(rules, value, callback) {
         if (this.info.password !== this.info.again_pass) {
@@ -309,7 +345,7 @@ export default class extends Vue {
     async check_tel_pass() {
         (this.$refs["form"] as ElForm).validateField("phone", async (rules) => {
             this.btn_loadding.check_sms = true;
-            // if (rules === "验证一下") {
+            if (rules === "验证一下") {
                 try {
                     await api_user.check_sms({
                         phone: this.info.phone,
@@ -321,13 +357,14 @@ export default class extends Vue {
                 } catch (e) {
                     this.btn_loadding.check_sms = false;
                 }
-            // }
+            }
         });
     }
     async send_tel_pass() {
         (this.$refs["form"] as ElForm).validateField("phone", async (rules) => {
-            this.btn_loadding.send = true;
-            if (rules === "验证一下") {
+			console.log(rules)
+			this.btn_loadding.send = true;
+            if (rules === "") {
                 try {
                     await api_user.send_sms({
                         phone: this.info.phone,
@@ -337,7 +374,7 @@ export default class extends Vue {
                 } catch (e) {
                     this.btn_loadding.send = false;
                 }
-            }
+			}
         });
     }
 
@@ -351,6 +388,7 @@ export default class extends Vue {
         ],
         password: [
             {
+				validator: this.validatePass_8,
                 required: true,
                 trigger: ["change"],
             },
@@ -439,6 +477,9 @@ export default class extends Vue {
 
     async submit() {
 		await (this.$refs['form'] as ElForm).validate()
+		if(this.info.all === false){
+			return this.$message.error('选择服务条款')
+		}
 		const info = mapObjIndexed((v,k)=>{
 			if(typeof v === 'boolean'){
 				return v === true ? 1 : 0
@@ -504,7 +545,7 @@ export default class extends Vue {
 
 .name_sex {
     .inp {
-        width: 40% !important;
+        width: 38% !important;
     }
 }
 .flex {

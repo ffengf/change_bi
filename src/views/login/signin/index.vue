@@ -35,9 +35,17 @@ import { UserModule } from "@/store/user"
 import StorageDb from "@/util/storage"
 @Component
 export default class extends Vue {
+	validatePass_8(rules, value, callback){
+		const reg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/
+		if(reg.test(value)){
+			callback()
+		}else{
+			callback(new Error("简单了"));
+		}
+	}
 	rules={
 		username:[{ required:true }],
-		password:[{ required:true }],
+		password:[{ required:true,validator: this.validatePass_8  }],
 	}
     info = {
 		username:'',

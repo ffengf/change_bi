@@ -18,7 +18,7 @@
                                 v-model="info.phone"
                                 placeholder="휴대폰 번호('-'는 빼고 입력해주세요)"
                             ></el-input>
-                            <el-button type="default" size="small" plain @click="send_tel_pass"
+                            <el-button type="default" size="small" plain @click="send_tel_pass" :loading="btn_loadding.send"
                                 >인증번호 발송</el-button
                             >
                         </div>
@@ -113,6 +113,7 @@ export default class extends Vue {
     }
 
     async submit() {
+		await (this.$refs["form"] as ElForm).validate();
 		this.user_info = await api_user.find_account(this.info);
 		this.step = 2
     }

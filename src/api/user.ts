@@ -58,8 +58,14 @@ class User extends Http {
 		return this.post(data, '/user/check_sms/')
 	}
 
+	check_account(data:{ username:string,phone:string,code:string }){
+		return this.post<{
+			id:number
+			token:string
+		}>(data,'/user/check_account/')
+	}
 
-	edit_user({ id, ...data }: any) {
+	edit_user<T extends { id:number }>({ id, ...data }: T) {
 		return this.patch(data, `/user/${id}/`)
 	}
 }
