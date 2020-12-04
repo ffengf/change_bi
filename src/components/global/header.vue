@@ -10,8 +10,8 @@
             <div>
                 <el-menu mode="horizontal" class="tab" router text-color="#000">
                     <template v-for="ele in tab">
-                        <el-submenu :key="ele.index" :index="ele.index">
-                            <template slot="title">{{ ele.name }}</template>
+                        <el-submenu :key="ele.index" :index="ele.index" v-if="ele.children">
+                            <template slot="title"><h1>{{ ele.name }}</h1></template>
                             <el-menu-item
                                 v-for="e in ele.children"
                                 :index="e.index"
@@ -19,6 +19,8 @@
                                 >{{ e.name }}</el-menu-item
                             >
                         </el-submenu>
+						<el-menu-item :index="ele.index" :key="ele.index"  v-else ><h1>{{ ele.name }}</h1></el-menu-item>
+						<div class="lines" :key="ele.index"></div>
                     </template>
                 </el-menu>
             </div>
@@ -119,33 +121,7 @@ export default class extends Vue {
         },
         {
             name: '매일연재',
-            index: "/lianzai",
-            children: [
-                {
-                    name: this.$t("周一连载"),
-                    index: "/lianzai/1",
-                },
-                {
-                    name: this.$t("周二连载"),
-                    index: "/lianzai/2",
-                },
-                {
-                    name: this.$t("周三连载"),
-                    index: "/lianzai/3",
-                },
-                {
-                    name: this.$t("周四连载"),
-                    index: "/lianzai/4",
-                },
-                {
-                    name: this.$t("周五连载"),
-                    index: "/lianzai/5",
-                },
-                {
-                    name: this.$t("SWICH连载"),
-                    index: "/lianzai/s",
-                },
-            ],
+            index: "/serial",
 		},
 		{
             name: '이벤트',
@@ -212,7 +188,27 @@ export default class extends Vue {
     .tab {
         border: none !important;
         flex-wrap: nowrap;
-        display: flex;
+		display: flex;
+		width: 25rem;
+		justify-content: space-between;
+		align-items: center;
+		h1{
+			font-size: 16px;
+			font-weight: 500;
+			font-stretch: normal;
+			font-style: normal;
+			letter-spacing: -1.2px;
+			font-family: NotoSansKR-Medium;
+		}
+		.lines{
+			height: 13px;
+			width: 1px;
+			background: #000;
+			margin: 10px;
+			&:nth-last-of-type(1){
+				display: none;
+			}
+		}
     }
     .right {
         display: flex;
