@@ -2,6 +2,7 @@
 import axios, { AxiosInstance } from 'axios';
 
 import { app as Vue } from '@/main'
+import { UserModule } from '@/store/user';
 
 
 const server = axios.create({
@@ -15,8 +16,8 @@ const server = axios.create({
 
 
 server.interceptors.request.use(config => {
-	if(config.url?.includes('/user/') && config.method === 'patch' ){
-		config.headers.Authorization = `token=${config?.data?.token}`
+	if (UserModule.token !== ''){
+		config.headers.Authorization = `token=${UserModule.token}`
 	}
 	return config;
 }, err => {
@@ -34,8 +35,12 @@ server.interceptors.response.use(({ data, status }) => {
 		return Promise.reject(err)
 	}
 	if (err?.response?.status === 403) {
-		Vue.$router.push('/login')
-		Vue.$message.error('token:error')
+		Vue.$alert('这个页面需要登陆', '标题',{
+			confirmButtonText:'ok',
+			callback(){
+				Vue.$router.push('/login')
+			}
+		})
 		return Promise.reject(err)
 	}
 	Vue.$message.error(`fail:serve error`)

@@ -9,17 +9,17 @@
             />
             <div>
                 <el-menu mode="horizontal" class="tab" router text-color="#000">
-                    <template v-for="ele in tab">
-                        <el-submenu :key="ele.index" :index="ele.index" v-if="ele.children">
+                    <template v-for="(ele,index) in tab">
+                        <el-submenu :key="index + ele.index" :index="ele.index" v-if="ele.children">
                             <template slot="title"><h1>{{ ele.name }}</h1></template>
                             <el-menu-item
-                                v-for="e in ele.children"
+                                v-for="(e,i) in ele.children"
                                 :index="e.index"
-                                :key="e.index"
+                                :key="i + e.index"
                                 >{{ e.name }}</el-menu-item
                             >
                         </el-submenu>
-						<el-menu-item :index="ele.index" :key="ele.index"  v-else ><h1>{{ ele.name }}</h1></el-menu-item>
+						<el-menu-item :index="ele.index" :key="index + ele.index"  v-else ><h1>{{ ele.name }}</h1></el-menu-item>
 						<div class="lines" :key="ele.index"></div>
                     </template>
                 </el-menu>

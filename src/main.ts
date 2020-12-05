@@ -6,7 +6,7 @@ import Element from 'element-ui'
 import App from './App.vue';
 import router from './router';
 import i18n from '@/i18n'
-import { Device } from "@/mixin/size"
+import { Loading } from "@/mixin/loading"
 import store from './store';
 import "@/assets/style/reset.less"
 import "@/assets/style/element_phone.less"
@@ -27,6 +27,7 @@ import { OtherModule } from './store/other';
 Vue.config.productionTip = true;
 
 Vue.use(Element)
+Vue.mixin(Loading)
 
 export const app = new Vue({
 	router,

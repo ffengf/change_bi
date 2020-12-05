@@ -1,5 +1,5 @@
 <template>
-    <div id="login" class="flexC">
+    <div id="login" class="flexC" v-loading="loading">
         <div class="w75vw min_width1100 login_div">
             <div class="img_box sm-down">
                 <h1>
@@ -22,10 +22,22 @@
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import Rview from "@/components/routerView/index.vue";
+import { UserModule } from '@/store/user';
 @Component({
     components: { Rview },
 })
-export default class extends Vue {}
+export default class extends Vue {
+
+	created(){
+		if(UserModule.token !== ''){
+			this.loading = true
+			this.$message.success('你已登陆，为您跳转至首页')
+			setTimeout(() => {
+				this.$router.push('/')
+			}, 1000);
+		}
+	}
+}
 </script>
 
 

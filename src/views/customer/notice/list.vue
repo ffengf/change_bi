@@ -1,85 +1,50 @@
 <template>
     <div class="list">
-		<div class="box">
+		<div class="box" v-for="(ele,index) in list" :key="ele.id">
 			<div class="top">
-				<span class="color_success">답변대</span>
+				<span class="color_success">{{ ele.title }}</span>
 				<span class="lines"></span>
-				<span>2020.05.01</span>
+				<span>{{ ele.create_time }}</span>
 			</div>
-			<h1 @click="change_keys(false)">스위치 웹사이트 런칭 기념, 추첨을 통해 신규가입자에게 스타벅스 쿠폰을 드립니다.</h1>
-		</div>
-		<div class="box">
-			<div class="top">
-				<span class="color_success">답변대</span>
-				<span class="lines"></span>
-				<span>2020.05.01</span>
-			</div>
-			<h1 @click="change_keys(false)">스위치 웹사이트 런칭 기념, 추첨을 통해 신규가입자에게 스타벅스 쿠폰을 드립니다.</h1>
-		</div>
-		<div class="box">
-			<div class="top">
-				<span class="color_success">답변대</span>
-				<span class="lines"></span>
-				<span>2020.05.01</span>
-			</div>
-			<h1 @click="change_keys(false)">스위치 웹사이트 런칭 기념, 추첨을 통해 신규가입자에게 스타벅스 쿠폰을 드립니다.</h1>
+			<h1 @click="change_what(index)" v-text="ele.content"></h1>
 		</div>
 
-		<div class="box">
-			<div class="top">
-				<span class="color_success">답변대</span>
-				<span class="lines"></span>
-				<span>2020.05.01</span>
-			</div>
-			<h1 @click="change_keys(false)">스위치 웹사이트 런칭 기념, 추첨을 통해 신규가입자에게 스타벅스 쿠폰을 드립니다.</h1>
-		</div>
-		<div class="box">
-			<div class="top">
-				<span class="color_success">답변대</span>
-				<span class="lines"></span>
-				<span>2020.05.01</span>
-			</div>
-			<h1 @click="change_keys(false)">스위치 웹사이트 런칭 기념, 추첨을 통해 신규가입자에게 스타벅스 쿠폰을 드립니다.</h1>
-		</div>
-		<div class="box">
-			<div class="top">
-				<span class="color_success">답변대</span>
-				<span class="lines"></span>
-				<span>2020.05.01</span>
-			</div>
-			<h1 @click="change_keys(false)">스위치 웹사이트 런칭 기념, 추첨을 통해 신규가입자에게 스타벅스 쿠폰을 드립니다.</h1>
-		</div>
-		<div class="box">
-			<div class="top">
-				<span class="color_success">답변대</span>
-				<span class="lines"></span>
-				<span>2020.05.01</span>
-			</div>
-			<h1 @click="change_keys(false)">스위치 웹사이트 런칭 기념, 추첨을 통해 신규가입자에게 스타벅스 쿠폰을 드립니다.</h1>
-		</div>
-		<div class="box">
-			<div class="top">
-				<span class="color_success">답변대</span>
-				<span class="lines"></span>
-				<span>2020.05.01</span>
-			</div>
-			<h1 @click="change_keys(false)">스위치 웹사이트 런칭 기념, 추첨을 통해 신규가입자에게 스타벅스 쿠폰을 드립니다.</h1>
-		</div>
-
-		<el-button type="success" class="btn">더 보기</el-button>
+		<el-button type="success" class="btn" @click="more">더 보기</el-button>
     </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Emit, Model } from "vue-property-decorator";
+import { Vue, Component, Emit, Model, Prop } from "vue-property-decorator";
+import { notice } from '@/api';
 @Component
 export default class extends Vue {
 	@Model("update:keys", { type: Boolean, required: true })
 	readonly keys!: boolean;
     @Emit("update:keys")
-    change_keys(keys: boolean) {
-        return keys;
+    change_keys() {
+        return false;
 	}
+
+	@Prop({ required:true })
+	list !:notice[]
+
+
+
+	@Model("update:page", { type: Number, required: true })
+	readonly page!: number;
+    @Emit("update:page")
+    more() {
+        return this.page + 1;
+	}
+
+	@Model("update:what", { type: Number, required: true })
+	readonly what!: number;
+    @Emit("update:what")
+    change_what(index: number) {
+		this.change_keys()
+		return index
+	}
+
 }
 </script>
 
@@ -92,7 +57,7 @@ export default class extends Vue {
 	flex-direction: column;
 	.box{
 		width: 100%;
-		height: 4.2rem;
+		min-height: 4.2rem;
 		border-bottom: 1px solid #324b9b;
 		margin-top: 1rem;
 		.top{
@@ -112,6 +77,7 @@ export default class extends Vue {
 			font-weight: 500;
 			margin-top: 0.3rem;
 			cursor: pointer;
+			margin-bottom: 0.6rem;
 		}
 		h1:hover{
 			color: #324b9b;
