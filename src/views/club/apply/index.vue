@@ -194,9 +194,10 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component, Watch } from "vue-property-decorator";
 import Rview from "@/components/routerView/index.vue";
 import Bread from "@/components/bread/index.vue"
+import { api_club, club_list } from "@/api"
 @Component({
     components: {
 		Rview,
@@ -204,7 +205,33 @@ import Bread from "@/components/bread/index.vue"
 	},
 })
 export default class extends Vue {
+	page = 1
+	list:club_list[] = []
+	count:number = 0
 
+
+	@Watch('page')
+	async get_list(){
+		if (this.list.length === this.count && this.list.length !== 0) {
+            return this.$message.error("没有更多了");
+		}
+		this.loading = true
+        const { results, count } = await api_club.get_creation_list({
+            page: this.page
+        }).finally(()=>{
+			this.loading = false
+		})
+        this.list = [...this.list, ...results];
+        this.count = count;
+	}
+
+	more(){
+		this.page ++
+	}
+
+	created(){
+		this.get_list()
+	}
 }
 </script>
 
@@ -311,7 +338,7 @@ export default class extends Vue {
 			font-stretch: normal;
 			font-style: normal;
 			line-height: 1.75;
-			letter-spacing: -0.4px;
+			letter-spacing: 4.4px;
 			text-align: left;
 			span{
 				color: #3fa535;
@@ -391,7 +418,7 @@ export default class extends Vue {
 					font-stretch: normal;
 					font-style: normal;
 					line-height: 1.75;
-					letter-spacing: -1px;
+					letter-spacing: 2.7px;
 					text-align: left;
 					color: #000000;
 				}
@@ -399,6 +426,10 @@ export default class extends Vue {
 			.v2{
 				width: 48%;
 				border-top: 4px solid #3fa535;
+				img{
+					width: 100%;
+					height: 100%;
+				}
 			}
 		}
 		.item:nth-of-type(2n){

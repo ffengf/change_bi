@@ -1,6 +1,6 @@
 <template>
     <div id="page">
-        <el-scrollbar style="height: 100%">
+        <el-scrollbar ref="scrollbar" style="height: 100%">
             <el-container class="container">
                 <el-header>
                     <Header />
@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component, Watch } from "vue-property-decorator";
 import Header from "./header.vue";
 import Rview from "@/components/routerView/index.vue";
 import Footer from "./footer.vue";
@@ -29,7 +29,10 @@ import Footer from "./footer.vue";
     },
 })
 export default class extends Vue {
-    fn() {}
+	@Watch('$route')
+	watch(){
+		(this.$refs['scrollbar'] as any).wrap.scrollTop = 0
+	}
 
     created() {}
 }

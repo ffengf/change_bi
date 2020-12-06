@@ -1,4 +1,4 @@
-import { api_user, login_res } from '@/api/user';
+import { api_user, login_res } from '@/api';
 import {
 	VuexModule,
 	Mutation,
@@ -35,7 +35,8 @@ export default class User extends VuexModule {
 
 	@Mutation
 	private LOGOUT() {
-
+		this.TOKEN = null
+		this.INFO = null
 	}
 
 	@Action
@@ -48,7 +49,8 @@ export default class User extends VuexModule {
 
 	@Action
 	public logout() {
-
+		StorageDb.removeLocal('token')
+		this.LOGOUT()
 	}
 
 	public get token() {

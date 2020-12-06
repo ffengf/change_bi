@@ -3,7 +3,7 @@ import VueRouter, { RouteConfig } from 'vue-router';
 import Rview from "@/components/routerView/index.vue";
 Vue.use(VueRouter);
 
-//跳转相同路由报错
+
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push(location: import("vue-router").RawLocation) {
 	//@ts-ignore
@@ -13,7 +13,8 @@ VueRouter.prototype.push = function push(location: import("vue-router").RawLocat
 const routes: RouteConfig[] = [
 	{
 		path: '/',
-		name: 'Home',
+		name: 'home',
+		redirect: '/',
 		component: () => import('@/components/global/index.vue'),
 		children: [
 			{
@@ -105,6 +106,7 @@ const routes: RouteConfig[] = [
 							title:'클럽창작과비평'
 						},
 						component: Rview,
+						redirect: '/club/creation',
 						children:[
 							{
 								path: '',
@@ -126,6 +128,7 @@ const routes: RouteConfig[] = [
 							title:'북클럽필라멘트'
 						},
 						component: Rview,
+						redirect: '/club/apply',
 						children:[
 							{
 								path: '',

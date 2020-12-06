@@ -50,12 +50,20 @@
                         </el-dropdown-menu>
                     </el-dropdown>
                 </div>
+				<el-divider class="divider" direction="vertical"></el-divider>
                 <template v-if="!is_login">
 					<el-button class="btn" size="mini" type="success" @click="$router.push('/login/signin')">로그인</el-button>
 					<el-button class="btn color_000" type="text" @click="$router.push('/login/signup')">회원가입</el-button>
 				</template>
 				<template v-else>
-					success
+					<el-dropdown trigger="click" @command="user">
+                        <span class="el-dropdown-link">
+							<img src="@/assets/img/user.png" width="23px" alt="" srcset="">
+                        </span>
+                        <el-dropdown-menu slot="dropdown">
+                            <el-dropdown-item command="logout">logout</el-dropdown-item>
+                        </el-dropdown-menu>
+                    </el-dropdown>
 				</template>
             </div>
             <el-drawer append-to-body :visible.sync="key" direction="ltr" :withHeader="false" :showClose="false" size="60%" class="drawer">
@@ -151,6 +159,16 @@ export default class extends Vue {
 		this.$router.push(link)
 	}
 
+	user(type:string){
+		if(type === 'logout'){
+			UserModule.logout()
+			this.$message.success('logout success')
+			this.$router.push('/')
+		}else{
+			this.$router.push(type)
+		}
+	}
+
     created() {}
 }
 </script>
@@ -217,17 +235,13 @@ export default class extends Vue {
         display: flex;
         align-items: center;
         overflow: hidden;
-        .icon{
-            padding:0 20px;
-        }
-        .icon+.icon{
-            border-right:1px solid rgb(136,136,136);
-            margin-right:20px;
-        }
         .icon i {
-            font-size: 20px;
             cursor: pointer;
-        }
+		}
+		.divider{
+			margin: 0 1.5rem;
+			background: #000;
+		}
     }
 }
 .logo_sm{
