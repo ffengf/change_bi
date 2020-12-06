@@ -1,7 +1,7 @@
 <template>
     <div class="list" v-loading="loading">
-        <List :keys.sync="key" :list="list" :page.sync="page" v-if="key" :what.sync="what" />
-        <Info :keys.sync="key" :list="list" :page.sync="page" :what.sync="what" :count="count" v-else />
+        <List :list="list" :page.sync="page" :type.sync="type" :waht.sync="what" v-if="type === 'list'" />
+        <Info :list="list" :page.sync="page" :type.sync="type" :waht.sync="what" :count="count" v-if="type === 'info'" />
         <Question v-if="type === 'question'" :type.sync="type" />
     </div>
 </template>

@@ -6,7 +6,7 @@ import {
 	getModule,
 	Module
 } from "vuex-module-decorators";
-
+import StorageDb from "@/util/storage"
 import store from "./index"
 
 
@@ -20,7 +20,7 @@ interface info {
 @Module({ name: 'user', dynamic: true, namespaced: true, stateFactory: true, store })
 export default class User extends VuexModule {
 
-	private TOKEN = ''
+	private TOKEN: null | string = StorageDb.getLocal('token')
 	private INFO: info | null = null
 
 	@Mutation
@@ -41,8 +41,10 @@ export default class User extends VuexModule {
 	@Action
 	public async login(info: { username: string, password: string }) {
 		const data = await api_user.signin(info)
+		StorageDb.setLocal('token', data.token)
 		this.LOGIN(data)
 	}
+
 
 	@Action
 	public logout() {

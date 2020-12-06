@@ -66,7 +66,6 @@ class User extends Http {
 	}
 
 	edit_user<T extends { id: number, token?: string }>({ id, ...data }: T) {
-		console.log(data.token)
 		return this.server.patch(`/user/${id}/`, data, {
 			headers: {
 				"Accept": 'application/json',
@@ -74,7 +73,6 @@ class User extends Http {
 				"Authorization": `token=${data.token}`
 			}
 		})
-		// return this.patch(data, `/user/${id}/`)
 	}
 }
 

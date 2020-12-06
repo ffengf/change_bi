@@ -50,7 +50,7 @@
                         </el-dropdown-menu>
                     </el-dropdown>
                 </div>
-                <template v-if="user_info === null">
+                <template v-if="!is_login">
 					<el-button class="btn" size="mini" type="success" @click="$router.push('/login/signin')">로그인</el-button>
 					<el-button class="btn color_000" type="text" @click="$router.push('/login/signup')">회원가입</el-button>
 				</template>
@@ -85,7 +85,7 @@
                 alt="logo"
 				@click="$router.push('/')"
             />
-            <div class="right" v-if="user_info === null">
+            <div class="right" v-if="!is_login">
                 <el-button class="btn" size="mini" type="success" @click="$router.push('/login/signin')">로그인</el-button>
                 <el-button class="btn" type="text" @click="$router.push('/login/signup')">회원가입</el-button>
             </div>
@@ -140,8 +140,10 @@ export default class extends Vue {
 		},
     ];
 
-	get user_info(){
-		return UserModule.info
+
+
+	get is_login(){
+		return UserModule.token !== '' && UserModule.token !== null
 	}
 
 

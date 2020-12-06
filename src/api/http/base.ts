@@ -16,7 +16,7 @@ const server = axios.create({
 
 
 server.interceptors.request.use(config => {
-	if (UserModule.token !== ''){
+	if (UserModule.token !== null && UserModule.token !== ''){
 		config.headers.Authorization = `token=${UserModule.token}`
 	}
 	return config;

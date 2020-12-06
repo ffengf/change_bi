@@ -29,7 +29,7 @@ import { UserModule } from '@/store/user';
 export default class extends Vue {
 
 	created(){
-		if(UserModule.token !== ''){
+		if(UserModule.token !== null && UserModule.token !== ''){
 			this.loading = true
 			this.$message.success('你已登陆，为您跳转至首页')
 			setTimeout(() => {
