@@ -1,114 +1,54 @@
 <template>
     <div class="list">
         <el-button type="success" class="top_btn" @click="change_type('question')">질문하기</el-button>
-        <div class="box">
+        <div class="box" v-for="(ele,index) in list" :key="index">
             <div class="top">
                 <span class="color_success">답변대</span>
                 <span class="lines"></span>
-                <span>2020.05.01</span>
+                <span>{{ ele.create_time }}</span>
             </div>
-            <h1 @click="change_type('info')">
-                스위치 웹사이트 런칭 기념, 추첨을 통해 신규가입자에게 스타벅스
-                쿠폰을 드립니다.
-            </h1>
-        </div>
-        <div class="box">
-            <div class="top">
-                <span class="color_success">답변대</span>
-                <span class="lines"></span>
-                <span>2020.05.01</span>
-            </div>
-            <h1 @click="change_type('info')">
-                스위치 웹사이트 런칭 기념, 추첨을 통해 신규가입자에게 스타벅스
-                쿠폰을 드립니다.
-            </h1>
-        </div>
-        <div class="box">
-            <div class="top">
-                <span class="color_success">답변대</span>
-                <span class="lines"></span>
-                <span>2020.05.01</span>
-            </div>
-            <h1 @click="change_type('info')">
-                스위치 웹사이트 런칭 기념, 추첨을 통해 신규가입자에게 스타벅스
-                쿠폰을 드립니다.
-            </h1>
+            <h1 @click="change_what(index)">{{ ele.title }}</h1>
         </div>
 
-        <div class="box">
-            <div class="top">
-                <span class="color_success">답변대</span>
-                <span class="lines"></span>
-                <span>2020.05.01</span>
-            </div>
-            <h1 @click="change_type('info')">
-                스위치 웹사이트 런칭 기념, 추첨을 통해 신규가입자에게 스타벅스
-                쿠폰을 드립니다.
-            </h1>
-        </div>
-        <div class="box">
-            <div class="top">
-                <span class="color_success">답변대</span>
-                <span class="lines"></span>
-                <span>2020.05.01</span>
-            </div>
-            <h1 @click="change_type('info')">
-                스위치 웹사이트 런칭 기념, 추첨을 통해 신규가입자에게 스타벅스
-                쿠폰을 드립니다.
-            </h1>
-        </div>
-        <div class="box">
-            <div class="top">
-                <span class="color_success">답변대</span>
-                <span class="lines"></span>
-                <span>2020.05.01</span>
-            </div>
-            <h1 @click="change_type('info')">
-                스위치 웹사이트 런칭 기념, 추첨을 통해 신규가입자에게 스타벅스
-                쿠폰을 드립니다.
-            </h1>
-        </div>
-        <div class="box">
-            <div class="top">
-                <span class="color_success">답변대</span>
-                <span class="lines"></span>
-                <span>2020.05.01</span>
-            </div>
-            <h1 @click="change_type('info')">
-                스위치 웹사이트 런칭 기념, 추첨을 통해 신규가입자에게 스타벅스
-                쿠폰을 드립니다.
-            </h1>
-        </div>
-        <div class="box">
-            <div class="top">
-                <span class="color_success">답변대</span>
-                <span class="lines"></span>
-                <span>2020.05.01</span>
-            </div>
-            <h1 @click="change_type('info')">
-                스위치 웹사이트 런칭 기념, 추첨을 통해 신규가입자에게 스타벅스
-                쿠폰을 드립니다.
-            </h1>
-        </div>
-
-        <el-button type="success" class="btn">더 보기</el-button>
+        <el-button type="success" class="btn" @click="more">더 보기</el-button>
     </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Model, Emit } from "vue-property-decorator";
-
+import { Vue, Component, Emit, Model, Prop } from "vue-property-decorator";
+import { qa } from '@/api';
 type type = "list" | "info" | "question";
 
 @Component
 export default class extends Vue {
 	@Model('update:type',{ required:true,type:String })
 	type !:type
-
 	@Emit('update:type')
-	change_type(type:type){
+	change_type(type:type):type{
 		return type
 	}
+
+
+	@Prop({ required:true })
+	list !:qa[]
+
+
+
+	@Model("update:page", { type: Number, required: true })
+	readonly page!: number;
+    @Emit("update:page")
+    more() {
+        return this.page + 1;
+	}
+
+	@Model("update:what", { type: Number, required: false })
+	readonly what!: number;
+    @Emit("update:what")
+    change_what(index: number) {
+		this.change_type('info')
+		return index
+	}
+
 }
 </script>
 

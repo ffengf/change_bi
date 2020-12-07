@@ -35,10 +35,10 @@ class User extends Http {
 		return this.post(data)
 	}
 
-	find_account(data: { phone:string, code:string }) {
+	find_account(data: { phone: string, code: string }) {
 		return this.get<{
-			username:string
-			create_time:string
+			username: string
+			create_time: string
 		}>(data, '/user/find_account/')
 	}
 
@@ -58,15 +58,21 @@ class User extends Http {
 		return this.post(data, '/user/check_sms/')
 	}
 
-	check_account(data:{ username:string,phone:string,code:string }){
+	check_account(data: { username: string, phone: string, code: string }) {
 		return this.post<{
-			id:number
-			token:string
-		}>(data,'/user/check_account/')
+			id: number
+			token: string
+		}>(data, '/user/check_account/')
 	}
 
-	edit_user<T extends { id:number }>({ id, ...data }: T) {
-		return this.patch(data, `/user/${id}/`)
+	edit_user<T extends { id: number, token?: string }>({ id, ...data }: T) {
+		return this.server.patch(`/user/${id}/`, data, {
+			headers: {
+				"Accept": 'application/json',
+				"Content-Type": 'application/json',
+				"Authorization": `token=${data.token}`
+			}
+		})
 	}
 }
 

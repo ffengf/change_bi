@@ -1,7 +1,7 @@
 <template>
-    <div class="list">
-        <List v-if="type === 'list'" :type.sync="type" @change_id="change_id" />
-        <Info v-if="type === 'info'" :type.sync="type" @change_id="change_id" />
+    <div class="list" v-loading="loading">
+        <List :list="list" :page.sync="page" :type.sync="type" :waht.sync="what" v-if="type === 'list'" />
+        <Info :list="list" :page.sync="page" :type.sync="type" :waht.sync="what" :count="count" v-if="type === 'info'" />
         <Question v-if="type === 'question'" :type.sync="type" />
     </div>
 </template>
@@ -11,6 +11,7 @@ import { Vue, Component, Watch } from "vue-property-decorator";
 import List from "./list.vue";
 import Info from "./info.vue";
 import Question from "./question.vue";
+import { qa,api_customer } from "@/api";
 type type = "list" | "info" | "question";
 
 @Component({
@@ -23,11 +24,38 @@ type type = "list" | "info" | "question";
 export default class extends Vue {
     type: type = "list";
 
-	id: number | null = null;
 
-	change_id(id:number){
-		this.id = id
-	}
+	page = 1;
+    count = 0;
+
+	what = 0
+
+	list: qa[] = [];
+
+	@Watch("page")
+    async get_list() {
+        if (this.list.length === this.count && this.list.length !== 0) {
+            return this.$message.error("没有更多了");
+		}
+		this.loading = true
+        const { results, count } = await api_customer.get_qa({
+            page: this.page
+        }).finally(()=>{
+			this.loading = false
+		})
+        this.list = [...this.list, ...results];
+        this.count = count;
+    }
+
+    created() {
+        this.get_list();
+    }
+
+
+
+
+
+
 
     @Watch("type")
     watch_type(type: type) {

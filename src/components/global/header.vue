@@ -9,17 +9,17 @@
             />
             <div>
                 <el-menu mode="horizontal" class="tab" router text-color="#000">
-                    <template v-for="ele in tab">
-                        <el-submenu :key="ele.index" :index="ele.index" v-if="ele.children">
+                    <template v-for="(ele,index) in tab">
+                        <el-submenu :key="index + ele.index" :index="ele.index" v-if="ele.children">
                             <template slot="title"><h1>{{ ele.name }}</h1></template>
                             <el-menu-item
-                                v-for="e in ele.children"
+                                v-for="(e,i) in ele.children"
                                 :index="e.index"
-                                :key="e.index"
+                                :key="i + e.index"
                                 >{{ e.name }}</el-menu-item
                             >
                         </el-submenu>
-						<el-menu-item :index="ele.index" :key="ele.index"  v-else ><h1>{{ ele.name }}</h1></el-menu-item>
+						<el-menu-item :index="ele.index" :key="index + ele.index"  v-else ><h1>{{ ele.name }}</h1></el-menu-item>
 						<div class="lines" :key="ele.index"></div>
                     </template>
                 </el-menu>
@@ -50,12 +50,20 @@
                         </el-dropdown-menu>
                     </el-dropdown>
                 </div>
-                <template v-if="user_info === null">
+				<el-divider class="divider" direction="vertical"></el-divider>
+                <template v-if="!is_login">
 					<el-button class="btn" size="mini" type="success" @click="$router.push('/login/signin')">로그인</el-button>
 					<el-button class="btn color_000" type="text" @click="$router.push('/login/signup')">회원가입</el-button>
 				</template>
 				<template v-else>
-					success
+					<el-dropdown trigger="click" @command="user">
+                        <span class="el-dropdown-link">
+							<img src="@/assets/img/user.png" width="23px" alt="" srcset="">
+                        </span>
+                        <el-dropdown-menu slot="dropdown">
+                            <el-dropdown-item command="logout">logout</el-dropdown-item>
+                        </el-dropdown-menu>
+                    </el-dropdown>
 				</template>
             </div>
             <el-drawer append-to-body :visible.sync="key" direction="ltr" :withHeader="false" :showClose="false" size="60%" class="drawer">
@@ -85,7 +93,7 @@
                 alt="logo"
 				@click="$router.push('/')"
             />
-            <div class="right" v-if="user_info === null">
+            <div class="right" v-if="!is_login">
                 <el-button class="btn" size="mini" type="success" @click="$router.push('/login/signin')">로그인</el-button>
                 <el-button class="btn" type="text" @click="$router.push('/login/signup')">회원가입</el-button>
             </div>
@@ -140,13 +148,25 @@ export default class extends Vue {
 		},
     ];
 
-	get user_info(){
-		return UserModule.info
+
+
+	get is_login(){
+		return UserModule.token !== '' && UserModule.token !== null
 	}
 
 
 	customer(link:string){
 		this.$router.push(link)
+	}
+
+	user(type:string){
+		if(type === 'logout'){
+			UserModule.logout()
+			this.$message.success('logout success')
+			this.$router.push('/')
+		}else{
+			this.$router.push(type)
+		}
 	}
 
     created() {}
@@ -215,17 +235,13 @@ export default class extends Vue {
         display: flex;
         align-items: center;
         overflow: hidden;
-        .icon{
-            padding:0 20px;
-        }
-        .icon+.icon{
-            border-right:1px solid rgb(136,136,136);
-            margin-right:20px;
-        }
         .icon i {
-            font-size: 20px;
             cursor: pointer;
-        }
+		}
+		.divider{
+			margin: 0 1.5rem;
+			background: #000;
+		}
     }
 }
 .logo_sm{

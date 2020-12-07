@@ -2,8 +2,9 @@
     <div id="index">
         <div class="carousel">
             <el-carousel arrow="always" height="23rem">
-                <el-carousel-item v-for="item in img_list" :key="item">
-                    <el-image class="img" :src="item" />
+                <el-carousel-item class="items" v-for="ele in banner_list" :key="ele.id" @click="window.open(ele.link)">
+					<p class="title">{{ ele.title }}</p>
+                    <el-image class="img" :src="ele.image" @click="window.open(ele.link)" />
                 </el-carousel-item>
             </el-carousel>
         </div>
@@ -53,7 +54,9 @@
 		</div>
         <div class="img_box flexC">
 			<div class="bb w70vw min_width1000">
-				<img class="img" src="@/assets/img/index_img.png"/>
+				<img src="@/assets/img/index1.png"/>
+				<img src="@/assets/img/index2.png"/>
+				<img class="sm-down" src="@/assets/img/index3.png"/>
 				<el-button type="success" class="btn">스위치 알아보기</el-button>
 			</div>
 		</div>
@@ -69,13 +72,30 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
+import { banner, api_home } from '@/api';
 @Component
 export default class extends Vue {
-    img_list = [
-        "https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png",
-        "https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png?",
-        "https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png?a=1",
-	];
+
+	banner_list:banner[] = []
+
+
+	async get_banner_list(){
+		this.banner_list = await api_home.get_banner()
+	}
+
+	async get_evaluation_list(){
+		const a = await api_home.get_evaluation()
+		console.log(a)
+	}
+
+
+	async created(){
+		await Promise.all([
+			this.get_banner_list(),
+			this.get_evaluation_list()
+		])
+	}
+
 
 	item = [
 		{
@@ -133,10 +153,36 @@ export default class extends Vue {
         margin-bottom: 0;
     }
     .carousel {
-        .img {
-            width: 100%;
-            height: 100%;
-        }
+		/deep/.el-carousel__arrow--left{
+			left: 15rem ;
+		}
+		/deep/.el-carousel__arrow--right{
+			right: 15rem ;
+		}
+		/deep/.el-carousel__indicators--horizontal{
+			top: 60%;
+			left: 22rem;
+		}
+		/deep/.el-carousel__button{
+			height: 0.5rem;
+			width: 0.5rem;
+			border-radius: 50%;
+		}
+        .items{
+			cursor: pointer;
+			/deep/.title{
+				position: absolute;
+				top: 30%;
+				left: 20%;
+				z-index: 10;
+				color: #fff;
+				font-size: 50px;
+			}
+			.img {
+				width: 100%;
+				height: 100%;
+			}
+		}
     }
     .news {
 		align-items: flex-start;
@@ -260,14 +306,26 @@ export default class extends Vue {
 	}
     .img_box {
 		width: 100vw;
-		background: linear-gradient(to left,rgb(247, 247, 247),rgb(240, 240, 240));
+		background: #f5f5f5;
+		border: 1px solid #ebebeb;
 		height: 6rem;
+		box-sizing: border-box;
         .bb{
 			position: relative;
 			height: 100%;
-			.img {
-				height: 6rem;
-				width: 100%;
+			img{
+				position: absolute;
+				top: 50%;
+				transform: translate(-50%,-50%);
+				&:nth-of-type(1){
+					left: 3rem;
+				}
+				&:nth-of-type(2){
+					left: 14rem;
+				}
+				&:nth-of-type(3){
+					right: 10rem;
+				}
 			}
 			.btn{
 				position: absolute;
@@ -288,7 +346,18 @@ export default class extends Vue {
 
 
 @media only screen and (max-width: 769px){
-
+	.carousel {
+		/deep/.el-carousel__arrow--left{
+			left: 1rem !important ;
+		}
+		/deep/.el-carousel__arrow--right{
+			right: 1rem !important ;
+		}
+		/deep/.el-carousel__indicators--horizontal{
+			top: 90% !important;
+			left: 50% !important;
+		}
+    }
 	.right {
 		width: 95vw !important;
 		ul{

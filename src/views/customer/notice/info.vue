@@ -4,40 +4,46 @@
 			<div class="top">
 				<span class="color_success">#3fa535</span>
 				<span class="lines"></span>
-				<span>2020.05.01</span>
+				<span>{{ info.create_time }}</span>
 			</div>
-			<h1>Q.hello wolrd</h1>
+			<h1>Q.{{ info.title }}</h1>
 		</div>
-		<h2>
-			자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-			자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-			자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-			자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-			자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-			자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-			자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-			자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-			자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-			자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-			자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-		</h2>
+		<h2 v-html="info.content"></h2>
 		<div class="btn_box">
-			<el-button class="btns aaa" type="default" plain>이전 글</el-button>
-			<el-button class="btns" type="success" @click="change_keys(true)">목록으로</el-button>
-			<el-button class="btns aaa" type="default" plain>다음 글</el-button>
+			<el-button class="btns aaa" type="default" plain :disabled="what === 0" @click="change_what(what - 1)">이전 글</el-button>
+			<el-button class="btns" type="success" @click="show_list">목록으로</el-button>
+			<el-button class="btns aaa" type="default" plain :disabled="what + 1 === count" @click="change_what(what + 1)">다음 글</el-button>
 		</div>
 	</div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop, Model, Emit } from "vue-property-decorator";
+import { notice } from "@/api"
 @Component
 export default class extends Vue {
 	@Model("update:keys", { type: Boolean, required: true })
 	readonly keys!: boolean;
     @Emit("update:keys")
-    change_keys(keys: boolean) {
-        return keys;
+    show_list() {
+        return true;
+	}
+
+	@Model("update:what", { type: Number, required: true })
+	readonly what!: number;
+    @Emit("update:what")
+    change_what(index: number) {
+		return index
+	}
+
+	@Prop({ required:true })
+	count !:number
+
+	@Prop({ required:true })
+	list !:notice[]
+
+	get info(){
+		return this.list[this.what]
 	}
 }
 </script>
@@ -55,7 +61,6 @@ export default class extends Vue {
 		margin-top: 1rem;
 	}
 	h1{
-		// color: #324b9b;
 		font-weight: bold;
 	}
 	.icon{

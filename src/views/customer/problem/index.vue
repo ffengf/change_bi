@@ -1,23 +1,17 @@
 <template>
-    <div class="problem">
-		<ul>
-			<Item />
-			<Item />
-			<Item />
-			<Item />
-			<Item />
-			<Item />
-			<Item />
-			<Item />
-			<Item />
+    <div class="problem" v-loading="loading">
+		<ul class="ul">
+			<Item v-for="(ele) in list" :key="ele.id" :info="ele" />
+			<div class="line"></div>
 		</ul>
-		<el-button type="success" class="btn">더보기</el-button>
+		<el-button type="success" class="btn" @click="more">더보기</el-button>
     </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component, Watch } from "vue-property-decorator";
 import Item from "./item.vue"
+import { api_customer, faq } from '@/api';
 @Component({
 	components:{
 		Item,
@@ -25,6 +19,34 @@ import Item from "./item.vue"
 })
 export default class extends Vue {
 
+	page = 1
+
+	count = 0
+
+	list:faq[] = []
+
+	@Watch('page')
+	async get_list(){
+		if (this.list.length === this.count && this.list.length !== 0) {
+            return this.$message.error("没有更多了");
+		}
+		this.loading = true
+        const { results, count } = await api_customer.get_faq({
+            page: this.page
+        }).finally(()=>{
+			this.loading = false
+		})
+        this.list = [...this.list, ...results];
+        this.count = count;
+	}
+
+	more(){
+		this.page ++
+	}
+
+	created(){
+		this.get_list()
+	}
 }
 </script>
 
@@ -40,6 +62,12 @@ export default class extends Vue {
 		align-self: center;
 		margin-top: 2.5rem;
 		margin-bottom: 6rem;
+	}
+	.ul{
+		.line{
+			height: 1px;
+			background: #324b9b;
+		}
 	}
 }
 </style>

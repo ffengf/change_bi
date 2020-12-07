@@ -26,7 +26,7 @@ export default class extends Vue {
 	type !:type
 
 	@Emit('update:type')
-	change_type(type:type){
+	change_type(type:type):type{
 		return type
 	}
 

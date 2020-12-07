@@ -1,42 +1,68 @@
 <template>
-    <div class="notice">
-		<List :keys.sync="key" v-if="key" />
-		<Info :keys.sync="key" v-else />
+    <div class="notice" v-loading='loading'>
+        <List :keys.sync="key" :list="list" :page.sync="page" v-if="key" :what.sync="what" />
+        <Info :keys.sync="key" :list="list" :page.sync="page" :what.sync="what" :count="count" v-else />
     </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Watch } from "vue-property-decorator";
-import List from "./list.vue"
-import Info from "./info.vue"
+import List from "./list.vue";
+import Info from "./info.vue";
+import { api_customer, notice } from "../../../api/customer";
 @Component({
-	components:{
-		List,
-		Info,
-	}
+    components: {
+        List,
+        Info
+    }
 })
 export default class extends Vue {
-	key = true
+    key = true;
 
-	@Watch('key')
-	watch_key(key:boolean){
-		const tabs = document.getElementById('customer_tab') as HTMLElement
-		if(key){
-			tabs.style.display = 'flex'
-		}else{
-			tabs.style.display = 'none'
+    page = 1;
+    count = 0;
+
+	what = 0
+
+	list: notice[] = [];
+
+    @Watch("key")
+    watch_key(key: boolean) {
+        const tabs = document.getElementById("customer_tab") as HTMLElement;
+        if (key) {
+            tabs.style.display = "flex";
+        } else {
+            tabs.style.display = "none";
+        }
+    }
+
+    destroyed() {
+        const tabs = document.getElementById("customer_tab") as HTMLElement;
+        tabs.style.display = "flex";
+    }
+
+    @Watch("page")
+    async get_list() {
+        if (this.list.length === this.count && this.list.length !== 0) {
+            return this.$message.error("没有更多了");
 		}
-	}
+		this.loading = true
+        const { results, count } = await api_customer.get_notice({
+            page: this.page
+        }).finally(()=>{
+			this.loading = false
+		})
+        this.list = [...this.list, ...results];
+        this.count = count;
+    }
 
-	destroyed(){
-		const tabs = document.getElementById("customer_tab") as HTMLElement;
-		tabs.style.display = "flex";
-	}
+    created() {
+        this.get_list();
+    }
 }
 </script>
 
 
 
 <style lang='less' scoped>
-
 </style>
