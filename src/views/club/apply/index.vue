@@ -338,7 +338,7 @@ export default class extends Vue {
 			font-stretch: normal;
 			font-style: normal;
 			line-height: 1.75;
-			letter-spacing: 4.4px;
+			letter-spacing: -0.1px;
 			text-align: left;
 			span{
 				color: #3fa535;
@@ -418,7 +418,7 @@ export default class extends Vue {
 					font-stretch: normal;
 					font-style: normal;
 					line-height: 1.75;
-					letter-spacing: 2.7px;
+					letter-spacing: -1px;
 					text-align: left;
 					color: #000000;
 				}
