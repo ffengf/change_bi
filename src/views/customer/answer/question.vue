@@ -2,11 +2,11 @@
     <div class="question">
         <el-input v-model="input" placeholder="*제목"></el-input>
 		<div class="line" style="margin-top:0.8rem"></div>
-		<div class="box" style="margin-top:0.8rem">
+		<!-- <div class="box" style="margin-top:0.8rem">
 			<el-input  class="inp" v-model="input" placeholder="*메인 썸네일 이미지 첨부하기 (.jpg, jpeg, png)"></el-input>
 			<el-button class="success_btn" type="success" plain>첨부하기</el-button>
-		</div>
-		<div class="line" style="margin-top:2.2rem;margin-bottom:1.1rem"></div>
+		</div> -->
+		<!-- <div class="line" style="margin-top:2.2rem;margin-bottom:1.1rem"></div> -->
 		<div>富文本</div>
 		<div class="btn_box">
 			<el-button type="success" @click="change_type('list')">작성완료</el-button>

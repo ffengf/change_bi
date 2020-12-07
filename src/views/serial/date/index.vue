@@ -234,9 +234,10 @@ export default class extends Vue {
 
     async get_info() {
 		this.loading = true
-        const info = await api_serial.date_list();
+        const info = await api_serial.date_list().finally(()=>{
+			this.loading = false
+		});
 		this.info = info
-		this.loading = false
 	}
 
 	go_chapter(book_id:number,info_id:number){
