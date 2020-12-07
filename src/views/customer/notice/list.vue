@@ -2,11 +2,11 @@
     <div class="list">
 		<div class="box" v-for="(ele,index) in list" :key="ele.id">
 			<div class="top">
-				<span class="color_success">{{ ele.title }}</span>
+				<span class="color_success">공지사항</span>
 				<span class="lines"></span>
 				<span>{{ ele.create_time }}</span>
 			</div>
-			<h1 @click="change_what(index)" v-text="ele.content"></h1>
+			<h1 @click="change_what(index)">{{ ele.title }}</h1>
 		</div>
 
 		<el-button type="success" class="btn" @click="more">더 보기</el-button>

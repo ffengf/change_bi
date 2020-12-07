@@ -2,7 +2,7 @@
     <div>
 		<div class="item">
 			<div class="top">
-				<span class="color_success">#3fa535</span>
+				<span class="color_success">공지사항</span>
 				<span class="lines"></span>
 				<span>{{ info.create_time }}</span>
 			</div>
@@ -62,6 +62,7 @@ export default class extends Vue {
 	}
 	h1{
 		font-weight: bold;
+		margin-top: 0.4rem;
 	}
 	.icon{
 		position: absolute;

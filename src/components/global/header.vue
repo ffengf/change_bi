@@ -8,7 +8,7 @@
 				@click="$router.push('/')"
             />
             <div>
-                <el-menu mode="horizontal" class="tab" router text-color="#000">
+                <el-menu mode="horizontal" class="tab" router text-color="#000" active-text-color="#3fa535">
                     <template v-for="(ele,index) in tab">
                         <el-submenu :key="index + ele.index" :index="ele.index" v-if="ele.children">
                             <template slot="title"><h1>{{ ele.name }}</h1></template>
@@ -38,8 +38,8 @@
                 </el-autocomplete>
             </div>
             <div class="right">
-                <div class="icon">
-                    <el-dropdown trigger="click" @command="customer">
+                <div :class="['icon',active === 'customer' ? 'active':'']">
+                    <el-dropdown trigger="click" @command="customer" placement="bottom" @visible-change="is_active($event,'customer')">
                         <span class="el-dropdown-link">
 							<img src="@/assets/img/customer.png" alt="" srcset="">
                         </span>
@@ -56,14 +56,16 @@
 					<el-button class="btn color_000" type="text" @click="$router.push('/login/signup')">회원가입</el-button>
 				</template>
 				<template v-else>
-					<el-dropdown trigger="click" @command="user">
-                        <span class="el-dropdown-link">
-							<img src="@/assets/img/user.png" width="23px" alt="" srcset="">
-                        </span>
-                        <el-dropdown-menu slot="dropdown">
-                            <el-dropdown-item command="logout">logout</el-dropdown-item>
-                        </el-dropdown-menu>
-                    </el-dropdown>
+					<div :class="['icon',active === 'user' ? 'active':'']">
+						<el-dropdown trigger="click" @command="user" placement="bottom" @visible-change="is_active($event,'user')">
+							<span class="el-dropdown-link">
+								<img src="@/assets/img/user.png" width="23px" alt="" srcset="">
+							</span>
+							<el-dropdown-menu slot="dropdown">
+								<el-dropdown-item command="logout">logout</el-dropdown-item>
+							</el-dropdown-menu>
+						</el-dropdown>
+					</div>
 				</template>
             </div>
             <el-drawer append-to-body :visible.sync="key" direction="ltr" :withHeader="false" :showClose="false" size="60%" class="drawer">
@@ -148,7 +150,15 @@ export default class extends Vue {
 		},
     ];
 
+	active:'customer'|''|'user' = ''
 
+	is_active(type:boolean,active:'customer'|'user'){
+		if(type){
+			this.active = active
+		}else{
+			this.active = ''
+		}
+	}
 
 	get is_login(){
 		return UserModule.token !== '' && UserModule.token !== null
@@ -242,7 +252,10 @@ export default class extends Vue {
 			margin: 0 1.5rem;
 			background: #000;
 		}
-    }
+		/deep/.el-dropdown-menu{
+			border: 1px solid red!important;
+		}
+	}
 }
 .logo_sm{
     height:35px;width:auto
@@ -253,5 +266,28 @@ export default class extends Vue {
 img{
 	cursor: pointer;
 }
+.active /deep/ .el-dropdown{
+	&::after{
+		content: '';
+		position: absolute;
+		display: block;
+		height: 7px;
+		width: 20px;
+		background: #3fa535;
+		bottom: -5px;
+		z-index: 1000;
+	}
+}
 
+</style>
+<style lang="less">
+.el-dropdown-menu{
+	border: 1px solid #3fa535;
+	// margin-top: -7px;
+	top: 39px!important;
+	border-radius: 0!important;
+	.popper__arrow{
+		display: none;
+	}
+}
 </style>

@@ -93,6 +93,7 @@ export default class extends Vue {
 	h1{
 		// color: #324b9b;
 		font-weight: bold;
+		margin-top: 0.4rem;
 	}
 	.icon{
 		position: absolute;

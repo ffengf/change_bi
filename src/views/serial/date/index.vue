@@ -13,40 +13,13 @@
                     />
                     <h1>{{ ele.title }}</h1>
                     <h2>
-                        <span class="owner">{{ ele.author_name }}</span>
+                        <span class="owner">{{ ele.author_name }} 작가</span>
                         <el-divider
                             direction="vertical"
                             class="lines_000"
                         ></el-divider>
-                        <span>연재중</span>
-                    </h2>
-                    <h3>
-                        <p v-for="e in ele.chapters" :key="e.number" @click="go_chapter(ele.id,e.id)">
-                            {{ e.number }}화<el-divider direction="vertical"></el-divider
-                            >{{ e.title }}
-                        </p>
-                    </h3>
-                </el-card>
-            </div>
-        </div>
-		<div class="box today">
-            <div class="top">
-                <h1>금요연재</h1>
-                <div class="lines"></div>
-            </div>
-            <div class="bottom">
-                <el-card class="card" shadow="never" v-for="ele in info.today" :key="ele.id">
-                    <img
-                        :src="ele.cover"
-                    />
-                    <h1>{{ ele.title }}</h1>
-                    <h2>
-                        <span class="owner">{{ ele.author_name }}</span>
-                        <el-divider
-                            direction="vertical"
-                            class="lines_000"
-                        ></el-divider>
-                        <span>연재중</span>
+						<span v-if="ele.status === 0" class="status_0">연재중</span>
+                        <span v-if="ele.status === 1" class="status_1">완결</span>
                     </h2>
                     <h3>
                         <p v-for="e in ele.chapters" :key="e.number" @click="go_chapter(ele.id,e.id)">
@@ -58,9 +31,42 @@
             </div>
         </div>
 
-		<div class="box" v-if="new Date().getDate() !== 0">
+		<div class="box today" v-if="info.today.length !== 0">
             <div class="top">
-                <h1>o1</h1>
+                <h1 v-if="new Date().getDate() === 0">월요연재</h1>
+				<h1 v-if="new Date().getDate() === 1">화요연재</h1>
+				<h1 v-if="new Date().getDate() === 2">수요연재</h1>
+				<h1 v-if="new Date().getDate() === 3">목요연재</h1>
+				<h1 v-if="new Date().getDate() === 4">금요연재</h1>
+            </div>
+            <div class="bottom">
+                <el-card class="card" shadow="never" v-for="ele in info.today" :key="ele.id">
+                    <img
+                        :src="ele.cover"
+                    />
+                    <h1>{{ ele.title }}</h1>
+                    <h2>
+                        <span class="owner">{{ ele.author_name }} 작가</span>
+                        <el-divider
+                            direction="vertical"
+                            class="lines_000"
+                        ></el-divider>
+						<span v-if="ele.status === 0" class="status_0">연재중</span>
+                        <span v-if="ele.status === 1" class="status_1">완결</span>
+                    </h2>
+                    <h3>
+                        <p v-for="e in ele.chapters" :key="e.number" @click="go_chapter(ele.id,e.id)">
+                            {{ e.number }}화<el-divider direction="vertical"></el-divider
+                            >{{ e.title }}
+                        </p>
+                    </h3>
+                </el-card>
+            </div>
+        </div>
+
+		<div class="box" v-if="new Date().getDate() !== 0 && info.o1.length !== 0">
+            <div class="top">
+                <h1>월요연재1</h1>
                 <div class="lines"></div>
             </div>
             <div class="bottom">
@@ -70,12 +76,13 @@
                     />
                     <h1>{{ ele.title }}</h1>
                     <h2>
-                        <span class="owner">{{ ele.author_name }}</span>
+                        <span class="owner">{{ ele.author_name }} 작가</span>
                         <el-divider
                             direction="vertical"
                             class="lines_000"
                         ></el-divider>
-                        <span>연재중</span>
+						<span v-if="ele.status === 0" class="status_0">연재중</span>
+                        <span v-if="ele.status === 1" class="status_1">완결</span>
                     </h2>
                     <h3>
                         <p v-for="e in ele.chapters" :key="e.number" @click="go_chapter(ele.id,e.id)">
@@ -86,9 +93,9 @@
                 </el-card>
             </div>
         </div>
-		<div class="box" v-if="new Date().getDate() !== 1">
+		<div class="box" v-if="new Date().getDate() !== 1 && info.o2.length !== 0">
             <div class="top">
-                <h1>o2</h1>
+                <h1>화요연재2</h1>
                 <div class="lines"></div>
             </div>
             <div class="bottom">
@@ -98,12 +105,13 @@
                     />
                     <h1>{{ ele.title }}</h1>
                     <h2>
-                        <span class="owner">{{ ele.author_name }}</span>
+                        <span class="owner">{{ ele.author_name }} 작가</span>
                         <el-divider
                             direction="vertical"
                             class="lines_000"
                         ></el-divider>
-                        <span>연재중</span>
+						<span v-if="ele.status === 0" class="status_0">연재중</span>
+                        <span v-if="ele.status === 1" class="status_1">완결</span>
                     </h2>
                     <h3>
                         <p v-for="e in ele.chapters" :key="e.number" @click="go_chapter(ele.id,e.id)">
@@ -114,9 +122,9 @@
                 </el-card>
             </div>
         </div>
-		<div class="box" v-if="new Date().getDate() !== 2">
+		<div class="box" v-if="new Date().getDate() !== 2 && info.o3.length !== 0">
             <div class="top">
-                <h1>o3</h1>
+                <h1>수요연재3</h1>
                 <div class="lines"></div>
             </div>
             <div class="bottom">
@@ -126,12 +134,13 @@
                     />
                     <h1>{{ ele.title }}</h1>
                     <h2>
-                        <span class="owner">{{ ele.author_name }}</span>
+                        <span class="owner">{{ ele.author_name }} 작가</span>
                         <el-divider
                             direction="vertical"
                             class="lines_000"
                         ></el-divider>
-                        <span>연재중</span>
+						<span v-if="ele.status === 0" class="status_0">연재중</span>
+                        <span v-if="ele.status === 1" class="status_1">완결</span>
                     </h2>
                     <h3>
                         <p v-for="e in ele.chapters" :key="e.number" @click="go_chapter(ele.id,e.id)">
@@ -142,9 +151,9 @@
                 </el-card>
             </div>
         </div>
-		<div class="box" v-if="new Date().getDate() !== 3">
+		<div class="box" v-if="new Date().getDate() !== 3 && info.o4.length !== 0">
             <div class="top">
-                <h1>o4</h1>
+                <h1>목요연재4</h1>
                 <div class="lines"></div>
             </div>
             <div class="bottom">
@@ -154,12 +163,13 @@
                     />
                     <h1>{{ ele.title }}</h1>
                     <h2>
-                        <span class="owner">{{ ele.author_name }}</span>
+                        <span class="owner">{{ ele.author_name }} 작가</span>
                         <el-divider
                             direction="vertical"
                             class="lines_000"
                         ></el-divider>
-                        <span>연재중</span>
+						<span v-if="ele.status === 0" class="status_0">연재중</span>
+                        <span v-if="ele.status === 1" class="status_1">완결</span>
                     </h2>
                     <h3>
                         <p v-for="e in ele.chapters" :key="e.number" @click="go_chapter(ele.id,e.id)">
@@ -170,9 +180,9 @@
                 </el-card>
             </div>
         </div>
-		<div class="box" v-if="new Date().getDate() !== 4">
+		<div class="box" v-if="new Date().getDate() !== 4 && info.o5.length !== 0">
             <div class="top">
-                <h1>o5</h1>
+                <h1>금요연재5</h1>
                 <div class="lines"></div>
             </div>
             <div class="bottom">
@@ -182,12 +192,13 @@
                     />
                     <h1>{{ ele.title }}</h1>
                     <h2>
-                        <span class="owner">{{ ele.author_name }}</span>
+                        <span class="owner">{{ ele.author_name }} 작가</span>
                         <el-divider
                             direction="vertical"
                             class="lines_000"
                         ></el-divider>
-                        <span>연재중</span>
+						<span v-if="ele.status === 0" class="status_0">연재중</span>
+                        <span v-if="ele.status === 1" class="status_1">완결</span>
                     </h2>
                     <h3>
                         <p v-for="e in ele.chapters" :key="e.number" @click="go_chapter(ele.id,e.id)">
@@ -357,5 +368,13 @@ export default class extends Vue {
 }
 .lines_000 {
     background: #000 !important;
+}
+
+
+.status_0{
+	color: #3fa535;
+}
+.status_1{
+	color: #324b9b;
 }
 </style>
