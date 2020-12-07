@@ -50,16 +50,16 @@ export default class extends Vue {
 		.item{
 			border: 1px solid #324b9b;
 			width: 34%;
+			color: #324b9b;
+		}
+		.router-link-active{
+			background: #324b9b;
+			color: #fff;
 		}
 	}
 	.body{
 		margin-top: 2rem;
 		width: 100%;
 	}
-}
-
-.router-link-active{
-	background: #324b9b;
-	color: #fff;
 }
 </style>

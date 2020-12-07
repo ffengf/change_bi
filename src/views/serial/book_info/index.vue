@@ -1,13 +1,44 @@
 <template>
-    <div>
-		bokk
+    <div id="book_info">
+        <Bread :new_list="bread" />
+        <div class="box_line"></div>
+		<div class="warpper">
+			<div class="left" v-html="info.detail"></div>
+			<div class="right">
+				<div class="name_box">
+					<h1>{{ info.title }}</h1>
+					<h2>
+						<span>{{ info.author_name }} 작가</span>
+						<span class="lines">|</span>
+						<span v-if="info.status === 0" class="status_0">연재중</span>
+                        <span v-if="info.status === 1" class="status_1">완결</span>
+					</h2>
+				</div>
+				<div class="author_box">
+					<h1>작품 소개</h1>
+					<h2>{{ info.book_desc }}</h2>
+					<div class="line"></div>
+					<img :src="info.author_img">
+					<h1>작가 소개</h1>
+					<h2>{{ info.author_desc }}</h2>
+				</div>
+				<div class="chapters_box">
+					<h1>연재 읽기</h1>
+					<ul>
+						<li>1</li>
+					</ul>
+					<el-button class="btn" type="success">더 보기</el-button>
+				</div>
+			</div>
+		</div>
     </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component, Watch } from "vue-property-decorator";
 import Bread from "@/components/bread/index.vue";
-import { api_serial, date_info } from "@/api";
+import { api_serial, book_info } from "@/api";
+import { takeLast } from "ramda";
 @Component({
     components: {
         Bread,
@@ -15,7 +46,165 @@ import { api_serial, date_info } from "@/api";
 })
 export default class extends Vue {
 
+	page = 1
+	count = 0
+	list = []
+
+    info: book_info = {
+        id: 0,
+        title: "",
+        author_img: "",
+        status: 0,
+        author_name: "",
+		chapters: [],
+		book_desc:"",
+		detail:"",
+		author_desc:""
+    };
+
+    bread = [
+        {
+            title: "매일연재",
+        },
+        {
+            title: this.bread_date,
+        },
+        {
+            title: this.info.title,
+        },
+    ];
+
+    get id() {
+        return Number(this.$route.params.id);
+    }
+
+    get bread_date() {
+        return this.$route.query.bread_date;
+    }
+
+    async get_info() {
+        this.loading = true;
+        this.info = await api_serial.get_info(this.id).finally(() => {
+            this.loading = false;
+        });
+		this.bread.splice(2,1,{ title:this.info.title })
+	}
+
+	@Watch('page')
+	async get_chapter_list(){
+		const a = await api_serial.get_chapter({ id:this.id,page:this.page })
+		console.log(a)
+	}
+
+    created() {
+		this.get_info();
+		this.get_chapter_list()
+    }
 }
 </script>
 
 <style lang="less" scoped>
+#book_info{
+	width: 100%;
+	box-sizing: border-box;
+	margin-bottom: 6rem;
+	.box_line{
+		margin-bottom: 1.5rem;
+	}
+	.warpper{
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		.left{
+			width: 31rem;
+		}
+		.right{
+			width: 16rem;
+			.name_box{
+				height: 5.25rem;
+				background: #324b9b;
+				color: #fff;
+				h1{
+					font-size: 22px;
+					font-weight: 500;
+					font-stretch: normal;
+					font-style: normal;
+					letter-spacing: -1.1px;
+					text-align: left;
+					margin: 0 0 0.5rem 1.4rem;
+					padding-top: 1rem;
+				}
+				h2{
+					font-size: 14px;
+					font-weight: 500;
+					font-stretch: normal;
+					font-style: normal;
+					letter-spacing: -0.7px;
+					text-align: left;
+					margin-left: 1.4rem;
+					.lines{
+						margin: 0 0.4rem;
+					}
+				}
+			}
+			.author_box{
+				height: 36.2rem;
+				padding: 1.5rem ;
+				border: 1px solid #dfdfdf;
+				border-bottom: none;
+				border-top: none;
+				h1{
+					margin-bottom: 1rem;
+					font-size: 16px;
+					font-weight: 500;
+					font-stretch: normal;
+					font-style: normal;
+					letter-spacing: -0.8px;
+				}
+				h2{
+					font-size: 13px;
+					font-weight: normal;
+					font-stretch: normal;
+					font-style: normal;
+					letter-spacing: -0.65px;
+					min-height: 6.5rem;
+				}
+				.line{
+					height: 1px;
+					margin: 1.5rem 0 1rem 0;
+					background: #dfdfdf;
+				}
+				img{
+					height: 13rem;
+					width: 13rem;
+					margin-bottom: 1.5rem;
+				}
+			}
+			.chapters_box{
+				border: 3px solid #3fa535;
+				padding: 1.5rem;
+				h1{
+					font-size: 20px;
+					font-weight: 500;
+					font-stretch: normal;
+					font-style: normal;
+					letter-spacing: -1px;
+					color: #3fa535;
+				}
+				ul{
+					margin: 1.5rem 0;
+				}
+				.btn{
+					width: 100%;
+				}
+			}
+		}
+	}
+}
+.status_0{
+	color: #3fa535;
+}
+.status_1{
+	color: #fff;
+}
+</style>

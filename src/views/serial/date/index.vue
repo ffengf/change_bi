@@ -7,7 +7,7 @@
                 <div class="lines"></div>
             </div>
             <div class="bottom">
-                <el-card class="card" shadow="never" v-for="ele in info.top" :key="ele.id">
+                <el-card class="card" shadow="never" @click.native="go_info(ele.id,'스위치 ON')" v-for="ele in info.top" :key="ele.id">
                     <img
                         :src="ele.cover"
                     />
@@ -33,14 +33,10 @@
 
 		<div class="box today" v-if="info.today.length !== 0">
             <div class="top">
-                <h1 v-if="new Date().getDate() === 0">월요연재</h1>
-				<h1 v-if="new Date().getDate() === 1">화요연재</h1>
-				<h1 v-if="new Date().getDate() === 2">수요연재</h1>
-				<h1 v-if="new Date().getDate() === 3">목요연재</h1>
-				<h1 v-if="new Date().getDate() === 4">금요연재</h1>
+                <h1>{{ today_title }}</h1>
             </div>
             <div class="bottom">
-                <el-card class="card" shadow="never" v-for="ele in info.today" :key="ele.id">
+                <el-card class="card" shadow="never" @click.native="go_info(ele.id,today_title)" v-for="ele in info.today" :key="ele.id">
                     <img
                         :src="ele.cover"
                     />
@@ -66,11 +62,11 @@
 
 		<div class="box" v-if="new Date().getDate() !== 0 && info.o1.length !== 0">
             <div class="top">
-                <h1>월요연재1</h1>
+                <h1>월요연재</h1>
                 <div class="lines"></div>
             </div>
             <div class="bottom">
-                <el-card class="card" shadow="never" v-for="ele in info.o1" :key="ele.id">
+                <el-card class="card" shadow="never" @click.native="go_info(ele.id,'월요연재')" v-for="ele in info.o1" :key="ele.id">
                     <img
                         :src="ele.cover"
                     />
@@ -95,11 +91,11 @@
         </div>
 		<div class="box" v-if="new Date().getDate() !== 1 && info.o2.length !== 0">
             <div class="top">
-                <h1>화요연재2</h1>
+                <h1>화요연재</h1>
                 <div class="lines"></div>
             </div>
             <div class="bottom">
-                <el-card class="card" shadow="never" v-for="ele in info.o2" :key="ele.id">
+                <el-card class="card" shadow="never" @click.native="go_info(ele.id,'화요연재')" v-for="ele in info.o2" :key="ele.id">
                     <img
                         :src="ele.cover"
                     />
@@ -124,11 +120,11 @@
         </div>
 		<div class="box" v-if="new Date().getDate() !== 2 && info.o3.length !== 0">
             <div class="top">
-                <h1>수요연재3</h1>
+                <h1>수요연재</h1>
                 <div class="lines"></div>
             </div>
             <div class="bottom">
-                <el-card class="card" shadow="never" v-for="ele in info.o3" :key="ele.id">
+                <el-card class="card" shadow="never" @click.native="go_info(ele.id,'수요연재')" v-for="ele in info.o3" :key="ele.id">
                     <img
                         :src="ele.cover"
                     />
@@ -153,11 +149,11 @@
         </div>
 		<div class="box" v-if="new Date().getDate() !== 3 && info.o4.length !== 0">
             <div class="top">
-                <h1>목요연재4</h1>
+                <h1>목요연재</h1>
                 <div class="lines"></div>
             </div>
             <div class="bottom">
-                <el-card class="card" shadow="never" v-for="ele in info.o4" :key="ele.id">
+                <el-card class="card" shadow="never" @click.native="go_info(ele.id,'목요연재')" v-for="ele in info.o4" :key="ele.id">
                     <img
                         :src="ele.cover"
                     />
@@ -182,11 +178,11 @@
         </div>
 		<div class="box" v-if="new Date().getDate() !== 4 && info.o5.length !== 0">
             <div class="top">
-                <h1>금요연재5</h1>
+                <h1>금요연재</h1>
                 <div class="lines"></div>
             </div>
             <div class="bottom">
-                <el-card class="card" shadow="never" v-for="ele in info.o5" :key="ele.id">
+                <el-card class="card" shadow="never" @click.native="go_info(ele.id,'금요연재')" v-for="ele in info.o5" :key="ele.id">
                     <img
                         :src="ele.cover"
                     />
@@ -247,9 +243,17 @@ export default class extends Vue {
 		this.$router.push(`/serial/chapter_info/${book_id}/${info_id}`)
 	}
 
+	go_info(id:number,bread_date:string){
+		this.$router.push(`/serial/book_info/${id}?bread_date=${bread_date}`)
+	}
+
     created() {
         this.get_info();
-    }
+	}
+
+	get today_title(){
+		return ['월요연재','화요연재','수요연재','목요연재','금요연재'][new Date().getDate()]
+	}
 }
 </script>
 

@@ -8,7 +8,7 @@
 				@click="$router.push('/')"
             />
             <div>
-                <el-menu mode="horizontal" class="tab" router text-color="#000" active-text-color="#3fa535">
+                <el-menu menu-trigger="click" mode="horizontal" class="tab" router text-color="#000" active-text-color="#3fa535">
                     <template v-for="(ele,index) in tab">
                         <el-submenu :key="index + ele.index" :index="ele.index" v-if="ele.children">
                             <template slot="title"><h1>{{ ele.name }}</h1></template>
@@ -27,7 +27,7 @@
             <div class="inp">
                 <el-autocomplete
                     popper-class="my-autocomplete"
-                    placeholder="독서모임을검색해보세요."
+                    placeholder="독서모임을 검색해보세요."
                     v-model="input"
                 >
                     <i class="el-input__icon el-icon-search" slot="suffix"></i>
@@ -121,11 +121,11 @@ export default class extends Vue {
             index: "/club",
             children: [
                 {
-                    name: '클럽창작과비평',
+                    name: '클럽 창작과비평',
                     index: "/club/creation",
                 },
                 {
-                    name: '북클럽필라멘트',
+                    name: '북클럽 필라멘트',
                     index: "/club/apply",
                 },
             ],
@@ -137,16 +137,6 @@ export default class extends Vue {
 		{
             name: '이벤트',
             index: "/read",
-            children: [
-                {
-                    name: this.$t("创造与批评俱乐部"),
-                    index: "/read/1",
-                },
-                {
-                    name: this.$t("xxx读书会"),
-                    index: "/read/2",
-                },
-            ],
 		},
     ];
 
@@ -185,6 +175,12 @@ export default class extends Vue {
 
 <style lang="less" scoped>
 #header {
+	/deep/.el-menu--horizontal > .el-submenu.is-active .el-submenu__title{
+		border-width: 6px!important;
+	}
+	/deep/.el-menu--horizontal > .el-menu-item.is-active{
+		border-width: 6px!important;
+	}
     box-sizing: border-box;
     width: 100%;
     height: 100%;
@@ -207,6 +203,7 @@ export default class extends Vue {
 		/deep/.el-input__inner{
 			width: 10rem;
 			font-size: 13px;
+			border-width: 2px !important;
 		}
 		.el-icon-search{
 			font-size: 28px;
@@ -288,6 +285,31 @@ img{
 	border-radius: 0!important;
 	.popper__arrow{
 		display: none;
+	}
+}
+.el-menu--popup{
+	position: absolute!important;
+	top: -6px!important;
+	left: -50px!important;
+	border: 1px solid #3fa535!important;
+	border-radius: 0;
+	li{
+		text-align: center;
+		&:hover{
+			background: rgb(217,237,215)!important;
+			color: rgb(91,111,175) !important;
+		}
+	}
+	&::after{
+		content: '';
+		display: block;
+		position: absolute;
+		top: -6px;
+		left: 50%;
+		transform: translateX(-50%);
+		height: 6px;
+		width: 86px;
+		background: #3fa535;
 	}
 }
 </style>

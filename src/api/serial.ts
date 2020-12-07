@@ -1,4 +1,5 @@
 
+import { res_list } from '@/types/global'
 import { Http } from "./http/base"
 
 interface data {
@@ -15,29 +16,43 @@ interface chapters {
 	id:number
 }
 
-interface results {
+export interface book_data {
 	id: number
 	title: string
-	cover: string
+	cover?: string
 	status: 0 | 1
 	author_name: string
 	chapters: chapters[]
 }
 
 export interface date_info {
-	o1:results[]
-	o2:results[]
-	o3:results[]
-	o4:results[]
-	o5:results[]
-	today:results[]
-	top:results[]
+	o1:book_data[]
+	o2:book_data[]
+	o3:book_data[]
+	o4:book_data[]
+	o5:book_data[]
+	today:book_data[]
+	top:book_data[]
+}
+
+export interface book_info extends book_data {
+	book_desc:string
+	detail:string
+	author_desc:string
+	author_img:string
+}
+
+export interface chapter_list {
+	id:number
+	number:number
+	title:string
+	create_time:string
 }
 
 class Serial extends Http {
 	protected async get_list(data: data) {
 		const { results } = await this.get<{
-			results: results[]
+			results: book_data[]
 		}>(data)
 		return results
 	}
@@ -81,6 +96,14 @@ class Serial extends Http {
 		return {
 			top, today, o1, o2, o3, o4, o5
 		}
+	}
+
+	async get_info(id:number){
+		return this.get<book_info>({},`${this.uri}${id}/`)
+	}
+
+	get_chapter(data:{ id:number,page:number }){
+		return this.get<res_list<chapter_list>>({ page_size:10,...data },'/book/chapter/')
 	}
 }
 
