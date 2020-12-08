@@ -345,8 +345,11 @@ export default class extends Vue {
 }
 
 
-@media only screen and (max-width: 769px){
+@media only screen and (max-width: 1024px){
 	.carousel {
+		/deep/.el-carousel__container{
+			height: 18rem!important;
+		}
 		/deep/.el-carousel__arrow--left{
 			left: 1rem !important ;
 		}
@@ -354,8 +357,44 @@ export default class extends Vue {
 			right: 1rem !important ;
 		}
 		/deep/.el-carousel__indicators--horizontal{
-			top: 90% !important;
+			top: 80% !important;
 			left: 50% !important;
+		}
+		img{
+			object-fit: fill;
+		}
+	}
+
+	.right {
+		width: 95vw !important;
+		ul{
+			li{
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+		}
+
+	}
+}
+
+@media only screen and (max-width: 769px){
+	.carousel {
+		/deep/.el-carousel__container{
+			height: 10rem!important;
+		}
+		/deep/.el-carousel__arrow--left{
+			left: 1rem !important ;
+		}
+		/deep/.el-carousel__arrow--right{
+			right: 1rem !important ;
+		}
+		/deep/.el-carousel__indicators--horizontal{
+			top: 80% !important;
+			left: 50% !important;
+		}
+		img{
+			object-fit: fill;
 		}
     }
 	.right {
@@ -365,6 +404,14 @@ export default class extends Vue {
 			.item{
 				width: 90vw !important;
 				box-sizing: border-box;
+				/deep/.el-card__body{
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+				}
+				.img{
+					width: 90vw! important;
+				}
 			}
 		}
 
@@ -379,4 +426,5 @@ export default class extends Vue {
 		}
 	}
 }
+
 </style>

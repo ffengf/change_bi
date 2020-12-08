@@ -183,6 +183,8 @@ export default class extends Vue {
 				border: 1px solid #dfdfdf;
 				border-bottom: none;
 				border-top: none;
+				display: flex;
+				flex-direction: column;
 				h1{
 					margin-bottom: 1rem;
 					font-size: 16px;
@@ -283,5 +285,21 @@ export default class extends Vue {
 }
 .status_1{
 	color: #fff;
+}
+@media only screen and (max-width: 1024px){
+	#book_info{
+		.warpper{
+			flex-wrap: wrap;
+			.left,.right{
+				width: 90vw!important;
+			}
+			> .right{
+				margin-top: 3rem;
+				img{
+					align-self: center;
+				}
+			}
+		}
+	}
 }
 </style>

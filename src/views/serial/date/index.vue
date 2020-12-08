@@ -294,7 +294,8 @@ export default class extends Vue {
             .card {
                 margin-left: 1.25rem;
                 border-radius: 0;
-                cursor: pointer;
+				cursor: pointer;
+				width: 33%;
                 &:nth-of-type(1) {
                     margin: 0;
                 }
@@ -381,5 +382,36 @@ export default class extends Vue {
 }
 .status_1{
 	color: #324b9b;
+}
+
+@media only screen and (max-width: 1024px) {
+    .date{
+		.box{
+			margin-bottom: 3rem!important;
+			.bottom{
+				flex-wrap: wrap!important;
+				.card{
+					width: 100%;
+					margin: 1rem 0;
+				}
+				/deep/.el-card__body {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+				}
+				h1,h2,h3{
+					width: auto!important;
+				}
+				h3{
+					p{
+						width: auto!important;
+					}
+				}
+				img {
+                    width: 80vw!important;
+                }
+			}
+		}
+	}
 }
 </style>
