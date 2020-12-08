@@ -1,8 +1,8 @@
 <template>
     <div class="list" v-loading="loading">
-        <List :list="list" :page.sync="page" :type.sync="type" :waht.sync="what" v-if="type === 'list'" />
-        <Info :list="list" :page.sync="page" :type.sync="type" :waht.sync="what" :count="count" v-if="type === 'info'" />
-        <Question v-if="type === 'question'" :type.sync="type" />
+        <List :list="list" :page.sync="page" :type.sync="type" :what.sync="what" v-if="type === 'list'" />
+        <Info :list="list" :page.sync="page" :type.sync="type" :what.sync="what" :count="count" v-if="type === 'info'" />
+        <Question v-if="type === 'question'" :type.sync="type" @clear="clear" />
     </div>
 </template>
 
@@ -49,12 +49,20 @@ export default class extends Vue {
 
     created() {
         this.get_list();
-    }
+	}
 
+	clear(){
+		this.list = []
+		this.page = 1
+		this.get_list()
+	}
 
-
-
-
+	@Watch('what')
+	watch_what(what:number){
+		if(what + 1 > this.list.length){
+			this.page ++
+		}
+	}
 
 
     @Watch("type")

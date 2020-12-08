@@ -54,7 +54,14 @@ export default class extends Vue {
 		})
         this.list = [...this.list, ...results];
         this.count = count;
-    }
+	}
+
+	@Watch('what')
+	watch_what(what:number){
+		if(what + 1 > this.list.length){
+			this.page ++
+		}
+	}
 
     created() {
         this.get_list();

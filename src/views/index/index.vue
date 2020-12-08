@@ -85,7 +85,7 @@ export default class extends Vue {
 
 	async get_evaluation_list(){
 		const a = await api_home.get_evaluation()
-		console.log(a)
+		// console.log(a)
 	}
 
 

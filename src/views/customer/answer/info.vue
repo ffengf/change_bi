@@ -2,78 +2,57 @@
     <div>
 		<div class="item">
 			<div class="top">
-				<span class="color_success">#3fa535</span>
+				<span class="color_primary" v-if="info.status === 0">답변대기</span>
+				<span class="color_success" v-if="info.status === 1">답변완료</span>
 				<span class="lines"></span>
-				<span>2020.05.01</span>
+				<span>{{ info.create_time }}</span>
 			</div>
-			<h1>Q.hello wolrd</h1>
+			<h1>Q.{{ info.title }}</h1>
 		</div>
 		<div class="warpper">
-			<h2>
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-			</h2>
-			<div class="answer">답변드립니다.</div>
-			<h2>
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-				자주묻는질문 답변 내용입니다. 해당 영역은 관리자에서 에디터로 작성한 내용이 노출됩니다. 이미지 / 텍스트 모두 노출 가능
-
-			</h2>
+			<h2 v-html="info.question"></h2>
+			<template v-if="info.status === 1">
+				<div class="answer">답변드립니다.</div>
+				<h2 v-html="info.answer"></h2>
+			</template>
 		</div>
 		<div class="btn_box">
-			<el-button class="btns aaa" type="default" plain>이전 글</el-button>
+			<el-button class="btns aaa" type="default" plain :disabled="what === 0" @click="change_what(what - 1)">이전 글</el-button>
 			<el-button class="btns" type="success" @click="change_type('list')">목록으로</el-button>
-			<el-button class="btns aaa" type="default" plain>다음 글</el-button>
+			<el-button class="btns aaa" type="default" plain :disabled="what + 1 === count" @click="change_what(what + 1)">다음 글</el-button>
 		</div>
 	</div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Model, Emit } from "vue-property-decorator";
-
+import { Vue, Component, Model, Emit, Prop } from "vue-property-decorator";
+import { api_customer, qa } from "@/api"
 type type = "list" | "info" | "question";
 
 @Component
 export default class extends Vue {
 	@Model('update:type',{ required:true,type:String })
-	type !:type
-
+	readonly type !:type
 	@Emit('update:type')
 	change_type(type:type):type{
 		return type
+	}
+
+	@Model("update:what", { type: Number, required: true })
+	readonly what!: number;
+    @Emit("update:what")
+    change_what(index: number) {
+		return index
+	}
+
+	@Prop({ required:true })
+	count !:number
+
+	@Prop({ required:true })
+	list !:qa[]
+
+	get info():qa{
+		return this.list[this.what]
 	}
 }
 </script>

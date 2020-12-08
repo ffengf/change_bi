@@ -1,36 +1,58 @@
 <template>
     <div class="question">
-        <el-input v-model="input" placeholder="*제목"></el-input>
+        <el-input v-model="info.title" placeholder="*제목"></el-input>
 		<div class="line" style="margin-top:0.8rem"></div>
-		<!-- <div class="box" style="margin-top:0.8rem">
-			<el-input  class="inp" v-model="input" placeholder="*메인 썸네일 이미지 첨부하기 (.jpg, jpeg, png)"></el-input>
-			<el-button class="success_btn" type="success" plain>첨부하기</el-button>
-		</div> -->
-		<!-- <div class="line" style="margin-top:2.2rem;margin-bottom:1.1rem"></div> -->
-		<div>富文本</div>
+		<div class="editor">
+			<Editor v-model="info.question" :id="'summernote' + new Date().getTime()" />
+		</div>
+		<div class="line" style="margin-bottom:1.2rem"></div>
 		<div class="btn_box">
-			<el-button type="success" @click="change_type('list')">작성완료</el-button>
-			<el-button type="default" plain @click="change_type('list')">작성취소</el-button>
+			<el-button type="success" @click="submit">작성완료</el-button>
+			<el-button type="default" plain @click="ret_list">작성취소</el-button>
 		</div>
     </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Model, Emit } from "vue-property-decorator";
-
+import Editor from "@/components/editor/index.vue"
+import { api_customer, post_qa } from "@/api"
 type type = "list" | "info" | "question";
 
-@Component
+@Component({
+	components:{ Editor }
+})
 export default class extends Vue {
 	@Model('update:type',{ required:true,type:String })
 	type !:type
 
 	@Emit('update:type')
-	change_type(type:type):type{
-		return type
+	ret_list():type{
+		return 'list'
 	}
 
-	input = ''
+	@Emit('clear')
+	clear(){
+		return null
+	}
+
+	info:post_qa = {
+		question:'',
+		title:''
+	}
+
+	async submit(){
+		if(this.info.title === ''){
+			return this.$message.error('标题不能为空')
+		}
+		if(this.info.question === ''){
+			return this.$message.error('内容不能为空')
+		}
+		await api_customer.post_qa(this.info)
+		this.$message.success('提交成功')
+		this.clear()
+		this.ret_list()
+	}
 }
 </script>
 
@@ -47,6 +69,9 @@ export default class extends Vue {
 	.line{
 		height: 1px;
 		background: #324b9b;
+	}
+	.editor{
+		margin: 0.75rem 0 2.2rem 0;
 	}
 	.box{
 		display: flex;
