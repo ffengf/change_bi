@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component, Watch } from "vue-property-decorator";
 import Rview from "@/components/routerView/index.vue";
 @Component({
     components: {

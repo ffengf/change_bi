@@ -51,7 +51,7 @@
                         <span v-if="ele.status === 1" class="status_1">완결</span>
                     </h2>
                     <h3>
-                        <p v-for="e in ele.chapters" :key="e.number" @click.stop="go_chapter(ele.id,e.id,'today_title')">
+                        <p v-for="e in ele.chapters" :key="e.number" @click.stop="go_chapter(ele.id,e.id,today_title)">
                             {{ e.number }}화<el-divider direction="vertical"></el-divider
                             >{{ e.title }}
                         </p>

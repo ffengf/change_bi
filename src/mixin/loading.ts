@@ -1,4 +1,4 @@
-import { OtherModule } from '@/store/other'
+
 import { Vue, Component } from "vue-property-decorator"
 
 declare module 'vue/types/vue' {

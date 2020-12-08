@@ -1,12 +1,13 @@
 <template>
     <el-breadcrumb class="bread kr-re" separator=">">
         <el-breadcrumb-item to="/">
-			<img src="@/assets/img/bread.png" alt="">
+			<img src="@/assets/img/bread.png">
 		</el-breadcrumb-item>
         <template v-if="new_list === null">
 			<template v-for="(item, index) in list">
 				<el-breadcrumb-item
 					:key="index"
+					:to="item.path"
 					v-if="item.meta.title !== '' && item.meta.title !== undefined"
 				>
 					<span>{{ item.meta.title }}</span>
@@ -17,6 +18,7 @@
 			<template v-for="(item, index) in new_list">
 				<el-breadcrumb-item
 					:key="index"
+					:to="item.to"
 				>
 					<span>{{ item.title }}</span>
 				</el-breadcrumb-item>

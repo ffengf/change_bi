@@ -77,13 +77,15 @@ export default class extends Vue {
 
     bread = [
         {
-            title: "매일연재",
+			title: "매일연재",
+			to:'/serial',
         },
         {
-            title: this.bread_date,
+			title: this.bread_date,
+			to:'/serial',
         },
         {
-            title: this.info.title,
+			title: this.info.title,
         },
     ];
 
@@ -240,7 +242,7 @@ export default class extends Vue {
 							letter-spacing: -0.7px;
 						}
 						div:nth-of-type(1){
-							width: 40px;
+							width: 30px;
 							color: #324b9b;
 							white-space: nowrap;
 							overflow: hidden;

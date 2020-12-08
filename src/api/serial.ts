@@ -49,6 +49,10 @@ export interface chapter_list {
 	create_time:string
 }
 
+export interface chapter_info extends chapter_list {
+	content:string
+}
+
 class Serial extends Http {
 	protected async get_list(data: data) {
 		const { results } = await this.get<{
@@ -105,6 +109,18 @@ class Serial extends Http {
 	get_chapter(data:{ book_id:number,page:number }){
 		return this.get<res_list<chapter_list>>({ page_size:10,...data },'/book/chapter/')
 	}
+
+	async get_id_name(id:number){
+		return this.get<{
+			book_title:string
+			ids:number[]
+		}>({},`/book/${id}/ids/`)
+	}
+
+	async get_chapter_info(id:number){
+		return this.get<chapter_info>({},`/book/chapter/${id}/`)
+	}
+
 }
 
 

@@ -133,6 +133,7 @@ export default class extends Vue {
 	justify-content: space-between;
 	> * {
 		width: 10rem;
+		height: 2.2rem;
 	}
 }
 .top{
