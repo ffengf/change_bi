@@ -35,7 +35,13 @@ server.interceptors.response.use(({ data, status }) => {
 		return Promise.reject(err)
 	}
 	if (err?.response?.status === 403) {
-		Vue.$alert('这个页面需要登陆', '标题',{
+		let title = ''
+		if(err?.response?.data === 4001){
+			title = 'token过期'
+		}else{
+			title = '请登录'
+		}
+		Vue.$alert(title, '标题',{
 			confirmButtonText:'ok',
 			callback(){
 				Vue.$router.push('/login')

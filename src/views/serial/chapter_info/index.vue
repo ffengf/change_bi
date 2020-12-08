@@ -8,6 +8,9 @@
 		<div>
 			{{ info_id }}
 		</div>
+		<div>
+			{{ bread_date }}
+		</div>
     </div>
 </template>
 
@@ -29,6 +32,10 @@ export default class extends Vue {
 	get info_id():number{
 		return Number(this.$route.params.info_id)
 	}
+
+	get bread_date():string {
+        return this.$route.query.bread_date as string;
+    }
 }
 </script>
 

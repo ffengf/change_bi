@@ -26,7 +26,7 @@
 					</div>
 					<div class="line"></div>
 					<ul>
-						<el-card class="item" shadow="hover" v-for="(ele,index) in item" :key="index">
+						<el-card class="item" shadow="none" v-for="(ele,index) in item" :key="index">
 							<li>
 								<img class="img" :src="ele.url" />
 								<h1>{{ ele.title }}</h1>
@@ -187,7 +187,7 @@ export default class extends Vue {
     .news {
 		align-items: flex-start;
         .left{
-			width: 13rem;
+			width: 10rem;
 			margin-right: 1rem;
 			height: 10rem;
 			.line{
@@ -236,14 +236,14 @@ export default class extends Vue {
 				flex-wrap: wrap;
 				.item{
 					width: 49%;
-					height: 14rem;
-					margin-top: 1rem;
+					// height: 20rem;
+					// margin-top: 1rem;
 					cursor: pointer;
 					display: flex;
 					flex-direction: column;
 					.img{
-						width: 100%;
-						height: 6.5rem;
+						width: 18rem;
+						height: 10.5rem;
 					}
 					h1{
 						margin-top: 0.7rem;

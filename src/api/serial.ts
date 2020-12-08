@@ -69,7 +69,7 @@ class Serial extends Http {
 			}),
 			this.get_list({
 				...base,
-				day_of_week: new Date().getDate(),
+				day_of_week: new Date().getDay() - 1,
 				is_recommend: 1
 			}),
 			this.get_list({
@@ -102,7 +102,7 @@ class Serial extends Http {
 		return this.get<book_info>({},`${this.uri}${id}/`)
 	}
 
-	get_chapter(data:{ id:number,page:number }){
+	get_chapter(data:{ book_id:number,page:number }){
 		return this.get<res_list<chapter_list>>({ page_size:10,...data },'/book/chapter/')
 	}
 }

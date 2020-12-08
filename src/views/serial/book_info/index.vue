@@ -1,5 +1,5 @@
 <template>
-    <div id="book_info">
+    <div id="book_info" v-loading='loading'>
         <Bread :new_list="bread" />
         <div class="box_line"></div>
 		<div class="warpper">
@@ -25,9 +25,22 @@
 				<div class="chapters_box">
 					<h1>연재 읽기</h1>
 					<ul>
-						<li>1</li>
+						<li v-for="(ele) in list" :key="ele.id" @click="go_chapter(ele.id)">
+							<el-tooltip placement="top">
+								<div slot="content">
+									{{ ele.number }}화 <br/>
+									{{ ele.title }}
+								</div>
+								<div class="left">
+									<div>{{ ele.number }}화</div>
+									<div>|</div>
+									<div>{{ ele.title }}</div>
+								</div>
+							</el-tooltip>
+							<div class="right">{{ ele.create_time }}</div>
+						</li>
 					</ul>
-					<el-button class="btn" type="success">더 보기</el-button>
+					<el-button class="btn" type="success" @click="more">더 보기</el-button>
 				</div>
 			</div>
 		</div>
@@ -37,7 +50,7 @@
 <script lang="ts">
 import { Vue, Component, Watch } from "vue-property-decorator";
 import Bread from "@/components/bread/index.vue";
-import { api_serial, book_info } from "@/api";
+import { api_serial, book_info,chapter_list } from "@/api";
 import { takeLast } from "ramda";
 @Component({
     components: {
@@ -48,7 +61,7 @@ export default class extends Vue {
 
 	page = 1
 	count = 0
-	list = []
+	list:chapter_list[] = []
 
     info: book_info = {
         id: 0,
@@ -92,8 +105,23 @@ export default class extends Vue {
 
 	@Watch('page')
 	async get_chapter_list(){
-		const a = await api_serial.get_chapter({ id:this.id,page:this.page })
-		console.log(a)
+		if (this.list.length === this.count && this.list.length !== 0) {
+            return this.$message.error("没有更多了");
+		}
+		this.loading = true
+		const { count,results } = await api_serial.get_chapter({ book_id:this.id,page:this.page }).finally(()=>{
+			this.loading = false
+		})
+		this.count = count
+		this.list = results
+	}
+
+	more(){
+		this.page ++
+	}
+
+	go_chapter(info_id:number){
+		this.$router.push(`/serial/chapter_info/${this.id}/${info_id}?bread_date=${this.bread_date}`)
 	}
 
     created() {
@@ -193,6 +221,53 @@ export default class extends Vue {
 				}
 				ul{
 					margin: 1.5rem 0;
+					li{
+						display: flex;
+						justify-content: space-between;
+						height: 2rem;
+						cursor: pointer;
+						border-bottom: 1px solid #3fa535;
+						align-items: center;
+					}
+					.left{
+						display: flex;
+						div{
+							font-family: NotoSansKR;
+							font-size: 13px;
+							font-weight: 500;
+							font-stretch: normal;
+							font-style: normal;
+							letter-spacing: -0.7px;
+						}
+						div:nth-of-type(1){
+							width: 40px;
+							color: #324b9b;
+							white-space: nowrap;
+							overflow: hidden;
+							text-overflow: ellipsis;
+							text-align: right;
+						}
+						div:nth-of-type(2){
+							margin: 0 0.3rem;
+						}
+						div:nth-of-type(3){
+							display: block;
+							width: 130px;
+							white-space: nowrap;
+							overflow: hidden;
+							text-overflow: ellipsis;
+						}
+					}
+					.right{
+						font-family: NotoSansKR;
+						font-size: 13px;
+						font-weight: 500;
+						font-stretch: normal;
+						font-style: normal;
+						letter-spacing: -0.7px;
+						text-align: right;
+						color: #858585;
+					}
 				}
 				.btn{
 					width: 100%;

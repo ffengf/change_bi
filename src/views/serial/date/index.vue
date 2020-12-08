@@ -22,7 +22,7 @@
                         <span v-if="ele.status === 1" class="status_1">완결</span>
                     </h2>
                     <h3>
-                        <p v-for="e in ele.chapters" :key="e.number" @click="go_chapter(ele.id,e.id)">
+                        <p v-for="e in ele.chapters" :key="e.number" @click.stop="go_chapter(ele.id,e.id,'스위치 ON')">
                             {{ e.number }}화<el-divider direction="vertical"></el-divider
                             >{{ e.title }}
                         </p>
@@ -51,7 +51,7 @@
                         <span v-if="ele.status === 1" class="status_1">완결</span>
                     </h2>
                     <h3>
-                        <p v-for="e in ele.chapters" :key="e.number" @click="go_chapter(ele.id,e.id)">
+                        <p v-for="e in ele.chapters" :key="e.number" @click.stop="go_chapter(ele.id,e.id,'today_title')">
                             {{ e.number }}화<el-divider direction="vertical"></el-divider
                             >{{ e.title }}
                         </p>
@@ -60,7 +60,7 @@
             </div>
         </div>
 
-		<div class="box" v-if="new Date().getDate() !== 0 && info.o1.length !== 0">
+		<div class="box" v-if="new Date().getDay() !== 0 && info.o1.length !== 0">
             <div class="top">
                 <h1>월요연재</h1>
                 <div class="lines"></div>
@@ -81,7 +81,7 @@
                         <span v-if="ele.status === 1" class="status_1">완결</span>
                     </h2>
                     <h3>
-                        <p v-for="e in ele.chapters" :key="e.number" @click="go_chapter(ele.id,e.id)">
+                        <p v-for="e in ele.chapters" :key="e.number" @click.stop="go_chapter(ele.id,e.id,'월요연재')">
                             {{ e.number }}화<el-divider direction="vertical"></el-divider
                             >{{ e.title }}
                         </p>
@@ -89,7 +89,7 @@
                 </el-card>
             </div>
         </div>
-		<div class="box" v-if="new Date().getDate() !== 1 && info.o2.length !== 0">
+		<div class="box" v-if="new Date().getDay() !== 1 && info.o2.length !== 0">
             <div class="top">
                 <h1>화요연재</h1>
                 <div class="lines"></div>
@@ -110,7 +110,7 @@
                         <span v-if="ele.status === 1" class="status_1">완결</span>
                     </h2>
                     <h3>
-                        <p v-for="e in ele.chapters" :key="e.number" @click="go_chapter(ele.id,e.id)">
+                        <p v-for="e in ele.chapters" :key="e.number" @click.stop="go_chapter(ele.id,e.id,'화요연재')">
                             {{ e.number }}화<el-divider direction="vertical"></el-divider
                             >{{ e.title }}
                         </p>
@@ -118,7 +118,7 @@
                 </el-card>
             </div>
         </div>
-		<div class="box" v-if="new Date().getDate() !== 2 && info.o3.length !== 0">
+		<div class="box" v-if="new Date().getDay() !== 2 && info.o3.length !== 0">
             <div class="top">
                 <h1>수요연재</h1>
                 <div class="lines"></div>
@@ -139,7 +139,7 @@
                         <span v-if="ele.status === 1" class="status_1">완결</span>
                     </h2>
                     <h3>
-                        <p v-for="e in ele.chapters" :key="e.number" @click="go_chapter(ele.id,e.id)">
+                        <p v-for="e in ele.chapters" :key="e.number" @click.stop="go_chapter(ele.id,e.id,'수요연재')">
                             {{ e.number }}화<el-divider direction="vertical"></el-divider
                             >{{ e.title }}
                         </p>
@@ -147,7 +147,7 @@
                 </el-card>
             </div>
         </div>
-		<div class="box" v-if="new Date().getDate() !== 3 && info.o4.length !== 0">
+		<div class="box" v-if="new Date().getDay() !== 3 && info.o4.length !== 0">
             <div class="top">
                 <h1>목요연재</h1>
                 <div class="lines"></div>
@@ -168,7 +168,7 @@
                         <span v-if="ele.status === 1" class="status_1">완결</span>
                     </h2>
                     <h3>
-                        <p v-for="e in ele.chapters" :key="e.number" @click="go_chapter(ele.id,e.id)">
+                        <p v-for="e in ele.chapters" :key="e.number" @click.stop="go_chapter(ele.id,e.id,'목요연재')">
                             {{ e.number }}화<el-divider direction="vertical"></el-divider
                             >{{ e.title }}
                         </p>
@@ -176,7 +176,7 @@
                 </el-card>
             </div>
         </div>
-		<div class="box" v-if="new Date().getDate() !== 4 && info.o5.length !== 0">
+		<div class="box" v-if="new Date().getDay() !== 4 && info.o5.length !== 0">
             <div class="top">
                 <h1>금요연재</h1>
                 <div class="lines"></div>
@@ -197,7 +197,7 @@
                         <span v-if="ele.status === 1" class="status_1">완결</span>
                     </h2>
                     <h3>
-                        <p v-for="e in ele.chapters" :key="e.number" @click="go_chapter(ele.id,e.id)">
+                        <p v-for="e in ele.chapters" :key="e.number" @click.stop="go_chapter(ele.id,e.id,'금요연재')">
                             {{ e.number }}화<el-divider direction="vertical"></el-divider
                             >{{ e.title }}
                         </p>
@@ -240,8 +240,8 @@ export default class extends Vue {
 		this.info = info
 	}
 
-	go_chapter(book_id:number,info_id:number){
-		this.$router.push(`/serial/chapter_info/${book_id}/${info_id}`)
+	go_chapter(book_id:number,info_id:number,bread_date:string){
+		this.$router.push(`/serial/chapter_info/${book_id}/${info_id}?bread_date=${bread_date}`)
 	}
 
 	go_info(id:number,bread_date:string){
@@ -253,7 +253,7 @@ export default class extends Vue {
 	}
 
 	get today_title(){
-		return ['월요연재','화요연재','수요연재','목요연재','금요연재'][new Date().getDate()]
+		return ['월요연재','화요연재','수요연재','목요연재','금요연재'][new Date().getDay() - 1]
 	}
 }
 </script>

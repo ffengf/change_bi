@@ -49,7 +49,7 @@ export default class extends Vue {
         top: 0;
         left: 0;
 		background: #ffffff;
-		z-index: 10;
+		z-index: 2000;
     }
     .el-main {
         margin-top: 3.5rem;
