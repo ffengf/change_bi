@@ -101,12 +101,42 @@
                 alt="logo"
 				@click="$router.push('/')"
             />
-            <div class="right" v-if="!is_login">
-                <el-button class="btn" size="mini" type="success" @click="$router.push('/login/signin')">로그인</el-button>
-                <el-button class="btn" type="text" @click="$router.push('/login/signup')">회원가입</el-button>
-            </div>
-			<div class="right" v-else>
-				success
+			<div class="right">
+				<div :class="['icon',active === 'customer' ? 'active':'']">
+					<el-dropdown trigger="click" @command="customer" placement="bottom" @visible-change="is_active($event,'customer')">
+						<span class="el-dropdown-link">
+							<img src="@/assets/img/customer.png" alt="" srcset="">
+						</span>
+						<el-dropdown-menu slot="dropdown">
+							<el-dropdown-item command="/customer/notice">공지사항</el-dropdown-item>
+							<el-dropdown-item command="/customer/problem">자주묻는질문</el-dropdown-item>
+							<el-dropdown-item command="/customer/answer">1:1문의</el-dropdown-item>
+						</el-dropdown-menu>
+					</el-dropdown>
+				</div>
+				<el-divider class="divider" direction="vertical"></el-divider>
+				<div v-if="!is_login">
+					<el-button class="btn" size="mini" type="success" @click="$router.push('/login/signin')">로그인</el-button>
+					<el-button class="btn" type="text" @click="$router.push('/login/signup')">회원가입</el-button>
+				</div>
+				<div v-else>
+					<div :class="['icon',active === 'user' ? 'active':'']">
+						<el-dropdown trigger="click" @command="user" placement="bottom" @visible-change="is_active($event,'user')">
+							<span class="el-dropdown-link">
+								<img src="@/assets/img/user.png" width="23px" alt="" srcset="">
+							</span>
+							<el-dropdown-menu slot="dropdown">
+								<!-- <el-dropdown-item command="/user/club">收藏x</el-dropdown-item> -->
+								<el-dropdown-item command="/user/club">读书会</el-dropdown-item>
+								<el-dropdown-item command="/user/active">活动</el-dropdown-item>
+								<el-dropdown-item command="/user/pay">支付记录</el-dropdown-item>
+								<el-dropdown-item command="/user/coupon">优惠券</el-dropdown-item>
+								<!-- <el-dropdown-item command="logout">修改个人信息x</el-dropdown-item> -->
+								<el-dropdown-item command="logout">退出登录</el-dropdown-item>
+							</el-dropdown-menu>
+						</el-dropdown>
+					</div>
+				</div>
 			</div>
         </div>
     </div>
