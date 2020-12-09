@@ -26,7 +26,7 @@ export interface sign_up {
 	is_sms: number
 }
 
-class User extends Http {
+class Login extends Http {
 	signin(data: { username: string, password: string }) {
 		return this.post<login_res>(data, '/user/login')
 	}
@@ -77,4 +77,4 @@ class User extends Http {
 }
 
 
-export const api_user = new User('/user/')
+export const api_login = new Login('/user/')

@@ -6,7 +6,7 @@
             <h2>
                 <span>{{ info.number }} 화</span>
                 <span>|</span>
-                <span>{{ name }} 작가</span>
+                <span>{{ author_name }} 작가</span>
             </h2>
             <h1>{{ info.title }}</h1>
         </div>
@@ -47,7 +47,7 @@ import { api_serial, chapter_info, date_info } from "@/api";
     },
 })
 export default class extends Nocopy {
-    name = "111";
+    author_name = "";
     ids: number[] = [];
     bread = [
         {
@@ -95,12 +95,13 @@ export default class extends Nocopy {
     }
 
     async get_id_name() {
-        const { book_title, ids } = await api_serial.get_id_name(this.book_id);
+        const { book_title, ids, author_name } = await api_serial.get_id_name(this.book_id);
         this.bread.splice(2, 1, {
             title: book_title,
             to: `/serial/book_info/${this.book_id}?bread_date=${this.bread_date}`,
         });
-        this.ids = ids.reverse();
+		this.ids = ids.reverse();
+		this.author_name = author_name
     }
 
     @Watch("info_id", { immediate: true })
@@ -200,5 +201,13 @@ export default class extends Nocopy {
             height: 2.2rem;
         }
     }
+}
+</style>
+
+<style lang="less">
+@media print {
+	*{
+		display: none!important;
+	}
 }
 </style>

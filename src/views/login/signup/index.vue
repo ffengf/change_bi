@@ -265,7 +265,7 @@
 </template>
 
 <script lang="ts">
-import { api_user, sign_up,api_service } from "@/api";
+import { api_login, sign_up,api_service } from "@/api";
 import { ElForm } from "element-ui/types/form";
 import { Vue, Component, Watch } from "vue-property-decorator";
 import { mapObjIndexed } from "ramda"
@@ -306,7 +306,7 @@ export default class extends Vue {
         this.btn_loadding.mail = true;
         try {
             await (this.$refs["form"] as ElForm).validateField("username");
-            const data = await api_user.check_username({
+            const data = await api_login.check_username({
                 username: this.info.username,
             });
             this.$message.success("success");
@@ -345,7 +345,7 @@ export default class extends Vue {
             this.btn_loadding.check_sms = true;
             if (rules === "验证一下") {
                 try {
-                    await api_user.check_sms({
+                    await api_login.check_sms({
                         phone: this.info.phone,
                         code: this.info.code,
                     });
@@ -363,7 +363,7 @@ export default class extends Vue {
 			this.btn_loadding.send = true;
             if (rules === "") {
                 try {
-                    await api_user.send_sms({
+                    await api_login.send_sms({
                         phone: this.info.phone,
                     });
                     this.btn_loadding.send = false;
@@ -484,7 +484,7 @@ export default class extends Vue {
 				return v
 			}
 		})({ ...this.info })
-		await api_user.signup(info as any as sign_up);
+		await api_login.signup(info as any as sign_up);
 		this.type = 1
     }
 

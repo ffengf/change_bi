@@ -75,7 +75,7 @@
 </template>
 
 <script lang="ts">
-import { api_user } from "@/api/user";
+import { api_login } from "@/api";
 import { ElForm } from "element-ui/types/form";
 import { Vue, Component } from "vue-property-decorator";
 @Component
@@ -146,7 +146,7 @@ export default class extends Vue {
         (this.$refs["form"] as ElForm).validateField("phone", async (rules) => {
             this.btn_loadding.send = true;
 			try {
-				await api_user.send_sms({
+				await api_login.send_sms({
 					phone: this.info_1.phone,
 				});
 				this.btn_loadding.send = false;
@@ -161,7 +161,7 @@ export default class extends Vue {
 	async submit_1(){
 		await (this.$refs["form"] as ElForm).validate();
 		this.btn_loadding.submit_1 = true
-		const data = await api_user.check_account(this.info_1).finally(()=>{
+		const data = await api_login.check_account(this.info_1).finally(()=>{
 			this.btn_loadding.submit_1 = false
 		})
 		this.info_2 = {
@@ -183,7 +183,7 @@ export default class extends Vue {
 	async submit_2(){
 		await (this.$refs["form"] as ElForm).validate();
 		this.btn_loadding.submit_2 = true
-		await api_user.edit_user({
+		await api_login.edit_user({
 			id:this.info_2.id,
 			token:this.info_2.token,
 			password:this.info_2.password,

@@ -78,6 +78,10 @@ class Serial extends Http {
 			}),
 			this.get_list({
 				...base,
+				day_of_week: 0,
+			}),
+			this.get_list({
+				...base,
 				day_of_week: 1,
 			}),
 			this.get_list({
@@ -91,10 +95,6 @@ class Serial extends Http {
 			this.get_list({
 				...base,
 				day_of_week: 4,
-			}),
-			this.get_list({
-				...base,
-				day_of_week: 5,
 			}),
 		])
 		return {
@@ -114,6 +114,7 @@ class Serial extends Http {
 		return this.get<{
 			book_title:string
 			ids:number[]
+			author_name:string
 		}>({},`/book/${id}/ids/`)
 	}
 

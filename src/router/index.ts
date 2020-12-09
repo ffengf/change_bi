@@ -149,18 +149,42 @@ const routes: RouteConfig[] = [
 				path: '/user',
 				name: 'user',
 				meta:{
-					title:'我的'
+					title:'마이페이지'
 				},
 				component: () => import('@/views/user/index.vue'),
-				redirect: '/user/myclub',
+				redirect: '/user/club',
 				children:[
 					{
-						path: 'myclub',
-						name: 'myclub',
+						path: 'club',
+						name: 'club',
 						meta:{
 							title:'读书会'
 						},
-						component: () => import('@/views/user/myclub/index.vue'),
+						component: () => import('@/views/user/club/index.vue'),
+					},
+					{
+						path: 'pay',
+						name: 'pay',
+						meta:{
+							title:'支付列表'
+						},
+						component: () => import('@/views/user/pay/index.vue'),
+					},
+					{
+						path: 'coupon',
+						name: 'coupon',
+						meta:{
+							title:'优惠券'
+						},
+						component: () => import('@/views/user/coupon/index.vue'),
+					},
+					{
+						path: 'active',
+						name: 'active',
+						meta:{
+							title:'我的活动'
+						},
+						component: () => import('@/views/user/active/index.vue'),
 					}
 				]
 			},

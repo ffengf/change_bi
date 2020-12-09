@@ -69,7 +69,7 @@
 </template>
 
 <script lang="ts">
-import { api_user } from "@/api/user";
+import { api_login } from "@/api";
 import { ElForm } from "element-ui/types/form";
 import { Vue, Component } from "vue-property-decorator";
 @Component
@@ -101,7 +101,7 @@ export default class extends Vue {
         (this.$refs["form"] as ElForm).validateField("phone", async (rules) => {
             this.btn_loadding.send = true;
 			try {
-				await api_user.send_sms({
+				await api_login.send_sms({
 					phone: this.info.phone,
 				});
 				this.btn_loadding.send = false;
@@ -114,7 +114,7 @@ export default class extends Vue {
 
     async submit() {
 		await (this.$refs["form"] as ElForm).validate();
-		this.user_info = await api_user.find_account(this.info);
+		this.user_info = await api_login.find_account(this.info);
 		this.step = 2
     }
 

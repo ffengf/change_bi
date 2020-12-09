@@ -29,7 +29,7 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import { api_user } from "@/api/user"
+import { api_login } from "@/api"
 import { ElForm } from "element-ui/types/form";
 import { UserModule } from "@/store/user"
 import StorageDb from "@/util/storage"

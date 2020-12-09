@@ -61,6 +61,10 @@ span {
 .bread{
 	display: flex;
 	align-items: flex-end;
+	flex-wrap: wrap;
+	span{
+		font-weight: 400;
+	}
 	img{
 		height: 18px;
 		width: 18px;
@@ -69,6 +73,9 @@ span {
 	/deep/.el-breadcrumb__separator{
 		color: #000!important;
 		font-size: 15px !important;
+	}
+	/deep/.el-breadcrumb__item{
+		margin: 0.25rem 0;
 	}
 }
 </style>

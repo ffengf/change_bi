@@ -1,4 +1,4 @@
-import { api_user, login_res } from '@/api';
+import { api_login, login_res } from '@/api';
 import {
 	VuexModule,
 	Mutation,
@@ -41,7 +41,7 @@ export default class User extends VuexModule {
 
 	@Action
 	public async login(info: { username: string, password: string }) {
-		const data = await api_user.signin(info)
+		const data = await api_login.signin(info)
 		StorageDb.setLocal('token', data.token)
 		this.LOGIN(data)
 	}
