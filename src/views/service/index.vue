@@ -1,12 +1,12 @@
 <template>
     <div id="service" class="flexC">
 		<div class="w70vw min_width1000 service" v-loading="loading">
-			<el-menu :default-active="type" mode="horizontal" @select="select">
+			<el-menu class="menu" :default-active="type" mode="horizontal" @select="select">
 				<el-menu-item index="content">서비스소개</el-menu-item>
 				<el-menu-item index="use">서비스이용약관</el-menu-item>
 				<el-menu-item index="privacy">개인정보취급방침</el-menu-item>
 			</el-menu>
-			<div class="mt20" v-html="inner"></div>
+			<div class="mt20 inner" v-html="inner"></div>
 		</div>
     </div>
 </template>
@@ -59,6 +59,12 @@ export default class extends Vue {
 
 <style lang='less' scoped>
 #service {
-    margin: 2rem 0;
+	margin: 2rem 0;
+	.menu{
+		display: flex;
+	}
+	/deep/img{
+		width: 100%!important;
+	}
 }
 </style>
