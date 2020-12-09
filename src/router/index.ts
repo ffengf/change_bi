@@ -210,6 +210,11 @@ const routes: RouteConfig[] = [
 						component:() => import('@/views/serial/chapter_info/index.vue')
 					}
 				]
+			},
+			{
+				path: '/service/:type',
+				name: 'service',
+				component: () => import('@/views/service/index.vue')
 			}
 		]
 	},
