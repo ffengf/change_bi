@@ -132,7 +132,7 @@ export default class extends More(api_user.get_coupon) {
             justify-content: space-between;
             margin-top: 1.5rem;
             > * {
-                width: 9.4rem;
+                width: 49.5%;
                 height: 2.2rem;
             }
         }

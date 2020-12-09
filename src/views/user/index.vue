@@ -215,4 +215,9 @@ export default class extends Vue {
 .user_line{
 	border-bottom:1px solid #324b9b
 }
+@media only screen and (max-width: 1024px) {
+	.user_information,.content{
+		width: 100%!important;
+	}
+}
 </style>
