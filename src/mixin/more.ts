@@ -2,7 +2,7 @@
 
 
 import { req_list, res_list } from '@/types/global'
-import { Vue, Component } from "vue-property-decorator"
+import { Vue, Component, Watch } from "vue-property-decorator"
 
 export const More = <T>(axios_get: (req_list: req_list) => Promise<res_list<T>>) => {
 
@@ -11,6 +11,7 @@ export const More = <T>(axios_get: (req_list: req_list) => Promise<res_list<T>>)
 		count = 0
 		list: T[] = []
 		page = 1
+
 
 		async get_list() {
 			if (this.list.length === this.count && this.list.length !== 0) {
@@ -30,10 +31,18 @@ export const More = <T>(axios_get: (req_list: req_list) => Promise<res_list<T>>)
 			if (this.list.length === this.count && this.list.length !== 0) {
 				return this.$message.error("没有更多了");
 			}
+			this.page ++
+			this.get_list()
 		}
 
-		get disable():boolean{
-			return this.count < this.list.length
+		clear_list(){
+			this.list = []
+			this.page = 1
+			this.get_list()
+		}
+
+		get disabled():boolean{
+			return this.count <= this.list.length
 		}
 
 		created() {

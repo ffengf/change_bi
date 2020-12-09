@@ -2,8 +2,8 @@
     <div>
 		<div class="item">
 			<div class="top">
-				<span class="color_primary" v-if="info.status === 0">답변대기</span>
-				<span class="color_success" v-if="info.status === 1">답변완료</span>
+				<span class="color_success" v-if="info.status === 0">답변대기</span>
+				<span class="color_primary" v-if="info.status === 1">답변완료</span>
 				<span class="lines"></span>
 				<span>{{ info.create_time }}</span>
 			</div>

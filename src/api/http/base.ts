@@ -75,4 +75,7 @@ export abstract class Http {
 	protected patch<T = unknown>(data, uri = this.uri): Promise<T> {
 		return this.server.patch(uri, data)
 	}
+	protected delete<T = unknown>(id:number,uri = this.uri):Promise<T> {
+		return this.server.delete(`${uri}${id}/`)
+	}
 }

@@ -2,10 +2,10 @@
     <div id="footer" class="flexBC">
         <div class="w70vw min_width1100 footer">
             <ul class="link_box">
-                <li>서비스소개</li>
-                <li>고객센터</li>
-                <li>서비스이용약관</li>
-                <li>개인정보취급방침</li>
+                <li>서비스소개-服务介绍</li>
+                <li>고객센터-跳客服中心</li>
+                <li>서비스이용약관-服务条款</li>
+                <li>개인정보취급방침-隐私</li>
             </ul>
             <div class="content">
                 <p>법인명 : (주)창비 | 사업자등록번호 : 105-81-63672 |

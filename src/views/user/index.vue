@@ -184,6 +184,9 @@ export default class extends Vue {
 							font-stretch: normal;
 							font-style: normal;
 							letter-spacing: -0.85px;
+							.small{
+								font-size: 13.5px;
+							}
 						}
 					}
 					.right_btn{
