@@ -1,7 +1,7 @@
 <template>
     <div id="club" class="flexC">
-		<div class="club">
-			<div class="bread_box w70vw min_width1000">
+		<div class="club w70vw min_width1000">
+			<div class="bread_box">
 				<Bread class="bread" />
 			</div>
 			<div class="line mt10 w70vw"></div>
@@ -36,8 +36,6 @@ export default class extends Vue {
 	.club{
 		display: flex;
 		flex-direction: column;
-		align-items: center;
-
 	}
 	.line{
 		background: #324b9b;

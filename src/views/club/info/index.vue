@@ -1,50 +1,42 @@
 <template>
-    <div id="info">
+    <div id="info" v-loading="loading">
 		<div class="left">
-			<img src="https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png">
+			<img :src="info.cover">
 			<div class="title">상세설명</div>
 			<div class="line"></div>
-			<div class="box">
-				관리자에서 작성한 내용 입력
-『개인주의자 선언』 『미스 함무라비』 문유석 판사의 신작. 글쓰는 판사, 소문난 다독가로 알려진 작가의 독서 에세이로, 어린 시절부터 지금까지 책 중독자로 살아온 이야기를 유쾌하게 담았다. 사춘기 시절 야한 장면을 찾아 읽다가 한국문학전집을 샅샅이 읽게 된 사연, 『유리가면』으로 순정만화 세계에 입문한 이야기, 고시생 시절 『슬램덩크』가 안겨준 뭉클함, 김용과 무라카미 하루키 전작을 탐독한 이유 등 책과 함께 가슴 설레고 즐거웠던 책 덕후 인생을 솔직하게 펼쳐 보인다. 단, 아무리 대단해 보여도 딱딱하고 지루한 책은 읽지 않았다. 이 책은 읽고 싶은 것만 읽어온 편식 독서에 대한 이야기다.
-글쓰는 판사, 소문난 다독가로 알려진 작가의 독서 에세이로, 어린 시절부터 지금까지 책 중독자로 살아온 이야기를 유쾌하게 담았다. 사춘기 시절 야한 장면을 찾아 읽다가 한국문학전집을 샅샅이 읽게 된 사연, 『유리가면』으로 순정만화 세계에 입문한 이야기, 고시생 시절 『슬램덩크』가 안겨준 뭉클함, 김용과 무라카미 하루키 전작을 탐독한 이유 등 책과 함께 가슴 설레고 즐거웠던 책 덕후 인생을 솔직하게 펼쳐 보인다. 단, 아무리 대단해 보여도 딱딱하고 지루한 책은 읽지 않았다. 이 책은 읽고 싶은 것만 읽어온 편식 독서에 대한 이야기다.
-			</div>
+			<div class="box" v-html="info.content"></div>
 			<div class="title mt">환불규정</div>
 			<div class="line"></div>
-			<div class="box">
-				관리자에서 작성한 내용 입력
-『개인주의자 선언』 『미스 함무라비』 문유석 판사의 신작. 글쓰는 판사, 소문난 다독가로 알려진 작가의 독서 에세이로, 어린 시절부터 지금까지 책 중독자로 살아온 이야기를 유쾌하게 담았다. 사춘기 시절 야한 장면을 찾아 읽다가 한국문학전집을 샅샅이 읽게 된 사연, 『유리가면』으로 순정만화 세계에 입문한 이야기, 고시생 시절 『슬램덩크』가 안겨준 뭉클함, 김용과 무라카미 하루키 전작을 탐독한 이유 등 책과 함께 가슴 설레고 즐거웠던 책 덕후 인생을 솔직하게 펼쳐 보인다. 단, 아무리 대단해 보여도 딱딱하고 지루한 책은 읽지 않았다. 이 책은 읽고 싶은 것만 읽어온 편식 독서에 대한 이야기다.
-글쓰는 판사, 소문난 다독가로 알려진 작가의 독서 에세이로, 어린 시절부터 지금까지 책 중독자로 살아온 이야기를 유쾌하게 담았다. 사춘기 시절 야한 장면을 찾아 읽다가 한국문학전집을 샅샅이 읽게 된 사연, 『유리가면』으로 순정만화 세계에 입문한 이야기, 고시생 시절 『슬램덩크』가 안겨준 뭉클함, 김용과 무라카미 하루키 전작을 탐독한 이유 등 책과 함께 가슴 설레고 즐거웠던 책 덕후 인생을 솔직하게 펼쳐 보인다. 단, 아무리 대단해 보여도 딱딱하고 지루한 책은 읽지 않았다. 이 책은 읽고 싶은 것만 읽어온 편식 독서에 대한 이야기다.
-			</div>
+			<div class="box" v-html="info.refund_desc"></div>
 		</div>
 		<div class="right">
 			<div class="top">
-				<h1>클럽이름</h1>
-				<h2>클럽부재</h2>
+				<h1>{{ info.title }}</h1>
+				<h2>{{ info.subtitle }}</h2>
 			</div>
 			<div class="mid">
 				<h2>신청하기</h2>
-				<h1>맴버십 (1개월)</h1>
-				<h3>(설명)1개월동안 진행되는 맴버십입니다.</h3>
+				<h1>{{ info.option }}</h1>
+				<h3>{{ info.option_desc }}</h3>
 				<div class="line"></div>
-				<div class="money" v-if="info.money">무료</div>
-				<div class="money" v-else>60,000원</div>
+				<div class="money" v-if="info.price === 0">무료</div>
+				<div class="money" v-else>{{ numFormat(info.price) }} 원</div>
 			</div>
 			<div class="bottom">
-				<div class="pay" v-if="!info.money">
+				<div class="pay" v-if="info.price !== 0">
 					<h1>결제하기</h1>
 					<div class="how">
 						<div>결제방법</div>
 						<el-select v-model="value" placeholder="신용카드">
-							<el-option>123</el-option>
-							<el-option>111</el-option>
-							<el-option>222</el-option>
+							<el-option value="1">123</el-option>
+							<el-option value="12">111</el-option>
+							<el-option value="13">222</el-option>
 						</el-select>
 					</div>
 					<div class="line"></div>
 					<div class="info_money">
 						<div class="left">결제금액</div>
-						<div class="right">60,000원</div>
+						<div class="right">{{ numFormat(info.price) }} 원</div>
 					</div>
 				</div>
 				<el-button type="success" class="btn" @click="info.money = !info.money">신청하기</el-button>
@@ -54,22 +46,42 @@
 </template>
 
 <script lang="ts">
+import { api_club, club_info } from "@/api";
 import { Vue, Component, Watch } from "vue-property-decorator";
+import { numFormat } from "@/util/string"
 @Component
 export default class extends Vue {
 
-	info = {
-		money:false
+	numFormat = numFormat
+
+	info:club_info = {
+		id: 0,
+		title: '',
+		subtitle: '',
+		cover: '',
+		status: 0,
+		is_collect: 0 ,
+		start_time:'',
+		end_time:'',
+		price:0,
+		refund_desc:'',
+		option:'',
+		option_desc:'',
 	}
 	value = ''
 
-	get id(){
-		return this.$route.params.id
+	get id():number{
+		return Number(this.$route.params.id)
 	}
 
 	@Watch('id')
 	async get_info(){
-		this.$route.meta.title = this.id
+		this.loading = true
+		const info = await api_club.get_info(this.id).finally(()=>{
+			this.loading = false
+		})
+		this.info = info
+		this.$route.meta.title = info.title
 	}
 
 	created(){
@@ -85,6 +97,7 @@ export default class extends Vue {
 	margin-top: -0.5rem;
 	display: flex;
 	justify-content: space-between;
+	flex-wrap: wrap;
 	margin-bottom: 6rem;
 	.left{
 		width: 30rem;
@@ -297,4 +310,15 @@ export default class extends Vue {
 		}
 	}
 }
+@media only screen and (max-width: 1024px) {
+	#info{
+		.left,.right{
+			width: 100%;
+			img{
+				height: auto;
+			}
+		}
+	}
+}
+
 </style>

@@ -16,6 +16,9 @@ export interface club_list {
 
 export interface club_info extends club_list{
 	price:number
+	refund_desc:string
+	option:string
+	option_desc:string
 }
 
 class Club extends Http {
@@ -32,7 +35,7 @@ class Club extends Http {
 	}
 
 	get_info(id:number){
-		return this.get<club_info>(`${this.uri}/${id}/`)
+		return this.get<club_info>({},`${this.uri}${id}/`)
 	}
 
 
