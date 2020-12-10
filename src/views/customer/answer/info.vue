@@ -17,9 +17,9 @@
 			</template>
 		</div>
 		<div class="btn_box">
-			<el-button class="btns aaa" type="default" plain :disabled="what === 0" @click="change_what(what - 1)">이전 글</el-button>
+			<el-button class="btns aaa" :disabled="what === 0" @click="change_what(what - 1)">이전 글</el-button>
 			<el-button class="btns" type="success" @click="change_type('list')">목록으로</el-button>
-			<el-button class="btns aaa" type="default" plain :disabled="what + 1 === count" @click="change_what(what + 1)">다음 글</el-button>
+			<el-button class="btns aaa" :disabled="what + 1 === count" @click="change_what(what + 1)">다음 글</el-button>
 		</div>
 	</div>
 </template>

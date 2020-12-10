@@ -9,7 +9,7 @@
 			<h1 @click="change_what(index)">{{ ele.title }}</h1>
 		</div>
 
-		<el-button type="success" class="btn" @click="more">더 보기</el-button>
+		<el-button type="success" class="btn" @click="more" :disabled="disabled">더 보기</el-button>
     </div>
 </template>
 
@@ -28,7 +28,8 @@ export default class extends Vue {
 	@Prop({ required:true })
 	list !:notice[]
 
-
+	@Prop({ required:true })
+	disabled !:boolean
 
 	@Model("update:page", { type: Number, required: true })
 	readonly page!: number;

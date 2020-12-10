@@ -60,10 +60,17 @@
 				<el-button type="success" class="btn">스위치 알아보기</el-button>
 			</div>
 		</div>
-		<div class="carousel">
+		<div class="text_carousel">
             <el-carousel arrow="always" height="23rem">
-                <el-carousel-item v-for="(i,key) in item" :key="key">
-                    <el-image class="img" :src="i.url" />
+                <el-carousel-item v-for="(ele,index) in evaluation_list" :key="index">
+                    <div class="text_box na">
+						<h1>
+							<template v-for="(e,i) in ele.content" >
+								<p :class="{ bold:e.is_bold === 1}" :key="i">{{ e.content }}</p>
+							</template>
+						</h1>
+						<h2>{{ ele.service_name }} {{ ele.user_name }}</h2>
+					</div>
                 </el-carousel-item>
             </el-carousel>
         </div>
@@ -78,14 +85,15 @@ export default class extends Vue {
 
 	banner_list:banner[] = []
 
+	evaluation_list:any[] = []
+
 
 	async get_banner_list(){
 		this.banner_list = await api_home.get_banner()
 	}
 
 	async get_evaluation_list(){
-		const a = await api_home.get_evaluation()
-		// console.log(a)
+		this.evaluation_list = await api_home.get_evaluation()
 	}
 
 
@@ -336,7 +344,64 @@ export default class extends Vue {
 				width: 11rem;
 			}
 		}
-    }
+	}
+	.text_carousel{
+		.text_box{
+			width: 100%;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			h1,h2{
+				color: #3fa535;
+				p{
+					white-space:pre-wrap;
+				}
+			}
+			h1{
+				font-size: 50px;
+				font-weight: 100;
+				font-stretch: normal;
+				font-style: normal;
+				line-height: normal;
+				letter-spacing: -3.75px;
+			}
+			.bold{
+				font-weight: bold;
+			}
+			h2{
+				margin-top: 1rem;
+				font-size: 16px;
+				font-weight: normal;
+				font-stretch: normal;
+				font-style: normal;
+				line-height: normal;
+				letter-spacing: -0.8px;
+			}
+		}
+		/deep/.el-carousel__arrow--left{
+			left: 15rem ;
+		}
+		/deep/.el-carousel__arrow--right{
+			right: 15rem ;
+		}
+		/deep/.el-carousel__indicators--horizontal{
+			top: 80%;
+		}
+		/deep/.el-carousel__button{
+			height: 0.5rem;
+			width: 0.5rem;
+			border-radius: 50%;
+			background: #fff;
+			border: 1px solid #848484;
+		}
+		/deep/.is-active .el-carousel__button{
+			background: #3fa535;
+			border: 1px solid #3fa535;
+		}
+	}
 }
 
 .img {
@@ -364,7 +429,21 @@ export default class extends Vue {
 			object-fit: fill;
 		}
 	}
-
+	.text_carousel{
+		/deep/.el-carousel__container{
+			height: 20rem!important;
+		}
+		/deep/.el-carousel__arrow--left{
+			left: 1rem !important ;
+		}
+		/deep/.el-carousel__arrow--right{
+			right: 1rem !important ;
+		}
+		/deep/.el-carousel__indicators--horizontal{
+			top: 90% !important;
+			left: 50% !important;
+		}
+	}
 	.right {
 		width: 95vw !important;
 		ul{
@@ -396,7 +475,22 @@ export default class extends Vue {
 		img{
 			object-fit: fill;
 		}
-    }
+	}
+	.text_carousel{
+		/deep/.el-carousel__container{
+			height: 20rem!important;
+		}
+		/deep/.el-carousel__arrow--left{
+			left: 1rem !important ;
+		}
+		/deep/.el-carousel__arrow--right{
+			right: 1rem !important ;
+		}
+		/deep/.el-carousel__indicators--horizontal{
+			top: 90% !important;
+			left: 50% !important;
+		}
+	}
 	.right {
 		width: 95vw !important;
 		ul{

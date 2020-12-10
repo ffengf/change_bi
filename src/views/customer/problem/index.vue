@@ -4,7 +4,7 @@
 			<Item v-for="(ele) in list" :key="ele.id" :info="ele" />
 			<div class="line"></div>
 		</ul>
-		<el-button type="success" class="btn" @click="more">더보기</el-button>
+		<el-button type="success" class="btn" @click="more" :disabled="disabled">더보기</el-button>
     </div>
 </template>
 
@@ -46,6 +46,10 @@ export default class extends Vue {
 
 	created(){
 		this.get_list()
+	}
+
+	get disabled():boolean{
+		return this.count <= this.list.length
 	}
 }
 </script>

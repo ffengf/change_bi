@@ -40,7 +40,7 @@
 							<div class="right">{{ ele.create_time }}</div>
 						</li>
 					</ul>
-					<el-button class="btn" type="success" @click="more">더 보기</el-button>
+					<el-button class="btn" type="success" @click="more" :disabled="disabled">더 보기</el-button>
 				</div>
 			</div>
 		</div>
@@ -124,6 +124,10 @@ export default class extends Vue {
 
 	go_chapter(info_id:number){
 		this.$router.push(`/serial/chapter_info/${this.id}/${info_id}?bread_date=${this.bread_date}`)
+	}
+
+	get disabled():boolean{
+		return this.count <= this.list.length
 	}
 
     created() {

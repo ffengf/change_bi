@@ -8,7 +8,7 @@
 		<div class="line" style="margin-bottom:1.2rem"></div>
 		<div class="btn_box">
 			<el-button type="success" @click="submit">작성완료</el-button>
-			<el-button type="default" plain @click="ret_list">작성취소</el-button>
+			<el-button @click="ret_list">작성취소</el-button>
 		</div>
     </div>
 </template>

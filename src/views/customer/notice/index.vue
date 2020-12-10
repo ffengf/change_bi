@@ -1,6 +1,6 @@
 <template>
     <div class="notice" v-loading='loading'>
-        <List :keys.sync="key" :list="list" :page.sync="page" v-if="key" :what.sync="what" />
+        <List :keys.sync="key" :list="list" :page.sync="page" v-if="key" :what.sync="what" :disabled="disabled" />
         <Info :keys.sync="key" :list="list" :page.sync="page" :what.sync="what" :count="count" v-else />
     </div>
 </template>
@@ -65,7 +65,11 @@ export default class extends Vue {
 
     created() {
         this.get_list();
-    }
+	}
+
+	get disabled():boolean{
+		return this.count <= this.list.length
+	}
 }
 </script>
 

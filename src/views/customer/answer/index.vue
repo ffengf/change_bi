@@ -1,6 +1,6 @@
 <template>
     <div class="list" v-loading="loading">
-        <List :list="list" :page.sync="page" :type.sync="type" :what.sync="what" v-if="type === 'list'" />
+        <List :list="list" :page.sync="page" :type.sync="type" :what.sync="what" v-if="type === 'list'" :disabled="disabled" />
         <Info :list="list" :page.sync="page" :type.sync="type" :what.sync="what" :count="count" v-if="type === 'info'" />
         <Question v-if="type === 'question'" :type.sync="type" @clear="clear" />
     </div>
@@ -78,6 +78,11 @@ export default class extends Vue {
 	destroyed(){
 		const tabs = document.getElementById("customer_tab") as HTMLElement;
 		tabs.style.display = "flex";
+	}
+
+	get disabled():boolean{
+		console.log(this.count,this.list)
+		return this.count <= this.list.length
 	}
 }
 </script>
