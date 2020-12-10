@@ -130,25 +130,27 @@
 				<h1>신청하기</h1>
 				<div class="line"></div>
 				<div class="btn_box">
-					<el-button type="primary" class="btn">전체</el-button>
-					<el-button type="default" class="btn">모집 중</el-button>
-					<el-button type="default" class="btn">진행 중</el-button>
+					<el-button type="primary" class="btn" @click="filter.status = ''">전체</el-button>
+					<el-button type="default" class="btn" @click="filter.status = 0">모집 중</el-button>
+					<el-button type="default" class="btn" @click="filter.status = 1">진행 중</el-button>
 				</div>
 			</div>
 		</div>
-		<ul class="box_list w70vw min_width1000">
+		<ul class="box_list w70vw min_width1000" v-loading="loading">
 			<el-card shadow="never" class="item" v-for="(ele) in list" :key="ele.id" @click.native="$router.push(`/club/creation/info/${ele.id}`)">
 				<img :src="ele.cover" alt="">
-				<h1>클럽 창작과비평 제3장</h1>
+				<h1>{{ ele.title }}</h1>
 				<h2>
-					<span class="orange">모집 중</span>
+					<span class="green" v-if="ele.status === 0">모집 중</span>
+					<span class="blue" v-if="ele.status === 1">모집 중</span>
+					<span class="orange" v-if="ele.status === 3">모집 중</span>
 					<span>|</span>
-					<span>2021. 01. 01 ~ 2020. 01. 31</span>
+					<span>{{ ele.start_time }} ~ {{ ele.end_time }}</span>
 				</h2>
-				<h3>클럽 창작과비평 프롤로그 프로그램 입니다.클럽 창작과비평 프롤로그 프로그램 입니다.</h3>
+				<h3>{{ ele.subtitle }}</h3>
 			</el-card>
 		</ul>
-		<el-button type="success" class="more" @click="more">더 보기</el-button>
+		<el-button type="success" class="more" @click="more" :disabled="disabled">더 보기</el-button>
     </div>
 </template>
 
@@ -157,41 +159,21 @@ import { Vue, Component,Watch } from "vue-property-decorator";
 import Rview from "@/components/routerView/index.vue";
 import Bread from "@/components/bread/index.vue"
 import { api_club, club_list } from "@/api"
+import { More } from "@/mixin/more"
 @Component({
     components: {
 		Rview,
 		Bread,
 	},
 })
-export default class extends Vue {
-
-	page = 1
-	list:club_list[] = []
-	count:number = 0
-
-
-	@Watch('page')
-	async get_list(){
-		if (this.list.length === this.count && this.list.length !== 0) {
-            return this.$message.error("没有更多了");
-		}
-		this.loading = true
-        const { results, count } = await api_club.get_creation_list({
-            page: this.page
-        }).finally(()=>{
-			this.loading = false
-		})
-        this.list = [...this.list, ...results];
-        this.count = count;
+export default class extends More(api_club.get_creation_list) {
+	filter = {
+		status:''
 	}
 
-	more(){
-		this.page ++
-	}
-
-
-	created(){
-		this.get_list()
+	@Watch('filter.status')
+	watch_status(){
+		this.clear_list()
 	}
 }
 </script>
@@ -438,9 +420,8 @@ export default class extends Vue {
 	.box_list{
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: space-between;
 		.item{
-			width: 32%;
+			width: 33%;
 			overflow: hidden;
 			cursor: pointer;
 			margin-top: 3.5rem;

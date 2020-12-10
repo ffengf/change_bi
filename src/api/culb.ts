@@ -10,6 +10,8 @@ export interface club_list {
 	cover: string
 	status: 0 | 1 | 2 | 3
 	is_collect: 0 | 1
+	start_time:string
+	end_time:string
 }
 
 export interface club_info extends club_list{
@@ -21,11 +23,11 @@ class Club extends Http {
 		return this.get<res_list<club_list>>({ page_size: 10, ...data })
 	}
 
-	get_creation_list(data: req_list) {
+	get_creation_list = (data: req_list) => {
 		return this.get_list({ ...data, type: 0 })
 	}
 
-	get_apply_list(data: req_list) {
+	get_apply_list = (data: req_list) => {
 		return this.get_list({ ...data, type: 1 })
 	}
 

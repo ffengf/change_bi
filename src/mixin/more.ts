@@ -12,6 +12,10 @@ export const More = <T>(axios_get: (req_list: req_list) => Promise<res_list<T>>)
 		list: T[] = []
 		page = 1
 
+		filter:Object = {
+
+		}
+
 
 		async get_list() {
 			if (this.list.length === this.count && this.list.length !== 0) {
@@ -19,7 +23,8 @@ export const More = <T>(axios_get: (req_list: req_list) => Promise<res_list<T>>)
 			}
 			this.loading = true
 			const { results, count } = await axios_get({
-				page: this.page
+				page: this.page,
+				...this.filter
 			}).finally(() => {
 				this.loading = false
 			})
