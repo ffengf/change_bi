@@ -486,4 +486,64 @@ export default class extends More(api_club.get_creation_list) {
 .orange{
 	color: #df5400;
 }
+
+@media only screen and (max-width: 1024px) {
+	p{
+		white-space: pre-wrap!important;
+	}
+	.creation{
+		.warpper{
+			height: auto;
+
+			.btn{
+				margin-top: 2rem;
+				margin-bottom: 2rem;
+
+			}
+		}
+		.content{
+			height: auto;
+			.mid{
+				height: auto;
+			}
+			.right{
+				align-self: flex-end;
+				img{
+					bottom: -2rem;
+				}
+			}
+		}
+		.list{
+			.item{
+				height: auto;
+				flex-wrap: wrap;
+				.v1,.v2{
+					width: 100%;
+				}
+			}
+		}
+		.box{
+			.ccc{
+				h1{
+					font-size: 16px;
+				}
+				.btn_box{
+					> *{
+						width: auto;
+						margin: 0 1px;
+					}
+				}
+			}
+		}
+		.box_list{
+			.item{
+				width: 100%;
+				img{
+					width: 100%;
+					max-height: 20rem;
+				}
+			}
+		}
+	}
+}
 </style>
