@@ -13,17 +13,10 @@ import "@/assets/style/element_phone.less"
 import "@/assets/style/reset_ele.less"
 import 'element-ui/lib/theme-chalk/display.css';
 import '@/assets/style/element-variables.scss'
-import { OtherModule } from './store/other';
 
-// document.oncontextmenu = function(){ return false; };
-// // 禁止文字选择
-// document.onselectstart = function(){ return false; };
-// // 禁止复制
-// document.oncopy = function(){ return false; };
-// // 禁止剪切
-// document.oncut = function(){ return false; };
-// // 禁止粘贴
-// document.onpaste = function(){ return false; };
+
+IMP.init('imp14488970')
+
 Vue.config.productionTip = true;
 
 Vue.use(Element)
