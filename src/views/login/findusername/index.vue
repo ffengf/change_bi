@@ -18,7 +18,7 @@
                                 v-model="info.phone"
                                 placeholder="휴대폰 번호('-'는 빼고 입력해주세요)"
                             ></el-input>
-                            <el-button type="default" size="small" plain @click="send_tel_pass" :loading="btn_loadding.send"
+                            <el-button size="small" @click="send_tel_pass" :loading="btn_loadding.send"
                                 >인증번호 발송</el-button
                             >
                         </div>
@@ -55,8 +55,6 @@
             </div>
             <div class="btn_box">
                 <el-button
-                    type="default"
-                    plain
                     @click="$router.push('/login/findpassword')"
                     >비밀번호 찾기</el-button
                 >

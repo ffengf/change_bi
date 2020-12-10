@@ -22,7 +22,7 @@
                                 placeholder="휴대폰 번호('-'는 빼고 입력해주세요)"
 								class="width_70"
                             ></el-input>
-                            <el-button type="default" plain size="small" :loading="btn_loadding.send" @click="send_tel_pass">인증번호 발송</el-button>
+                            <el-button size="small" :loading="btn_loadding.send" @click="send_tel_pass">인증번호 발송</el-button>
                         </div>
                     </el-form-item>
                     <el-form-item prop="code">

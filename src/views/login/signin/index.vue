@@ -22,7 +22,7 @@
             </el-form>
 			<el-button type="success" style="margin-top:1rem" @click="submit" :loading="btn_loadding.submit">로그인</el-button>
 			<el-divider><em class="color_80">or</em></el-divider>
-			<el-button type="default" plain @click="$router.push('/login/signup')">회원가입</el-button>
+			<el-button @click="$router.push('/login/signup')">회원가입</el-button>
         </div>
     </div>
 </template>

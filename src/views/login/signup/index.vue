@@ -18,8 +18,6 @@
                         ></el-input>
                         <el-button
                             class="btn"
-                            type="default"
-                            plain
                             @click="check_mail"
                             :loading="btn_loadding.mail"
                             >중복확인</el-button
@@ -70,8 +68,6 @@
                         ></el-input>
                         <el-button
                             class="btn"
-                            type="default"
-                            plain
                             @click="send_tel_pass"
                             :loading="btn_loadding.send"
                             >인증</el-button
@@ -87,8 +83,6 @@
                         ></el-input>
                         <el-button
                             class="btn"
-                            type="default"
-                            plain
                             @click="check_tel_pass"
                             :loading="btn_loadding.check_sms"
                             >확인</el-button
@@ -105,8 +99,6 @@
                         ></el-input>
                         <el-button
                             class="btn"
-                            type="default"
-                            plain
                             @click="searchAds"
                             >검색하기</el-button
                         >
@@ -252,8 +244,6 @@
 		</h3>
 		<div class="btn_box">
 			<el-button
-				type="default"
-				plain
 				@click="$router.push('/')"
 				>홈으로 이동</el-button
 			>

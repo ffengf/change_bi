@@ -369,7 +369,7 @@ export default class extends Vue {
 				letter-spacing: -3.75px;
 			}
 			.bold{
-				font-weight: bold;
+				font-family: NotoSansKR-Bold;
 			}
 			h2{
 				margin-top: 1rem;
