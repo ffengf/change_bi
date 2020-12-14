@@ -1,24 +1,24 @@
 <template>
-    <div id="active_list">
+    <div id="active_list" v-loading="loading">
 		<BoxHeader :new_list="bread" />
 		<ul class="warpper">
-			<li class="item">
-				<img src="@/assets/img/club/1.png">
+			<li class="item" v-for="(ele,index) in list" :key="index" @click="move(ele.id)">
+				<img :src="ele.cover">
 				<div class="top">
-					<h2>강연 초대</h2>
-					<h1>홍길순 작가의 스위치 독점 강연 문학 감성기르는 방법과 실전</h1>
+					<h2>{{ ele.status === 1 ? '서평단 신청': '강연 초대' }}</h2>
+					<h1>{{ ele.title }}</h1>
 				</div>
 				<div class="bottom">
 					<div class="left">
 						<img src="@/assets/img/user_green.png">
 						<p>스위치</p>
 					</div>
-					<div class="right">2020-05-01 작성</div>
+					<div class="right">{{ ele.start_time }} 작성</div>
 				</div>
 			</li>
 
 		</ul>
-		<el-button type="success" class="more" >더 보기</el-button>
+		<el-button type="success" class="more" @click="more" :disabled="disabled">더 보기</el-button>
     </div>
 </template>
 
@@ -27,13 +27,14 @@ import { Vue, Component, Watch } from "vue-property-decorator";
 import Bread from "@/components/bread/index.vue";
 import BoxHeader from "../header.vue"
 import { More } from "@/mixin/more";
+import { api_active } from "@/api";
 @Component({
 	components:{
 		Bread,
 		BoxHeader,
 	}
 })
-export default class extends Vue {
+export default class extends More(api_active.get_list,false) {
 	bread = [
 		{
 			to:'/active/1/list',
@@ -44,8 +45,14 @@ export default class extends Vue {
 		}
 	]
 
+	filter = {
+		type: '0'
+	}
+
 	@Watch("active_type", { immediate: true })
     watch_route() {
+		this.filter.type = this.active_type
+		this.clear_list()
         this.bread.splice(1,1,{
 			title:this.active_type === '1' ? '서평단 신청': '강연 초대'
 		})
@@ -56,10 +63,13 @@ export default class extends Vue {
         if (type === "1" || type === "2") {
             return type;
         } else {
-            return "1";
+            return "0";
 		}
     }
 
+	move(id:number){
+		this.$router.push(`/active/${this.active_type}/info/${id}`)
+	}
 
 }
 </script>

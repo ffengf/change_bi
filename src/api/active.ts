@@ -19,12 +19,29 @@ export interface active {
 
 
 class Active extends Http {
-	get_list(data: req_list) {
+	get_list = (data: req_list) => {
 		return this.get<res_list<active>>(data)
 	}
 
-	get_info(id:number){
-		return this.get<active>({},`/book/activity/${id}/`)
+	get_info(id: number) {
+		return this.get<active>({}, `/book/activity/${id}/`)
+	}
+
+	async get_ids(type:number|string){
+		const { results } = await this.get_list({
+			page:1,
+			page_size:30,
+			type
+		})
+		return results.map(x => x.id).sort((a,b) => a - b)
+	}
+
+	join(id:number){
+		return this.server.post(`/book/activity/${id}/apply/`,{ status:1 })
+	}
+
+	cancel(id:number){
+		return this.server.post(`/book/activity/${id}/apply/`,{ status:0 })
 	}
 }
 

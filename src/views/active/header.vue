@@ -6,8 +6,8 @@
         <div class="line"></div>
         <h1>오직 스위치에서만 제공하는 이벤트</h1>
         <div class="tab">
-            <router-link class="item" tag="div" to="/active/1/list">서평단 신청</router-link>
-            <router-link class="item" tag="div" to="/active/2/list">강연 초대</router-link>
+            <div :class="['item',active('1') ? 'active' :'']" @click="move('1')">서평단 신청</div>
+            <div :class="['item',active('2') ? 'active' :'']" @click="move('2')">강연 초대</div>
         </div>
     </div>
 </template>
@@ -26,7 +26,16 @@ export default class extends Vue {
     new_list!: {
         to: string;
         title: string;
-    }[];
+	}[];
+
+	active(type:string){
+		return this.$route.params.active_type === type
+	}
+
+	move(type:string){
+		this.$router.push(`/active/${type}/list`)
+	}
+
 }
 </script>
 
@@ -66,7 +75,8 @@ export default class extends Vue {
         width: 100%;
         border: 1px solid #324b9b;
         height: 3.25rem;
-        display: flex;
+		display: flex;
+		box-sizing: border-box;
         > .item {
             width: 50%;
             line-height: 3.25rem;
@@ -81,7 +91,7 @@ export default class extends Vue {
             cursor: pointer;
             height: 100%;
         }
-        .router-link-active {
+        .active {
             background: #324b9b;
             color: #fff;
         }

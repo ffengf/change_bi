@@ -4,7 +4,7 @@
 import { req_list, res_list } from '@/types/global'
 import { Vue, Component, Watch } from "vue-property-decorator"
 
-export const More = <T>(axios_get: (req_list: req_list) => Promise<res_list<T>>) => {
+export const More = <T>(axios_get: (req_list: req_list) => Promise<res_list<T>>,use_created = true) => {
 
 	@Component
 	class Mixin extends Vue {
@@ -51,7 +51,9 @@ export const More = <T>(axios_get: (req_list: req_list) => Promise<res_list<T>>)
 		}
 
 		created() {
-			this.get_list()
+			if(use_created){
+				this.get_list()
+			}
 		}
 	}
 
