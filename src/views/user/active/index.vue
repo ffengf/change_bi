@@ -1,15 +1,17 @@
 <template>
-    <div class="warpper">
-		<div class="box">
+    <div class="warpper" v-loading="loading">
+		<div class="box" v-for="(ele) in list" :key="ele.id">
 			<div class="box_left">
 				<h2>
-					<span>진행 중</span>
+					<span class="color_success" v-if="ele.type === 1">진행 중</span>
+					<span class="color_primary" v-if="ele.type === 2">강연</span>
 					<span>|</span>
-					<span>2020. 11. 01 ~ 2020. 11. 30</span>
+					<span>{{ ele.start_time }} ~ {{ ele.end_time }}</span>
 				</h2>
-				<h1>클럽 창작과비평 2기</h1>
+				<h1>{{ ele.title }}</h1>
 			</div>
-			<el-button class="right_btn" type="primary">참여하기</el-button>
+			<el-button class="right_btn" type="success" v-if="ele.status === 0">신청 진행 중</el-button>
+			<el-button class="right_btn" type="primary" v-if="ele.status === 1">참여하기</el-button>
 		</div>
 		<el-button class="more" type="success" :disabled="disabled">더 보기</el-button>
     </div>
@@ -27,7 +29,7 @@ import { api_user,user_club } from "@/api"
 		Bread,
 	},
 })
-export default class extends More(api_user.get_club) {
+export default class extends More(api_user.get_active) {
 
 }
 </script>

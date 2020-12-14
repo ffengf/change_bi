@@ -183,7 +183,7 @@ const routes: RouteConfig[] = [
 				children:[
 					{
 						path: 'club',
-						name: 'club',
+						name: 'user_club',
 						meta:{
 							title:'读书会'
 						},
@@ -191,7 +191,7 @@ const routes: RouteConfig[] = [
 					},
 					{
 						path: 'pay',
-						name: 'pay',
+						name: 'user_pay',
 						meta:{
 							title:'支付列表'
 						},
@@ -199,7 +199,7 @@ const routes: RouteConfig[] = [
 					},
 					{
 						path: 'coupon',
-						name: 'coupon',
+						name: 'user_coupon',
 						meta:{
 							title:'优惠券'
 						},
@@ -207,7 +207,7 @@ const routes: RouteConfig[] = [
 					},
 					{
 						path: 'active',
-						name: 'active',
+						name: 'user_active',
 						meta:{
 							title:'我的活动'
 						},
