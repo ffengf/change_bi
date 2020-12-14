@@ -172,7 +172,7 @@ export default class extends Vue {
 		},
 		{
             name: '이벤트',
-            index: "/read",
+            index: "/active/1/list",
 		},
     ];
 

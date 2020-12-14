@@ -30,7 +30,7 @@ export default class extends Vue {
         if (["content", "use", "privacy"].includes(this.$route.params.type)) {
             return this.$route.params.type as route_type;
         }
-		this.$router.push("/service/content");
+		this.$router.replace("/service/content");
 		return "content"
     }
 

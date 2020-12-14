@@ -1,58 +1,56 @@
 <template>
-    <div id="user" class="flexC">
-		<div class="user">
-			<div class="bread_box w70vw min_width1000">
-				<Bread class="bread" />
-			</div>
-			<div class="line mt10"></div>
-			<div class="body">
-				<Rview />
-			</div>
-		</div>
+    <div id="active" class="flexC">
+        <div class="active_box bread_box w70vw min_width1000">
+            <Rview />
+        </div>
     </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component, Watch } from "vue-property-decorator";
 import Rview from "@/components/routerView/index.vue";
-import Bread from "@/components/bread/index.vue"
+import BoxHeader from "./header.vue"
+type active_type = "1" | "2"
+
 @Component({
     components: {
 		Rview,
-		Bread,
-	},
+		BoxHeader
+    },
 })
-export default class extends Vue {
 
+export default class extends Vue {
+	@Watch("active_type", { immediate: true })
+    watch_route() {
+
+    }
+
+    get active_type(): active_type {
+        const type: string = this.$route.params.active_type;
+        if (type === "1" || type === "2") {
+            return type;
+        } else {
+			const { path } = this.$route
+			const reg = new RegExp(`${type}`,"g")
+			this.$router.replace(path.replace(reg,'1'))
+            return "1";
+		}
+    }
 }
 </script>
 
 
 
 <style lang='less' scoped>
-#user{
-	width: 100vw;
+#active{
 	margin-top: 3.75rem;
-	.user{
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-
-	}
-	.line{
-		background: #324b9b;
-		width: 50rem;
-	}
-	.body{
-		margin-top: 2rem;
-		width: 100%;
-	}
-}
-@media only screen and (max-width: 1025px){
-	#club{
-		width:100%;
-		.line{
-			width:100%;
+	.active_box{
+		/deep/.box_line{
+			background: #324b9b;
+			height: 4px;
+		}
+		/deep/.bread{
+			margin-bottom: 0.75rem;
 		}
 	}
 }

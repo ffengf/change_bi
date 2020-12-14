@@ -56,6 +56,33 @@ const routes: RouteConfig[] = [
 				]
 			},
 			{
+				path: '/active/:active_type',
+				name: 'active',
+				meta:{
+					title:'이벤트'
+				},
+				component: () => import('@/views/active/index.vue'),
+				redirect: '/active/:active_type/list',
+				children:[
+					{
+						path: 'list',
+						name: 'list',
+						meta:{
+							title:'list'
+						},
+						component: () => import('@/views/active/list/index.vue'),
+					},
+					{
+						path: 'info/:id',
+						name: 'info',
+						meta:{
+							title:'info'
+						},
+						component: () => import('@/views/active/info/index.vue'),
+					},
+				]
+			},
+			{
 				path: '/customer',
 				name: 'customer',
 				meta:{

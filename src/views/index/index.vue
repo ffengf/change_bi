@@ -358,6 +358,7 @@ export default class extends Vue {
 				color: #3fa535;
 				p{
 					white-space:pre-wrap;
+					font-family: NanumSquareRoundL_samll;
 				}
 			}
 			h1{
@@ -369,7 +370,7 @@ export default class extends Vue {
 				letter-spacing: -3.75px;
 			}
 			.bold{
-				font-family: NotoSansKR-Bold;
+				font-family: NanumSquareRoundL;
 			}
 			h2{
 				margin-top: 1rem;
