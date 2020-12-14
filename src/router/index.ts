@@ -242,6 +242,19 @@ const routes: RouteConfig[] = [
 				path: '/service/:type',
 				name: 'service',
 				component: () => import('@/views/service/index.vue')
+			},
+			{
+				path: '/other',
+				name: 'other',
+				redirect: '/other/pay/fail',
+				component: () => import('@/views/other/index.vue'),
+				children:[
+					{
+						path: 'pay/:type',
+						name: 'pay',
+						component: () => import('@/views/other/pay/index.vue'),
+					},
+				]
 			}
 		]
 	},
