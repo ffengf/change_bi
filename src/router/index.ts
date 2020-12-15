@@ -39,11 +39,6 @@ const routes: RouteConfig[] = [
 						component: () => import('@/views/login/signup/index.vue'),
 					},
 					{
-						path: 'resetpass',
-						name: 'resetpass',
-						component: () => import('@/views/login/resetpass/index.vue'),
-					},
-					{
 						path: 'findusername',
 						name: 'findusername',
 						component: () => import('@/views/login/findusername/index.vue'),

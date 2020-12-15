@@ -18,9 +18,7 @@
                                 v-model="info.phone"
                                 placeholder="휴대폰 번호('-'는 빼고 입력해주세요)"
                             ></el-input>
-                            <el-button size="small" @click="send_tel_pass" :loading="btn_loadding.send"
-                                >인증번호 발송</el-button
-                            >
+                            <PhoneSend :phone="info.phone" />
                         </div>
                     </el-form-item>
                     <el-form-item prop="code">
@@ -70,7 +68,12 @@
 import { api_login } from "@/api";
 import { ElForm } from "element-ui/types/form";
 import { Vue, Component } from "vue-property-decorator";
-@Component
+import PhoneSend from "../components/phoneSend.vue"
+@Component({
+	components:{
+		PhoneSend
+	}
+})
 export default class extends Vue {
     validatePhone(rule, value: string, callback) {
         if (value.length !== 11) {

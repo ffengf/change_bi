@@ -66,12 +66,7 @@
                             v-model="info.phone"
                             placeholder="‘-’를 제외하고 입력해주세요."
                         ></el-input>
-                        <el-button
-                            class="btn"
-                            @click="send_tel_pass"
-                            :loading="btn_loadding.send"
-                            >인증</el-button
-                        >
+						<PhoneSend :phone="info.phone" class="btn" size="default" content="인증" />
                     </div>
                 </el-form-item>
                 <el-form-item prop="code" label="인증번호">
@@ -259,7 +254,12 @@ import { api_login, sign_up,api_service } from "@/api";
 import { ElForm } from "element-ui/types/form";
 import { Vue, Component, Watch } from "vue-property-decorator";
 import { mapObjIndexed } from "ramda"
-@Component
+import PhoneSend from "../components/phoneSend.vue"
+@Component({
+	components:{
+		PhoneSend
+	}
+})
 export default class extends Vue {
 	type = 0
 
@@ -270,7 +270,6 @@ export default class extends Vue {
 
     btn_loadding = {
         mail: false,
-        send: false,
         check_sms: false,
     };
 
@@ -331,37 +330,19 @@ export default class extends Vue {
         }
     }
     async check_tel_pass() {
+		//todo
         (this.$refs["form"] as ElForm).validateField("phone", async (rules) => {
-            this.btn_loadding.check_sms = true;
             if (rules === "验证一下") {
-                try {
-                    await api_login.check_sms({
-                        phone: this.info.phone,
-                        code: this.info.code,
-                    });
-                    this.$message.success("验证成功");
-                    this.older.phone = this.info.phone;
-                    this.btn_loadding.check_sms = false;
-                } catch (e) {
-                    this.btn_loadding.check_sms = false;
-                }
+				this.btn_loadding.check_sms = true;
+				await api_login.check_sms({
+					phone: this.info.phone,
+					code: this.info.code,
+				}).finally(()=>{
+					this.btn_loadding.check_sms = false;
+				})
+				this.$message.success("验证成功");
+				this.older.phone = this.info.phone;
             }
-        });
-    }
-    async send_tel_pass() {
-        (this.$refs["form"] as ElForm).validateField("phone", async (rules) => {
-			this.btn_loadding.send = true;
-            if (rules === "") {
-                try {
-                    await api_login.send_sms({
-                        phone: this.info.phone,
-                    });
-                    this.btn_loadding.send = false;
-                    this.$message.success("发送成功，输入验证码");
-                } catch (e) {
-                    this.btn_loadding.send = false;
-                }
-			}
         });
     }
 
@@ -469,7 +450,8 @@ export default class extends Vue {
 		}
 		const info = mapObjIndexed((v,k)=>{
 			if(typeof v === 'boolean'){
-				return v === true ? 1 : 0
+				return Boolean(v)
+				// return v === true ? 1 : 0
 			}else{
 				return v
 			}

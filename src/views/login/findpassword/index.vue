@@ -22,7 +22,7 @@
                                 placeholder="휴대폰 번호('-'는 빼고 입력해주세요)"
 								class="width_70"
                             ></el-input>
-                            <el-button size="small" :loading="btn_loadding.send" @click="send_tel_pass">인증번호 발송</el-button>
+                            <PhoneSend :phone="info_1.phone" />
                         </div>
                     </el-form-item>
                     <el-form-item prop="code">
@@ -78,7 +78,12 @@
 import { api_login } from "@/api";
 import { ElForm } from "element-ui/types/form";
 import { Vue, Component } from "vue-property-decorator";
-@Component
+import PhoneSend from "../components/phoneSend.vue"
+@Component({
+	components:{
+		PhoneSend
+	}
+})
 export default class extends Vue {
 	validatePhone(rule, value: string, callback) {
         if (value.length !== 11) {
@@ -137,25 +142,10 @@ export default class extends Vue {
 	step = 1;
 
 	btn_loadding = {
-		send:false,
 		submit_1:false,
 		submit_2:false
 	}
 
-	async send_tel_pass() {
-        (this.$refs["form"] as ElForm).validateField("phone", async (rules) => {
-            this.btn_loadding.send = true;
-			try {
-				await api_login.send_sms({
-					phone: this.info_1.phone,
-				});
-				this.btn_loadding.send = false;
-				this.$message.success("发送成功，输入验证码");
-			} catch (e) {
-				this.btn_loadding.send = false;
-			}
-        });
-    }
 
 
 	async submit_1(){
