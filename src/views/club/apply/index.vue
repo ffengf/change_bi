@@ -3,7 +3,7 @@
 		<div class="warpper w70vw min_width1000">
 			<h1>북클럽 필라멘트</h1>
 			<div class="line"></div>
-			<h2 class="na">
+			<h2 class="na_sm">
 				<p>책으로 연결되는 우리</p>
 				<p>경험으로 연결되는 책</p>
 				<p>『필라멘트』</p>

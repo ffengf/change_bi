@@ -3,7 +3,7 @@
 		<div class="warpper w70vw min_width1000">
 			<h1>클럽 창작과비평</h1>
 			<div class="line"></div>
-			<h2 class="na">
+			<h2 class="na_sm">
 				<p>한 계절이 지나고</p>
 				<p>당신의 문학이 더 깊어집니다</p>
 				<p>당신의 관점이 더 넓어집니다</p>

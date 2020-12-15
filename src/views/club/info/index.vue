@@ -86,27 +86,20 @@ export default class extends Vue {
 	}
 
 	async free(){
-		await this.$confirm('신청이 완료되었습니다.',{//免费 第一次
-			confirmButtonText: '나의 모임',
-			cancelButtonText: '이전으로',
-		})
-		this.$router.push('/user/club')
-
-		// await this.$confirm('이미 참여하고 있는 모임입니다. 나의 모임으로 이동하시겠습니까?',{//第x次
-		// 	confirmButtonText: '이동',
-		// 	cancelButtonText: '취소',
-		// })
-		// this.$router.push('/user/club')
-
-
-
-		// const { code } = await api_club.join(this.info.id)
-
-		// if(code){
-		// 	this.$alert('신청이 완료되었습니다.')
-		// }else{
-
-		// }
+		const { code } = await api_club.join(this.info.id)
+		if(code === 50001){
+			await this.$confirm('이미 참여하고 있는 모임입니다. 나의 모임으로 이동하시겠습니까?',{
+				confirmButtonText: '이동',
+				cancelButtonText: '취소',
+			})
+			this.$router.push('/user/club')
+		}else{
+			await this.$confirm('신청이 완료되었습니다.',{//free first
+				confirmButtonText: '나의 모임',
+				cancelButtonText: '이전으로',
+			})
+			this.$router.push('/user/club')
+		}
 	}
 
 	pay(){

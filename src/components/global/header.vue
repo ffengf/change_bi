@@ -8,7 +8,7 @@
 				@click="$router.push('/')"
             />
             <div>
-                <el-menu menu-trigger="click" :default-active="defaultActive" mode="horizontal" class="tab" router text-color="#000" active-text-color="#3fa535">
+                <el-menu menu-trigger="click"  mode="horizontal" class="tab" router text-color="#000" active-text-color="#000">
                     <template v-for="(ele,index) in tab">
                         <el-submenu :key="index + ele.index" :index="ele.index" v-if="ele.children">
                             <template slot="title"><h1>{{ ele.name }}</h1></template>
@@ -220,10 +220,16 @@ export default class extends Vue {
 <style lang="less" scoped>
 #header {
 	/deep/.el-menu--horizontal > .el-submenu.is-active .el-submenu__title{
-		border-width: 6px!important;
+		border: 2px solid red;
 	}
 	/deep/.el-menu--horizontal > .el-menu-item.is-active{
-		border-width: 6px!important;
+		border: 2px solid red;
+	}
+	// /deep/.el-menu--horizontal > .el-submenu{
+	// 	border: none;
+	// }
+	/deep/.el-submenu__title,.el-menu-item{
+		border:none!important;
 	}
     box-sizing: border-box;
     width: 100%;

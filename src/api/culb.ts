@@ -41,7 +41,7 @@ class Club extends Http {
 	join(id:number){
 		return this.post<{
 			code?:number
-		}>({ statis:1 },`/club/${id}/apply/`)
+		}>({ status:1 },`/club/${id}/apply/`)
 	}
 
 }
