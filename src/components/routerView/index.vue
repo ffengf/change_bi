@@ -1,12 +1,12 @@
 <template>
-    <div class="rightContent">
-        <transition name="fade-page" mode="out-in">
-            <keep-alive v-if="false">
-                <router-view></router-view>
-            </keep-alive>
-            <router-view v-else></router-view>
-        </transition>
-    </div>
+    <div>
+		<transition name="fade-page" mode="out-in">
+			<keep-alive v-if="$route.meta.cache">
+				<router-view v-if="$route.meta.cache"></router-view>
+			</keep-alive>
+			<router-view v-if="$route.meta.cache === undefined"></router-view>
+		</transition>
+	</div>
 </template>
 
 <script lang="ts">

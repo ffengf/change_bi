@@ -102,6 +102,15 @@ class Serial extends Http {
 		}
 	}
 
+	get_today(){
+		return this.get_list({
+			page:1,
+			page_size:3,
+			day_of_week: new Date().getDay() - 1,
+			is_recommend: 1
+		})
+	}
+
 	async get_info(id:number){
 		return this.get<book_info>({},`${this.uri}${id}/`)
 	}

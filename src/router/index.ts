@@ -15,17 +15,26 @@ const routes: RouteConfig[] = [
 		path: '/',
 		name: 'home',
 		redirect: '/',
+		meta:{
+			cache:true
+		},
 		component: () => import('@/components/global/index.vue'),
 		children: [
 			{
 				path: '',
 				name: 'index',
+				meta: {
+					cache: true
+				},
 				component: () => import('@/views/index/index.vue'),
 			},
 			{
 				path: '/login',
 				name: 'login',
 				redirect: '/login/signin',
+				meta: {
+					cache: true
+				},
 				component: () => import('@/views/login/index.vue'),
 				children: [
 					{
@@ -53,25 +62,27 @@ const routes: RouteConfig[] = [
 			{
 				path: '/active/:active_type',
 				name: 'active',
-				meta:{
-					title:'이벤트'
+				meta: {
+					title: '이벤트',
+					cache: true
 				},
 				component: () => import('@/views/active/index.vue'),
 				redirect: '/active/:active_type/list',
-				children:[
+				children: [
 					{
 						path: 'list',
 						name: 'list',
-						meta:{
-							title:'list'
+						meta: {
+							title: 'list',
+							cache: true
 						},
 						component: () => import('@/views/active/list/index.vue'),
 					},
 					{
 						path: 'info/:id',
 						name: 'info',
-						meta:{
-							title:'info'
+						meta: {
+							title: 'info'
 						},
 						component: () => import('@/views/active/info/index.vue'),
 					},
@@ -80,33 +91,34 @@ const routes: RouteConfig[] = [
 			{
 				path: '/customer',
 				name: 'customer',
-				meta:{
-					title:'고객센터'
+				meta: {
+					title: '고객센터',
+					cache: true
 				},
 				component: () => import('@/views/customer/index.vue'),
 				redirect: '/customer/notice',
-				children:[
+				children: [
 					{
 						path: 'notice',
 						name: 'notice',
-						meta:{
-							title:'공지사항'
+						meta: {
+							title: '공지사항'
 						},
 						component: () => import('@/views/customer/notice/index.vue'),
 					},
 					{
 						path: 'problem',
 						name: 'problem',
-						meta:{
-							title:'자주 묻는 질문'
+						meta: {
+							title: '자주 묻는 질문'
 						},
 						component: () => import('@/views/customer/problem/index.vue'),
 					},
 					{
 						path: 'answer',
 						name: 'answer',
-						meta:{
-							title:'1:1 문의'
+						meta: {
+							title: '1:1 문의'
 						},
 						component: () => import('@/views/customer/answer/index.vue'),
 					},
@@ -115,29 +127,34 @@ const routes: RouteConfig[] = [
 			{
 				path: '/club',
 				name: 'club',
-				meta:{
-					title:'모임신청'
+				meta: {
+					title: '모임신청',
+					cache: true
 				},
 				component: () => import('@/views/club/index.vue'),
 				redirect: '/club/creation',
-				children:[
+				children: [
 					{
 						path: 'creation',
 						name: 'creation',
-						meta:{
-							title:'클럽창작과비평'
+						meta: {
+							title: '클럽창작과비평',
+							cache: true
 						},
 						component: Rview,
 						redirect: '/club/creation',
-						children:[
+						children: [
 							{
 								path: '',
+								meta:{
+									cache: true
+								},
 								component: () => import('@/views/club/creation/index.vue'),
 							},
 							{
-								path:'info/:id',
-								meta:{
-									title:'info'
+								path: 'info/:id',
+								meta: {
+									title: 'info'
 								},
 								component: () => import('@/views/club/info/index.vue'),
 							}
@@ -146,20 +163,24 @@ const routes: RouteConfig[] = [
 					{
 						path: 'apply',
 						name: 'apply',
-						meta:{
-							title:'북클럽필라멘트'
+						meta: {
+							title: '북클럽필라멘트',
+							cache: true
 						},
 						component: Rview,
 						redirect: '/club/apply',
-						children:[
+						children: [
 							{
 								path: '',
+								meta:{
+									cache: true
+								},
 								component: () => import('@/views/club/apply/index.vue'),
 							},
 							{
-								path:'info/:id',
-								meta:{
-									title:'info'
+								path: 'info/:id',
+								meta: {
+									title: 'info'
 								},
 								component: () => import('@/views/club/info/index.vue'),
 							}
@@ -170,41 +191,42 @@ const routes: RouteConfig[] = [
 			{
 				path: '/user',
 				name: 'user',
-				meta:{
-					title:'마이페이지'
+				meta: {
+					title: '마이페이지',
+					cache: true
 				},
 				component: () => import('@/views/user/index.vue'),
 				redirect: '/user/club',
-				children:[
+				children: [
 					{
 						path: 'club',
 						name: 'user_club',
-						meta:{
-							title:'读书会'
+						meta: {
+							title: '读书会'
 						},
 						component: () => import('@/views/user/club/index.vue'),
 					},
 					{
 						path: 'pay',
 						name: 'user_pay',
-						meta:{
-							title:'支付列表'
+						meta: {
+							title: '支付列表'
 						},
 						component: () => import('@/views/user/pay/index.vue'),
 					},
 					{
 						path: 'coupon',
 						name: 'user_coupon',
-						meta:{
-							title:'优惠券'
+						meta: {
+							title: '优惠券'
 						},
 						component: () => import('@/views/user/coupon/index.vue'),
 					},
 					{
 						path: 'active',
 						name: 'user_active',
-						meta:{
-							title:'我的活动'
+						meta: {
+							title: '我的活动'
 						},
 						component: () => import('@/views/user/active/index.vue'),
 					}
@@ -214,28 +236,40 @@ const routes: RouteConfig[] = [
 				path: '/serial',
 				name: 'serial',
 				redirect: '/serial/date',
+				meta: {
+					cache: true
+				},
 				component: () => import('@/views/serial/index.vue'),
-				children:[
+				children: [
 					{
-						path:'date',
-						name:'date',
-						component:() => import('@/views/serial/date/index.vue')
+						path: 'date',
+						name: 'date',
+						meta: {
+							cache: true
+						},
+						component: () => import('@/views/serial/date/index.vue')
 					},
 					{
-						path:'book_info/:id',
-						name:'book_info',
-						component:() => import('@/views/serial/book_info/index.vue')
+						path: 'book_info/:id',
+						name: 'book_info',
+						meta: {
+							cache: undefined
+						},
+						component: () => import('@/views/serial/book_info/index.vue')
 					},
 					{
-						path:'chapter_info/:book_id/:info_id',
-						name:'chapter_info',
-						component:() => import('@/views/serial/chapter_info/index.vue')
+						path: 'chapter_info/:book_id/:info_id',
+						name: 'chapter_info',
+						component: () => import('@/views/serial/chapter_info/index.vue')
 					}
 				]
 			},
 			{
 				path: '/service/:type',
 				name: 'service',
+				meta: {
+					cache: true
+				},
 				component: () => import('@/views/service/index.vue')
 			},
 			{
@@ -243,7 +277,10 @@ const routes: RouteConfig[] = [
 				name: 'other',
 				redirect: '/other/pay/fail',
 				component: () => import('@/views/other/index.vue'),
-				children:[
+				meta: {
+					cache: true
+				},
+				children: [
 					{
 						path: 'pay/:type',
 						name: 'pay',

@@ -41,13 +41,13 @@
 			<div class="serial w70vw min_width1000">
 				<div class="top">
 					<h1>오늘의 연재</h1>
-					<el-link :underline="false" type="success"><em>+</em>  <em style="color:#000">더 보기</em></el-link>
+					<el-link :underline="false" type="success" @click="$router.push('/serial/date')"><em>+</em>  <em style="color:#000">더 보기</em></el-link>
 				</div>
 				<ul class="bottom">
-					<el-card class="item" shadow="hover" v-for="(ele,index) in items" :key="index">
-						<img class="img" :src="ele.url" />
+					<el-card class="item" shadow="hover" v-for="(ele) in serial_list" :key="ele.id" @click.native="go_serial(ele.id)">
+						<img class="img" :src="ele.cover" />
 						<h1>{{ ele.title }}</h1>
-						<p class="kr-re">{{ ele.info }}</p>
+						<p class="kr-re">{{ ele.book_desc }}</p>
 					</el-card>
 				</ul>
 			</div>
@@ -56,7 +56,7 @@
 			<div class="bb w70vw min_width1000">
 				<img src="@/assets/img/index1.png"/>
 				<img src="@/assets/img/index2.png"/>
-				<img class="sm-down" src="@/assets/img/index3.png"/>
+				<img src="@/assets/img/index3.png"/>
 				<el-button type="success" class="btn">스위치 알아보기</el-button>
 			</div>
 		</div>
@@ -79,13 +79,15 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import { banner, api_home } from '@/api';
+import { banner, api_home, book_data, api_serial } from '@/api';
 @Component
 export default class extends Vue {
 
 	banner_list:banner[] = []
 
 	evaluation_list:any[] = []
+
+	serial_list:book_data[] = []
 
 
 	async get_banner_list(){
@@ -96,11 +98,16 @@ export default class extends Vue {
 		this.evaluation_list = await api_home.get_evaluation()
 	}
 
+	async get_serial_list(){
+		this.serial_list = await api_serial.get_today()
+	}
+
 
 	async created(){
 		await Promise.all([
 			this.get_banner_list(),
-			this.get_evaluation_list()
+			this.get_evaluation_list(),
+			this.get_serial_list(),
 		])
 	}
 
@@ -128,24 +135,10 @@ export default class extends Vue {
 		}
 	]
 
+	go_serial(id:number){
+		this.$router.push(`/serial/book_info/${id}?bread_date=화요연재`)
+	}
 
-	items = [
-		{
-			url:'http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071011.png',
-			title:"김민수 장편소설 ‘함께’ 13화",
-			info:"클럽 창작과비평 독서모임 1기 모집"
-		},
-		{
-			url:'https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png',
-			title:"김민수 장편소설 ‘함께’ 13화",
-			info:"你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好"
-		},
-		{
-			url:'https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png',
-			title:"김민수 장편소설 ‘함께’ 13화",
-			info:"你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好"
-		},
-	]
 }
 </script>
 
@@ -280,6 +273,10 @@ export default class extends Vue {
 			display: flex;
 			flex-wrap: wrap;
 			justify-content: space-between;
+			&::after{
+				content: '';
+				width: 30%;
+			}
 			.item{
 				width: 30%;
 				height: 18rem;
@@ -455,6 +452,21 @@ export default class extends Vue {
 			}
 		}
 
+	}
+	.img_box{
+		height: 16rem!important;
+		.bb{
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-around;
+			img,.btn{
+				position: static!important;
+				top: auto!important;
+				transform:translate(0,0)!important;
+			}
+		}
 	}
 }
 
