@@ -8,7 +8,7 @@
 				@click="$router.push('/')"
             />
             <div>
-                <el-menu menu-trigger="click" mode="horizontal" class="tab" router text-color="#000" active-text-color="#3fa535">
+                <el-menu menu-trigger="click" :default-active="defaultActive" mode="horizontal" class="tab" router text-color="#000" active-text-color="#3fa535">
                     <template v-for="(ele,index) in tab">
                         <el-submenu :key="index + ele.index" :index="ele.index" v-if="ele.children">
                             <template slot="title"><h1>{{ ele.name }}</h1></template>
@@ -77,7 +77,7 @@
             <el-drawer append-to-body :visible.sync="key" direction="ltr" :withHeader="false" :showClose="false" size="60%" class="drawer">
                 <el-menu router>
                     <template v-for="ele in tab">
-                        <el-submenu :key="ele.index" :index="ele.index" v-if="ele.children">
+                        <el-submenu :default-active="defaultActive" :key="ele.index" :index="ele.index" v-if="ele.children">
                             <template slot="title"><h1>{{ ele.name }}</h1></template>
                             <el-menu-item
                                 v-for="e in ele.children"
@@ -205,7 +205,15 @@ export default class extends Vue {
 		}
 	}
 
-    created() {}
+    get defaultActive() {
+		if(/^\/active/.test((this.$route.path as string))){
+			return `/active/1/list`
+		}
+		if(/^\/club/.test((this.$route.path as string))){
+			return this.$route.path
+		}
+        return '/' + (this.$route.path as string).split('/').filter(x => x !== '')[0];
+	}
 }
 </script>
 
