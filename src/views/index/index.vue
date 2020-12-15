@@ -3,8 +3,8 @@
         <div class="carousel">
             <el-carousel arrow="always" height="23rem">
                 <el-carousel-item class="items" v-for="ele in banner_list" :key="ele.id" @click="window.open(ele.link)">
-					<!-- <p class="title">{{ ele.title }}</p> -->
-                    <el-image class="img" :src="ele.image" @click="window.open(ele.link)" />
+                    <el-image class="img sm-down" :src="ele.image" @click="window.open(ele.link)" />
+					<el-image class="img sm-up" :src="ele.h5_image" @click="window.open(ele.link)" />
                 </el-carousel-item>
             </el-carousel>
         </div>

@@ -5,6 +5,7 @@ export interface banner {
 	id:number
 	title:string
 	image:string
+	h5_image:string
 	link:string
 }
 

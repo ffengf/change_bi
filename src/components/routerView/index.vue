@@ -1,11 +1,11 @@
 <template>
     <div>
-		<transition name="fade-page" mode="out-in">
-			<keep-alive v-if="$route.meta.cache">
+		<!-- <transition name="fade-page" mode="out-in"> -->
+			<keep-alive>
 				<router-view v-if="$route.meta.cache"></router-view>
 			</keep-alive>
-			<router-view v-if="$route.meta.cache === undefined"></router-view>
-		</transition>
+			<router-view v-if="$route.meta.cache === undefined || $route.meta.cache === false"></router-view>
+		<!-- </transition> -->
 	</div>
 </template>
 

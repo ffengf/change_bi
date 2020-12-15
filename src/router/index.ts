@@ -268,7 +268,7 @@ const routes: RouteConfig[] = [
 				path: '/service/:type',
 				name: 'service',
 				meta: {
-					cache: true
+					cache: false
 				},
 				component: () => import('@/views/service/index.vue')
 			},
