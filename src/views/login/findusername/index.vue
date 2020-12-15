@@ -98,21 +98,6 @@ export default class extends Vue {
 		send:false
 	}
 
-	async send_tel_pass() {
-        (this.$refs["form"] as ElForm).validateField("phone", async (rules) => {
-            this.btn_loadding.send = true;
-			try {
-				await api_login.send_sms({
-					phone: this.info.phone,
-				});
-				this.btn_loadding.send = false;
-				this.$message.success("发送成功，输入验证码");
-			} catch (e) {
-				this.btn_loadding.send = false;
-			}
-        });
-    }
-
     async submit() {
 		await (this.$refs["form"] as ElForm).validate();
 		this.user_info = await api_login.find_account(this.info);
