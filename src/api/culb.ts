@@ -10,15 +10,15 @@ export interface club_list {
 	cover: string
 	status: 0 | 1 | 2 | 3
 	is_collect: 0 | 1
-	start_time:string
-	end_time:string
+	start_time: string
+	end_time: string
 }
 
-export interface club_info extends club_list{
-	price:number
-	refund_desc:string
-	option:string
-	option_desc:string
+export interface club_info extends club_list {
+	price: number
+	refund_desc: string
+	option: string
+	option_desc: string
 }
 
 class Club extends Http {
@@ -34,10 +34,15 @@ class Club extends Http {
 		return this.get_list({ ...data, type: 1 })
 	}
 
-	get_info(id:number){
-		return this.get<club_info>({},`${this.uri}${id}/`)
+	get_info(id: number) {
+		return this.get<club_info>({}, `${this.uri}${id}/`)
 	}
 
+	join(id:number){
+		return this.post<{
+			code?:number
+		}>({ statis:1 },`/club/${id}/apply/`)
+	}
 
 }
 

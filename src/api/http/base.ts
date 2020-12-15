@@ -24,6 +24,9 @@ server.interceptors.request.use(config => {
 	return Promise.reject(err);
 })
 server.interceptors.response.use(({ data, status }) => {
+	if(data.code === 50001){
+		return data
+	}
 	if (data.code) {
 		Vue.$message.error(data.msg)
 		return Promise.reject(data)

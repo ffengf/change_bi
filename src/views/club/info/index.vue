@@ -39,7 +39,8 @@
 						<div class="right">{{ numFormat(info.price) }} 원</div>
 					</div>
 				</div>
-				<el-button type="success" class="btn" @click="info.money = !info.money">신청하기</el-button>
+				<el-button v-if="info.price === 0" type="success" class="btn" @click="free">신청하기</el-button>
+				<el-button v-else type="success" class="btn" @click="pay">결제하기</el-button>
 			</div>
 		</div>
     </div>
@@ -82,6 +83,34 @@ export default class extends Vue {
 		})
 		this.info = info
 		this.$route.meta.title = info.title
+	}
+
+	async free(){
+		await this.$confirm('신청이 완료되었습니다.',{//免费 第一次
+			confirmButtonText: '나의 모임',
+			cancelButtonText: '이전으로',
+		})
+		this.$router.push('/user/club')
+
+		// await this.$confirm('이미 참여하고 있는 모임입니다. 나의 모임으로 이동하시겠습니까?',{//第x次
+		// 	confirmButtonText: '이동',
+		// 	cancelButtonText: '취소',
+		// })
+		// this.$router.push('/user/club')
+
+
+
+		// const { code } = await api_club.join(this.info.id)
+
+		// if(code){
+		// 	this.$alert('신청이 완료되었습니다.')
+		// }else{
+
+		// }
+	}
+
+	pay(){
+
 	}
 
 	created(){

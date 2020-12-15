@@ -432,7 +432,7 @@ export default class extends Vue {
 	}
 	.text_carousel{
 		/deep/.el-carousel__container{
-			height: 20rem!important;
+			height: 26rem!important;
 		}
 		/deep/.el-carousel__arrow--left{
 			left: 1rem !important ;
@@ -479,7 +479,7 @@ export default class extends Vue {
 	}
 	.text_carousel{
 		/deep/.el-carousel__container{
-			height: 20rem!important;
+			height: 26rem!important;
 		}
 		/deep/.el-carousel__arrow--left{
 			left: 1rem !important ;

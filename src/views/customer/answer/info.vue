@@ -10,10 +10,10 @@
 			<h1>Q.{{ info.title }}</h1>
 		</div>
 		<div class="warpper">
-			<h2 v-html="info.question"></h2>
+			<h2 class="inner" v-html="info.question"></h2>
 			<template v-if="info.status === 1">
 				<div class="answer">답변드립니다.</div>
-				<h2 v-html="info.answer"></h2>
+				<h2 class="inner" v-html="info.answer"></h2>
 			</template>
 		</div>
 		<div class="btn_box">
@@ -94,6 +94,7 @@ export default class extends Vue {
 	border-top: 1px solid #324b9b;
 	min-height: 21rem;
 	border-bottom: 1px solid #324b9b;
+	word-break: break-all;
 	.answer{
 		height: 5rem;
 		border-top: 1px solid #3fa535;

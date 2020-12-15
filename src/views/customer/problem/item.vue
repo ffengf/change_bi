@@ -6,7 +6,7 @@
             <i class="icon el-icon-arrow-up" @click="show" v-if="key"></i>
             <i class="icon el-icon-arrow-down" @click="show" v-else></i>
         </div>
-        <h2 class="content" v-if="key" v-html="info.answer"></h2>
+        <h2 class="content inner" v-if="key" v-html="info.answer"></h2>
     </div>
 </template>
 

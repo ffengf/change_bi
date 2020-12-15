@@ -37,11 +37,13 @@ class Active extends Http {
 	}
 
 	join(id:number){
-		return this.server.post(`/book/activity/${id}/apply/`,{ status:1 })
+		return this.post<{
+			code?:number
+		}>({ status:1 },`/book/activity/${id}/apply/`)
 	}
 
 	cancel(id:number){
-		return this.server.post(`/book/activity/${id}/apply/`,{ status:0 })
+		return this.post({ status:0 },`/book/activity/${id}/apply/`)
 	}
 }
 

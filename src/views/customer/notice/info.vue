@@ -8,7 +8,7 @@
 			</div>
 			<h1>Q.{{ info.title }}</h1>
 		</div>
-		<h2 v-html="info.content"></h2>
+		<h2 class="inner" v-html="info.content"></h2>
 		<div class="btn_box">
 			<el-button class="btns aaa" type="default" plain :disabled="what === 0" @click="change_what(what - 1)">이전 글</el-button>
 			<el-button class="btns" type="success" @click="show_list">목록으로</el-button>
@@ -84,6 +84,7 @@ h2{
 	border-top: 1px solid #324b9b;
 	min-height: 21rem;
 	border-bottom: 1px solid #324b9b;
+	word-break: break-all;
 }
 .btn_box{
 	margin-top: 2.5rem;

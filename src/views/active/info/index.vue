@@ -114,11 +114,23 @@ export default class extends Vue {
 
 	async join(){
 		this.loading = true
-		await api_active.join(this.id).finally(()=>{
+		const { code } = await api_active.join(this.id).finally(()=>{
 			this.loading = false
 		})
 		this.get_info()
-		this.$message.success('success')
+		if(code === 50001){
+			await this.$confirm('이미 참여하고 있는 이벤트입니다. 나의 이벤트로 이동하시겠습니까?',{
+				confirmButtonText: '이동',
+				cancelButtonText: '이전으로',
+			})
+			this.$router.push('/user/active')
+		}else{//first
+			await this.$confirm('신청이 완료되었습니다.',{
+				confirmButtonText: '나의 이벤트',
+				cancelButtonText: '이전으로',
+			})
+			this.$router.push('/user/active')
+		}
 	}
 
 	created(){
