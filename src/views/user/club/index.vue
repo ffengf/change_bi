@@ -31,23 +31,28 @@
 			</div>
 		</div>
 		<el-button class="more" type="success" :disabled="disabled">더 보기</el-button>
+		<el-button class="more" type="success" @click="open">test</el-button>
+
+		<Paper ref="paper" />
     </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import Rview from "@/components/routerView/index.vue";
-import Bread from "@/components/bread/index.vue"
+import Paper from "./components/paper.vue"
 import { More } from "@/mixin/more"
 import { api_user,user_club } from "@/api"
 @Component({
-    components: {
-		Rview,
-		Bread,
-	},
+	components:{
+		Paper
+	}
 })
 export default class extends More(api_user.get_club) {
-
+	open(){
+		(this.$refs['paper'] as any).open({
+			name:10
+		})
+	}
 }
 </script>
 
