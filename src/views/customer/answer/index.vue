@@ -81,7 +81,6 @@ export default class extends Vue {
 	}
 
 	get disabled():boolean{
-		console.log(this.count,this.list)
 		return this.count <= this.list.length
 	}
 }

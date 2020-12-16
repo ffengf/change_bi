@@ -219,5 +219,8 @@ export default class extends Vue {
 	.user_information,.content{
 		width: 100%!important;
 	}
+	/deep/.right_btn{
+		width: 4rem!important;
+	}
 }
 </style>

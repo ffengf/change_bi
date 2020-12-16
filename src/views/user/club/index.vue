@@ -55,7 +55,12 @@ export default class extends More(api_user.get_club) {
 
 <style lang='less' scoped>
 .flex{
-	width: 13rem;
+	width: 10rem;
 	justify-content: space-between;
+}
+@media only screen and (max-width: 1024px) {
+	.flex{
+		width: auto;
+	}
 }
 </style>
