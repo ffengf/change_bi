@@ -15,6 +15,8 @@ export interface active {
 	create_time: string
 	apply_start: string
 	apply_end: string
+	prev:null|number
+	next:null|number
 }
 
 
@@ -25,15 +27,6 @@ class Active extends Http {
 
 	get_info(id: number) {
 		return this.get<active>({}, `/book/activity/${id}/`)
-	}
-
-	async get_ids(type:number|string){
-		const { results } = await this.get_list({
-			page:1,
-			page_size:30,
-			type
-		})
-		return results.map(x => x.id).sort((a,b) => a - b)
 	}
 
 	join(id:number){

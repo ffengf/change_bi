@@ -8,7 +8,7 @@ export interface club_list {
 	title: string
 	subtitle: string
 	cover: string
-	status: 0 | 1 | 2 | 3
+	status: 0 | 1 | 2 | 3 | 4 | 5
 	is_collect: 0 | 1
 	start_time: string
 	end_time: string

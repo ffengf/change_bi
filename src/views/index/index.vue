@@ -55,7 +55,7 @@
         <div class="img_box flexC">
 			<div class="bb w70vw min_width1000">
 				<img src="@/assets/img/index1.png"/>
-				<img src="@/assets/img/index2.png"/>
+				<img class="sm-down" src="@/assets/img/index2.png"/>
 				<img src="@/assets/img/index3.png"/>
 				<el-button type="success" class="btn">스위치 알아보기</el-button>
 			</div>

@@ -49,7 +49,7 @@ export default class extends More(api_active.get_list,false) {
 		type: '0'
 	}
 
-	@Watch("active_type", { immediate: true })
+	@Watch("active_type",{ immediate:true })
     watch_route() {
 		this.filter.type = this.active_type
 		this.clear_list()
@@ -59,11 +59,14 @@ export default class extends More(api_active.get_list,false) {
     }
 
     get active_type() {
-        const type: string = this.$route.params.active_type;
+		if(!/^\/active\/\d{1}\/list$/.test(this.$route.path)){
+			return this.filter.type
+		}
+		const type: string = this.$route.params.active_type;
         if (type === "1" || type === "2") {
             return type;
         } else {
-            return "0";
+            return this.filter.type;
 		}
     }
 

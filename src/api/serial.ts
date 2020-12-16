@@ -76,26 +76,26 @@ class Serial extends Http {
 				day_of_week: new Date().getDay() - 1,
 				is_recommend: 1
 			}),
-			this.get_list({
+			new Date().getDay() !== 1 ? this.get_list({
 				...base,
 				day_of_week: 0,
-			}),
-			this.get_list({
+			}):[],
+			new Date().getDay() !== 2 ?this.get_list({
 				...base,
 				day_of_week: 1,
-			}),
-			this.get_list({
+			}): [],
+			new Date().getDay() !== 3 ?this.get_list({
 				...base,
 				day_of_week: 2,
-			}),
-			this.get_list({
+			}): [],
+			new Date().getDay() !== 4 ?this.get_list({
 				...base,
 				day_of_week: 3,
-			}),
-			this.get_list({
+			}): [],
+			new Date().getDay() !== 5 ?this.get_list({
 				...base,
 				day_of_week: 4,
-			}),
+			}): [],
 		])
 		return {
 			top, today, o1, o2, o3, o4, o5

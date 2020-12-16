@@ -127,12 +127,14 @@
 		</ul>
 		<div class="box" id="href">
 			<div class="w70vw min_width1000 ccc">
-				<h1>신청하기</h1>
-				<div class="line"></div>
+				<h1 class="sm-down">신청하기</h1>
+				<div class="line sm-down"></div>
 				<div class="btn_box">
-					<el-button type="primary" class="btn" @click="filter.status = ''">전체</el-button>
-					<el-button type="default" class="btn" @click="filter.status = 0">모집 중</el-button>
-					<el-button type="default" class="btn" @click="filter.status = 1">진행 중</el-button>
+					<el-button :type="filter.status === '' ? 'primary' : 'default'" class="btn" @click="filter.status = ''">전체</el-button>
+					<el-button :type="filter.status === 4 ? 'primary' : 'default'" class="btn" @click="filter.status = 4">모집대기</el-button>
+					<el-button :type="filter.status === 0 ? 'primary' : 'default'" class="btn" @click="filter.status = 0">모집 중</el-button>
+					<el-button :type="filter.status === 5 ? 'primary' : 'default'" class="btn" @click="filter.status = 5">모집마감</el-button>
+					<el-button :type="filter.status === 1 ? 'primary' : 'default'" class="btn" @click="filter.status = 1">진행 중</el-button>
 				</div>
 			</div>
 		</div>
@@ -142,8 +144,10 @@
 				<h1>{{ ele.title }}</h1>
 				<h2>
 					<span class="green" v-if="ele.status === 0">모집 중</span>
-					<span class="blue" v-if="ele.status === 1">모집 중</span>
-					<span class="orange" v-if="ele.status === 3">모집 중</span>
+					<span class="blue" v-if="ele.status === 1">진행 중</span>
+					<span class="orange" v-if="ele.status === 3">마감 임박</span>
+					<span class="blue" v-if="ele.status === 4">모집대기</span>
+					<span class="orange" v-if="ele.status === 5">모집마감</span>
 					<span>|</span>
 					<span>{{ ele.start_time }} ~ {{ ele.end_time }}</span>
 				</h2>
@@ -524,12 +528,21 @@ export default class extends More(api_club.get_creation_list) {
 		}
 		.box{
 			.ccc{
+				width: 100%;
+				height: 100%;
+				display: flex;
+				align-items: center;
 				h1{
 					font-size: 16px;
 				}
 				.btn_box{
+					flex-wrap: wrap;
+					justify-content: center;
+					position: static;
+					width: 100%;
 					> *{
-						width: auto;
+						margin: 2rem 0;
+						width: 6rem!important;
 						margin: 0 1px;
 					}
 				}

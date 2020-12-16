@@ -74,7 +74,7 @@ const routes: RouteConfig[] = [
 						name: 'list',
 						meta: {
 							title: 'list',
-							cache: true
+							cache: false
 						},
 						component: () => import('@/views/active/list/index.vue'),
 					},

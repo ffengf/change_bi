@@ -12,9 +12,9 @@
 		<el-button type="primary" class="join" @click="join" :disabled="info.is_apply">신청하기</el-button>
 		<div class="line"></div>
         <div class="btn_box">
-            <el-button @click="id = prev" :disabled="prev === null">이전 글</el-button>
+            <el-button @click="id = info.prev" :disabled="info.prev === null">이전 글</el-button>
             <el-button type="success" @click="ret">목록으로</el-button>
-            <el-button @click="id = next" :disabled="next === null">다음 글</el-button>
+            <el-button @click="id = info.next" :disabled="info.next === null">다음 글</el-button>
         </div>
     </div>
 </template>
@@ -54,6 +54,8 @@ export default class extends Vue {
 		create_time: '',
 		apply_start: '',
 		apply_end: '',
+		prev:null,
+		next:null,
 	}
 
     get active_type() {
@@ -73,28 +75,6 @@ export default class extends Vue {
 		this.$router.push(`/active/${this.active_type}/info/${id}`)
 	}
 
-	get prev(): null | number {
-        if (this.id_for_index === 0 || this.id_for_index === -1) {
-            return null;
-        } else {
-            return this.ids[this.id_for_index - 1] ;
-        }
-    }
-
-    get next(): null | number {
-        if (
-            this.id_for_index === this.ids.length - 1 ||
-            this.id_for_index === -1
-        ) {
-            return null;
-        } else {
-            return this.ids[this.id_for_index + 1];
-        }
-    }
-
-    get id_for_index(): number {
-        return this.ids.findIndex(x => x === this.id);
-    }
 
 	@Watch('id',{ immediate:true })
 	async get_info(){
@@ -108,9 +88,6 @@ export default class extends Vue {
 		this.$router.push(`/active/${this.active_type}/list`)
 	}
 
-	async get_ids(){
-		this.ids = await api_active.get_ids(this.active_type)
-	}
 
 	async join(){
 		this.loading = true
@@ -133,9 +110,6 @@ export default class extends Vue {
 		}
 	}
 
-	created(){
-		this.get_ids()
-	}
 }
 </script>
 
