@@ -6,7 +6,7 @@
 				<span class="lines"></span>
 				<span>{{ info.create_time }}</span>
 			</div>
-			<h1>Q.{{ info.title }}</h1>
+			<h1>{{ info.title }}</h1>
 		</div>
 		<h2 class="inner" v-html="info.content"></h2>
 		<div class="btn_box">

@@ -2,9 +2,9 @@
     <div id="index">
         <div class="carousel">
             <el-carousel arrow="always" height="23rem">
-                <el-carousel-item class="items" v-for="ele in banner_list" :key="ele.id" @click="window.open(ele.link)">
-                    <el-image class="img sm-down" :src="ele.image" @click="window.open(ele.link)" />
-					<el-image class="img sm-up" :src="ele.h5_image" @click="window.open(ele.link)" />
+                <el-carousel-item class="items" v-for="ele in banner_list" :key="ele.id" @click="open(ele.link)">
+                    <el-image class="img sm-down" :src="ele.image" @click="open(ele.link)" />
+					<el-image class="img sm-up" :src="ele.h5_image" @click="open(ele.link)" />
                 </el-carousel-item>
             </el-carousel>
         </div>
@@ -37,7 +37,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="flexC">
+		<div class="flexC" v-if="serial_list.length !== 0">
 			<div class="serial w70vw min_width1000">
 				<div class="top">
 					<h1>오늘의 연재</h1>
@@ -109,6 +109,13 @@ export default class extends Vue {
 			this.get_evaluation_list(),
 			this.get_serial_list(),
 		])
+	}
+
+	open(url:string|null){
+		if(url === null){
+			return
+		}
+		window.open(url)
 	}
 
 
