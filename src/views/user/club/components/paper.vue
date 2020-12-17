@@ -3,9 +3,9 @@
 		<el-dialog
 			title="수료증 발급"
 			:visible.sync="key"
-			width="25%"
+			:width="`${width}%`"
 		>
-			<div class="body">
+			<div class="body" ref="body">
 				<img src="@/assets/img/paper.jpg" alt="">
 			</div>
 			<span slot="footer" class="dialog-footer">
@@ -18,16 +18,37 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-
+import html2canvas from "html2canvas"
+import jsPDF from "jspdf"
+import { Loading } from "element-ui"
 @Component
 export default class extends Vue {
 	key = true
+	width = 27
 
 	open(...arg){
 		this.key = true
 	}
 
 	save(){
+		this.key = false
+		this.width = 100
+		const loading = Loading.service({
+			lock: true,
+			text: 'wait......',
+			background: 'rgba(0, 0, 0, 0.7)'
+		});
+		this.$nextTick(()=>{
+			html2canvas(this.$refs['body'] as HTMLElement).then((canvas)=>{
+				const pageData = canvas.toDataURL('image/jpeg', 1.0);
+				const doc = new jsPDF('p', 'pt', 'a4');
+				const  b = doc.addImage(pageData, 'JPEG', 0, 0, 595.28, 592.28/canvas.width * canvas.height );
+				this.width = 27
+				this.key = true
+				loading.close()
+				doc.save('output.pdf')
+			})
+		})
 
 	}
 }
