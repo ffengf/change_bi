@@ -287,6 +287,11 @@ const routes: RouteConfig[] = [
 						component: () => import('@/views/other/pay/index.vue'),
 					},
 				]
+			},
+			{
+				path: 'myclub/:id',
+				name: 'myclub',
+				component: () => import('@/views/myclub/index.vue'),
 			}
 		]
 	},

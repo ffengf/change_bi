@@ -15,7 +15,7 @@
 			</div>
 			<div class="flex" v-if="ele.status === 0 || ele.status === 1 && ele.club_status === 5">
 				<el-button class="right_btn" type="danger">取消申请</el-button>
-				<el-button class="right_btn" type="primary">查看内容</el-button>
+				<el-button class="right_btn" type="primary" @click="$router.push(`/myclub/${ele.id}`)">查看内容</el-button>
 			</div>
 			<div class="flex" v-if="ele.status === 1 && ele.club_status === 1">
 				<el-button class="right_btn" type="primary">去参加</el-button>
