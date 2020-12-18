@@ -10,11 +10,11 @@
 					<div class="left">
 						<img :src="info.cover">
 						<ul class="tab">
-							<li class="active">공지사항</li>
-							<li>미션 게시판</li>
-							<li>자유 게시판</li>
+							<li @click="tab_click('notice')" :class="is_active('notice')">공지사항</li>
+							<li @click="tab_click('task')" :class="is_active('task')">미션 게시판</li>
+							<li @click="tab_click('discuss')" :class="is_active('discuss')">자유 게시판</li>
 						</ul>
-						1
+						<Rview class="view" />
 					</div>
 					<div class="right">
 						<div class="top">
@@ -27,7 +27,8 @@
 							<h3>{{ info.option_desc }}</h3>
 						</div>
 						<div class="bottom">
-							<el-button  type="success" class="btn" @click="pay">1123</el-button>
+							<el-button type="danger" class="btn" v-if="info.status === 2">已结束</el-button>
+							<el-button type="success" class="btn" v-else>进行中</el-button>
 						</div>
 					</div>
 				</div>
@@ -93,25 +94,12 @@ export default class extends Vue {
 		this.title.splice(2,1,{ title:this.info.title })
 	}
 
-	async free(){
-		const { code } = await api_club.join(this.info.id)
-		if(code === 50001){
-			await this.$confirm('이미 참여하고 있는 모임입니다. 나의 모임으로 이동하시겠습니까?',{
-				confirmButtonText: '이동',
-				cancelButtonText: '취소',
-			})
-			this.$router.push('/user/club')
-		}else{
-			await this.$confirm('신청이 완료되었습니다.',{//free first
-				confirmButtonText: '나의 모임',
-				cancelButtonText: '이전으로',
-			})
-			this.$router.push('/user/club')
-		}
+	tab_click(uri:string){
+		this.$router.push(`/myclub/${this.id}/${uri}`)
 	}
 
-	pay(){
-
+	is_active(uri:string){
+		return this.$route.path.includes(uri) ? 'active' : '';
 	}
 
 }
@@ -162,10 +150,25 @@ export default class extends Vue {
 				border: 1px solid #324b9b;
 				color: #324b9b;
 				cursor: pointer;
+				font-family: NotoSansKR;
+				font-size: 17px;
+				font-weight: 500;
+				font-stretch: normal;
+				font-style: normal;
+				letter-spacing: -0.85px;
 			}
 			.active{
 				color: #fff;
 				background: #324b9b;
+			}
+		}
+		.view{
+			margin-bottom: 6rem;
+			width: 100%;
+			/deep/.more{
+				margin-top: 2rem;
+				width: 10rem;
+				height: 2.2rem;
 			}
 		}
 	}
@@ -341,6 +344,20 @@ export default class extends Vue {
 				font-stretch: normal;
 				font-style: normal;
 				letter-spacing: -0.38px;
+				background: #fff!important;
+				cursor: default;
+			}
+			/deep/.el-button--danger{
+				color: #f78989!important;
+				span{
+					color: #f78989!important;
+				}
+			}
+			/deep/.el-button--success{
+				color: #3fa535!important;
+				span{
+					color: #3fa535!important;
+				}
 			}
 		}
 	}

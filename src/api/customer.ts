@@ -1,7 +1,6 @@
 
-import { req_list } from '@/types/global'
+import { req_list,res_list } from '@/types/global'
 import { Http } from "./http/base"
-import { res_list } from '../types/global';
 
 
 export interface notice {

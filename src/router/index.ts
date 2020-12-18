@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
 import Rview from "@/components/routerView/index.vue";
+import { component } from 'vue/types/umd';
 Vue.use(VueRouter);
 
 
@@ -292,6 +293,24 @@ const routes: RouteConfig[] = [
 				path: 'myclub/:id',
 				name: 'myclub',
 				component: () => import('@/views/myclub/index.vue'),
+				redirect:'myclub/:id/notice',
+				children:[
+					{
+						path: 'notice',
+						name:'club_notice',
+						component: () => import('@/views/myclub/notice/index.vue')
+					},
+					{
+						path: 'task',
+						name:'club_task',
+						component: () => import('@/views/myclub/task/index.vue')
+					},
+					{
+						path: 'discuss',
+						name:'club_discuss',
+						component: () => import('@/views/myclub/discuss/index.vue')
+					},
+				]
 			}
 		]
 	},

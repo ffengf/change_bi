@@ -1,5 +1,5 @@
 <template>
-    <div id="chapter_info" v-loading="loading">
+    <div id="chapter_info" v-loading="loading || loading2">
         <Bread :new_list="bread" />
         <div class="box_line"></div>
         <div class="top">
@@ -16,7 +16,6 @@
             <el-button
                 class="btns aaa"
                 type="default"
-                plain
                 :disabled="prev === null"
                 @click="info_id = prev"
                 >이전 글</el-button
@@ -27,7 +26,6 @@
             <el-button
                 class="btns aaa"
                 type="default"
-                plain
                 :disabled="next === null"
                 @click="info_id = next"
                 >다음 글</el-button
@@ -47,6 +45,7 @@ import { api_serial, chapter_info, date_info } from "@/api";
     },
 })
 export default class extends Nocopy {
+	loading2 = false
     author_name = "";
     ids: number[] = [];
     bread = [
@@ -95,7 +94,10 @@ export default class extends Nocopy {
     }
 
     async get_id_name() {
-        const { book_title, ids, author_name } = await api_serial.get_id_name(this.book_id);
+		this.loading2 = true
+        const { book_title, ids, author_name } = await api_serial.get_id_name(this.book_id).finally(()=>{
+			this.loading2 = false
+		});
         this.bread.splice(2, 1, {
             title: book_title,
             to: `/serial/book_info/${this.book_id}?bread_date=${this.bread_date}`,
@@ -120,7 +122,7 @@ export default class extends Nocopy {
         if (this.id_for_index === 0 || this.id_for_index === -1) {
             return null;
         } else {
-            return this.ids[this.id_for_index] - 1;
+            return this.ids[this.id_for_index - 1] ;
         }
     }
 
@@ -131,11 +133,12 @@ export default class extends Nocopy {
         ) {
             return null;
         } else {
-            return this.ids[this.id_for_index] + 1;
+            return this.ids[this.id_for_index + 1] ;
         }
     }
 
     get id_for_index(): number {
+		console.log(this.ids.findIndex((x) => x === this.info_id))
         return this.ids.findIndex((x) => x === this.info_id);
     }
 
