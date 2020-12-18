@@ -21,6 +21,11 @@ import { More } from "@/mixin/more";
 import { Vue, Component } from "vue-property-decorator";
 @Component
 export default class extends More(api_myclub.notice_list) {
+
+	filter = {
+		club_id: this.$route.params.id
+	}
+
 	go_info(id:number){
 		this.$router.push(this.$route.path + '?id=' + id)
 	}
