@@ -177,7 +177,7 @@
 				</div>
 			</div>
 		</div>
-		<ul class="box_list w70vw min_width1000">
+		<ul class="box_list w70vw min_width1000" v-loading="_loading">
 			<el-card shadow="never" class="item" v-for="(ele) in list" :key="ele.id" @click.native="$router.push(`/club/apply/info/${ele.id}`)">
 				<img :src="ele.cover" alt="">
 				<h1>{{ ele.title }}</h1>

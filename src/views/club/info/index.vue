@@ -1,5 +1,5 @@
 <template>
-    <div id="info" v-loading="loading">
+    <div id="info" v-loading="_loading">
 		<div class="left">
 			<img :src="info.cover">
 			<div class="title">상세설명</div>
@@ -77,9 +77,9 @@ export default class extends Vue {
 
 	@Watch('id')
 	async get_info(){
-		this.loading = true
+		this._loading = true
 		const info = await api_club.get_info(this.id).finally(()=>{
-			this.loading = false
+			this._loading = false
 		})
 		this.info = info
 		this.$route.meta.title = info.title

@@ -1,5 +1,5 @@
 <template>
-    <div class="problem" v-loading="loading">
+    <div class="problem" v-loading="_loading">
 		<ul class="ul">
 			<Item v-for="(ele) in list" :key="ele.id" :info="ele" />
 			<div class="line"></div>
@@ -30,11 +30,11 @@ export default class extends Vue {
 		if (this.list.length === this.count && this.list.length !== 0) {
             return this.$message.error("没有更多了");
 		}
-		this.loading = true
+		this._loading = true
         const { results, count } = await api_customer.get_faq({
             page: this.page
         }).finally(()=>{
-			this.loading = false
+			this._loading = false
 		})
         this.list = [...this.list, ...results];
         this.count = count;

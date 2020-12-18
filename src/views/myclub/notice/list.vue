@@ -1,5 +1,5 @@
 <template>
-    <div class="list" v-loading="loading">
+    <div class="list" v-loading="_loading">
 		<ul v-for="ele in list" :key="ele.id">
 			<li @click="go_info(ele.id)">
 				<h2>

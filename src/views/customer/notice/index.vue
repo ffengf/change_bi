@@ -1,5 +1,5 @@
 <template>
-    <div class="notice" v-loading='loading'>
+    <div class="notice" v-loading='_loading'>
         <List :keys.sync="key" :list="list" :page.sync="page" v-if="key" :what.sync="what" :disabled="disabled" />
         <Info :keys.sync="key" :list="list" :page.sync="page" :what.sync="what" :count="count" v-else />
     </div>
@@ -46,11 +46,11 @@ export default class extends Vue {
         if (this.list.length === this.count && this.list.length !== 0) {
             return this.$message.error("没有更多了");
 		}
-		this.loading = true
+		this._loading = true
         const { results, count } = await api_customer.get_notice({
             page: this.page
         }).finally(()=>{
-			this.loading = false
+			this._loading = false
 		})
         this.list = [...this.list, ...results];
         this.count = count;

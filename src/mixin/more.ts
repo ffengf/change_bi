@@ -21,12 +21,12 @@ export const More = <T>(axios_get: (req_list: req_list) => Promise<res_list<T>>,
 			if (this.list.length === this.count && this.list.length !== 0) {
 				return this.$message.error("没有更多了");
 			}
-			this.loading = true
+			this._loading = true
 			const { results, count } = await axios_get({
 				page: this.page,
 				...this.filter
 			}).finally(() => {
-				this.loading = false
+				this._loading = false
 			})
 			this.list = [...this.list, ...results];
 			this.count = count;

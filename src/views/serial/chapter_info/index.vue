@@ -1,5 +1,5 @@
 <template>
-    <div id="chapter_info" v-loading="loading || loading2">
+    <div id="chapter_info" v-loading="_loading">
         <Bread :new_list="bread" />
         <div class="box_line"></div>
         <div class="top">
@@ -45,7 +45,6 @@ import { api_serial, chapter_info, date_info } from "@/api";
     },
 })
 export default class extends Nocopy {
-	loading2 = false
     author_name = "";
     ids: number[] = [];
     bread = [
@@ -94,9 +93,9 @@ export default class extends Nocopy {
     }
 
     async get_id_name() {
-		this.loading2 = true
+		this._loading = true
         const { book_title, ids, author_name } = await api_serial.get_id_name(this.book_id).finally(()=>{
-			this.loading2 = false
+			this._loading = false
 		});
         this.bread.splice(2, 1, {
             title: book_title,
@@ -108,11 +107,11 @@ export default class extends Nocopy {
 
     @Watch("info_id", { immediate: true })
     async get_info() {
-        this.loading = true;
+        this._loading = true;
         const info = await api_serial
             .get_chapter_info(this.info_id)
             .finally(() => {
-                this.loading = false;
+                this._loading = false;
             });
         this.info = info;
         this.bread.splice(3, 1, { title: `${info.number} 화`, to: "" });

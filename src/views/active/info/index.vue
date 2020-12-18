@@ -1,5 +1,5 @@
 <template>
-    <div id="active_info" v-loading="loading">
+    <div id="active_info" v-loading="_loading">
         <BoxHeader :new_list="bread" />
         <h2>
             <span>{{ active_type === "1" ? "서평단 신청" : "강연 초대" }}</span>
@@ -78,9 +78,9 @@ export default class extends Vue {
 
 	@Watch('id',{ immediate:true })
 	async get_info(){
-		this.loading = true
+		this._loading = true
 		this.info = await api_active.get_info(this.id).finally(()=>{
-			this.loading = false
+			this._loading = false
 		})
 	}
 
@@ -90,9 +90,9 @@ export default class extends Vue {
 
 
 	async join(){
-		this.loading = true
+		this._loading = true
 		const { code } = await api_active.join(this.id).finally(()=>{
-			this.loading = false
+			this._loading = false
 		})
 		this.get_info()
 		if(code === 50001){

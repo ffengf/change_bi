@@ -1,5 +1,5 @@
 <template>
-    <div class="warpper" v-loading="loading">
+    <div class="warpper" v-loading="_loading">
         <el-button class="exchange" @click="key = true">쿠폰 등록하기</el-button>
 
         <div class="box" v-for="ele in list" :key="ele.id">
@@ -23,7 +23,7 @@
         <el-button class="more" type="success" @click="more" :disabled="disabled">더 보기</el-button>
 
         <el-dialog title="쿠폰 등록하기" :visible.sync="key" width="25%">
-            <div class="dialog" v-loading="loading">
+            <div class="dialog" v-loading="_loading">
                 <h1>쿠폰번호를 입력해주세요.</h1>
                 <el-input
                     class="inp"
@@ -56,9 +56,9 @@ export default class extends More(api_user.get_coupon) {
 	code = "";
 
 	async del(id:number){
-		this.loading = true
+		this._loading = true
 		await api_user.del_coupon(id).finally(()=>{
-			this.loading = false
+			this._loading = false
 		})
 		this.$message.success('del:success')
 		this.clear_list()
@@ -68,9 +68,9 @@ export default class extends More(api_user.get_coupon) {
 		if(this.code === ''){
 			return this.$message.error('输入')
 		}
-		this.loading = true
+		this._loading = true
 		await api_user.exchange_coupon(this.code).finally(()=>{
-			this.loading = false
+			this._loading = false
 		})
 		this.$message.success('success')
 		this.key = false

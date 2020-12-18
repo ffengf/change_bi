@@ -1,6 +1,6 @@
 <template>
     <div id="service" class="flexC">
-		<div class="w70vw min_width1000 service" v-loading="loading">
+		<div class="w70vw min_width1000 service" v-loading="_loading">
 			<el-menu class="menu" :default-active="type" mode="horizontal" @select="select">
 				<el-menu-item index="content">서비스소개</el-menu-item>
 				<el-menu-item index="use">서비스이용약관</el-menu-item>
@@ -43,9 +43,9 @@ export default class extends Vue {
 	}
 
 	async get_info(){
-		this.loading = true
+		this._loading = true
 		this.info = await api_service.get_all().finally(()=>{
-			this.loading = false
+			this._loading = false
 		})
 	}
 

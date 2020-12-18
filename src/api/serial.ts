@@ -74,7 +74,7 @@ class Serial extends Http {
 			this.get_list({
 				...base,
 				day_of_week: new Date().getDay() - 1,
-				is_recommend: 1
+				// is_recommend: 1
 			}),
 			new Date().getDay() !== 1 ? this.get_list({
 				...base,
@@ -107,7 +107,7 @@ class Serial extends Http {
 			page:1,
 			page_size:3,
 			day_of_week: new Date().getDay() - 1,
-			is_recommend: 1
+			// is_recommend: 1
 		})
 	}
 

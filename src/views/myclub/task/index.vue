@@ -1,6 +1,5 @@
 <template>
-    <div v-loading="loading">
-		task
+    <div v-loading="_loading">
     </div>
 </template>
 

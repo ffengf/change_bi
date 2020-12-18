@@ -1,5 +1,5 @@
 <template>
-    <div id="book_info" v-loading='loading'>
+    <div id="book_info" v-loading='_loading'>
         <Bread :new_list="bread" />
         <div class="box_line"></div>
 		<div class="warpper">
@@ -98,9 +98,9 @@ export default class extends Vue {
     }
 
     async get_info() {
-        this.loading = true;
+        this._loading = true;
         this.info = await api_serial.get_info(this.id).finally(() => {
-            this.loading = false;
+            this._loading = false;
         });
 		this.bread.splice(2,1,{ title:this.info.title })
 	}
@@ -110,9 +110,9 @@ export default class extends Vue {
 		if (this.list.length === this.count && this.list.length !== 0) {
             return this.$message.error("没有更多了");
 		}
-		this.loading = true
+		this._loading = true
 		const { count,results } = await api_serial.get_chapter({ book_id:this.id,page:this.page }).finally(()=>{
-			this.loading = false
+			this._loading = false
 		})
 		this.count = count
 		this.list = results

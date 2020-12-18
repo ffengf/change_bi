@@ -1,5 +1,5 @@
 <template>
-    <div class="date" v-loading="loading">
+    <div class="date" v-loading="_loading">
         <Bread :new_list="new_list" />
         <div class="box on">
             <div class="top">
@@ -230,12 +230,10 @@ export default class extends Vue {
         top: [],
 	};
 
-	loading = false
-
     async get_info() {
-		this.loading = true
+		this._loading = true
         const info = await api_serial.date_list().finally(()=>{
-			this.loading = false
+			this._loading = false
 		});
 		this.info = info
 	}

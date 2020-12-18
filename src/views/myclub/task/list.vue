@@ -1,5 +1,5 @@
 <template>
-    <div v-loading="loading">
+    <div v-loading="_loading">
 		<ul>
 			<li>123</li>
 		</ul>

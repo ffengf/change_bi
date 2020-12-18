@@ -1,5 +1,5 @@
 <template>
-    <div id="active_list" v-loading="loading">
+    <div id="active_list" v-loading="_loading">
 		<BoxHeader :new_list="bread" />
 		<ul class="warpper">
 			<li class="item" v-for="(ele,index) in list" :key="index" @click="move(ele.id)">

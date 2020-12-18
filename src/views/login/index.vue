@@ -1,5 +1,5 @@
 <template>
-    <div id="login" class="flexC" v-loading="loading">
+    <div id="login" class="flexC" v-loading="_loading">
         <div class="w75vw min_width1100 login_div">
             <div class="img_box sm-down">
                 <h1>
@@ -30,7 +30,7 @@ export default class extends Vue {
 
 	created(){
 		if(UserModule.token !== null && UserModule.token !== ''){
-			this.loading = true
+			this._loading = true
 			this.$message.success('你已登陆，为您跳转至首页')
 			setTimeout(() => {
 				this.$router.push('/')

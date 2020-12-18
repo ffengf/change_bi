@@ -1,12 +1,12 @@
 <template>
-    <div id="club" class="flexC" v-loading="loading">
+    <div id="club" class="flexC" v-loading="_loading">
 		<div class="club w70vw min_width1000">
 			<div class="bread_box">
 				<Bread :new_list="title" />
 			</div>
 			<div class="line mt10 w70vw"></div>
 			<div class="body">
-				<div id="info" v-loading="loading">
+				<div id="info" v-loading="_loading">
 					<div class="left">
 						<img :src="info.cover">
 						<ul class="tab">
@@ -87,9 +87,9 @@ export default class extends Vue {
 
 	@Watch('id',{ immediate:true })
 	async get_info(){
-		this.loading = true
+		this._loading = true
 		this.info = await api_club.get_info(this.id).finally(()=>{
-			this.loading = false
+			this._loading = false
 		})
 		this.title.splice(2,1,{ title:this.info.title })
 	}

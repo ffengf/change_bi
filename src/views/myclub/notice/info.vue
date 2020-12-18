@@ -1,6 +1,6 @@
 <template>
     <div>
-		<div class="info" v-loading="loading">
+		<div class="info" v-loading="_loading">
 			<h2>
 				<span>{{ info.create_time }}</span>
 				<span>|</span>
@@ -49,9 +49,9 @@ export default class extends Vue {
 
 	@Watch('id',{ immediate:true })
 	async watch_id(){
-		this.loading = true
+		this._loading = true
 		this.info = await api_myclub.notice_info(this.id).finally(()=>{
-			this.loading = false
+			this._loading = false
 		})
 	}
 
