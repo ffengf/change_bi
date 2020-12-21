@@ -112,12 +112,16 @@ exports.Mixin_list = function (axios_get) {
         Mixin_list.prototype.get_list = function () {
             return __awaiter(this, void 0, void 0, function () {
                 var _a, page, page_size, ordering, data, _b, count, results;
+                var _this = this;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
                         case 0:
                             _a = this, page = _a.page, page_size = _a.page_size, ordering = _a.ordering;
                             data = object_1.clean(__assign({ page: page, ordering: ordering, page_size: page_size }, this.filter));
-                            return [4 /*yield*/, axios_get(data)];
+                            this._loading = true;
+                            return [4 /*yield*/, axios_get(data)["finally"](function () {
+                                    _this._loading = false;
+                                })];
                         case 1:
                             _b = _c.sent(), count = _b.count, results = _b.results;
                             this.total = count;

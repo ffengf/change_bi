@@ -61,7 +61,10 @@ export const Mixin_list = <T extends Id>(axios_get:(data:req_list)=> Promise<res
 		async get_list() {
 			const { page, page_size, ordering } = this
 			const data = clean({ page, ordering, page_size, ...this.filter })
-			const { count, results } = await axios_get(data)
+			this._loading = true
+			const { count, results } = await axios_get(data).finally(()=>{
+				this._loading = false
+			})
 			this.total = count
 			this.list = results
 		}

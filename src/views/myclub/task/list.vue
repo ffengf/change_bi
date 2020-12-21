@@ -9,31 +9,115 @@
 				</h2>
 				<h1>{{ ele.title }}</h1>
 				<p class="inner_detail" v-html="ele.content"></p>
-				<el-button class="btn" type="success" @click.stop="create" v-if="ele.attendance_id === null">제출하기</el-button>
-				<el-button class="btn" type="primary" @click.stop="edit" v-else>수정하기</el-button>
+				<el-button class="btn" type="success" @click.stop="sign(null,ele.id)" v-if="ele.attendance_id === null">제출하기</el-button>
+				<el-button class="btn" type="primary" @click.stop="sign(ele.attendance_id,ele.id)" v-else>수정하기</el-button>
 			</li>
 		</ul>
 		<el-button class="more" type="success" @click="more" :disabled="disabled">더 보기</el-button>
+
+
+
+
+		<el-dialog
+			:visible.sync="key"
+			width="30%"
+		>
+			<div class="body" ref="body">
+				<h1>제출하기 : 11월 넷째주 미션 제출해주세요!</h1>
+				<div class="line"></div>
+				<el-form ref="form" :model="form" :rules="rules" label-position="top" label-width="80px">
+					<el-form-item label="제목" prop="title">
+						<el-input v-model="form.title" placeholder="4째주 미션 제출합니다!"></el-input>
+					</el-form-item>
+					<div class="line"></div>
+					<el-form-item prop="file_name">
+						<span slot="label">첨부파일 <span class="color_92">(.pdf, .hwp, docx, doc, pptx, ppt, jpg, jpeg)</span>
+						</span>
+						<UpFile :name.sync="form.file_name" :url.sync="form.attach" />
+					</el-form-item>
+					<div class="line"></div>
+					<el-form-item label="제목" prop="title">
+						<Editor v-model="form.content" />
+					</el-form-item>
+				</el-form>
+				<div class="submit_box">
+					<el-button class="submit" type="success" @click="submit">제출하기</el-button>
+				</div>
+			</div>
+		</el-dialog>
     </div>
 </template>
 
 <script lang="ts">
-import { api_myclub } from "@/api";
+import { api_myclub, attend_base } from "@/api";
 import { More } from "@/mixin/more";
+import { ElForm } from "element-ui/types/form";
 import { Vue, Component } from "vue-property-decorator";
-@Component
+import Editor from "@/components/editor/index.vue"
+import UpFile from "@/components/upfile/index.vue"
+@Component({
+	components:{ Editor,UpFile }
+})
 export default class extends More(api_myclub.task_list) {
 
 	filter = {
 		club_id: this.$route.params.id
 	}
 
+	key = false
+
+	form:attend_base = {
+		id:null,
+		title:'',
+		file_name:'',
+		attach:'',
+		content:'',
+		task_id:0
+	}
+
+	rules = {
+		title:[{ required: true }]
+	}
+
 	go_info(id:number){
 		this.$router.push(this.$route.path + '?id=' + id)
 	}
 
-	aaa(){
+	async sign(attendance_id:null|number,task_id:number){
+		if(attendance_id === null){
+				this.form = {
+				id:attendance_id,
+				title:'',
+				file_name:'',
+				attach:'',
+				content:'',
+				task_id
+			}
+		}else{
+			this._loading = true
+			this.form = await api_myclub.attend_info(attendance_id).finally(()=>{
+				this._loading = false
+			})
+		}
+		this.key = true
+	}
 
+
+	async submit(){
+		await (this.$refs['form'] as ElForm).validate()
+		this._loading = true
+		if(this.form.id === null){
+			await api_myclub.add_attend({ ...this.form }).finally(()=>{
+				this._loading = false
+			})
+		}else{
+			await api_myclub.edit_attend({ ...this.form }).finally(()=>{
+				this._loading = false
+			})
+		}
+		this.$message.success('success')
+		this.get_list()
+		this.key = false
 	}
 }
 </script>
@@ -108,5 +192,82 @@ export default class extends More(api_myclub.task_list) {
 	.more{
 		align-self: center;
 	}
+}
+.list{
+	/deep/.el-dialog{
+		border-radius: 0;
+		box-sizing: border-box;
+		padding: 0 2rem;
+		.el-dialog__header{
+			border-bottom: 1px solid #324b9b;
+			.el-dialog__headerbtn{
+				top: 0;
+				right: -35px;
+				.el-dialog__close{
+					color: #fff;
+					font-size: 30px;
+				}
+			}
+		}
+		.el-dialog__body{
+			padding: 0;
+			padding-bottom: 2rem;
+			display: flex;
+			flex-direction: column;
+			.line{
+				height: 1px;
+				background: #324b9b;
+			}
+			h1{
+				font-family: NotoSansKR;
+				font-size: 20px;
+				font-weight: 500;
+				font-stretch: normal;
+				font-style: normal;
+				letter-spacing: -0.5px;
+				margin: 1.8rem 0;
+			}
+			.inp_box{
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				.el-button--success{
+					background: #fff!important;
+					color: #3fa535;
+					width: 5rem;
+					height: 1.75rem;
+					padding: 0;
+					margin-left: 0.5rem;
+				}
+			}
+			.submit_box{
+				display: flex;
+				justify-content: center;
+				margin-top: 2rem;
+				.submit{
+					width: 10rem;
+					height: 2.2rem;
+				}
+			}
+			.el-input__inner{
+				border:1px solid #dcdcdc!important;
+				padding-left: 0.75rem!important;
+				height: 1.75rem!important;
+				color: #000;
+			}
+			.el-form-item__label{
+				padding: 0;
+				font-family: NotoSansKR;
+				font-size: 13.5px;
+			}
+			.is-required .el-form-item__label:before{
+				margin: 0;
+			}
+		}
+	}
+}
+
+.color_92{
+	color: #929292;
 }
 </style>

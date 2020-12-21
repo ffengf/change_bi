@@ -40,6 +40,16 @@ export interface task_attend_list{
 	create_time:string
 }
 
+
+export interface attend_base{
+	id:number|null
+	task_id:number
+	title:string
+	content:string
+	attach:string
+	file_name:string
+}
+
 class Myclub extends Http {
 	notice_list = (data: req_list) => {
 		return this.get<res_list<notice_list>>({ page_size: 5, ...data }, '/club/notice/')
@@ -61,6 +71,17 @@ class Myclub extends Http {
 		return this.get<res_list<task_attend_list>>(data,`/club/attend/`)
 	}
 
+	add_attend({ id,...data }:attend_base){
+		return this.post(data,`/club/attend/`)
+	}
+
+	edit_attend({ id,...data }:attend_base){
+		return this.patch(data,`/club/attend/${id}/`)
+	}
+
+	attend_info(id:number){
+		return this.get<attend_base>({},`/club/attend/${id}/`)
+	}
 
 }
 
