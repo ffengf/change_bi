@@ -36,6 +36,9 @@ var Myclub = /** @class */ (function (_super) {
         _this.task_list = function (data) {
             return _this.get(__assign({ page_size: 5 }, data), '/club/task/');
         };
+        _this.task_attend_list = function (data) {
+            return _this.get(data, "/club/attend/");
+        };
         return _this;
     }
     Myclub.prototype.notice_info = function (id) {

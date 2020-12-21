@@ -1,17 +1,50 @@
 <template>
-    <div>
-		<div class="info" v-loading="_loading">
-			<h2>
-				<span>{{ info.create_time }}</span>
-				<span>|</span>
-				<span>운영자 작성</span>
-			</h2>
-			<h1>{{ info.title }}</h1>
-			<el-button class="btn" type="success" @click.stop="create" v-if="info.attendance_id === null">제출하기</el-button>
-			<el-button class="btn" type="primary" @click.stop="edit" v-else>수정하기</el-button>
+    <div id="info">
+        <div class="info" v-loading="_loading">
+            <h2>
+                <span>{{ info.create_time }}</span>
+                <span>|</span>
+                <span>운영자 작성</span>
+            </h2>
+            <h1>{{ info.title }}</h1>
+            <el-button
+                class="btn"
+                type="success"
+                @click.stop="sign(info.attendance_id)"
+                v-if="info.attendance_id === null"
+            >제출하기</el-button>
+            <el-button
+				class="btn"
+				type="primary"
+				@click.stop="sign(info.attendance_id)"
+				v-else
+			>수정하기</el-button>
+        </div>
+        <div class="inner" v-html="info.content"></div>
+        <h1 class="title">제출 완료 {{ total }}</h1>
+        <div class="line"></div>
+        <ul class="attend">
+			<li v-for="(ele) in list" :key="ele.id">
+				<div class="left">
+					<img :src="ele.user.avatar" alt="">
+					<div class="left_right">
+						<h2>{{ ele.user.real_name }}</h2>
+						<h1>{{ ele.title }}</h1>
+					</div>
+				</div>
+				<div class="right">{{ ele.create_time }}</div>
+			</li>
+		</ul>
+		<div class="page">
+			<el-pagination
+				layout="prev, pager, next"
+				:total="total"
+				:page-size="page_size"
+			>
+			</el-pagination>
 		</div>
-		<div class="inner" v-html="info.content"></div>
-		<div class="btn_box">
+		<div class="line"></div>
+        <div class="btn_box">
             <el-button
                 class="btns aaa"
                 type="default"
@@ -30,33 +63,83 @@
                 >다음 글</el-button
             >
         </div>
-	</div>
+
+
+
+		<el-dialog
+			:visible.sync="key"
+			width="30%"
+		>
+			<div class="body" ref="body">
+				<h1>제출하기 : 11월 넷째주 미션 제출해주세요!</h1>
+				<div class="line"></div>
+				<el-form ref="form" :model="form" :rules="rules" label-position="top" label-width="80px">
+					<el-form-item label="제목" prop="title">
+						<el-input v-model="form.title" placeholder="4째주 미션 제출합니다!"></el-input>
+					</el-form-item>
+					<div class="line"></div>
+					<el-form-item prop="file_name">
+						<span slot="label">
+							첨부파일 <span class="color_92">(.pdf, .hwp, docx, doc, pptx, ppt, jpg, jpeg)</span>
+						</span>
+						<div class="inp_box">
+							<el-input v-model="form.title" placeholder="4째주 미션 제출합니다!" disabled></el-input>
+							<el-button type="success" plain >찾아보기</el-button>
+						</div>
+					</el-form-item>
+					<div class="line"></div>
+					<el-form-item label="제목" prop="title">
+						<Editor v-model="form.title" />
+					</el-form-item>
+				</el-form>
+				<div class="submit_box">
+					<el-button class="submit" type="success" >제출하기</el-button>
+				</div>
+			</div>
+		</el-dialog>
+    </div>
 </template>
 
 <script lang="ts">
-import { api_myclub,club_task } from "@/api";
+import { api_myclub, club_task, task_attend_list } from "@/api";
+import Editor from "@/components/editor/index.vue"
 import { Vue, Component, Watch } from "vue-property-decorator";
+import { Mixin_list } from "@/mixin/list"
+@Component({
+	components:{ Editor }
+})
+export default class extends Mixin_list<task_attend_list>(api_myclub.task_attend_list) {
+    info: club_task = {
+        prev: null,
+        next: null,
+        id: 0,
+        content: "",
+        title: "",
+        create_time: "",
+        attendance_id: null,
+	};
 
-@Component
-export default class extends Vue {
-
-	info:club_task = {
-		prev:null,
-		next:null,
-		id:0,
-		content:'',
-		title:'',
-		create_time:'',
-		attendance_id:null
+	filter = {
+		task_id:this.id
 	}
 
-	@Watch('id',{ immediate:true })
-	async watch_id(){
-		this._loading = true
-		this.info = await api_myclub.task_info(this.id).finally(()=>{
-			this._loading = false
-		})
+	key = true
+
+	form = {
+		title:''
 	}
+
+	rules = {
+		title:[{ required: true }]
+	}
+
+    @Watch("id", { immediate: true })
+    async watch_id() {
+        this._loading = true;
+        this.info = await api_myclub.task_info(this.id).finally(() => {
+            this._loading = false;
+        });
+    }
 
     get id(): number {
         return +this.$route.query.id;
@@ -67,10 +150,14 @@ export default class extends Vue {
             path: this.$route.path,
             query: { id: String(id) },
         });
+    }
+
+    ret_list() {
+        this.$router.push(this.$route.path);
 	}
 
-	ret_list(){
-		this.$router.push(this.$route.path)
+	sign(attendance_id:null|number){
+		this.key = true
 	}
 }
 </script>
@@ -78,56 +165,211 @@ export default class extends Vue {
 
 
 <style lang='less' scoped>
-.info{
-	height: 3.8rem;
-	border-bottom: 1px solid #324b9b;
-	position: relative;
-	.btn{
-		position: absolute;
-		transform: translateY(-50%);
-		top: 45%;
-		right: 0;
-		height: 1.7rem;
-		width: 6.8rem;
-		padding: 0;
-	}
-	h2{
-		font-family: NotoSansKR;
-		font-size: 11.5px;
-		font-weight: normal;
-		font-stretch: normal;
-		font-style: normal;
-		letter-spacing: -0.29px;
-		span:nth-of-type(1){
+#info .info {
+    height: 3.8rem;
+    border-bottom: 1px solid #324b9b;
+    position: relative;
+    .btn {
+        position: absolute;
+        transform: translateY(-50%);
+        top: 45%;
+        right: 0;
+        height: 1.7rem;
+        width: 6.8rem;
+        padding: 0;
+    }
+    h2 {
+        font-family: NotoSansKR;
+        font-size: 11.5px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        letter-spacing: -0.29px;
+        span:nth-of-type(1) {
+            color: #324b9b;
+        }
+        span:nth-of-type(2) {
+            margin: 0 0.3rem;
+        }
+    }
+    h1 {
+        font-size: 22px;
+        font-weight: 500;
+        letter-spacing: -0.41px;
+        color: #000000;
+        margin: 0.3rem 0;
+    }
+}
+#info .inner {
+    min-height: 11rem;
+    padding-top: 1rem;
+    box-sizing: border-box;
+}
+#info .btn_box {
+    margin-top: 2.5rem;
+    margin-bottom: 6rem;
+    display: flex;
+    justify-content: space-between;
+    > * {
+        width: 7.5rem;
+        height: 2.2rem;
+    }
+}
+#info .title {
+    font-family: NotoSansKR;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: -0.8px;
+}
+#info .line {
+    height: 1px;
+    background: #324b9b;
+    margin-top: 0.75rem;
+}
+#info .attend{
+	width: 100%;
+	min-height: 2rem;
+	li{
+		width: 100%;
+		height: 4.5rem;
+		border-bottom: 1px solid #e5e5e5;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		.left{
+			display: flex;
+			img{
+				width: 2.2rem;
+				height: 2.2rem;
+				border-radius: 50%;
+				overflow: hidden;
+			}
+			.left_right{
+				margin-left: 0.75rem;
+				height: 2.2rem;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				h2{
+					font-family: NotoSansKR;
+					font-size: 11.5px;
+					font-weight: 500;
+					font-stretch: normal;
+					font-style: normal;
+					letter-spacing: -0.29px;
+				}
+				h1{
+					font-family: NotoSansKR;
+					font-size: 16.5px;
+					font-weight: 500;
+					font-stretch: normal;
+					font-style: normal;
+					letter-spacing: -0.41px;
+				}
+			}
+		}
+		.right{
+			font-family: NotoSansKR;
+			font-size: 13.5px;
+			font-weight: normal;
+			font-stretch: normal;
+			font-style: normal;
+			letter-spacing: -0.34px;
+			text-align: left;
 			color: #324b9b;
 		}
-		span:nth-of-type(2){
-			margin: 0 0.3rem;
+	}
+}
+#info .page{
+	text-align: center;
+	margin: 2rem 0;
+	/deep/.more{
+		margin: 0!important;
+		width: auto!important;
+		height: auto!important;
+	}
+	/deep/.el-icon{
+		font-size: 28px!important;
+		font-weight: 100!important;
+	}
+	/deep/.el-icon-more{
+		font-size: 13px!important;
+		height: 28px;
+    	line-height: 28px;
+	}
+}
+#info{
+	/deep/.el-dialog{
+		border-radius: 0;
+		box-sizing: border-box;
+		padding: 0 2rem;
+		.el-dialog__header{
+			border-bottom: 1px solid #324b9b;
+			.el-dialog__headerbtn{
+				top: 0;
+				right: -35px;
+				.el-dialog__close{
+					color: #fff;
+					font-size: 30px;
+				}
+			}
+		}
+		.el-dialog__body{
+			padding: 0;
+			padding-bottom: 2rem;
+			display: flex;
+			flex-direction: column;
+			h1{
+				font-family: NotoSansKR;
+				font-size: 20px;
+				font-weight: 500;
+				font-stretch: normal;
+				font-style: normal;
+				letter-spacing: -0.5px;
+				margin: 1.8rem 0;
+			}
+			.inp_box{
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				.el-button--success{
+					background: #fff!important;
+					color: #3fa535;
+					width: 5rem;
+					height: 1.75rem;
+					padding: 0;
+					margin-left: 0.5rem;
+				}
+			}
+			.submit_box{
+				display: flex;
+				justify-content: center;
+				margin-top: 2rem;
+				.submit{
+					width: 10rem;
+					height: 2.2rem;
+				}
+			}
+			.el-input__inner{
+				border:1px solid #dcdcdc!important;
+				padding-left: 0.75rem!important;
+				height: 1.75rem!important;
+			}
+			.el-form-item__label{
+				padding: 0;
+				font-family: NotoSansKR;
+				font-size: 13.5px;
+			}
+			.is-required .el-form-item__label:before{
+				margin: 0;
+			}
 		}
 	}
-	h1{
-		font-size: 22px;
-		font-weight: 500;
-		letter-spacing: -0.41px;
-		color: #000000;
-		margin: 0.3rem 0;
+}
 
-	}
-}
-.inner{
-	min-height: 27rem;
-	border-bottom: 1px solid #324b9b;
-	padding-top: 1rem;
-	box-sizing: border-box;
-}
-.btn_box{
-	margin-top: 2.5rem;
-	margin-bottom: 6rem;
-	display: flex;
-	justify-content: space-between;
-	> * {
-		width: 7.5rem;
-		height: 2.2rem;
-	}
+.color_92{
+	color: #929292;
 }
 </style>

@@ -27,6 +27,19 @@ export interface task_list {
 export type club_notice = base_info & notice_list
 export type club_task = base_info & task_list
 
+
+export interface task_attend_list{
+	id:number
+	user:{
+		id:number
+		username:string
+		avatar:string
+		real_name:string
+	}
+	title:string
+	create_time:string
+}
+
 class Myclub extends Http {
 	notice_list = (data: req_list) => {
 		return this.get<res_list<notice_list>>({ page_size: 5, ...data }, '/club/notice/')
@@ -43,6 +56,12 @@ class Myclub extends Http {
 	task_info(id: number) {
 		return this.get<club_task>({}, `/club/task/${id}/`)
 	}
+
+	task_attend_list = (data:req_list) => {
+		return this.get<res_list<task_attend_list>>(data,`/club/attend/`)
+	}
+
+
 }
 
 
