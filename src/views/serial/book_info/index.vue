@@ -115,7 +115,7 @@ export default class extends Vue {
 			this._loading = false
 		})
 		this.count = count
-		this.list = results
+		this.list = [...this.list,...results]
 	}
 
 	more(){

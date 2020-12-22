@@ -36,7 +36,7 @@ import jsPDF from "jspdf"
 import { Loading } from "element-ui"
 @Component
 export default class extends Vue {
-	key = true
+	key = false
 	width = 27
 
 	open(...arg){

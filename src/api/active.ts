@@ -22,7 +22,7 @@ export interface active {
 
 class Active extends Http {
 	get_list = (data: req_list) => {
-		return this.get<res_list<active>>(data)
+		return this.get<res_list<active>>({ ...data,page_size:9 })
 	}
 
 	get_info(id: number) {

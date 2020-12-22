@@ -5,7 +5,7 @@
 			<li class="item" v-for="(ele,index) in list" :key="index" @click="move(ele.id)">
 				<img :src="ele.cover">
 				<div class="top">
-					<h2>{{ ele.status === 1 ? '서평단 신청': '강연 초대' }}</h2>
+					<h2>{{ active_type === '1' ? '서평단 신청': '강연 초대' }}</h2>
 					<h1>{{ ele.title }}</h1>
 				</div>
 				<div class="bottom">

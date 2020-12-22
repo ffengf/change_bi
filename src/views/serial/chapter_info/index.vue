@@ -137,7 +137,6 @@ export default class extends Nocopy {
     }
 
     get id_for_index(): number {
-		console.log(this.ids.findIndex((x) => x === this.info_id))
         return this.ids.findIndex((x) => x === this.info_id);
     }
 
