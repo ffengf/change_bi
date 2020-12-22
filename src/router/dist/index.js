@@ -201,7 +201,7 @@ var routes = [
                         path: 'club',
                         name: 'user_club',
                         meta: {
-                            title: '读书会'
+                            title: '독서모임'
                         },
                         component: function () { return Promise.resolve().then(function () { return require('@/views/user/club/index.vue'); }); }
                     },
@@ -209,7 +209,7 @@ var routes = [
                         path: 'pay',
                         name: 'user_pay',
                         meta: {
-                            title: '支付列表'
+                            title: '결제내역'
                         },
                         component: function () { return Promise.resolve().then(function () { return require('@/views/user/pay/index.vue'); }); }
                     },
@@ -217,7 +217,7 @@ var routes = [
                         path: 'coupon',
                         name: 'user_coupon',
                         meta: {
-                            title: '优惠券'
+                            title: '쿠폰조회'
                         },
                         component: function () { return Promise.resolve().then(function () { return require('@/views/user/coupon/index.vue'); }); }
                     },
@@ -225,7 +225,7 @@ var routes = [
                         path: 'active',
                         name: 'user_active',
                         meta: {
-                            title: '我的活动'
+                            title: '나의 이벤트'
                         },
                         component: function () { return Promise.resolve().then(function () { return require('@/views/user/active/index.vue'); }); }
                     }

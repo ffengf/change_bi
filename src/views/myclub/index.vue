@@ -27,8 +27,8 @@
 							<h3>{{ info.other_content }}</h3>
 						</div>
 						<div class="bottom">
-							<el-button type="danger" class="btn" v-if="info.status === 2">已结束</el-button>
-							<el-button type="success" class="btn" v-else>进行中</el-button>
+							<el-button type="danger" class="btn" v-if="info.status === 2">진행완료</el-button>
+							<el-button type="success" class="btn" v-else>참여 중</el-button>
 						</div>
 					</div>
 				</div>

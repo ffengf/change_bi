@@ -57,7 +57,7 @@
 				<img src="@/assets/img/index1.png"/>
 				<img class="sm-down" src="@/assets/img/index2.png"/>
 				<img src="@/assets/img/index3.png"/>
-				<el-button type="success" class="btn">스위치 알아보기</el-button>
+				<el-button type="success" class="btn" @click="$router.push('/service/content')">스위치 알아보기</el-button>
 			</div>
 		</div>
 		<div class="text_carousel">

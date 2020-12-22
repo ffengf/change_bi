@@ -66,13 +66,13 @@ export default class extends More(api_user.get_coupon) {
 
 	async submit(){
 		if(this.code === ''){
-			return this.$message.error('输入')
+			return this.$message.error('쿠폰번호를 입력해 주세요.')
 		}
 		this._loading = true
 		await api_user.exchange_coupon(this.code).finally(()=>{
 			this._loading = false
 		})
-		this.$message.success('success')
+		this.$message.success('등록 되었습니다.')
 		this.key = false
 		this.code = ''
 		this.clear_list()

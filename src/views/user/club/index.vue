@@ -1,6 +1,6 @@
 <template>
     <div class="warpper" v-loading="_loading">
-		<div class="box" v-for="(ele) in list" :key="ele.id">
+		<!-- <div class="box" v-for="(ele) in list" :key="ele.id">
 			<div class="box_left">
 				<h2>
 					<span v-if="ele.status === 0">审核中</span>
@@ -33,7 +33,7 @@
 		<el-button class="more" type="success" :disabled="disabled">더 보기</el-button>
 		<el-button class="more" type="success" @click="open">test</el-button>
 
-		<Paper ref="paper" />
+		<Paper ref="paper" /> -->
     </div>
 </template>
 

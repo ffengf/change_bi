@@ -203,7 +203,7 @@ const routes: RouteConfig[] = [
 						path: 'club',
 						name: 'user_club',
 						meta: {
-							title: '读书会'
+							title: '독서모임'
 						},
 						component: () => import('@/views/user/club/index.vue'),
 					},
@@ -211,7 +211,7 @@ const routes: RouteConfig[] = [
 						path: 'pay',
 						name: 'user_pay',
 						meta: {
-							title: '支付列表'
+							title: '결제내역'
 						},
 						component: () => import('@/views/user/pay/index.vue'),
 					},
@@ -219,7 +219,7 @@ const routes: RouteConfig[] = [
 						path: 'coupon',
 						name: 'user_coupon',
 						meta: {
-							title: '优惠券'
+							title: '쿠폰조회'
 						},
 						component: () => import('@/views/user/coupon/index.vue'),
 					},
@@ -227,7 +227,7 @@ const routes: RouteConfig[] = [
 						path: 'active',
 						name: 'user_active',
 						meta: {
-							title: '我的活动'
+							title: '나의 이벤트'
 						},
 						component: () => import('@/views/user/active/index.vue'),
 					}

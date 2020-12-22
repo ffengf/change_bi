@@ -40,7 +40,7 @@ export default class extends Vue {
 		if(reg.test(value)){
 			callback()
 		}else{
-			callback(new Error("简单了"));
+			callback(new Error("영문,숫자,특수문자 포함 8자 이상 입력"));
 		}
 	}
 	rules={
@@ -69,7 +69,7 @@ export default class extends Vue {
 		await UserModule.login(info).finally(()=>{
 			this.btn_loadding.submit = false
 		})
-		this.$message.success('success')
+		this.$message.success('로그인 환영합니다.')
 		this.$router.push('/')
 	}
 

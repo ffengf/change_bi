@@ -55,7 +55,7 @@
                         <el-input
 							show-password
                             v-model="info_2.again_pass"
-                            placeholder="휴대폰 번호('-'는 빼고 입력해주세요)"
+                            placeholder="비밀번호를 한번 더 입력해 주세요."
                         ></el-input>
                     </el-form-item>
                 </el-form>
@@ -87,7 +87,7 @@ import PhoneSend from "../components/phoneSend.vue"
 export default class extends Vue {
 	validatePhone(rule, value: string, callback) {
         if (value.length !== 11) {
-            callback(new Error("输入11位"));
+            callback(new Error("'-'를 빼고 입력해 주세요."));
         } else {
             callback();
         }
@@ -95,18 +95,18 @@ export default class extends Vue {
 
 	validateEmail(rule, value, callback) {
         if (value === "") {
-            callback(new Error("输入"));
+            callback(new Error("이메일을 입력해 주세요."));
         } else if (
             !value.match(/^[a-zA-Z0-9_-|.]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/)
         ) {
-            callback(new Error("不对"));
+            callback(new Error("정확한 이메일 주소를 이력해 주세요."));
         } else {
             callback();
         }
 	}
 	validatePass(rules, value, callback) {
         if (this.info_2.password !== this.info_2.again_pass) {
-            callback(new Error("两次不对"));
+            callback(new Error("비밀번호와 비밀번호 확인이 일치하지 않습니다."));
         } else {
             callback();
         }
@@ -116,7 +116,7 @@ export default class extends Vue {
 		if(reg.test(value)){
 			callback()
 		}else{
-			callback(new Error("简单了"));
+			callback(new Error("영문,숫자,특수문자 포함 8자 이상 입력"));
 		}
 	}
 
@@ -134,9 +134,9 @@ export default class extends Vue {
         ],
 	};
     info_1 = {
-        username: "532864961@qq.com",
-        phone: "15107550015",
-        code: "121231",
+        username: "",
+        phone: "",
+        code: "",
     };
 
 	step = 1;
@@ -181,8 +181,8 @@ export default class extends Vue {
 			this.btn_loadding.submit_2 = false
 		})
 		// this.$message.success('success')
-		await this.$alert('success','edit',{
-			confirmButtonText: 'ok',
+		await this.$alert('성공적으로 변경되었습니다.','비밀번호 변경',{
+			confirmButtonText: '확인',
 		}).finally(()=>{
 			this.$router.push('/login/signin')
 		})

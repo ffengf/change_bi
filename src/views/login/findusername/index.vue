@@ -38,7 +38,7 @@
             </div>
         </template>
         <template v-if="step === 2">
-            <h1>아이디 찾기 결과-找回账号结果</h1>
+            <h1>아이디 찾기 결과</h1>
             <h2>
                 <p>
                     <strong class="kr-me">가입 아이디</strong
@@ -77,7 +77,7 @@ import PhoneSend from "../components/phoneSend.vue"
 export default class extends Vue {
     validatePhone(rule, value: string, callback) {
         if (value.length !== 11) {
-            callback(new Error("输入11位"));
+            callback(new Error("'-'를 빼고 입력해 주세요."));
         } else {
             callback();
         }

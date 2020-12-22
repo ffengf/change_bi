@@ -27,7 +27,7 @@
 					<h1>결제하기</h1>
 					<div class="how">
 						<div>결제방법</div>
-						<el-select v-model="pay_type" placeholder="신용카드">
+						<el-select v-model="pay_type" placeholder="결제 방법 선택">
 							<el-option value="card" label="신용카드"></el-option>
 							<el-option value="trans" label="계좌이체"></el-option>
 							<el-option value="phone" label="휴대폰결제"></el-option>
@@ -35,10 +35,10 @@
 					</div>
 					<div class="line"></div>
 					<div class="how">
-						<div>优惠券</div>
-						<el-select v-model="coupon" placeholder="选择优惠券">
-							<el-option value="" label="不选">
-								<span style="float: left">不选</span>
+						<div>쿠폰 선택</div>
+						<el-select v-model="coupon" placeholder="쿠폰을 선택">
+							<el-option value="" label="쿠폰 없음">
+								<span style="float: left">쿠폰 없음</span>
 								<span style="float: right; color: #8492a6; font-size: 13px">0</span>
 							</el-option>
 							<el-option v-for="ele in coupon_list" :key="ele.id" :value="ele.id" :label="ele.coupon.title">
@@ -88,7 +88,7 @@ export default class extends Vue {
 		other_title:'',
 		other_content:'',
 	}
-	pay_type:pay_type = 'card'
+	pay_type:pay_type | '' = ''
 
 	coupon:number|string = ''
 
@@ -140,6 +140,9 @@ export default class extends Vue {
 		const coupon_id = this.choose_coupon?.id
 		const club_id = this.info.id
 		this._loading = true
+		if(this.pay_type === ''){
+			return this.$message.error('결제 방법 선택')
+		}
 		pay(this.price,this.pay_type)
 			.then((res:any)=>{
 				const merchant_uid:string = res.merchant_uid

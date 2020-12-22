@@ -43,13 +43,13 @@ export default class extends Vue {
 
 	async submit(){
 		if(this.info.title === ''){
-			return this.$message.error('标题不能为空')
+			return this.$message.error('제목을 작성해 주세요.')
 		}
 		if(this.info.question === ''){
-			return this.$message.error('内容不能为空')
+			return this.$message.error('내용을 작성해 주세요.')
 		}
 		await api_customer.post_qa(this.info)
-		this.$message.success('提交成功')
+		this.$message.success('문의사항이 제출 되었습니다.')
 		this.clear()
 		this.ret_list()
 	}

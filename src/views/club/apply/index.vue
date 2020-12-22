@@ -171,9 +171,11 @@
 				<h1>신청하기</h1>
 				<div class="line"></div>
 				<div class="btn_box">
-					<el-button type="primary" class="btn" @click="filter.status = ''">전체</el-button>
-					<el-button type="default" class="btn" @click="filter.status = 0">모집 중</el-button>
-					<el-button type="default" class="btn" @click="filter.status = 1">진행 중</el-button>
+					<el-button :type="filter.status === '' ? 'primary' : 'default'" class="btn" @click="filter.status = ''">전체</el-button>
+					<el-button :type="filter.status === 4 ? 'primary' : 'default'" class="btn" @click="filter.status = 4">모집대기</el-button>
+					<el-button :type="filter.status === 0 ? 'primary' : 'default'" class="btn" @click="filter.status = 0">모집 중</el-button>
+					<el-button :type="filter.status === 5 ? 'primary' : 'default'" class="btn" @click="filter.status = 5">모집마감</el-button>
+					<el-button :type="filter.status === 1 ? 'primary' : 'default'" class="btn" @click="filter.status = 1">진행 중</el-button>
 				</div>
 			</div>
 		</div>
@@ -183,8 +185,10 @@
 				<h1>{{ ele.title }}</h1>
 				<h2>
 					<span class="green" v-if="ele.status === 0">모집 중</span>
-					<span class="blue" v-if="ele.status === 1">모집 중</span>
-					<span class="orange" v-if="ele.status === 3">모집 중</span>
+					<span class="blue" v-if="ele.status === 1">진행 중</span>
+					<span class="orange" v-if="ele.status === 3">마감 임박</span>
+					<span class="blue" v-if="ele.status === 4">모집대기</span>
+					<span class="orange" v-if="ele.status === 5">모집마감</span>
 					<span>|</span>
 					<span>{{ ele.start_time }} ~ {{ ele.end_time }}</span>
 				</h2>

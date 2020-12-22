@@ -102,7 +102,7 @@
                         />
                     </el-form-item>
                     <div class="line"></div>
-                    <el-form-item label="제목" prop="title">
+                    <el-form-item label="제목" prop="content">
                         <Editor v-model="form.content" />
                     </el-form-item>
                 </el-form>
@@ -162,7 +162,8 @@ export default class extends Mixin_list<task_attend_list>(
     };
 
     rules = {
-        title: [{ required: true }],
+        title:[{ required: true, message:'제목을 작성해 주세요.' }],
+		content:[{ required: true, message:'내용을 작성해 주세요.' }]
     };
 
     attendance_id: number | null = null;
@@ -223,7 +224,7 @@ export default class extends Mixin_list<task_attend_list>(
                 this._loading = false;
             });
         }
-        this.$message.success("success");
+        this.$message.success('미션 제출 되었습니다.')
         this.get_list();
         this.key = false;
 	}

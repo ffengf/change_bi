@@ -35,14 +35,13 @@
 						<img :src="ele.user.avatar" alt="">
 						<div class="content">
 							<div class="h2">
-								<span v-if="ele.delete === 0">{{ ele.create_time }}</span>
-								<span v-else>已删除</span>
+								<span>{{ ele.create_time }}</span>
 								<span>|</span>
 								<span v-if="ele.delete === 0">{{ ele.user.real_name }}</span>
-								<span v-else>已删除</span>
+								<span v-else>ㅇㅇㅇ님</span>
 							</div>
 							<div class="h1" v-if="ele.delete === 0">{{ ele.content }}</div>
-							<div class="h1" v-else>已删除</div>
+							<div class="h1" v-else>삭제된 게시글입니다.</div>
 							<div class="btn_box" v-if="ele.user.id === user_id && ele.delete === 0">
 								<span @click="edit(ele)">수정</span>
 								<span>|</span>
@@ -135,7 +134,7 @@ export default class extends Vue {
 
 	async submit(){
 		if(this.input === ''){
-			return this.$message.error('please inner')
+			return this.$message.error('내용을 작성해 주세요.')
 		}
 		const attendance_id = this.info.id as number
 		this._loading = true
@@ -157,7 +156,7 @@ export default class extends Vue {
 			}
 			return x
 		})
-		this.$message.success('success')
+		this.$message.success('삭제 되었습니다.')
 	}
 
 	edit(ele:comment_small){
@@ -171,7 +170,7 @@ export default class extends Vue {
 	async submit_edit(){
 		const info = this.old_info
 		if(info.content === ''){
-			return this.$message.error('please inner')
+			return this.$message.error('내용을 작성해 주세요.')
 		}
 		this._loading = true
 		await api_myclub.edit_comment(info).finally(()=>{
@@ -184,7 +183,7 @@ export default class extends Vue {
 			return x
 		})
 		this.out_key = false
-		this.$message.success('success')
+		this.$message.success('수정 되었습니다.')
 	}
 }
 </script>

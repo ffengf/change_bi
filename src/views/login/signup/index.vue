@@ -1,6 +1,6 @@
 <template>
     <div class="login_warpper kr-re" id="sign_up" v-if="type === 0">
-        <h1>注册</h1>
+        <h1>회원가입</h1>
         <div class="flex_column">
             <el-form
                 ref="form"
@@ -132,7 +132,7 @@
                 </el-form-item>
                 <el-form-item
                     prop="is_library"
-                    label="사서로 근무 중이신가요? 图书馆"
+                    label="사서로 근무 중이신가요?"
                 >
                     <el-radio-group v-model="info.is_library">
                         <el-radio :label="1">예</el-radio>
@@ -141,7 +141,7 @@
                 </el-form-item>
                 <el-form-item
                     prop="is_publish"
-                    label="향후 출판계 취업을 희망하시나요? 出版行业"
+                    label="향후 출판계 취업을 희망하시나요?"
                 >
                     <el-radio-group v-model="info.is_publish">
                         <el-radio :label="1">예</el-radio>
@@ -156,7 +156,7 @@
 						margin-left: 1rem;
 					">
 						<el-checkbox v-model="all_1">
-                            <span>服务使用条款</span>
+                            <span>서비스이용약관(필수)</span>
                             <el-button
                                 type="text"
                                 class="look"
@@ -166,7 +166,7 @@
                             >
                         </el-checkbox>
                         <el-checkbox v-model="all_2">
-                            <span>隐私政策</span>
+                            <span>개인정보 수집·이용 동의 (필수)</span>
                             <el-button
                                 type="text"
                                 class="look"
@@ -176,7 +176,7 @@
                             >
                         </el-checkbox>
 					</div>
-                    <el-checkbox v-model="is" @change="is_change">마케팅정보 수신동의 同意接受</el-checkbox>
+                    <el-checkbox v-model="is" @change="is_change">마케팅정보 수신동의</el-checkbox>
 					<div style="
 						display: flex;
 						flex-direction: column;
@@ -205,24 +205,24 @@
         </el-dialog>
 
 		<el-dialog
-			title="服务使用条款"
+			title="서비스이용약관"
 			:visible.sync="key_1"
 			width="50%"
 		>
 			<span v-html="content.use"></span>
 			<span slot="footer" class="dialog-footer">
-				<el-button type="primary" @click="key_1 = false">确 定</el-button>
+				<el-button type="primary" @click="key_1 = false">확인</el-button>
 			</span>
 		</el-dialog>
 
 		<el-dialog
-			title="隐私政策"
+			title="개인정보 취급방침"
 			:visible.sync="key_2"
 			width="50%"
 		>
 			<span v-html="content.privacy"></span>
 			<span slot="footer" class="dialog-footer">
-				<el-button type="primary" @click="key_2 = false">确 定</el-button>
+				<el-button type="primary" @click="key_2 = false">확인</el-button>
 			</span>
 		</el-dialog>
     </div>
@@ -279,13 +279,13 @@ export default class extends Vue {
 		if(reg.test(value)){
 			callback()
 		}else{
-			callback(new Error("简单了"));
+			callback(new Error("영문,숫자,특수문자 포함 8자 이상 입력"));
 		}
 	}
 
     validatePass(rules, value, callback) {
         if (this.info.password !== this.info.again_pass) {
-            callback(new Error("两次不对"));
+            callback(new Error("비밀번호와 비밀번호 확인이 일치하지 않습니다."));
         } else {
             callback();
         }
@@ -308,23 +308,24 @@ export default class extends Vue {
     }
     validateEmail(rule, value, callback) {
         if (value === "") {
-            callback(new Error("输入"));
+            callback(new Error("이메일을 입력해 주세요."));
         } else if (
             !value.match(/^[a-zA-Z0-9_-|.]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/)
         ) {
-            callback(new Error("不对"));
+            callback(new Error("정확한 이메일 주소를 이력해 주세요."));
         } else if (this.older.username !== value) {
-            callback(new Error("验证一下"));
+            callback(new Error("이메일 중복확인을 해주세요."));
         } else {
             callback();
-        }
+		}
+
     }
 
     validatePhone(rule, value: string, callback) {
         if (value.length !== 11) {
-            callback(new Error("输入11位"));
+            callback(new Error("'-'를 빼고 입력해 주세요."));
         } else if (this.older.phone !== value) {
-            callback(new Error("验证一下"));
+            callback(new Error("휴대폰 인증을 진행해 주세요."));
         } else {
             callback();
         }
@@ -332,7 +333,7 @@ export default class extends Vue {
     async check_tel_pass() {
 		//todo
         (this.$refs["form"] as ElForm).validateField("phone", async (rules) => {
-            if (rules === "验证一下") {
+            if (rules === "휴대폰 인증을 진행해 주세요.") {
 				this.btn_loadding.check_sms = true;
 				await api_login.check_sms({
 					phone: this.info.phone,
@@ -340,7 +341,7 @@ export default class extends Vue {
 				}).finally(()=>{
 					this.btn_loadding.check_sms = false;
 				})
-				this.$message.success("验证成功");
+				this.$message.success("인증 완료 되었습니다.");
 				this.older.phone = this.info.phone;
             }
         });
@@ -368,19 +369,18 @@ export default class extends Vue {
                 trigger: ["change"],
             },
         ],
-        real_name: [{ required: true }],
+        real_name: [{ required: true, message:'이름을 입력해 주세요.' }],
         gender: [{ required: true }],
-        birth: [{ required: true }],
+        birth: [{ required: true, message:'태어난 년도를 선택해 주세요.'  }],
         phone: [
             {
                 required: true,
-                // validator: this.validatePhone,
-                trigger: ["change"],
+                message:'휴대폰 번호를 입력해 주세요.'
             },
         ],
-        address: [{ required: true }],
-        address_code: [{ required: true }],
-        address_detail: [{ required: true }],
+        address: [{ required: true, message:'주소를 검색해 주세요.' }],
+        address_code: [{ required: true, message:'주소를 검색해 주세요.' }],
+        address_detail: [{ required: true, message:'주소를 검색해 주세요.'}],
         favorite_category: [{ required: true }],
         is_library: [{ required: true }],
         is_publish: [{ required: true }],
@@ -389,18 +389,18 @@ export default class extends Vue {
 		all:[{ required: true }],
     };
     info = {
-        username: "532864961@qq.com",
-        password: "123123",
-        again_pass: "123123",
-        real_name: "1111",
+        username: "",
+        password: "",
+        again_pass: "",
+        real_name: "",
         gender: "0",
-        birth: "1111",
-        phone: "15107550015",
-        code: "123123",
-        address: "1111",
-        address_code: "2222",
-        address_detail: "3333",
-        favorite_category: [1,2],
+        birth: "",
+        phone: "",
+        code: "",
+        address: "",
+        address_code: "",
+        address_detail: "",
+        favorite_category: [0],
         is_library: 1,
         is_publish: 1,
         is_email: true,
@@ -446,7 +446,7 @@ export default class extends Vue {
     async submit() {
 		await (this.$refs['form'] as ElForm).validate()
 		if(this.info.all === false){
-			return this.$message.error('选择服务条款')
+			return this.$message.error('이용약관을 동의해 주세요.')
 		}
 		const info = mapObjIndexed((v,k)=>{
 			if(typeof v === 'boolean'){

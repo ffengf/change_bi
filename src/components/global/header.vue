@@ -63,12 +63,12 @@
 							</span>
 							<el-dropdown-menu slot="dropdown">
 								<!-- <el-dropdown-item command="/user/club">收藏x</el-dropdown-item> -->
-								<el-dropdown-item command="/user/club">读书会</el-dropdown-item>
-								<el-dropdown-item command="/user/active">活动</el-dropdown-item>
-								<el-dropdown-item command="/user/pay">支付记录</el-dropdown-item>
-								<el-dropdown-item command="/user/coupon">优惠券</el-dropdown-item>
-								<!-- <el-dropdown-item command="logout">修改个人信息x</el-dropdown-item> -->
-								<el-dropdown-item command="logout">退出登录</el-dropdown-item>
+								<el-dropdown-item command="/user/club">독섬모임</el-dropdown-item>
+								<el-dropdown-item command="/user/active">이벤트</el-dropdown-item>
+								<el-dropdown-item command="/user/pay">결제내역</el-dropdown-item>
+								<el-dropdown-item command="/user/coupon">쿠폰조회</el-dropdown-item>
+								<!-- <el-dropdown-item command="logout">개인정보 수정x</el-dropdown-item> -->
+								<el-dropdown-item command="logout">로그아웃</el-dropdown-item>
 							</el-dropdown-menu>
 						</el-dropdown>
 					</div>
@@ -127,12 +127,12 @@
 							</span>
 							<el-dropdown-menu slot="dropdown">
 								<!-- <el-dropdown-item command="/user/club">收藏x</el-dropdown-item> -->
-								<el-dropdown-item command="/user/club">读书会</el-dropdown-item>
-								<el-dropdown-item command="/user/active">活动</el-dropdown-item>
-								<el-dropdown-item command="/user/pay">支付记录</el-dropdown-item>
-								<el-dropdown-item command="/user/coupon">优惠券</el-dropdown-item>
-								<!-- <el-dropdown-item command="logout">修改个人信息x</el-dropdown-item> -->
-								<el-dropdown-item command="logout">退出登录</el-dropdown-item>
+								<el-dropdown-item command="/user/club">독섬모임</el-dropdown-item>
+								<el-dropdown-item command="/user/active">이벤트</el-dropdown-item>
+								<el-dropdown-item command="/user/pay">결제내역</el-dropdown-item>
+								<el-dropdown-item command="/user/coupon">쿠폰조회</el-dropdown-item>
+								<!-- <el-dropdown-item command="logout">개인정보 수정x</el-dropdown-item> -->
+								<el-dropdown-item command="logout">로그아웃</el-dropdown-item>
 							</el-dropdown-menu>
 						</el-dropdown>
 					</div>
