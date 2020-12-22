@@ -13,6 +13,7 @@ import "@/assets/style/element_phone.less"
 import "@/assets/style/reset_ele.less"
 import 'element-ui/lib/theme-chalk/display.css';
 import '@/assets/style/element-variables.scss'
+import { UserModule } from '@/store/user';
 
 
 IMP.init('imp14488970')
@@ -21,6 +22,8 @@ Vue.config.productionTip = true;
 
 Vue.use(Element)
 Vue.mixin(Loading)
+
+UserModule.get_info()
 
 export const app = new Vue({
 	router,

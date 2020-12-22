@@ -15,10 +15,12 @@ require("@/assets/style/element_phone.less");
 require("@/assets/style/reset_ele.less");
 require("element-ui/lib/theme-chalk/display.css");
 require("@/assets/style/element-variables.scss");
+var user_1 = require("@/store/user");
 IMP.init('imp14488970');
 vue_1["default"].config.productionTip = true;
 vue_1["default"].use(element_ui_1["default"]);
 vue_1["default"].mixin(loading_1.Loading);
+user_1.UserModule.get_info();
 exports.app = new vue_1["default"]({
     router: router_1["default"],
     i18n: i18n_1["default"],

@@ -1,4 +1,4 @@
-import { api_login, login_res } from '@/api';
+import { api_login, api_user, login_res } from '@/api';
 import {
 	VuexModule,
 	Mutation,
@@ -52,6 +52,24 @@ export default class User extends VuexModule {
 		StorageDb.removeLocal('token')
 		this.LOGOUT()
 	}
+
+	@Action
+	public async get_info() {
+		if(this.TOKEN === null){
+			return
+		}
+		const { id,username,phone } = await api_user.get_user_info()
+		this.SET_INFO({ id,username,phone })
+	}
+	@Mutation
+	private SET_INFO({ username, id, phone }: any) {
+		this.INFO = {
+			id,
+			username,
+			phone,
+		}
+	}
+
 
 	public get token() {
 		return this.TOKEN

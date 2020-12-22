@@ -50,6 +50,23 @@ export interface attend_base{
 	file_name:string
 }
 
+export interface comment_small{
+	id:number
+	content:string
+	create_time:string
+	delete: 0 | 1
+}
+
+export interface comment_info extends attend_base {
+	comment_list:comment_small[]
+	user:{
+		id:number
+		username:string
+		avatar:string
+		real_name:string
+	}
+}
+
 class Myclub extends Http {
 	notice_list = (data: req_list) => {
 		return this.get<res_list<notice_list>>({ page_size: 5, ...data }, '/club/notice/')
@@ -76,11 +93,39 @@ class Myclub extends Http {
 	}
 
 	edit_attend({ id,...data }:attend_base){
-		return this.patch(data,`/club/attend/${id}/`)
+		const req = {
+			attach:data.attach,
+			content:data.content,
+			title:data.title,
+			file_name:data.file_name,
+		}
+		return this.patch(req,`/club/attend/${id}/`)
 	}
 
 	attend_info(id:number){
 		return this.get<attend_base>({},`/club/attend/${id}/`)
+	}
+
+	comment_info(id:number){
+		return this.get<comment_info>({},`/club/attend/${id}/`)
+	}
+
+	send_comment(data:{
+		attendance_id:number
+		content:string
+	}){
+		return this.post<comment_small>(data,'/club/comment/')
+	}
+
+	remove_comment(id:number){
+		return this.delete(id,'/club/comment/')
+	}
+
+	edit_comment({ id,content }:{
+		id:number
+		content:string
+	}){
+		return this.patch({ content },`/club/comment/${id}/`)
 	}
 
 }

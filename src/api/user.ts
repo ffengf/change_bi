@@ -51,6 +51,13 @@ export interface user_club {
 	refuse_reason: string
 }
 
+
+export interface user_info {
+	id:number
+	username:string
+	phone:string
+}
+
 class User extends Http {
 	get_active = (data: req_list) => {
 		return this.get<res_list<user_active>>(data, '/user/activity/')
@@ -78,6 +85,10 @@ class User extends Http {
 			status:0
 		}, '/user/coupon/')
 		return results
+	}
+
+	get_user_info(){
+		return this.get<user_info>({},'/user/info/')
 	}
 
 }

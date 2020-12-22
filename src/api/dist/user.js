@@ -88,6 +88,9 @@ var User = /** @class */ (function (_super) {
             });
         });
     };
+    User.prototype.get_user_info = function () {
+        return this.get({}, '/user/info/');
+    };
     return User;
 }(base_1.Http));
 exports.api_user = new User('/user/');
