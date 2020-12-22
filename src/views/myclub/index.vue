@@ -23,8 +23,8 @@
 						</div>
 						<div class="mid">
 							<h2>신청하기</h2>
-							<h1>{{ info.option }}</h1>
-							<h3>{{ info.option_desc }}</h3>
+							<h1>{{ info.other_title }}</h1>
+							<h3>{{ info.other_content }}</h3>
 						</div>
 						<div class="bottom">
 							<el-button type="danger" class="btn" v-if="info.status === 2">已结束</el-button>
@@ -79,7 +79,9 @@ export default class extends Vue {
 		refund_desc:'',
 		option:'',
 		option_desc:'',
-		type:0
+		type:0,
+		other_title:'',
+		other_content:'',
 	}
 
 	get id():number{

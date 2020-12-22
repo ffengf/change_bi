@@ -84,7 +84,9 @@ export default class extends Vue {
 		refund_desc:'',
 		option:'',
 		option_desc:'',
-		type:0
+		type:0,
+		other_title:'',
+		other_content:'',
 	}
 	pay_type:pay_type = 'card'
 

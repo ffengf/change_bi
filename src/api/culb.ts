@@ -20,6 +20,8 @@ export interface club_info extends club_list {
 	option: string
 	option_desc: string
 	type:0 | 1
+	other_title:string
+	other_content:string
 }
 
 class Club extends Http {
