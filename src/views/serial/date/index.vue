@@ -62,7 +62,7 @@
 
 		<div class="box" v-if="new Date().getDay() !== 1 && info.o1.length !== 0">
             <div class="top">
-                <h1>월요연재1</h1>
+                <h1>월요연재</h1>
                 <div class="lines"></div>
             </div>
             <div class="bottom">
@@ -91,7 +91,7 @@
         </div>
 		<div class="box" v-if="new Date().getDay() !== 2 && info.o2.length !== 0">
             <div class="top">
-                <h1>화요연재2</h1>
+                <h1>화요연재</h1>
                 <div class="lines"></div>
             </div>
             <div class="bottom">
@@ -120,7 +120,7 @@
         </div>
 		<div class="box" v-if="new Date().getDay() !== 3 && info.o3.length !== 0">
             <div class="top">
-                <h1>수요연재3</h1>
+                <h1>수요연재</h1>
                 <div class="lines"></div>
             </div>
             <div class="bottom">
@@ -149,7 +149,7 @@
         </div>
 		<div class="box" v-if="new Date().getDay() !== 4 && info.o4.length !== 0">
             <div class="top">
-                <h1>목요연재4</h1>
+                <h1>목요연재</h1>
                 <div class="lines"></div>
             </div>
             <div class="bottom">
@@ -178,7 +178,7 @@
         </div>
 		<div class="box" v-if="new Date().getDay() !== 5 && info.o5.length !== 0">
             <div class="top">
-                <h1>금요연재5</h1>
+                <h1>금요연재</h1>
                 <div class="lines"></div>
             </div>
             <div class="bottom">
@@ -251,7 +251,7 @@ export default class extends Vue {
 	}
 
 	get today_title(){
-		return ['월요연재1','화요연재2','수요연재3','목요연재4','금요연재5'][new Date().getDay() - 1]
+		return ['월요연재','화요연재','수요연재','목요연재','금요연재'][new Date().getDay() - 1]
 	}
 }
 </script>

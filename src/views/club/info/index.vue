@@ -4,10 +4,10 @@
 			<img :src="info.cover">
 			<div class="title">상세설명</div>
 			<div class="line"></div>
-			<div class="box" v-html="info.content"></div>
+			<div class="box inner" v-html="info.content"></div>
 			<div class="title mt">환불규정</div>
 			<div class="line"></div>
-			<div class="box" v-html="info.refund_desc"></div>
+			<div class="box inner" v-html="info.refund_desc"></div>
 		</div>
 		<div class="right">
 			<div class="top">

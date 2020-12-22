@@ -155,7 +155,7 @@ export default class extends Nocopy {
 <style lang="less" scoped>
 #chapter_info {
     .top {
-        height: 5rem;
+        min-height: 5rem;
         border-bottom: 1px solid #324b9b;
         box-sizing: border-box;
         margin-bottom: 2.5rem;
