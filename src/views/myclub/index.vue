@@ -79,6 +79,7 @@ export default class extends Vue {
 		refund_desc:'',
 		option:'',
 		option_desc:'',
+		type:0
 	}
 
 	get id():number{

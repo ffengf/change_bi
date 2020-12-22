@@ -27,16 +27,29 @@
 					<h1>결제하기</h1>
 					<div class="how">
 						<div>결제방법</div>
-						<el-select v-model="value" placeholder="신용카드">
-							<el-option value="1">123</el-option>
-							<el-option value="12">111</el-option>
-							<el-option value="13">222</el-option>
+						<el-select v-model="pay_type" placeholder="신용카드">
+							<el-option value="card" label="신용카드"></el-option>
+							<el-option value="trans" label="계좌이체"></el-option>
+							<el-option value="phone" label="휴대폰결제"></el-option>
 						</el-select>
 					</div>
 					<div class="line"></div>
+					<div class="how">
+						<div>优惠券</div>
+						<el-select v-model="coupon" placeholder="选择优惠券">
+							<el-option value="" label="不选">
+								<span style="float: left">不选</span>
+								<span style="float: right; color: #8492a6; font-size: 13px">0</span>
+							</el-option>
+							<el-option v-for="ele in coupon_list" :key="ele.id" :value="ele.id" :label="ele.coupon.title">
+								<span style="float: left">{{ ele.coupon.title }}</span>
+								<span style="float: right; color: #8492a6; font-size: 13px">-{{ ele.coupon.amount }}</span>
+							</el-option>
+						</el-select>
+					</div>
 					<div class="info_money">
 						<div class="left">결제금액</div>
-						<div class="right">{{ numFormat(info.price) }} 원</div>
+						<div class="right">{{ numFormat(price) }} 원</div>
 					</div>
 				</div>
 				<el-button v-if="info.price === 0" type="success" class="btn" @click="free">신청하기</el-button>
@@ -47,13 +60,16 @@
 </template>
 
 <script lang="ts">
-import { api_club, club_info } from "@/api";
+import { api_club, api_user, club_info, user_coupon } from "@/api";
 import { Vue, Component, Watch } from "vue-property-decorator";
 import { numFormat } from "@/util/string"
+import { pay, pay_type } from "@/util/pay";
 @Component
 export default class extends Vue {
 
 	numFormat = numFormat
+
+	coupon_list:user_coupon[] = []
 
 	info:club_info = {
 		id: 0,
@@ -68,8 +84,11 @@ export default class extends Vue {
 		refund_desc:'',
 		option:'',
 		option_desc:'',
+		type:0
 	}
-	value = ''
+	pay_type:pay_type = 'card'
+
+	coupon:number|string = ''
 
 	get id():number{
 		return Number(this.$route.params.id)
@@ -82,8 +101,21 @@ export default class extends Vue {
 			this._loading = false
 		})
 		this.info = info
+		this.get_coupon_list(info.type)
 		this.$route.meta.title = info.title
 	}
+
+	get price(){
+		if(this.choose_coupon === undefined){
+			return this.info.price
+		}
+		return this.info.price - this.choose_coupon.coupon.amount < 149 ? 150 : this.info.price - this.choose_coupon.coupon.amount
+	}
+
+	get choose_coupon(){
+		return this.coupon_list.find(x => x.id === this.coupon)
+	}
+
 
 	async free(){
 		const { code } = await api_club.join(this.info.id)
@@ -103,7 +135,37 @@ export default class extends Vue {
 	}
 
 	pay(){
+		const coupon_id = this.choose_coupon?.id
+		const club_id = this.info.id
+		this._loading = true
+		pay(this.price,this.pay_type)
+			.then((res:any)=>{
+				const merchant_uid:string = res.merchant_uid
+				api_club.pay_join({ merchant_uid,coupon_id,club_id }).then(()=>{
+					this.$router.push({
+						path: '/other/pay/success',
+						query:{
+							go_1:'/user/club',
+							go_2:'/user/pay',
+						}
+					})
+				})
+			})
+			.catch(()=>{
+				this.$router.push({
+					path: '/other/pay/fail',
+					query:{
+						go_1:this.$route.path,
+						go_2:'/user/pay',
+					}
+				})
+			}).finally(()=>{
+				this._loading = false
+			})
+	}
 
+	async get_coupon_list(type:0|1){
+		this.coupon_list = await api_user.get_pay_coupon(type)
 	}
 
 	created(){
@@ -299,6 +361,7 @@ export default class extends Vue {
 					display: flex;
 					justify-content: space-between;
 					align-items: center;
+					margin-top: 1rem;
 					.left{
 						font-family: NotoSansKR;
 						font-size: 14px;

@@ -19,6 +19,7 @@ export interface club_info extends club_list {
 	refund_desc: string
 	option: string
 	option_desc: string
+	type:0 | 1
 }
 
 class Club extends Http {
@@ -42,6 +43,14 @@ class Club extends Http {
 		return this.post<{
 			code?:number
 		}>({ status:1 },`/club/${id}/apply/`)
+	}
+
+	pay_join(data:{
+		club_id:number
+		merchant_uid:string
+		coupon_id?:number
+	}){
+		return this.post(data,'/order/')
 	}
 
 }

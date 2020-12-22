@@ -1,6 +1,7 @@
 
+export type pay_type = 'card' | 'trans' | 'phone'
 
-export const pay = (merchant_uid:string|number,amount: number, pay_method: 0 | 1 | 2, other: Object = {}) => {
+export const pay = (amount: number, pay_method: pay_type, other: Object = {}) => {
 	return new Promise((resolve, reject) => {
 		try {
 			IMP.request_pay({
@@ -11,12 +12,12 @@ export const pay = (merchant_uid:string|number,amount: number, pay_method: 0 | 1
 				buyer_tel: '01052301547',
 				buyer_addr: '서울특별시 강남구 삼성동',
 				buyer_postcode: '123-456',
+				merchant_uid:"switch_" + new Date().getTime() ,
 
 				...other,
-				merchant_uid,
 				amount,
 				pay_method,
-			}, (res) => {
+			}, (res:any) => {
 				if (res.success) {
 					resolve(res)
 				} else {

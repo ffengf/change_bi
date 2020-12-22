@@ -72,6 +72,14 @@ class User extends Http {
 		return this.post({ redeem_code }, '/user/coupon/')
 	}
 
+	async get_pay_coupon(type:0 | 1){
+		const { results } = await this.get<res_list<user_coupon>>({
+			type,
+			status:0
+		}, '/user/coupon/')
+		return results
+	}
+
 }
 
 
