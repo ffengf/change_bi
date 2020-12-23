@@ -51,7 +51,7 @@ var Myclub = /** @class */ (function (_super) {
             return _this.get(data, "/club/attend/");
         };
         _this.get_discuss_list = function (data) {
-            return _this.get(data, '/club/discuss/');
+            return _this.get(__assign(__assign({}, data), { page_size: 5 }), '/club/discuss/');
         };
         return _this;
     }
@@ -93,6 +93,12 @@ var Myclub = /** @class */ (function (_super) {
     };
     Myclub.prototype.add_discuss = function (data) {
         return this.post(data, '/club/discuss/');
+    };
+    Myclub.prototype.edit_discuss = function (data) {
+        return this.patch({ content: data.content }, "/club/discuss/" + data.id + "/");
+    };
+    Myclub.prototype.remove_discuss = function (id) {
+        return this.server["delete"]("/club/discuss/" + id + "/");
     };
     return Myclub;
 }(base_1.Http));

@@ -143,11 +143,22 @@ class Myclub extends Http {
 	}
 
 	get_discuss_list = (data: req_list) => {
-		return this.get<res_list<discuss_list>>(data, '/club/discuss/')
+		return this.get<res_list<discuss_list>>({ ...data,page_size:5 }, '/club/discuss/')
 	}
 
 	add_discuss(data:add_discuss){
 		return this.post<discuss_list>(data,'/club/discuss/')
+	}
+
+	edit_discuss(data:{
+		content:string
+		id:number
+	}){
+		return this.patch({ content:data.content },`/club/discuss/${data.id}/`)
+	}
+
+	remove_discuss(id:number){
+		return this.server.delete(`/club/discuss/${id}/`)
 	}
 
 }

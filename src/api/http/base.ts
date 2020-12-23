@@ -40,12 +40,12 @@ server.interceptors.response.use(({ data, status }) => {
 	if (err?.response?.status === 403) {
 		let title = ''
 		if(err?.response?.data === 4001){
-			title = 'token过期'
+			title = '토큰 유효기간이 지났습니다.'
 		}else{
-			title = '请登录'
+			title = '로그인후 다시 시도해 주세요.'
 		}
-		Vue.$alert(title, '标题',{
-			confirmButtonText:'ok',
+		Vue.$alert(title,{
+			confirmButtonText:'로그인 하기',
 			callback(){
 				Vue.$router.push('/login')
 			}

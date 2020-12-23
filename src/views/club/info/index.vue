@@ -61,7 +61,7 @@
 
 <script lang="ts">
 import { api_club, api_user, club_info, user_coupon } from "@/api";
-import { Vue, Component, Watch } from "vue-property-decorator";
+import { Vue, Component, Watch, Emit } from "vue-property-decorator";
 import { numFormat } from "@/util/string"
 import { pay, pay_type } from "@/util/pay";
 @Component

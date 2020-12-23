@@ -123,22 +123,22 @@ export default class extends Vue {
 		{
 			url:'https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png',
 			title:"김민수 장편소설 ‘함께’ 13화",
-			info:"클럽 창작과비평 독서모임 1기 모집"
+			info:"공지사항 부제가 노출될 예정입니다."
 		},
 		{
 			url:'https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png',
 			title:"김민수 장편소설 ‘함께’ 13화",
-			info:"你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好"
+			info:"공지사항 부제가 노출될 예정입니다."
 		},
 		{
 			url:'https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png',
 			title:"김민수 장편소설 ‘함께’ 13화",
-			info:"你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好"
+			info:"공지사항 부제가 노출될 예정입니다."
 		},
 		{
 			url:'https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png',
 			title:"김민수 장편소설 ‘함께’ 13화",
-			info:"你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好"
+			info:"공지사항 부제가 노출될 예정입니다."
 		}
 	]
 

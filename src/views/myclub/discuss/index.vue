@@ -17,17 +17,20 @@
             </div>
         </div>
 		<ul>
-			<Item v-for="ele in list" :key="ele.id" :info="ele" />
+			<Item v-for="ele in list" :key="ele.id" :info="ele" @submit="children_submit" @remove="children_remove" @edit="children_submit" />
 		</ul>
+		<el-button class="more" type="success" @click="more" :disabled="disabled">더 보기</el-button>
     </div>
 </template>
 
 <script lang="ts">
-import { api_myclub } from "@/api";
+import { api_myclub, discuss_list } from "@/api";
 import { More } from "@/mixin/more";
 import { UserModule } from "@/store/user";
 import { Vue, Component } from "vue-property-decorator";
 import Item from "./item.vue"
+
+
 @Component({
 	components:{ Item }
 })
@@ -54,12 +57,39 @@ export default class extends More(api_myclub.get_discuss_list) {
 			return this.$message.error('inner')
 		}
 		this._loading = true
-		await api_myclub.add_discuss({ ...this.submit_info }).finally(()=>{
+		const new_discuss = await api_myclub.add_discuss({ ...this.submit_info }).finally(()=>{
 			this._loading = false
 		})
 		this.submit_info.content = ''
+		this.list = [new_discuss,...this.list]
 		this.$message.success('success')
 	}
+
+
+	children_submit(data:discuss_list){
+		this.list = this.list.map(x => x.id === data.id ? data : x)
+	}
+
+	children_remove(data:{ id:number,parent_id:number | null }){
+		this.list = this.list.map(x =>{
+			if(data.parent_id !== null && data.parent_id === x.id){
+				const new_reply_list = x.reply_list.map(y => {
+					if(y.id === data.id){
+						return { ...y,delete:1 }
+					}
+					return y
+				})
+				return { ...x,reply_list:new_reply_list }
+			}
+			if(data.parent_id === null){
+				if(x.id === data.id){
+					return { ...x,delete:1 }
+				}
+			}
+			return x
+		}) as discuss_list[]
+	}
+
 }
 </script>
 
@@ -67,7 +97,11 @@ export default class extends More(api_myclub.get_discuss_list) {
 
 <style lang='less' scoped>
 #discuss {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
     .user_inp {
+		width: 100%;
         box-sizing: border-box;
         padding: 1rem 0;
         border-top: 1px solid #324b9b;
@@ -133,6 +167,9 @@ export default class extends More(api_myclub.get_discuss_list) {
                 }
             }
         }
-    }
+	}
+	ul{
+		width: 100%;
+	}
 }
 </style>
