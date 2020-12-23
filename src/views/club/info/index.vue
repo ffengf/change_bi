@@ -53,7 +53,7 @@
 					</div>
 				</div>
 				<el-button v-if="info.price === 0" type="success" class="btn" @click="free">신청하기</el-button>
-				<el-button v-else type="success" class="btn" @click="pay">결제하기</el-button>
+				<el-button v-else type="success" class="btn" @click="check_coupon">결제하기</el-button>
 			</div>
 		</div>
     </div>
@@ -136,13 +136,13 @@ export default class extends Vue {
 		}
 	}
 
-	pay(){
+	async pay(){
 		const coupon_id = this.choose_coupon?.id
 		const club_id = this.info.id
-		this._loading = true
 		if(this.pay_type === ''){
 			return this.$message.error('결제 방법 선택')
 		}
+		this._loading = true
 		pay(this.price,this.pay_type)
 			.then((res:any)=>{
 				console.log('success',res)
@@ -169,6 +169,14 @@ export default class extends Vue {
 			}).finally(()=>{
 				this._loading = false
 			})
+	}
+
+	async check_coupon(){
+		this._loading = true
+		await api_club.pay_check(this.info.id,this.choose_coupon?.id).finally(()=>{
+			this._loading = false
+		})
+		this.pay()
 	}
 
 	async get_coupon_list(type:0|1){

@@ -63,7 +63,7 @@
 							</span>
 							<el-dropdown-menu slot="dropdown">
 								<!-- <el-dropdown-item command="/user/club">收藏x</el-dropdown-item> -->
-								<el-dropdown-item command="/user/club">독섬모임</el-dropdown-item>
+								<el-dropdown-item command="/user/club">독서모임</el-dropdown-item>
 								<el-dropdown-item command="/user/active">이벤트</el-dropdown-item>
 								<el-dropdown-item command="/user/pay">결제내역</el-dropdown-item>
 								<el-dropdown-item command="/user/coupon">쿠폰조회</el-dropdown-item>
@@ -127,7 +127,7 @@
 							</span>
 							<el-dropdown-menu slot="dropdown">
 								<!-- <el-dropdown-item command="/user/club">收藏x</el-dropdown-item> -->
-								<el-dropdown-item command="/user/club">독섬모임</el-dropdown-item>
+								<el-dropdown-item command="/user/club">독서모임</el-dropdown-item>
 								<el-dropdown-item command="/user/active">이벤트</el-dropdown-item>
 								<el-dropdown-item command="/user/pay">결제내역</el-dropdown-item>
 								<el-dropdown-item command="/user/coupon">쿠폰조회</el-dropdown-item>

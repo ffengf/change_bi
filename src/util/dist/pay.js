@@ -14,9 +14,14 @@ exports.__esModule = true;
 exports.pay = void 0;
 exports.pay = function (amount, pay_method, other) {
     if (other === void 0) { other = {}; }
+    var pg = {
+        phone: 'danal',
+        trans: 'danal_tpay',
+        card: 'danal_tpay'
+    }[pay_method];
     return new Promise(function (resolve, reject) {
         try {
-            IMP.request_pay(__assign(__assign({ name: '주문명:결제테스트', buyer_email: 'iamport@siot.do', buyer_name: '구매자이름', buyer_tel: '01052301547', buyer_addr: '서울특별시 강남구 삼성동', buyer_postcode: '123-456', pg: pay_method === 'phone' ? 'danal' : 'danal_tpay', merchant_uid: "switch_" + new Date().getTime() }, other), { amount: amount,
+            IMP.request_pay(__assign(__assign({ name: '주문명:결제테스트', buyer_email: 'iamport@siot.do', buyer_name: '구매자이름', buyer_tel: '01052301547', buyer_addr: '서울특별시 강남구 삼성동', buyer_postcode: '123-456', pg: pg, merchant_uid: "switch_" + new Date().getTime() }, other), { amount: amount,
                 pay_method: pay_method }), function (res) {
                 if (res.success) {
                     resolve(res);

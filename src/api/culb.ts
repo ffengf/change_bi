@@ -19,9 +19,9 @@ export interface club_info extends club_list {
 	refund_desc: string
 	option: string
 	option_desc: string
-	type:0 | 1
-	other_title:string
-	other_content:string
+	type: 0 | 1
+	other_title: string
+	other_content: string
 }
 
 class Club extends Http {
@@ -41,18 +41,22 @@ class Club extends Http {
 		return this.get<club_info>({}, `${this.uri}${id}/`)
 	}
 
-	join(id:number){
+	join(id: number) {
 		return this.post<{
-			code?:number
-		}>({ status:1 },`/club/${id}/apply/`)
+			code?: number
+		}>({ status: 1 }, `/club/${id}/apply/`)
 	}
 
-	pay_join(data:{
-		club_id:number
-		merchant_uid:string
-		coupon_id?:number
-	}){
-		return this.post(data,'/order/')
+	pay_join(data: {
+		club_id: number
+		merchant_uid: string
+		coupon_id?: number
+	}) {
+		return this.post(data, '/order/')
+	}
+
+	pay_check(club_id: number, coupon_id: number | undefined) {
+		return this.post({ coupon_id },`/club/${club_id}/check/`)
 	}
 
 }

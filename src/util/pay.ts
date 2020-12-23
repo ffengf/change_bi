@@ -2,9 +2,15 @@
 export type pay_type = 'card' | 'trans' | 'phone'
 
 export const pay = (amount: number, pay_method: pay_type, other: Object = {}) => {
+	const pg = {
+		phone:'danal',
+		trans:'danal_tpay',
+		card:'danal_tpay'
+	}[pay_method]
 	return new Promise((resolve, reject) => {
 		try {
 			IMP.request_pay({
+
 				name: '주문명:결제테스트',
 				buyer_email: 'iamport@siot.do',
 				buyer_name: '구매자이름',
@@ -12,8 +18,9 @@ export const pay = (amount: number, pay_method: pay_type, other: Object = {}) =>
 				buyer_addr: '서울특별시 강남구 삼성동',
 				buyer_postcode: '123-456',
 
-				pg: pay_method === 'phone' ? 'danal' : 'danal_tpay',
+				pg,
 				merchant_uid:"switch_" + new Date().getTime() ,
+
 				...other,
 				amount,
 				pay_method,
