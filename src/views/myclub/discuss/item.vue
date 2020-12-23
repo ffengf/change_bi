@@ -128,7 +128,7 @@ export default class extends Vue {
 	@Emit('submit')
 	async submit(){
 		if(this.dialog_info.content === ''){
-			return this.$message.error('inner')
+			return this.$message.error('내용을 작성해 주세요.')
 		}
 		const club_id = this.club_id
 		this._loading = true
@@ -142,7 +142,7 @@ export default class extends Vue {
 	@Emit('edit')
 	async edit_submit(){
 		if(this.dialog_info.content === ''){
-			return this.$message.error('inner')
+			return this.$message.error('내용을 작성해 주세요.')
 		}
 		this._loading = true
 		const data = await api_myclub.edit_discuss({ ...this.dialog_info } as edit_submit).finally(()=>{
@@ -168,7 +168,7 @@ export default class extends Vue {
 		await api_myclub.remove_discuss(id).finally(()=>{
 			this._loading = false
 		})
-		this.$message.success('del success')
+		this.$message.success('삭제 되었습니다.')
 		return {
 			id,
 			parent_id

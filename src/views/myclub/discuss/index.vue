@@ -54,7 +54,7 @@ export default class extends More(api_myclub.get_discuss_list) {
 
 	async submit(){
 		if(this.submit_info.content === ''){
-			return this.$message.error('inner')
+			return this.$message.error('내용을 작성해 주세요.')
 		}
 		this._loading = true
 		const new_discuss = await api_myclub.add_discuss({ ...this.submit_info }).finally(()=>{
@@ -62,7 +62,7 @@ export default class extends More(api_myclub.get_discuss_list) {
 		})
 		this.submit_info.content = ''
 		this.list = [new_discuss,...this.list]
-		this.$message.success('success')
+		this.$message.success('댓글이 작성되었습니다.')
 	}
 
 
