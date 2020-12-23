@@ -38,17 +38,17 @@ export interface user_coupon {
 	}
 }
 
-// USER_club_STATUS
-// (0, "申请中"),
-// (1, "已通过"),
-// (2, "已取消")
 export interface user_club {
 	id: number
-	title: string
-	start_time: string
-	end_time: string
-	status: 0 | 1 | 2
-	refuse_reason: string
+	status: 0 | 1 | 2 | 3 | 4
+	refuse_reason: string | null
+	club:{
+		id:number
+		title: string
+		start_time: string
+		end_time: string
+		status: 0 | 1 | 2 | 3 | 4 | 5
+	}
 }
 
 

@@ -3,15 +3,11 @@
 		<div class="box" v-for="(ele) in list" :key="ele.id">
 			<div class="box_left">
 				<h2>
-					<span v-if="ele.status === 0">审核中</span>
-					<span v-if="ele.status === 1 && ele.club_status === 5">未开始</span>
-					<span v-if="ele.status === 1 && ele.club_status === 1">进行中</span>
-					<span v-if="ele.status === 1 && ele.club_status === 2">已结束</span>
-					<span v-if="ele.status === 2">已取消</span>
+					<span>{{ status_str(ele) }}</span>
 					<span>|</span>
-					<span>{{ ele.start_time }} ~ {{ ele.end_time }}</span>
+					<span>{{ ele.club.start_time }} ~ {{ ele.club.end_time }}</span>
 				</h2>
-				<h1>{{ ele.title }}</h1>
+				<h1>{{ ele.club.title }}</h1>
 			</div>
 			<div class="flex" v-if="ele.status === 0 || ele.status === 1 && ele.club_status === 5">
 				<el-button class="right_btn" type="danger">取消申请</el-button>
@@ -52,6 +48,30 @@ export default class extends More(api_user.get_club) {
 		(this.$refs['paper'] as any).open({
 			name:10
 		})
+	}
+
+	status_str(ele:user_club){
+		switch(ele.status){
+			case 0 :
+				return '审核中'
+			case 2 :
+				return '已取消'
+			case 3 :
+				return '待退款'
+			case 4 :
+				return '已退款'
+			case 1 :
+				switch(ele.club.status){
+					case 1 :
+						return '进行中'
+					case 2 :
+						return '已结束'
+					default :
+						return '未开始'
+				}
+			default :
+				return ''
+		}
 	}
 }
 </script>
