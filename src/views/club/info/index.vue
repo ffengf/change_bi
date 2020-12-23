@@ -145,6 +145,7 @@ export default class extends Vue {
 		}
 		pay(this.price,this.pay_type)
 			.then((res:any)=>{
+				console.log('success',res)
 				const merchant_uid:string = res.merchant_uid
 				api_club.pay_join({ merchant_uid,coupon_id,club_id }).then(()=>{
 					this.$router.push({
@@ -156,7 +157,8 @@ export default class extends Vue {
 					})
 				})
 			})
-			.catch(()=>{
+			.catch((e)=>{
+				console.log('fail',e)
 				this.$router.push({
 					path: '/other/pay/fail',
 					query:{

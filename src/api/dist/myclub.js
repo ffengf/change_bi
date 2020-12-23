@@ -50,6 +50,9 @@ var Myclub = /** @class */ (function (_super) {
         _this.task_attend_list = function (data) {
             return _this.get(data, "/club/attend/");
         };
+        _this.get_discuss_list = function (data) {
+            return _this.get(data, '/club/discuss/');
+        };
         return _this;
     }
     Myclub.prototype.notice_info = function (id) {
@@ -87,6 +90,9 @@ var Myclub = /** @class */ (function (_super) {
     Myclub.prototype.edit_comment = function (_a) {
         var id = _a.id, content = _a.content;
         return this.patch({ content: content }, "/club/comment/" + id + "/");
+    };
+    Myclub.prototype.add_discuss = function (data) {
+        return this.post(data, '/club/discuss/');
     };
     return Myclub;
 }(base_1.Http));

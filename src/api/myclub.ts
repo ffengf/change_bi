@@ -27,44 +27,58 @@ export interface task_list {
 export type club_notice = base_info & notice_list
 export type club_task = base_info & task_list
 
+export interface user_link {
+	id: number
+	username: string
+	avatar: string
+	real_name: string
+}
 
-export interface task_attend_list{
-	id:number
-	user:{
-		id:number
-		username:string
-		avatar:string
-		real_name:string
-	}
-	title:string
-	create_time:string
+export interface task_attend_list {
+	id: number
+	user: user_link
+	title: string
+	create_time: string
 }
 
 
-export interface attend_base{
-	id:number|null
-	task_id:number
-	title:string
-	content:string
-	attach:string
-	file_name:string
+export interface attend_base {
+	id: number | null
+	task_id: number
+	title: string
+	content: string
+	attach: string
+	file_name: string
 }
 
-export interface comment_small{
-	id:number
-	content:string
-	create_time:string
+export interface comment_small {
+	id: number
+	content: string
+	create_time: string
 	delete: 0 | 1
 }
 
 export interface comment_info extends attend_base {
-	comment_list:comment_small[]
-	user:{
-		id:number
-		username:string
-		avatar:string
-		real_name:string
-	}
+	comment_list: comment_small[]
+	user: user_link
+}
+
+
+
+export interface discuss_list {
+	id: number
+	create_time: string
+	content: string
+	delete: 0 | 1
+	from_user: user_link
+	reply_list: discuss_list[]
+}
+
+export interface add_discuss {
+	club_id:number
+	to_user_id?:number
+	parent_id?:number
+	content:string
 }
 
 class Myclub extends Http {
@@ -84,48 +98,56 @@ class Myclub extends Http {
 		return this.get<club_task>({}, `/club/task/${id}/`)
 	}
 
-	task_attend_list = (data:req_list) => {
-		return this.get<res_list<task_attend_list>>(data,`/club/attend/`)
+	task_attend_list = (data: req_list) => {
+		return this.get<res_list<task_attend_list>>(data, `/club/attend/`)
 	}
 
-	add_attend({ id,...data }:attend_base){
-		return this.post(data,`/club/attend/`)
+	add_attend({ id, ...data }: attend_base) {
+		return this.post(data, `/club/attend/`)
 	}
 
-	edit_attend({ id,...data }:attend_base){
+	edit_attend({ id, ...data }: attend_base) {
 		const req = {
-			attach:data.attach,
-			content:data.content,
-			title:data.title,
-			file_name:data.file_name,
+			attach: data.attach,
+			content: data.content,
+			title: data.title,
+			file_name: data.file_name,
 		}
-		return this.patch(req,`/club/attend/${id}/`)
+		return this.patch(req, `/club/attend/${id}/`)
 	}
 
-	attend_info(id:number){
-		return this.get<attend_base>({},`/club/attend/${id}/`)
+	attend_info(id: number) {
+		return this.get<attend_base>({}, `/club/attend/${id}/`)
 	}
 
-	comment_info(id:number){
-		return this.get<comment_info>({},`/club/attend/${id}/`)
+	comment_info(id: number) {
+		return this.get<comment_info>({}, `/club/attend/${id}/`)
 	}
 
-	send_comment(data:{
-		attendance_id:number
-		content:string
-	}){
-		return this.post<comment_small>(data,'/club/comment/')
+	send_comment(data: {
+		attendance_id: number
+		content: string
+	}) {
+		return this.post<comment_small>(data, '/club/comment/')
 	}
 
-	remove_comment(id:number){
-		return this.delete(id,'/club/comment/')
+	remove_comment(id: number) {
+		return this.delete(id, '/club/comment/')
 	}
 
-	edit_comment({ id,content }:{
-		id:number
-		content:string
-	}){
-		return this.patch({ content },`/club/comment/${id}/`)
+	edit_comment({ id, content }: {
+		id: number
+		content: string
+	}) {
+		return this.patch({ content }, `/club/comment/${id}/`)
+	}
+
+	get_discuss_list = (data: req_list) => {
+		return this.get<res_list<discuss_list>>(data, '/club/discuss/')
+	}
+
+	add_discuss(data:add_discuss){
+		return this.post<discuss_list>(data,'/club/discuss/')
 	}
 
 }

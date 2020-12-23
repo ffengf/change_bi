@@ -56,6 +56,8 @@ export interface user_info {
 	id:number
 	username:string
 	phone:string
+	real_name:string
+	avatar:string
 }
 
 class User extends Http {

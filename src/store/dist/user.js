@@ -69,12 +69,8 @@ var User = /** @class */ (function (_super) {
         return _this;
     }
     User.prototype.LOGIN = function (_a) {
-        var username = _a.username, token = _a.token, id = _a.id, phone = _a.phone;
-        this.INFO = {
-            id: id,
-            username: username,
-            phone: phone
-        };
+        var token = _a.token;
+        this.get_info();
         this.TOKEN = token;
     };
     User.prototype.LOGOUT = function () {
@@ -102,7 +98,7 @@ var User = /** @class */ (function (_super) {
     };
     User.prototype.get_info = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, id, username, phone;
+            var _a, id, username, phone, real_name, avatar;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -111,19 +107,21 @@ var User = /** @class */ (function (_super) {
                         }
                         return [4 /*yield*/, api_1.api_user.get_user_info()];
                     case 1:
-                        _a = _b.sent(), id = _a.id, username = _a.username, phone = _a.phone;
-                        this.SET_INFO({ id: id, username: username, phone: phone });
+                        _a = _b.sent(), id = _a.id, username = _a.username, phone = _a.phone, real_name = _a.real_name, avatar = _a.avatar;
+                        this.SET_INFO({ id: id, username: username, phone: phone, real_name: real_name, avatar: avatar });
                         return [2 /*return*/];
                 }
             });
         });
     };
     User.prototype.SET_INFO = function (_a) {
-        var username = _a.username, id = _a.id, phone = _a.phone;
+        var username = _a.username, id = _a.id, phone = _a.phone, real_name = _a.real_name, avatar = _a.avatar;
         this.INFO = {
             id: id,
             username: username,
-            phone: phone
+            phone: phone,
+            real_name: real_name,
+            avatar: avatar
         };
     };
     Object.defineProperty(User.prototype, "token", {

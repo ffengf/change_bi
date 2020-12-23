@@ -1,4 +1,4 @@
-import { api_login, api_user, login_res } from '@/api';
+import { api_login, api_user, login_res, user_info } from '@/api';
 import {
 	VuexModule,
 	Mutation,
@@ -14,6 +14,8 @@ interface info {
 	username: string
 	phone: string
 	id: number
+	real_name:string
+	avatar:string
 }
 
 
@@ -24,12 +26,8 @@ export default class User extends VuexModule {
 	private INFO: info | null = null
 
 	@Mutation
-	private LOGIN({ username, token, id, phone }: login_res) {
-		this.INFO = {
-			id,
-			username,
-			phone,
-		}
+	private LOGIN({ token }: login_res) {
+		this.get_info()
 		this.TOKEN = token
 	}
 
@@ -58,15 +56,17 @@ export default class User extends VuexModule {
 		if(this.TOKEN === null){
 			return
 		}
-		const { id,username,phone } = await api_user.get_user_info()
-		this.SET_INFO({ id,username,phone })
+		const { id,username,phone,real_name,avatar } = await api_user.get_user_info()
+		this.SET_INFO({ id,username,phone,real_name,avatar })
 	}
 	@Mutation
-	private SET_INFO({ username, id, phone }: any) {
+	private SET_INFO({ username, id, phone, real_name,avatar }: user_info) {
 		this.INFO = {
 			id,
 			username,
 			phone,
+			real_name,
+			avatar
 		}
 	}
 

@@ -16,7 +16,7 @@ import '@/assets/style/element-variables.scss'
 import { UserModule } from '@/store/user';
 
 
-IMP.init('imp14488970')
+IMP.init('imp07867187')
 
 Vue.config.productionTip = true;
 

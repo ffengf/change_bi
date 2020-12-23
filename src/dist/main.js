@@ -16,7 +16,7 @@ require("@/assets/style/reset_ele.less");
 require("element-ui/lib/theme-chalk/display.css");
 require("@/assets/style/element-variables.scss");
 var user_1 = require("@/store/user");
-IMP.init('imp14488970');
+IMP.init('imp07867187');
 vue_1["default"].config.productionTip = true;
 vue_1["default"].use(element_ui_1["default"]);
 vue_1["default"].mixin(loading_1.Loading);
