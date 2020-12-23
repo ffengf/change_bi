@@ -15,7 +15,7 @@
 						<span v-if="ele.use_time !== null"> | {{ ele.use_time }}사용</span>
 					</span>
                 </h2>
-                <h1>{{ ele.coupon.title }} <span class="small">({{ ele.coupon.amount }}원)</span> </h1>
+                <h1>{{ ele.coupon.title }} <span class="small">({{ numFormat(ele.coupon.amount) }}원)</span> </h1>
             </div>
             <div class="text" v-if="ele.status !== 2">{{ ele.coupon.redeem_code }}</div>
 			<el-button v-else type="warning" class="right_btn" @click="del(ele.id)">삭제</el-button>
@@ -45,6 +45,7 @@ import Rview from "@/components/routerView/index.vue";
 import Bread from "@/components/bread/index.vue";
 import { More } from "@/mixin/more";
 import { api_user, user_coupon } from "@/api";
+import { numFormat } from "@/util/string";
 @Component({
     components: {
         Rview,
@@ -54,6 +55,8 @@ import { api_user, user_coupon } from "@/api";
 export default class extends More(api_user.get_coupon) {
     key = false;
 	code = "";
+
+	numFormat = numFormat
 
 	async del(id:number){
 		this._loading = true

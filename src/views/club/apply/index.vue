@@ -680,12 +680,21 @@ export default class extends More(api_club.get_apply_list) {
 		}
 		.box{
 			.ccc{
+				width: 100%;
+				height: 100%;
+				display: flex;
+				align-items: center;
 				h1{
 					font-size: 16px;
 				}
 				.btn_box{
+					flex-wrap: wrap;
+					justify-content: center;
+					position: static;
+					width: 100%;
 					> *{
-						width: auto;
+						margin: 2rem 0;
+						width: 6rem!important;
 						margin: 0 1px;
 					}
 				}

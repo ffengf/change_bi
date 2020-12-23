@@ -9,21 +9,22 @@
 				</h2>
 				<h1>{{ ele.club.title }}</h1>
 			</div>
-			<div class="flex" v-if="ele.status === 0 || ele.status === 1 && ele.club_status === 5">
+			<div class="flex" v-if="status_str(ele) === '审核中' || status_str(ele) === '未开始'">
 				<el-button class="right_btn" type="danger">取消申请</el-button>
 				<el-button class="right_btn" type="primary" @click="$router.push(`/myclub/${ele.id}`)">查看内容</el-button>
 			</div>
-			<div class="flex" v-if="ele.status === 1 && ele.club_status === 1">
-				<el-button class="right_btn" type="primary">去参加</el-button>
+			<div class="flex" v-if="status_str(ele) === '进行中'">
+				<el-button class="right_btn" type="primary" @click="$router.push(`/myclub/${ele.id}`)">查看内容</el-button>
 			</div>
-			<div class="flex" v-if="ele.status === 1 && ele.club_status === 2">
-				<el-button class="right_btn" type="primary">查看内容</el-button>
-				<el-button class="right_btn" type="primary">打印结业证</el-button>
+			<div class="flex" v-if="status_str(ele) === '已结束'">
+				<el-button class="right_btn" type="success">打印结业证</el-button>
+				<el-button class="right_btn" type="primary" @click="$router.push(`/myclub/${ele.id}`)">查看内容</el-button>
 			</div>
-			<div class="flex" v-if="ele.status === 2">
-				<p class="text" v-if="ele.refuse_reason !== null">{{ ele.refuse_reason }}</p>
-				<p class="text" v-else>自己取消</p>
-				<el-button class="right_btn" type="primary">删除</el-button>
+			<div class="flex" v-if="status_str(ele) === '已取消' || status_str(ele) === '待退款' || status_str(ele) === '已退款'">
+				<el-tooltip v-if="ele.refuse_reason !== null" class="item" effect="dark" :content="ele.refuse_reason" placement="top-start">
+					<div class="text">{{ ele.refuse_reason }}</div>
+				</el-tooltip>
+				<el-button class="right_btn" type="danger" @click="$router.push(`/myclub/${ele.id}`)">删除</el-button>
 			</div>
 		</div>
 		<el-button class="more" type="success" :disabled="disabled">더 보기</el-button>
@@ -80,12 +81,24 @@ export default class extends More(api_user.get_club) {
 
 <style lang='less' scoped>
 .flex{
-	width: 10rem;
+	width: 12rem;
 	justify-content: space-between;
-}
-@media only screen and (max-width: 1024px) {
-	.flex{
-		width: auto;
+	&::before{
+		content: '';
+	}
+	.right_btn{
+		width: 45% !important;
+	}
+	.text{
+		width: 45%!important;
+		overflow: hidden;
+		white-space: nowrap;
+     	text-overflow: ellipsis;
 	}
 }
+// @media only screen and (max-width: 1024px) {
+// 	.flex{
+// 		width: 12rem;
+// 	}
+// }
 </style>
