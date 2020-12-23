@@ -198,7 +198,7 @@ export default class extends Vue {
 	user(type:string){
 		if(type === 'logout'){
 			UserModule.logout()
-			this.$message.success('logout success')
+			this.$message.success('로그아웃 되었습니다.')
 			this.$router.push('/')
 		}else{
 			this.$router.push(type)

@@ -10,8 +10,8 @@
 				</h2>
 				<h1>{{ ele.title }}</h1>
 			</div>
-			<el-button class="right_btn" type="success" v-if="ele.status === 0">신청 진행 중</el-button>
-			<el-button class="right_btn" type="primary" v-if="ele.status === 1">참여하기</el-button>
+			<el-button class="right_btn" type="success" v-if="ele.status === 0" @click="go(ele)">신청 진행 중</el-button>
+			<el-button class="right_btn" type="primary" v-if="ele.status === 1" @click="go(ele)">참여하기</el-button>
 		</div>
 		<el-button class="more" type="success" :disabled="disabled">더 보기</el-button>
     </div>
@@ -22,7 +22,7 @@ import { Vue, Component } from "vue-property-decorator";
 import Rview from "@/components/routerView/index.vue";
 import Bread from "@/components/bread/index.vue"
 import { More } from "@/mixin/more"
-import { api_user,user_club } from "@/api"
+import { api_user,user_active,user_club } from "@/api"
 @Component({
     components: {
 		Rview,
@@ -30,7 +30,9 @@ import { api_user,user_club } from "@/api"
 	},
 })
 export default class extends More(api_user.get_active) {
-
+	go(ele:user_active){
+		this.$router.push(`/active/${ele.type}/info/${ele.id}`)
+	}
 }
 </script>
 

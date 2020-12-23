@@ -60,17 +60,34 @@ export interface user_info {
 	avatar:string
 }
 
+
+export interface user_pay {
+	id:number
+	create_time:string
+	pay_amount:string
+	pay_method:string
+	club:{
+		id:number
+		title:string
+		option:string
+	}
+}
+
 class User extends Http {
 	get_active = (data: req_list) => {
-		return this.get<res_list<user_active>>(data, '/user/activity/')
+		return this.get<res_list<user_active>>({ ...data,page_size:5 }, '/user/activity/')
 	}
 
 	get_coupon = (data: req_list) => {
-		return this.get<res_list<user_coupon>>(data, '/user/coupon/')
+		return this.get<res_list<user_coupon>>({ ...data,page_size:5 }, '/user/coupon/')
 	}
 
 	get_club = (data: req_list) => {
-		return this.get<res_list<user_club>>(data, '/user/club/')
+		return this.get<res_list<user_club>>({ ...data,page_size:5 }, '/user/club/')
+	}
+
+	get_pay = (data: req_list) => {
+		return this.get<res_list<user_pay>>({ ...data,page_size:5 }, '/order/')
 	}
 
 	del_coupon(id: number) {
