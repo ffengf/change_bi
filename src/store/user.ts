@@ -27,7 +27,6 @@ export default class User extends VuexModule {
 
 	@Mutation
 	private LOGIN({ token }: login_res) {
-		this.get_info()
 		this.TOKEN = token
 	}
 
@@ -42,6 +41,7 @@ export default class User extends VuexModule {
 		const data = await api_login.signin(info)
 		StorageDb.setLocal('token', data.token)
 		this.LOGIN(data)
+		this.get_info()
 	}
 
 

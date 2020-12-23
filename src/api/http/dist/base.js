@@ -47,7 +47,12 @@ server.interceptors.response.use(function (_a) {
         main_1.app.$alert(title, {
             confirmButtonText: '로그인 하기',
             callback: function () {
-                main_1.app.$router.push('/login');
+                main_1.app.$router.push({
+                    path: '/login',
+                    query: {
+                        last: main_1.app.$route.path
+                    }
+                });
             }
         });
         return Promise.reject(err);

@@ -70,7 +70,6 @@ var User = /** @class */ (function (_super) {
     }
     User.prototype.LOGIN = function (_a) {
         var token = _a.token;
-        this.get_info();
         this.TOKEN = token;
     };
     User.prototype.LOGOUT = function () {
@@ -87,6 +86,7 @@ var User = /** @class */ (function (_super) {
                         data = _a.sent();
                         storage_1["default"].setLocal('token', data.token);
                         this.LOGIN(data);
+                        this.get_info();
                         return [2 /*return*/];
                 }
             });

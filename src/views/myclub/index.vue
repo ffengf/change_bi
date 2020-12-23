@@ -22,7 +22,6 @@
 							<h2>{{ info.subtitle }}</h2>
 						</div>
 						<div class="mid">
-							<h2>신청하기</h2>
 							<h1>{{ info.other_title }}</h1>
 							<h3>{{ info.other_content }}</h3>
 						</div>
@@ -217,36 +216,24 @@ export default class extends Vue {
 			border-right: 1px solid #dfdfdf;
 			padding: 1.5rem 1.4rem;
 			overflow: hidden;
-			h2{
+			h1{
 				font-family: NotoSansKR;
 				font-size: 16px;
 				font-weight: 500;
 				font-stretch: normal;
 				font-style: normal;
-				line-height: 1.5;
 				letter-spacing: -0.8px;
 				text-align: left;
-			}
-			h1{
-				font-family: NotoSansKR;
-				font-size: 22px;
-				font-weight: 500;
-				font-stretch: normal;
-				font-style: normal;
-				line-height: 1.09;
-				letter-spacing: -1.1px;
-				text-align: left;
-				color: #3fa535;
+				color: #000000;
 				margin: 0.7rem 0;
 			}
 			h3{
 				font-family: NotoSansKR;
-				font-size: 13px;
+				font-size: 14px;
 				font-weight: normal;
 				font-stretch: normal;
 				font-style: normal;
-				line-height: 1.77;
-				letter-spacing: -0.65px;
+				letter-spacing: -0.7px;
 				text-align: left;
 				color: #000000;
 			}

@@ -47,7 +47,12 @@ server.interceptors.response.use(({ data, status }) => {
 		Vue.$alert(title,{
 			confirmButtonText:'로그인 하기',
 			callback(){
-				Vue.$router.push('/login')
+				Vue.$router.push({
+					path:'/login',
+					query:{
+						last:Vue.$route.path
+					}
+				})
 			}
 		})
 		return Promise.reject(err)
