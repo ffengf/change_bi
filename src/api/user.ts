@@ -73,6 +73,19 @@ export interface user_pay {
 	}
 }
 
+export interface user_collect {
+	id:number
+	club: {
+		id: number,
+		type: 0 | 1
+		title: string
+		subtitle: string
+		status: 0 | 1 | 2 | 3 | 4 | 5,
+		start_time: string
+		end_time: string
+	}
+}
+
 class User extends Http {
 	get_active = (data: req_list) => {
 		return this.get<res_list<user_active>>({ ...data,page_size:5 }, '/user/activity/')
@@ -88,6 +101,10 @@ class User extends Http {
 
 	get_pay = (data: req_list) => {
 		return this.get<res_list<user_pay>>({ ...data,page_size:5 }, '/order/')
+	}
+
+	get_collect = (data: req_list) => {
+		return this.get<res_list<user_collect>>(data, '/user/collect/')
 	}
 
 	del_coupon(id: number) {

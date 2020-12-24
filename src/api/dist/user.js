@@ -78,6 +78,9 @@ var User = /** @class */ (function (_super) {
         _this.get_pay = function (data) {
             return _this.get(__assign(__assign({}, data), { page_size: 5 }), '/order/');
         };
+        _this.get_collect = function (data) {
+            return _this.get(data, '/user/collect/');
+        };
         return _this;
     }
     User.prototype.del_coupon = function (id) {

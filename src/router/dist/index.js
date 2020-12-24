@@ -228,6 +228,14 @@ var routes = [
                             title: '나의 이벤트'
                         },
                         component: function () { return Promise.resolve().then(function () { return require('@/views/user/active/index.vue'); }); }
+                    },
+                    {
+                        path: 'collect',
+                        name: 'user_collect',
+                        meta: {
+                            title: '찜'
+                        },
+                        component: function () { return Promise.resolve().then(function () { return require('@/views/user/collect/index.vue'); }); }
                     }
                 ]
             },

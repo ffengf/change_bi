@@ -62,9 +62,9 @@
 								<img src="@/assets/img/user.png" width="23px" alt="" srcset="">
 							</span>
 							<el-dropdown-menu slot="dropdown">
-								<!-- <el-dropdown-item command="/user/club">收藏x</el-dropdown-item> -->
-								<el-dropdown-item command="/user/club">독서모임</el-dropdown-item>
-								<el-dropdown-item command="/user/active">이벤트</el-dropdown-item>
+								<el-dropdown-item command="/user/collect">찜</el-dropdown-item>
+								<el-dropdown-item command="/user/club">나의 모임</el-dropdown-item>
+								<el-dropdown-item command="/user/active">나의 이벤트</el-dropdown-item>
 								<el-dropdown-item command="/user/pay">결제내역</el-dropdown-item>
 								<el-dropdown-item command="/user/coupon">쿠폰조회</el-dropdown-item>
 								<!-- <el-dropdown-item command="logout">개인정보 수정x</el-dropdown-item> -->
@@ -126,9 +126,9 @@
 								<img src="@/assets/img/user.png" width="23px" alt="" srcset="">
 							</span>
 							<el-dropdown-menu slot="dropdown">
-								<!-- <el-dropdown-item command="/user/club">收藏x</el-dropdown-item> -->
-								<el-dropdown-item command="/user/club">독서모임</el-dropdown-item>
-								<el-dropdown-item command="/user/active">이벤트</el-dropdown-item>
+								<el-dropdown-item command="/user/collect">찜</el-dropdown-item>
+								<el-dropdown-item command="/user/club">나의 모임</el-dropdown-item>
+								<el-dropdown-item command="/user/active">나의 이벤트</el-dropdown-item>
 								<el-dropdown-item command="/user/pay">결제내역</el-dropdown-item>
 								<el-dropdown-item command="/user/coupon">쿠폰조회</el-dropdown-item>
 								<!-- <el-dropdown-item command="logout">개인정보 수정x</el-dropdown-item> -->

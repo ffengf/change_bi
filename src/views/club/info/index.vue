@@ -55,8 +55,8 @@
 				<el-button v-if="info.price === 0" type="success" class="btn" @click="free">신청하기</el-button>
 				<el-button v-else type="success" class="btn" @click="check_coupon">결제하기</el-button>
 
-				<el-button type="primary" class="btn" v-if="info.is_collect === 0" @click="collect(1)">收藏</el-button>
-				<el-button type="danger" class="btn" v-else @click="collect(0)">取消收藏</el-button>
+				<el-button type="primary" class="btn" v-if="info.is_collect === 0" @click="collect(1)">찜하기</el-button>
+				<el-button type="danger" class="btn" v-else @click="collect(0)">찜 취소</el-button>
 			</div>
 		</div>
     </div>
@@ -195,7 +195,7 @@ export default class extends Vue {
 			...this.info,
 			is_collect
 		}
-		this.$message.success('success')
+		this.$message.success('반영 되었습니다.')
 	}
 
 	created(){

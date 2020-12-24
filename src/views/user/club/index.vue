@@ -1,6 +1,6 @@
 <template>
     <div class="warpper" v-loading="_loading">
-		<!-- <div class="box" v-for="(ele) in list" :key="ele.id">
+		<div class="box" v-for="(ele) in list" :key="ele.id">
 			<div class="box_left">
 				<h2>
 					<span>{{ status_str(ele) }}</span>
@@ -9,28 +9,28 @@
 				</h2>
 				<h1>{{ ele.club.title }}</h1>
 			</div>
-			<div class="flex" v-if="status_str(ele) === '审核中' || status_str(ele) === '未开始'">
-				<el-button class="right_btn" type="danger">取消申请</el-button>
-				<el-button class="right_btn" type="primary" @click="$router.push(`/myclub/${ele.id}`)">查看内容</el-button>
+			<div class="flex" v-if="status_str(ele) === '승인대기' || status_str(ele) === '진행대기'">
+				<el-button class="right_btn" type="danger">신청취소</el-button>
+				<el-button class="right_btn" type="primary" @click="$router.push(`/myclub/${ele.id}`)">내용보기</el-button>
 			</div>
-			<div class="flex" v-if="status_str(ele) === '进行中'">
-				<el-button class="right_btn" type="primary" @click="$router.push(`/myclub/${ele.id}`)">查看内容</el-button>
+			<div class="flex" v-if="status_str(ele) === '진행중'">
+				<el-button class="right_btn" type="success" @click="$router.push(`/myclub/${ele.id}`)">참여하기</el-button>
 			</div>
-			<div class="flex" v-if="status_str(ele) === '已结束'">
-				<el-button class="right_btn" type="success">打印结业证</el-button>
-				<el-button class="right_btn" type="primary" @click="$router.push(`/myclub/${ele.id}`)">查看内容</el-button>
+			<div class="flex" v-if="status_str(ele) === '진행완료'">
+				<el-button class="right_btn" type="success">수료증 발급</el-button>
+				<el-button class="right_btn" type="primary" @click="$router.push(`/myclub/${ele.id}`)">내용보기</el-button>
 			</div>
-			<div class="flex" v-if="status_str(ele) === '已取消' || status_str(ele) === '待退款' || status_str(ele) === '已退款'">
+			<div class="flex" v-if="status_str(ele) === '취소완료' || status_str(ele) === '환불대기' || status_str(ele) === '환불완료'">
 				<el-tooltip v-if="ele.refuse_reason !== null" class="item" effect="dark" :content="ele.refuse_reason" placement="top-start">
 					<div class="text">{{ ele.refuse_reason }}</div>
 				</el-tooltip>
-				<el-button class="right_btn" type="danger" @click="$router.push(`/myclub/${ele.id}`)">删除</el-button>
+				<el-button class="right_btn" type="danger" @click="$router.push(`/myclub/${ele.id}`)">삭제</el-button>
 			</div>
 		</div>
 		<el-button class="more" type="success" :disabled="disabled">더 보기</el-button>
 		<el-button class="more" type="success" @click="open">test</el-button>
 
-		<Paper ref="paper" /> -->
+		<Paper ref="paper" />
     </div>
 </template>
 
@@ -54,21 +54,21 @@ export default class extends More(api_user.get_club) {
 	status_str(ele:user_club){
 		switch(ele.status){
 			case 0 :
-				return '审核中'
+				return '승인대기'
 			case 2 :
-				return '已取消'
+				return '취소완료'
 			case 3 :
-				return '待退款'
+				return '환불대기'
 			case 4 :
-				return '已退款'
+				return '환불완료'
 			case 1 :
 				switch(ele.club.status){
 					case 1 :
-						return '进行中'
+						return '진행중'
 					case 2 :
-						return '已结束'
+						return '진행완료'
 					default :
-						return '未开始'
+						return '진행대기'
 				}
 			default :
 				return ''
