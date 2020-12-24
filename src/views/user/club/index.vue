@@ -24,11 +24,11 @@
 				<el-tooltip v-if="ele.refuse_reason !== null" class="item" effect="dark" :content="ele.refuse_reason" placement="top-start">
 					<div class="text">{{ ele.refuse_reason }}</div>
 				</el-tooltip>
-				<el-button class="right_btn" type="danger" @click="$router.push(`/myclub/${ele.id}`)">삭제</el-button>
+				<el-button class="right_btn" type="danger" @click="del(ele)">삭제</el-button>
 			</div>
 		</div>
 		<el-button class="more" type="success" :disabled="disabled">더 보기</el-button>
-		<el-button class="more" type="success" @click="open">test</el-button>
+		<!-- <el-button class="more" type="success" @click="open">test</el-button> -->
 
 		<Paper ref="paper" />
     </div>
@@ -49,6 +49,16 @@ export default class extends More(api_user.get_club) {
 		(this.$refs['paper'] as any).open({
 			name:10
 		})
+	}
+
+	async del(ele:user_club){
+		this._loading = true
+		await api_user.del_club(ele.id).finally(()=>{
+			this._loading = false
+		})
+		this.list = this.list.filter(x => x.id !== ele.id)
+		this.count --
+		this.$message.success('삭제되었습니다.')
 	}
 
 	status_str(ele:user_club){

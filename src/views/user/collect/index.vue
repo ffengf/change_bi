@@ -47,6 +47,7 @@ export default class extends More(api_user.get_collect) {
             this._loading = false;
 		});
 		this.list = this.list.filter(x => x.id !== id)
+		this.count --
         this.$message.success("찜 취소");
     }
 }

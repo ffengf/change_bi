@@ -111,6 +111,10 @@ class User extends Http {
 		return this.delete(id, '/user/coupon/')
 	}
 
+	del_club(id:number){
+		return this.server.delete(`/user/club/${id}/`)
+	}
+
 	exchange_coupon(redeem_code: string) {
 		return this.post({ redeem_code }, '/user/coupon/')
 	}

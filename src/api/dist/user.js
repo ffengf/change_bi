@@ -86,6 +86,9 @@ var User = /** @class */ (function (_super) {
     User.prototype.del_coupon = function (id) {
         return this["delete"](id, '/user/coupon/');
     };
+    User.prototype.del_club = function (id) {
+        return this.server["delete"]("/user/club/" + id + "/");
+    };
     User.prototype.exchange_coupon = function (redeem_code) {
         return this.post({ redeem_code: redeem_code }, '/user/coupon/');
     };
