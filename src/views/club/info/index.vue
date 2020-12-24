@@ -54,6 +54,9 @@
 				</div>
 				<el-button v-if="info.price === 0" type="success" class="btn" @click="free">신청하기</el-button>
 				<el-button v-else type="success" class="btn" @click="check_coupon">결제하기</el-button>
+
+				<el-button type="primary" class="btn" v-if="info.is_collect === 0" @click="collect(1)">收藏</el-button>
+				<el-button type="danger" class="btn" v-else @click="collect(0)">取消收藏</el-button>
 			</div>
 		</div>
     </div>
@@ -183,6 +186,18 @@ export default class extends Vue {
 		this.coupon_list = await api_user.get_pay_coupon(type)
 	}
 
+	async collect(is_collect:0|1){
+		this._loading = true
+		await api_club.collect(this.info.id,is_collect).finally(()=>{
+			this._loading = false
+		})
+		this.info = {
+			...this.info,
+			is_collect
+		}
+		this.$message.success('success')
+	}
+
 	created(){
 		this.get_info()
 	}
@@ -237,11 +252,12 @@ export default class extends Vue {
 		width: 16rem;
 		.top{
 			width: 100%;
-			height: 5.25rem;
+			min-height: 5.25rem;
 			background: #324b9b;
 			box-sizing: border-box;
 			padding-top: 1.5rem;
 			padding-left: 1.4rem;
+			padding-bottom: 1.5rem;
 			h1,h2{
 				color: #fff;
 			}
@@ -269,7 +285,7 @@ export default class extends Vue {
 		}
 		.mid{
 			width: 100%;
-			height: 11rem;
+			min-height: 11rem;
 			box-sizing: border-box;
 			border-left: 1px solid #dfdfdf;
 			border-right: 1px solid #dfdfdf;
@@ -323,7 +339,7 @@ export default class extends Vue {
 				letter-spacing: -0.9px;
 				color: #324b9b;
 				float: right;
-				margin-bottom: 1.5rem;
+				// margin-bottom: 1.5rem;
 			}
 		}
 		.bottom{
@@ -406,6 +422,10 @@ export default class extends Vue {
 				font-stretch: normal;
 				font-style: normal;
 				letter-spacing: -0.38px;
+				margin-left: 0;
+				&:nth-of-type(2){
+					margin-top: 1rem;
+				}
 			}
 		}
 	}

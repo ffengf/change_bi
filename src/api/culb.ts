@@ -59,6 +59,10 @@ class Club extends Http {
 		return this.post({ coupon_id },`/club/${club_id}/check/`)
 	}
 
+	collect(club_id:number,status:0|1){
+		return this.post({ status },`/club/${club_id}/collect/`)
+	}
+
 }
 
 

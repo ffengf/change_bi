@@ -1,6 +1,5 @@
 <template>
     <div class="warpper">
-		<!-- <div class="box" v-for="ele in list" :key="ele.id">heelo wolrd</div> -->
 		<div class="box" v-for="ele in list" :key="ele.id">
 			<div class="box_left">
                 <h2>

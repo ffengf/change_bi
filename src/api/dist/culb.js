@@ -53,6 +53,9 @@ var Club = /** @class */ (function (_super) {
     Club.prototype.pay_check = function (club_id, coupon_id) {
         return this.post({ coupon_id: coupon_id }, "/club/" + club_id + "/check/");
     };
+    Club.prototype.collect = function (club_id, status) {
+        return this.post({ status: status }, "/club/" + club_id + "/collect/");
+    };
     return Club;
 }(base_1.Http));
 exports.api_club = new Club('/club/');
