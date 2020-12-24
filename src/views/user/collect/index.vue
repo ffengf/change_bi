@@ -11,7 +11,11 @@
                 <h2>{{ ele.club.type === 0 ? '클럽 창작과 비평' : '북클럽 필라멘트' }}</h2>
                 <h1>{{ ele.club.title }}</h1>
                 <h3>
-                    <span>1111</span>
+                    <span v-if="ele.club.status === 0">모집 중</span>
+					<span v-if="ele.club.status === 1">진행 중</span>
+					<span v-if="ele.club.status === 3">마감 임박</span>
+					<span v-if="ele.club.status === 4">모집대기</span>
+					<span v-if="ele.club.status === 5">모집마감</span>
                     <span>|</span>
                     <span
                         >{{ ele.club.start_time }} ~
@@ -106,7 +110,10 @@ export default class extends More(api_user.get_collect) {
             }
             h3 {
                 font-size: 11px;
-                margin-top: 0.3rem;
+				margin-top: 0.3rem;
+				span:nth-of-type(1) {
+                    color: #324b9b;
+                }
                 span:nth-of-type(2) {
                     margin: 0 0.3rem;
                 }
