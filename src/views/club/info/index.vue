@@ -431,6 +431,10 @@ export default class extends Vue {
 	}
 }
 @media only screen and (max-width: 1024px) {
+	.bottom{
+		border: none!important;
+		border-top: 1px solid #dfdfdf!important;
+	}
 	#info{
 		.left,.right{
 			width: 100%;

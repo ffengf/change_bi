@@ -2,7 +2,7 @@
 
 
 import { req_list, res_list } from '@/types/global'
-import { Vue, Component, Watch } from "vue-property-decorator"
+import { Vue, Component } from "vue-property-decorator"
 
 export const More = <T>(axios_get: (req_list: req_list) => Promise<res_list<T>>,use_created = true) => {
 
@@ -37,7 +37,9 @@ export const More = <T>(axios_get: (req_list: req_list) => Promise<res_list<T>>,
 				return this.$message.error("没有更多了");
 			}
 			this.page ++
-			this.get_list()
+			this.get_list().catch(()=>{
+				this.page --
+			})
 		}
 
 		clear_list(){

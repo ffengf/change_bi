@@ -1,12 +1,12 @@
 <template>
-    <div>
+    <!-- <div> -->
 		<!-- <transition name="fade-page" mode="out-in"> -->
 			<!-- <keep-alive>
 				<router-view v-if="$route.meta.cache"></router-view>
 			</keep-alive> -->
 			<router-view></router-view>
 		<!-- </transition> -->
-	</div>
+	<!-- </div> -->
 </template>
 
 <script lang="ts">

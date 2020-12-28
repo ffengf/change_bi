@@ -12,6 +12,7 @@ export interface club_list {
 	is_collect: 0 | 1
 	start_time: string
 	end_time: string
+	type: 0 | 1
 }
 
 export interface club_info extends club_list {
@@ -19,13 +20,12 @@ export interface club_info extends club_list {
 	refund_desc: string
 	option: string
 	option_desc: string
-	type: 0 | 1
 	other_title: string
 	other_content: string
 }
 
 class Club extends Http {
-	private get_list(data: req_list) {
+	get_list = (data: req_list) => {
 		return this.get<res_list<club_list>>({ page_size: 10, ...data })
 	}
 

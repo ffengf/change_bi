@@ -111,11 +111,14 @@ exports.More = function (axios_get, use_created) {
             });
         };
         Mixin.prototype.more = function () {
+            var _this = this;
             if (this.list.length === this.count && this.list.length !== 0) {
                 return this.$message.error("没有更多了");
             }
             this.page++;
-            this.get_list();
+            this.get_list()["catch"](function () {
+                _this.page--;
+            });
         };
         Mixin.prototype.clear_list = function () {
             this.list = [];

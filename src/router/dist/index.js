@@ -293,6 +293,11 @@ var routes = [
                         name: 'pay',
                         component: function () { return Promise.resolve().then(function () { return require('@/views/other/pay/index.vue'); }); }
                     },
+                    {
+                        path: 'search',
+                        name: 'search',
+                        component: function () { return Promise.resolve().then(function () { return require('@/views/other/search/index.vue'); }); }
+                    }
                 ]
             },
             {

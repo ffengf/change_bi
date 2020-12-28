@@ -30,6 +30,9 @@ var Club = /** @class */ (function (_super) {
     __extends(Club, _super);
     function Club() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.get_list = function (data) {
+            return _this.get(__assign({ page_size: 10 }, data));
+        };
         _this.get_creation_list = function (data) {
             return _this.get_list(__assign(__assign({}, data), { type: 0 }));
         };
@@ -38,9 +41,6 @@ var Club = /** @class */ (function (_super) {
         };
         return _this;
     }
-    Club.prototype.get_list = function (data) {
-        return this.get(__assign({ page_size: 10 }, data));
-    };
     Club.prototype.get_info = function (id) {
         return this.get({}, "" + this.uri + id + "/");
     };

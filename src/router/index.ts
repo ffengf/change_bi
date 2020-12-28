@@ -295,6 +295,11 @@ const routes: RouteConfig[] = [
 						name: 'pay',
 						component: () => import('@/views/other/pay/index.vue'),
 					},
+					{
+						path: 'search',
+						name: 'search',
+						component: () => import('@/views/other/search/index.vue'),
+					}
 				]
 			},
 			{

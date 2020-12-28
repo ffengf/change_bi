@@ -25,17 +25,13 @@
                 </el-menu>
             </div>
             <div class="inp">
-                <el-autocomplete
-                    popper-class="my-autocomplete"
+                <el-input
                     placeholder="독서모임을 검색해보세요."
                     v-model="input"
+					@keyup.enter.native="search"
                 >
-                    <i class="el-input__icon el-icon-search" slot="suffix"></i>
-                    <template slot-scope="props">
-                        <div class="name">{{ props.item.value }}</div>
-                        <span class="addr">{{ props.item.address }}</span>
-                    </template>
-                </el-autocomplete>
+                    <i class="el-input__icon el-icon-search" slot="suffix" @click="search"></i>
+                </el-input>
             </div>
             <div class="right">
                 <div :class="['icon',active === 'customer' ? 'active':'']">
@@ -220,10 +216,19 @@ export default class extends Vue {
 		this.key = false
 	}
 
+	search(){
+		const value = this.input
+		this.$router.push(`/other/search?value=${value}`)
+		this.input = ''
+	}
+
 }
 </script>
 
 <style lang="less" scoped>
+.logo{
+	width: 4.5rem;
+}
 #header {
 	/deep/.el-menu--horizontal > .el-submenu.is-active .el-submenu__title{
 		border: 2px solid red;
