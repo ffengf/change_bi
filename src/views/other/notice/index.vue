@@ -25,7 +25,7 @@
                 type="default"
                 :disabled="next === undefined"
                 @click="id = next"
-                >다음 글{{ next }}</el-button
+                >다음 글</el-button
             >
         </div>
     </div>

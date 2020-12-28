@@ -219,7 +219,7 @@ export default class extends Vue {
 	search(){
 		const value = this.input
 		this.$router.push(`/other/search?value=${value}`)
-		this.input = ''
+		// this.input = ''
 	}
 
 }
