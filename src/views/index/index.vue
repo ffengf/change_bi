@@ -8,7 +8,7 @@
                 </el-carousel-item>
             </el-carousel>
         </div>
-        <div class="flexC">
+        <div class="flexC" v-if="notice_list.length !== 0">
 			<div class="news w70vw min_width1000 flexBC">
 				<div class="left sm-down">
 					<div class="line"></div>
@@ -22,15 +22,15 @@
 				<div class="right">
 					<div class="sm-up color_success">새소식</div>
 					<div class="position">
-						<!-- <el-link icon="el-icon-plus" :underline="false" type="success">{{ $t('更多') }}</el-link> -->
+						<!-- <el-link icon="el-icon-plus" :underline="false" type="success"></el-link> -->
 					</div>
 					<div class="line"></div>
 					<ul>
-						<el-card class="item" shadow="none" v-for="(ele,index) in item" :key="index">
+						<el-card class="item" shadow="none" v-for="(ele) in notice_list" :key="ele.id">
 							<li>
-								<img class="img" :src="ele.url" />
+								<img class="img" :src="ele.cover" />
 								<h1>{{ ele.title }}</h1>
-								<p>{{ ele.info }}</p>
+								<p>{{ ele.subtitle }}</p>
 							</li>
 						</el-card>
 					</ul>
@@ -79,7 +79,7 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import { banner, api_home, book_data, api_serial } from '@/api';
+import { banner, api_home, book_data, api_serial, api_customer, notice } from '@/api';
 @Component
 export default class extends Vue {
 
@@ -88,6 +88,8 @@ export default class extends Vue {
 	evaluation_list:any[] = []
 
 	serial_list:book_data[] = []
+
+	notice_list:( notice & { cover:string } )[] = []
 
 
 	async get_banner_list(){
@@ -102,12 +104,18 @@ export default class extends Vue {
 		this.serial_list = await api_serial.get_today()
 	}
 
+	async get_notice_list(){
+		const { results } = await api_customer.get_home()
+		this.notice_list = results
+	}
+
 
 	async created(){
 		await Promise.all([
 			this.get_banner_list(),
 			this.get_evaluation_list(),
 			this.get_serial_list(),
+			this.get_notice_list(),
 		])
 	}
 
@@ -117,30 +125,6 @@ export default class extends Vue {
 		}
 		window.open(url)
 	}
-
-
-	item = [
-		{
-			url:'https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png',
-			title:"김민수 장편소설 ‘함께’ 13화",
-			info:"공지사항 부제가 노출될 예정입니다."
-		},
-		{
-			url:'https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png',
-			title:"김민수 장편소설 ‘함께’ 13화",
-			info:"공지사항 부제가 노출될 예정입니다."
-		},
-		{
-			url:'https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png',
-			title:"김민수 장편소설 ‘함께’ 13화",
-			info:"공지사항 부제가 노출될 예정입니다."
-		},
-		{
-			url:'https://cdn.zeplin.io/5fa0b6fe5d3b993d0a750c0e/assets/9A44DF96-CC49-4875-B4BD-25AD8F57AA83.png',
-			title:"김민수 장편소설 ‘함께’ 13화",
-			info:"공지사항 부제가 노출될 예정입니다."
-		}
-	]
 
 	go_serial(id:number){
 		this.$router.push(`/serial/book_info/${id}?bread_date=화요연재`)

@@ -63,8 +63,8 @@ export default class extends Vue {
 	.menu{
 		display: flex;
 	}
-	/deep/img{
-		width: 100%!important;
+	.inner{
+		min-height: 25rem;
 	}
 }
 </style>

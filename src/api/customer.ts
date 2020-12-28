@@ -36,7 +36,7 @@ export interface post_qa {
 }
 
 class Customer extends Http {
-	 get_notice(data: req_list) {
+	get_notice(data: req_list) {
 		return this.get<res_list<notice>>({ page_size: 10, ...data }, '/notice')
 	}
 
@@ -46,6 +46,10 @@ class Customer extends Http {
 
 	get_qa(data: req_list) {
 		return this.get<res_list<qa>>({ page_size: 10, ...data }, '/qa')
+	}
+
+	get_home() {
+		return this.get<res_list<notice & { cover:string }>>({ is_home:1 }, '/notice')
 	}
 
 	post_qa(data: post_qa) {

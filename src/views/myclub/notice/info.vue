@@ -104,7 +104,7 @@ export default class extends Vue {
 .inner{
 	min-height: 27rem;
 	border-bottom: 1px solid #324b9b;
-	padding-top: 1rem;
+	padding: 1rem 0;
 	box-sizing: border-box;
 }
 .btn_box{

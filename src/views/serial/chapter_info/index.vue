@@ -181,7 +181,8 @@ export default class extends Nocopy {
             font-stretch: normal;
             font-style: normal;
             letter-spacing: -1.1px;
-            color: #3fa535;
+			color: #3fa535;
+			padding-bottom: 1rem;
         }
     }
     .inner {
