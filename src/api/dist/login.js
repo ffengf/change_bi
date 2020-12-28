@@ -25,6 +25,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 exports.__esModule = true;
 exports.api_login = void 0;
+var user_1 = require("@/store/user");
 var base_1 = require("./http/base");
 var Login = /** @class */ (function (_super) {
     __extends(Login, _super);
@@ -64,6 +65,10 @@ var Login = /** @class */ (function (_super) {
                 "Authorization": "token=" + data.token
             }
         });
+    };
+    Login.prototype.edit_cover = function (avatar) {
+        var _a;
+        return this.patch({ avatar: avatar }, "/user/" + ((_a = user_1.UserModule.info) === null || _a === void 0 ? void 0 : _a.id) + "/");
     };
     return Login;
 }(base_1.Http));

@@ -10,7 +10,7 @@ import StorageDb from "@/util/storage"
 import store from "./index"
 
 
-interface info {
+export interface info {
 	username: string
 	phone: string
 	id: number
@@ -59,6 +59,13 @@ export default class User extends VuexModule {
 		const { id,username,phone,real_name,avatar } = await api_user.get_user_info()
 		this.SET_INFO({ id,username,phone,real_name,avatar })
 	}
+	@Action
+	public set_info(info:info){
+		const { id,username,phone,real_name,avatar } = info
+		this.SET_INFO({ id,username,phone,real_name,avatar })
+	}
+
+
 	@Mutation
 	private SET_INFO({ username, id, phone, real_name,avatar }: user_info) {
 		this.INFO = {

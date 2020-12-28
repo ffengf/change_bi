@@ -1,4 +1,5 @@
 
+import { info, UserModule } from "@/store/user"
 import { Http } from "./http/base"
 
 
@@ -73,6 +74,10 @@ class Login extends Http {
 				"Authorization": `token=${data.token}`
 			}
 		})
+	}
+
+	edit_cover(avatar:string){
+		return this.patch<info>({ avatar },`/user/${UserModule.info?.id}/`)
 	}
 }
 

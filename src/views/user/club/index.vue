@@ -11,14 +11,14 @@
 			</div>
 			<div class="flex" v-if="status_str(ele) === '승인대기' || status_str(ele) === '진행대기'">
 				<el-button class="right_btn" type="danger">신청취소</el-button>
-				<el-button class="right_btn" type="primary" @click="$router.push(`/myclub/${ele.id}`)">내용보기</el-button>
+				<el-button class="right_btn" type="primary" @click="$router.push(`/myclub/${ele.club.id}`)">내용보기</el-button>
 			</div>
 			<div class="flex" v-if="status_str(ele) === '진행중'">
-				<el-button class="right_btn" type="success" @click="$router.push(`/myclub/${ele.id}`)">참여하기</el-button>
+				<el-button class="right_btn" type="success" @click="$router.push(`/myclub/${ele.club.id}`)">참여하기</el-button>
 			</div>
 			<div class="flex" v-if="status_str(ele) === '진행완료'">
 				<el-button class="right_btn" type="success">수료증 발급</el-button>
-				<el-button class="right_btn" type="primary" @click="$router.push(`/myclub/${ele.id}`)">내용보기</el-button>
+				<el-button class="right_btn" type="primary" @click="$router.push(`/myclub/${ele.club.id}`)">내용보기</el-button>
 			</div>
 			<div class="flex" v-if="status_str(ele) === '취소완료' || status_str(ele) === '환불대기' || status_str(ele) === '환불완료'">
 				<el-tooltip v-if="ele.refuse_reason !== null" class="item" effect="dark" :content="ele.refuse_reason" placement="top-start">

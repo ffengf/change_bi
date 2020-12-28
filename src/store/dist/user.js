@@ -114,6 +114,10 @@ var User = /** @class */ (function (_super) {
             });
         });
     };
+    User.prototype.set_info = function (info) {
+        var id = info.id, username = info.username, phone = info.phone, real_name = info.real_name, avatar = info.avatar;
+        this.SET_INFO({ id: id, username: username, phone: phone, real_name: real_name, avatar: avatar });
+    };
     User.prototype.SET_INFO = function (_a) {
         var username = _a.username, id = _a.id, phone = _a.phone, real_name = _a.real_name, avatar = _a.avatar;
         this.INFO = {
@@ -153,6 +157,9 @@ var User = /** @class */ (function (_super) {
     __decorate([
         vuex_module_decorators_1.Action
     ], User.prototype, "get_info");
+    __decorate([
+        vuex_module_decorators_1.Action
+    ], User.prototype, "set_info");
     __decorate([
         vuex_module_decorators_1.Mutation
     ], User.prototype, "SET_INFO");

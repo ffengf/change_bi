@@ -4,13 +4,22 @@
             <Bread class="bread" />
             <div class="line mt10"></div>
             <div class="body">
-                <div class="user_information">
+                <div class="user_information" v-loading="_loading">
                     <div class="bg_color_primary">마이페이지</div>
                     <div>
-                        <div class="user_avatar">
-                            <img src="@/assets/img/user/1.png" alt="" />
-                            <img src="@/assets/img/user/2.png" alt="" />
-                        </div>
+						<el-upload
+							:action="'http://13.125.137.129:8000' + '/file_upload'"
+							class="upload"
+							accept="image/jpeg,image/gif,image/jpg,image/png"
+							:before-upload="beforeUpload"
+							:on-success="success"
+							:on-error="error"
+						>
+							<div class="user_avatar">
+								<img :src="info.avatar" alt="" />
+								<img src="@/assets/img/user/2.png" alt="" />
+							</div>
+						</el-upload>
                         <p class="user_name kr-bo">유승하 님</p>
                         <p class="momenti kr-re">(momenti)</p>
                         <p class="color_success b mt30 fs16 pb10 user_line">
@@ -49,6 +58,8 @@
 import { Vue, Component } from "vue-property-decorator";
 import Rview from "@/components/routerView/index.vue";
 import Bread from "@/components/bread/index.vue";
+import { UserModule } from "@/store/user";
+import { api_login } from "@/api";
 @Component({
     components: {
         Rview,
@@ -56,10 +67,37 @@ import Bread from "@/components/bread/index.vue";
     },
 })
 export default class extends Vue {
+
+	get info(){
+		return UserModule.info === null ? {} : UserModule.info
+	}
+
 	get title():string{
 		return this.$route.meta.title
 	}
 
+	beforeUpload(file:any){
+		const file_type = ["image/jpeg","image/gif","image/jpg","image/png"]
+       if(!file_type.includes(file.type)){
+		   return this.$message.error('upload image')
+	   }
+	   this._loading = true
+	   return true
+	}
+
+	async success(_,file){
+		const url = file.response.url
+		const info = await api_login.edit_cover(url).finally(()=>{
+			this._loading = false
+		})
+		UserModule.set_info(info)
+		this.$message.success('success:upfile')
+	}
+
+	error(){
+		this._loading = false
+		this.$message.error('error:upfile')
+	}
 }
 </script>
 
@@ -100,10 +138,12 @@ export default class extends Vue {
                     padding: 0;
                     width: 82px;
                     height: 82px;
-                    position: relative;
+					position: relative;
+					cursor: pointer;
                     img:first-child {
                         width: 100%;
-                        height: 100%;
+						height: 100%;
+						border-radius: 50%;
                     }
                     img:last-child {
                         position: absolute;
@@ -214,6 +254,14 @@ export default class extends Vue {
 }
 .user_line{
 	border-bottom:1px solid #324b9b
+}
+.upload{
+	/deep/.el-upload{
+		display: block;
+	}
+	/deep/.el-upload-list {
+		display: none!important;
+	}
 }
 @media only screen and (max-width: 1024px) {
 	.user_information,.content{
