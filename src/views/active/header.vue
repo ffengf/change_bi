@@ -43,6 +43,7 @@ export default class extends Vue {
 
 <style lang='less' scoped>
 #box_header {
+	position: relative;
     h2 {
         margin-top: 1.15rem;
         font-family: NotoSansKR;
@@ -77,6 +78,7 @@ export default class extends Vue {
         height: 3.25rem;
 		display: flex;
 		box-sizing: border-box;
+		background: #fff;
         > .item {
             width: 50%;
             line-height: 3.25rem;
@@ -96,5 +98,13 @@ export default class extends Vue {
             color: #fff;
         }
     }
+}
+@media only screen and (max-width: 1024px){
+	.tab {
+		position: fixed;
+		width: 90vw!important;
+		top: 4vh;
+		z-index: 2027;
+	}
 }
 </style>

@@ -439,6 +439,16 @@ export default class extends Vue {
 			}
 		}
 	}
+	.btn{
+		position: fixed;
+		bottom: 0;
+		width: 90%!important;
+		left: 50%;
+		transform: translateX(-50%);
+		&:nth-of-type(2){
+			bottom: 7vh;
+		}
+	}
 }
 
 </style>

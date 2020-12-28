@@ -6,7 +6,6 @@
             multiple
 			:on-success="success"
 			:on-error="error"
-            :limit="1"
         >
 			<div class="inp_box">
 				<el-input v-model="name" placeholder="4째주 미션 제출합니다!" disabled></el-input>
@@ -52,7 +51,7 @@ export default class extends Vue {
 
 	error(){
 		this._loading = false
-		this.$message.error('上传失败')
+		this.$message.error('error:upfile')
 	}
 }
 </script>

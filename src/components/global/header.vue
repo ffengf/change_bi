@@ -77,7 +77,7 @@
             <el-drawer append-to-body :visible.sync="key" direction="ltr" :withHeader="false" :showClose="false" size="60%" class="drawer">
                 <el-menu router>
                     <template v-for="ele in tab">
-                        <el-submenu :default-active="defaultActive" :key="ele.index" :index="ele.index" v-if="ele.children">
+                        <el-submenu :default-active="defaultActive" :key="ele.index" :index="ele.index" v-if="ele.children" class="phone_tab">
                             <template slot="title"><h1>{{ ele.name }}</h1></template>
                             <el-menu-item
                                 v-for="e in ele.children"
@@ -91,7 +91,7 @@
                 </el-menu>
             </el-drawer>
         </div>
-        <div class="w100vw flexBC sm-up">
+        <div class="w100vw flexBC sm-up phone_header">
             <div @click="key = true">
                 <i class="el-icon-menu"></i>
             </div>
@@ -144,7 +144,7 @@
 
 <script lang="ts">
 import { UserModule } from "@/store/user";
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component, Watch } from "vue-property-decorator";
 @Component
 export default class extends Vue {
     key = false;
@@ -214,6 +214,12 @@ export default class extends Vue {
 		}
         return '/' + (this.$route.path as string).split('/').filter(x => x !== '')[0];
 	}
+
+	@Watch('$route')
+	watch_route(){
+		this.key = false
+	}
+
 }
 </script>
 
@@ -323,6 +329,27 @@ img{
 		background: #3fa535;
 		bottom: -5px;
 		z-index: 1000;
+	}
+}
+
+.phone_tab{
+	/deep/.is-active{
+		color: #303133;
+		h1{
+			color: #303133;
+		}
+	}
+}
+
+.phone_header{
+	box-sizing: border-box;
+	padding:  0 1rem;
+	justify-content: space-between;
+	.logo_sm{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
 	}
 }
 

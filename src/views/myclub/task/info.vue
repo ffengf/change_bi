@@ -173,7 +173,9 @@ export default class extends Mixin_list<task_attend_list>(
         this._loading = true;
         this.info = await api_myclub.task_info(this.id).finally(() => {
             this._loading = false;
-        });
+		});
+		this.filter.task_id = this.id
+		this.get_list()
     }
 
     get id(): number {

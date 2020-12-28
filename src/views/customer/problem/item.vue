@@ -31,20 +31,23 @@ export default class extends Vue {
 <style lang='less' scoped>
 .box {
     .item {
-        height: 4.3rem;
+        min-height: 4.3rem;
         border-top: 1px solid #324b9b;
-        position: relative;
+		position: relative;
+		box-sizing: border-box;
+		padding-bottom: 1rem;
+		width: 100%;
         p {
             color: #3fa535;
             font-size: 11.5px;
             margin-top: 1rem;
         }
         h1 {
+			width: 80%;
             color: #324b9b;
             font-weight: bold;
             font-style: normal;
         }
-
         .icon {
             position: absolute;
             right: 1.5rem;

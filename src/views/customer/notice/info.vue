@@ -52,9 +52,10 @@ export default class extends Vue {
 
 <style lang='less' scoped>
 .item{
-	height: 4.3rem;
+	min-height: 4.3rem;
 	margin-top: -1rem;
 	position: relative;
+	padding-bottom: 0.5rem;
 	p{
 		color: #3fa535;
 		font-size: 11.5px;
@@ -85,6 +86,9 @@ h2{
 	min-height: 21rem;
 	border-bottom: 1px solid #324b9b;
 	word-break: break-all;
+	/deep/p{
+		white-space: normal!important;
+	}
 }
 .btn_box{
 	margin-top: 2.5rem;

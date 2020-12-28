@@ -3,7 +3,7 @@
         <Bread :new_list="bread" />
         <div class="box_line"></div>
 		<div class="warpper">
-			<div class="left" v-html="info.detail"></div>
+			<div class="left inner" v-html="info.detail"></div>
 			<div class="right">
 				<div class="name_box">
 					<h1>{{ info.title }}</h1>

@@ -62,4 +62,9 @@ export default class extends Vue {
 		width: 100%;
 	}
 }
+@media screen and (max-width: 768px) {
+	.item{
+		font-size: 16px !important;
+	}
+}
 </style>

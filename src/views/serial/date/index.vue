@@ -401,8 +401,14 @@ export default class extends Vue {
 					width: auto!important;
 				}
 				h3{
+					width: 100%!important;
+					text-align: center;
+					display: flex!important;
+					flex-direction: column!important;
+					align-items: center;
 					p{
-						width: auto!important;
+						width: 85%!important;
+						// width: auto!important;
 					}
 				}
 				img {

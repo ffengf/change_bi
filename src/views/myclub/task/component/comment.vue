@@ -21,7 +21,7 @@
 				<div class="user_inp">
 					<img :src="info.user.avatar" alt="">
 					<div id="inp" @click="$refs['inp'].focus()">
-						<div class="name">{{ info.user.real_name }}</div>
+						<div class="name">{{ user && user.real_name }}</div>
 						<el-input ref="inp" v-model="input" placeholder="내용을 작성해 보세요."></el-input>
 						<div class="btn_box">
 							<span @click.stop="submit">확인</span>
@@ -61,7 +61,7 @@
 			<div class="user_inp">
 				<img :src="info.user.avatar" alt="">
 				<div id="inp" @click="$refs['inp'].focus()">
-					<div class="name">{{ info.user.real_name }}</div>
+					<div class="name">{{ user && user.real_name }}</div>
 					<el-input ref="inp" v-model="old_info.content" placeholder="내용을 작성해 보세요."></el-input>
 					<div class="btn_box">
 						<span @click.stop="submit_edit">확인</span>
@@ -126,6 +126,10 @@ export default class extends Vue {
 
 	get user_id(){
 		return UserModule.info?.id
+	}
+
+	get user(){
+		return UserModule.info
 	}
 
 	download(url:string){
