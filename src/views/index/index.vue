@@ -26,7 +26,7 @@
 					</div>
 					<div class="line"></div>
 					<ul>
-						<el-card class="item" shadow="none" v-for="(ele) in notice_list" :key="ele.id">
+						<el-card class="item" shadow="none" v-for="(ele) in notice_list" :key="ele.id" @click.native="$router.push(`/other/notice/${ele.id}`)">
 							<li>
 								<img class="img" :src="ele.cover" />
 								<h1>{{ ele.title }}</h1>

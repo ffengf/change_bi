@@ -297,6 +297,11 @@ var routes = [
                         path: 'search',
                         name: 'search',
                         component: function () { return Promise.resolve().then(function () { return require('@/views/other/search/index.vue'); }); }
+                    },
+                    {
+                        path: 'notice/:id',
+                        name: 'other_notice',
+                        component: function () { return Promise.resolve().then(function () { return require('@/views/other/notice/index.vue'); }); }
                     }
                 ]
             },

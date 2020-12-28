@@ -299,6 +299,11 @@ const routes: RouteConfig[] = [
 						path: 'search',
 						name: 'search',
 						component: () => import('@/views/other/search/index.vue'),
+					},
+					{
+						path: 'notice/:id',
+						name: 'other_notice',
+						component: () => import('@/views/other/notice/index.vue'),
 					}
 				]
 			},
