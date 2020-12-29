@@ -157,8 +157,8 @@ export default class extends Vue {
 	}
 	/deep/.el-dialog{
 		margin-top: 3vh!important;
-		min-width: 300px !important;
-		width: 300px!important;
+		// min-width: 300px !important;
+		// width: 300px!important;
 	}
 	/deep/.el-dialog__header{
 		padding-top: 18px;

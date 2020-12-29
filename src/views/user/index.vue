@@ -266,6 +266,16 @@ export default class extends Vue {
 	.user_information,.content{
 		width: 100%!important;
 	}
+	.content{
+		margin-bottom: 2rem;
+		order: -1!important;
+	}
+	.body{
+		margin-top: 0!important;
+	}
+	#user{
+		margin-top: 0!important;
+	}
 	/deep/.right_btn{
 		width: 4rem!important;
 	}
