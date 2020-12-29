@@ -37,6 +37,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 exports.__esModule = true;
 exports.api_myclub = void 0;
 var base_1 = require("./http/base");
+var object_1 = require("@/util/object");
 var Myclub = /** @class */ (function (_super) {
     __extends(Myclub, _super);
     function Myclub() {
@@ -63,7 +64,7 @@ var Myclub = /** @class */ (function (_super) {
     };
     Myclub.prototype.add_attend = function (_a) {
         var id = _a.id, data = __rest(_a, ["id"]);
-        return this.post(data, "/club/attend/");
+        return this.post(object_1.clean(data), "/club/attend/");
     };
     Myclub.prototype.edit_attend = function (_a) {
         var id = _a.id, data = __rest(_a, ["id"]);
@@ -73,7 +74,7 @@ var Myclub = /** @class */ (function (_super) {
             title: data.title,
             file_name: data.file_name
         };
-        return this.patch(req, "/club/attend/" + id + "/");
+        return this.patch(object_1.clean(req), "/club/attend/" + id + "/");
     };
     Myclub.prototype.attend_info = function (id) {
         return this.get({}, "/club/attend/" + id + "/");

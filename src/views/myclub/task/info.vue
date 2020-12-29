@@ -449,4 +449,15 @@ export default class extends Mixin_list<task_attend_list>(
 .color_92 {
     color: #929292;
 }
+@media only screen and (max-width: 1024px) {
+	#info{
+		/deep/.el-dialog__headerbtn{
+			right: 5px!important;
+			top: 5px!important;
+			.el-dialog__close{
+				color: #ccc!important;
+			}
+		}
+	}
+}
 </style>

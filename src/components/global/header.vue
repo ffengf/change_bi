@@ -85,7 +85,7 @@
 						<el-menu-item :index="ele.index" :key="ele.index"  v-else ><h1 class="title_big">{{ ele.name }}</h1></el-menu-item>
                     </template>
 					<el-submenu  index="/customer" class="phone_tab">
-						<template slot="title"><h1 class="title_big">客服中心</h1></template>
+						<template slot="title"><h1 class="title_big">고객센터</h1></template>
 						<el-menu-item index="/customer/notice">공지사항</el-menu-item>
 						<el-menu-item index="/customer/problem">자주묻는질문</el-menu-item>
 						<el-menu-item index="/customer/answer">1:1문의</el-menu-item>

@@ -73,7 +73,7 @@ var User = /** @class */ (function (_super) {
             return _this.get(__assign(__assign({}, data), { page_size: 5 }), '/user/coupon/');
         };
         _this.get_club = function (data) {
-            return _this.get(__assign(__assign({}, data), { page_size: 20 }), '/user/club/');
+            return _this.get(__assign(__assign({}, data), { page_size: 5 }), '/user/club/');
         };
         _this.get_pay = function (data) {
             return _this.get(__assign(__assign({}, data), { page_size: 5 }), '/order/');

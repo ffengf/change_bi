@@ -101,7 +101,7 @@ export default class extends Vue {
 
 
 	get is_phone(){
-		var sUserAgent = navigator.userAgent;
+		const sUserAgent = navigator.userAgent;
 		if (sUserAgent.indexOf('Android') > -1 || sUserAgent.indexOf('iPhone') > -1 || sUserAgent.indexOf('iPad') > -1 || sUserAgent.indexOf('iPod') > -1 || sUserAgent.indexOf('Symbian') > -1) {
 			return true
 		}
@@ -157,6 +157,8 @@ export default class extends Vue {
 	}
 	/deep/.el-dialog{
 		margin-top: 3vh!important;
+		min-width: 300px !important;
+		width: 300px!important;
 	}
 	/deep/.el-dialog__header{
 		padding-top: 18px;

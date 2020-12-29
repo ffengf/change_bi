@@ -19,6 +19,7 @@
 
 
 		<el-dialog
+			v-if="key"
 			:visible.sync="key"
 			width="30%"
 		>
@@ -97,9 +98,14 @@ export default class extends More(api_myclub.task_list) {
 			}
 		}else{
 			this._loading = true
-			this.form = await api_myclub.attend_info(attendance_id).finally(()=>{
+			const form = await api_myclub.attend_info(attendance_id).finally(()=>{
 				this._loading = false
 			})
+			this.form = {
+				...form,
+				attach:form.attach === null ? '':form.attach,
+				file_name:form.file_name === null ? '': form.file_name
+			}
 		}
 		this.key = true
 	}
@@ -109,16 +115,16 @@ export default class extends More(api_myclub.task_list) {
 		await (this.$refs['form'] as ElForm).validate()
 		this._loading = true
 		if(this.form.id === null){
-			await api_myclub.add_attend({ ...this.form }).finally(()=>{
+			const { id } = await api_myclub.add_attend({ ...this.form }).finally(()=>{
 				this._loading = false
 			})
+			this.list = this.list.map(x => x.id === this.form.task_id ? { ...x,attendance_id:id } : x)
 		}else{
 			await api_myclub.edit_attend({ ...this.form }).finally(()=>{
 				this._loading = false
 			})
 		}
 		this.$message.success('미션 제출 되었습니다.')
-		this.get_list()
 		this.key = false
 	}
 }
@@ -271,5 +277,16 @@ export default class extends More(api_myclub.task_list) {
 
 .color_92{
 	color: #929292;
+}
+@media only screen and (max-width: 1024px) {
+	.list{
+		/deep/.el-dialog__headerbtn{
+			right: 5px!important;
+			top: 5px!important;
+			.el-dialog__close{
+				color: #ccc!important;
+			}
+		}
+	}
 }
 </style>

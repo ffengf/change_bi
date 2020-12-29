@@ -96,7 +96,7 @@ class User extends Http {
 	}
 
 	get_club = (data: req_list) => {
-		return this.get<res_list<user_club>>({ ...data,page_size:20 }, '/user/club/')
+		return this.get<res_list<user_club>>({ ...data,page_size:5 }, '/user/club/')
 	}
 
 	get_pay = (data: req_list) => {

@@ -28,7 +28,7 @@
 			</div>
 		</div>
 		<el-button class="more" type="success" :disabled="disabled">더 보기</el-button>
-		<!-- <el-button class="more" type="success" @click="open">test</el-button> -->
+		<el-button class="more" type="success" @click="open">test</el-button>
 
 		<Paper ref="paper" />
     </div>

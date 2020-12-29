@@ -3,7 +3,7 @@
 
 import { Http } from "./http/base"
 import { req_list, res_list } from '@/types/global'
-
+import { clean } from "@/util/object"
 
 export interface base_info {
 	prev: number | null
@@ -103,7 +103,7 @@ class Myclub extends Http {
 	}
 
 	add_attend({ id, ...data }: attend_base) {
-		return this.post(data, `/club/attend/`)
+		return this.post<task_attend_list>(clean(data), `/club/attend/`)
 	}
 
 	edit_attend({ id, ...data }: attend_base) {
@@ -113,7 +113,7 @@ class Myclub extends Http {
 			title: data.title,
 			file_name: data.file_name,
 		}
-		return this.patch(req, `/club/attend/${id}/`)
+		return this.patch(clean(req), `/club/attend/${id}/`)
 	}
 
 	attend_info(id: number) {
