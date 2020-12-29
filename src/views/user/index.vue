@@ -20,8 +20,7 @@
 								<img src="@/assets/img/user/2.png" alt="" />
 							</div>
 						</el-upload>
-                        <p class="user_name kr-bo">유승하 님</p>
-                        <p class="momenti kr-re">(momenti)</p>
+                        <p class="user_name kr-bo">{{ info.real_name }} 님</p>
                         <p class="color_success b mt30 fs16 pb10 user_line">
                             참여 관리
                         </p>
@@ -79,7 +78,7 @@ export default class extends Vue {
 	beforeUpload(file:any){
 		const file_type = ["image/jpeg","image/gif","image/jpg","image/png"]
        if(!file_type.includes(file.type)){
-		   return this.$message.error('upload image')
+		   return this.$message.error('jpeg, gif, jpg, png로된 이미지를 업로드 해주세요.')
 	   }
 	   this._loading = true
 	   return true
@@ -91,12 +90,12 @@ export default class extends Vue {
 			this._loading = false
 		})
 		UserModule.set_info(info)
-		this.$message.success('success:upfile')
+		this.$message.success('수정 되었습니다.')
 	}
 
 	error(){
 		this._loading = false
-		this.$message.error('error:upfile')
+		this.$message.error('업로드 실패되었습니다.')
 	}
 }
 </script>

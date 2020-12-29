@@ -53,11 +53,14 @@
                     </div>
                 </el-form-item>
                 <el-form-item prop="birth" label="태어난 년도">
-					<el-input
-						class="inp"
+					<el-date-picker
 						v-model="info.birth"
+						align="right"
+						type="year"
 						placeholder="YYYY"
-					></el-input>
+						class="date_picker"
+					>
+					</el-date-picker>
                 </el-form-item>
                 <el-form-item prop="phone" label="휴대폰번호">
                     <div class="flex">
@@ -561,6 +564,13 @@ export default class extends Vue {
 	justify-content: none!important;
 	> *{
 		width: 48px !important;
+	}
+}
+
+.date_picker{
+	width: 100%;
+	/deep/.el-input__inner{
+		padding-left: 1.5rem!important;
 	}
 }
 </style>

@@ -95,7 +95,7 @@ exports.More = function (axios_get, use_created) {
                     switch (_b.label) {
                         case 0:
                             if (this.list.length === this.count && this.list.length !== 0) {
-                                return [2 /*return*/, this.$message.error("没有更多了")];
+                                return [2 /*return*/, this.$message.error("추가 내용이 없습니다.")];
                             }
                             this._loading = true;
                             return [4 /*yield*/, axios_get(__assign({ page: this.page }, this.filter))["finally"](function () {
@@ -113,7 +113,7 @@ exports.More = function (axios_get, use_created) {
         Mixin.prototype.more = function () {
             var _this = this;
             if (this.list.length === this.count && this.list.length !== 0) {
-                return this.$message.error("没有更多了");
+                return this.$message.error("추가 내용이 없습니다.");
             }
             this.page++;
             this.get_list()["catch"](function () {

@@ -1,6 +1,6 @@
 <template>
     <div class="warpper" v-loading="_loading">
-		<h1>一共 {{ count }}</h1>
+		<h1>총 {{ count }}개 모임이 검색되었습니다.</h1>
 		<div class="line"></div>
 		<ul class="box_list" v-if="list.length !==0">
 			<el-card shadow="never" class="item" v-for="(ele) in list" :key="ele.id" @click.native="go(ele)">
@@ -20,8 +20,8 @@
 		</ul>
 		<div class="none" v-else>
 			<i class="el-icon-search icon"></i>
-			<h1>never</h1>
-			<h2>none</h2>
+			<h1>검색된 모임이 없습니다.</h1>
+			<h2>모임명 또는 키워드를 확인하여 검색해 주세요.</h2>
 		</div>
 		<el-button type="success" class="more" @click="more" :disabled="disabled" v-if="list.length !==0">더 보기</el-button>
 	</div>

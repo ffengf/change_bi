@@ -19,7 +19,7 @@ export const More = <T>(axios_get: (req_list: req_list) => Promise<res_list<T>>,
 
 		async get_list() {
 			if (this.list.length === this.count && this.list.length !== 0) {
-				return this.$message.error("没有更多了");
+				return this.$message.error("추가 내용이 없습니다.");
 			}
 			this._loading = true
 			const { results, count } = await axios_get({
@@ -34,7 +34,7 @@ export const More = <T>(axios_get: (req_list: req_list) => Promise<res_list<T>>,
 
 		more(){
 			if (this.list.length === this.count && this.list.length !== 0) {
-				return this.$message.error("没有更多了");
+				return this.$message.error("추가 내용이 없습니다.");
 			}
 			this.page ++
 			this.get_list().catch(()=>{
