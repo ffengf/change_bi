@@ -59,7 +59,7 @@
 			id="dialog"
 		>
 			<div class="user_inp">
-				<img :src="info.user.avatar" alt="">
+				<img :src="user.avatar" alt="">
 				<div id="inp" @click="$refs['inp'].focus()">
 					<div class="name">{{ user && user.real_name }}</div>
 					<el-input ref="inp" v-model="old_info.content" placeholder="내용을 작성해 보세요."></el-input>
