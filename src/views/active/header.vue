@@ -104,7 +104,7 @@ export default class extends Vue {
 		position: fixed;
 		width: 90vw!important;
 		top: 4vh;
-		z-index: 2027;
+		z-index: 2000;
 	}
 }
 </style>

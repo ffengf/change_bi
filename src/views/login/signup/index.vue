@@ -453,8 +453,8 @@ export default class extends Vue {
 		}
 		const info = mapObjIndexed((v,k)=>{
 			if(typeof v === 'boolean'){
-				return Boolean(v)
-				// return v === true ? 1 : 0
+				// return Boolean(v)
+				return v === true ? 1 : 0
 			}else{
 				return v
 			}

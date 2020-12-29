@@ -71,10 +71,10 @@
 				</template>
             </div>
             <el-drawer append-to-body :visible.sync="key" direction="ltr" :withHeader="false" :showClose="false" size="60%" class="drawer">
-                <el-menu router>
+                <el-menu :default-active="defaultActive" router>
                     <template v-for="ele in tab">
-                        <el-submenu :default-active="defaultActive" :key="ele.index" :index="ele.index" v-if="ele.children" class="phone_tab">
-                            <template slot="title"><h1>{{ ele.name }}</h1></template>
+                        <el-submenu  :key="ele.index" :index="ele.index" v-if="ele.children" class="phone_tab">
+                            <template slot="title"><h1 class="title_big">{{ ele.name }}</h1></template>
                             <el-menu-item
                                 v-for="e in ele.children"
                                 :index="e.index"
@@ -82,8 +82,14 @@
                                 >{{ e.name }}</el-menu-item
                             >
                         </el-submenu>
-						<el-menu-item :index="ele.index" :key="ele.index"  v-else ><h1>{{ ele.name }}</h1></el-menu-item>
+						<el-menu-item :index="ele.index" :key="ele.index"  v-else ><h1 class="title_big">{{ ele.name }}</h1></el-menu-item>
                     </template>
+					<el-submenu  index="/customer" class="phone_tab">
+						<template slot="title"><h1 class="title_big">客服中心</h1></template>
+						<el-menu-item index="/customer/notice">공지사항</el-menu-item>
+						<el-menu-item index="/customer/problem">자주묻는질문</el-menu-item>
+						<el-menu-item index="/customer/answer">1:1문의</el-menu-item>
+					</el-submenu>
                 </el-menu>
             </el-drawer>
         </div>
@@ -98,7 +104,7 @@
 				@click="$router.push('/')"
             />
 			<div class="right">
-				<div :class="['icon',active === 'customer' ? 'active':'']">
+				<!-- <div :class="['icon',active === 'customer' ? 'active':'']">
 					<el-dropdown trigger="click" @command="customer" placement="bottom" @visible-change="is_active($event,'customer')">
 						<span class="el-dropdown-link">
 							<img src="@/assets/img/customer.png" alt="" srcset="">
@@ -110,7 +116,7 @@
 						</el-dropdown-menu>
 					</el-dropdown>
 				</div>
-				<el-divider class="divider" direction="vertical"></el-divider>
+				<el-divider class="divider" direction="vertical"></el-divider> -->
 				<div v-if="!is_login">
 					<el-button class="btn" size="mini" type="success" @click="$router.push('/login/signin')">로그인</el-button>
 					<el-button class="btn" type="text" @click="$router.push('/login/signup')">회원가입</el-button>
@@ -199,6 +205,7 @@ export default class extends Vue {
 		}else{
 			this.$router.push(type)
 		}
+		this.active = ''
 	}
 
     get defaultActive() {
@@ -302,7 +309,8 @@ export default class extends Vue {
     .right {
         display: flex;
         align-items: center;
-        overflow: hidden;
+		overflow: hidden;
+		justify-content: space-between;
         .icon i {
             cursor: pointer;
 		}
@@ -350,11 +358,25 @@ img{
 	box-sizing: border-box;
 	padding:  0 1rem;
 	justify-content: space-between;
-	.logo_sm{
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%,-50%);
+	// .logo_sm{
+	// 	position: absolute;
+	// 	top: 50%;
+	// 	left: 45%;
+	// 	transform: translate(-50%,-50%);
+	// }
+}
+.drawer{
+	z-index: 3000!important;
+	/deep/.el-drawer__body{
+		box-sizing: border-box;
+		padding: 20px;
+		.el-menu{
+			border: none;
+			.title_big{
+				font-size: 18px;
+				font-family: NotoSansKR-Bold;
+			}
+		}
 	}
 }
 
