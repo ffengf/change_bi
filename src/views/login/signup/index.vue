@@ -1,5 +1,5 @@
 <template>
-    <div class="login_warpper kr-re" id="sign_up" v-if="type === 0">
+    <div class="login_warpper kr-re" id="sign_up" v-if="type === 0" v-loading="_loading">
         <h1>회원가입</h1>
         <div class="flex_column">
             <el-form
@@ -59,6 +59,7 @@
 						type="year"
 						placeholder="YYYY"
 						class="date_picker"
+						value-format="yyyy"
 					>
 					</el-date-picker>
                 </el-form-item>
@@ -229,7 +230,7 @@
 			</span>
 		</el-dialog>
     </div>
-	<div class="login_warpper success" v-else>
+	<div class="login_warpper success" v-else v-loading="_loading">
 		<img src="@/assets/img/success.png" alt="">
 		<h2>
 			<p class="kr-li">스위치 홈페이지</p>
@@ -268,7 +269,7 @@ export default class extends Vue {
 
     older = {
         username: "",
-        phone: "15107550015",
+        phone: "",
     };
 
     btn_loadding = {
@@ -280,6 +281,7 @@ export default class extends Vue {
 	validatePass_8(rules, value, callback){
 		const reg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/
 		if(reg.test(value)){
+			(this.$refs["form"] as ElForm).validateField("again_pass")
 			callback()
 		}else{
 			callback(new Error("영문,숫자,특수문자 포함 8자 이상 입력"));
@@ -295,20 +297,24 @@ export default class extends Vue {
     }
 
     async check_mail() {
-        this.btn_loadding.mail = true;
-        try {
-            await (this.$refs["form"] as ElForm).validateField("username");
-            const data = await api_login.check_username({
-                username: this.info.username,
-            });
-            this.$message.success("success");
-            this.older.username = this.info.username;
-            await (this.$refs["form"] as ElForm).validateField("username");
-            this.btn_loadding.mail = false;
-        } catch (e) {
-            this.btn_loadding.mail = false;
-        }
-    }
+		this.btn_loadding.mail = true;
+		(this.$refs["form"] as ElForm).validateField("username",async (err_str)=>{
+			if(err_str === '이메일 중복확인을 해주세요.'){
+				const data = await api_login.check_username({
+					username: this.info.username,
+				}).finally(()=>{
+					this.btn_loadding.mail = false;
+				})
+				this.older.username = this.info.username;
+				await (this.$refs["form"] as ElForm).validateField("username");
+				this.$message.success("success");
+			}else{
+				this.$message.error(err_str)
+				this.btn_loadding.mail = false;
+			}
+		})
+	}
+
     validateEmail(rule, value, callback) {
         if (value === "") {
             callback(new Error("이메일을 입력해 주세요."));
@@ -334,9 +340,8 @@ export default class extends Vue {
         }
     }
     async check_tel_pass() {
-		//todo
-        (this.$refs["form"] as ElForm).validateField("phone", async (rules) => {
-            if (rules === "휴대폰 인증을 진행해 주세요.") {
+        (this.$refs["form"] as ElForm).validateField("phone", async (err_msg) => {
+            if (err_msg === "휴대폰 인증을 진행해 주세요." || err_msg === "") {
 				this.btn_loadding.check_sms = true;
 				await api_login.check_sms({
 					phone: this.info.phone,
@@ -346,7 +351,11 @@ export default class extends Vue {
 				})
 				this.$message.success("인증 완료 되었습니다.");
 				this.older.phone = this.info.phone;
-            }
+				(this.$refs["form"] as ElForm).validateField("phone")
+            }else{
+				this.$message.error(err_msg);
+				this.btn_loadding.check_sms = false;
+			}
         });
     }
 
@@ -378,7 +387,8 @@ export default class extends Vue {
         phone: [
             {
                 required: true,
-                message:'휴대폰 번호를 입력해 주세요.'
+				trigger: ["change"],
+				validator:this.validatePhone
             },
         ],
         address: [{ required: true, message:'주소를 검색해 주세요.' }],
@@ -459,7 +469,10 @@ export default class extends Vue {
 				return v
 			}
 		})({ ...this.info })
-		await api_login.signup(info as any as sign_up);
+		this._loading = true
+		await api_login.signup(info as any as sign_up).finally(()=>{
+			this._loading = false
+		})
 		this.type = 1
     }
 

@@ -18,7 +18,7 @@
                                 v-model="info.phone"
                                 placeholder="휴대폰 번호('-'는 빼고 입력해주세요)"
                             ></el-input>
-                            <PhoneSend :phone="info.phone" />
+                            <PhoneSend class="send_btn" :phone="info.phone" />
                         </div>
                     </el-form-item>
                     <el-form-item prop="code">
@@ -142,5 +142,8 @@ export default class extends Vue {
 
 .width_70 {
     width: 70%;
+}
+.send_btn{
+	width: 25%;
 }
 </style>

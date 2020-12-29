@@ -22,7 +22,7 @@
                                 placeholder="휴대폰 번호('-'는 빼고 입력해주세요)"
 								class="width_70"
                             ></el-input>
-                            <PhoneSend :phone="info_1.phone" />
+                            <PhoneSend class="send_btn" :phone="info_1.phone" />
                         </div>
                     </el-form-item>
                     <el-form-item prop="code">
@@ -180,7 +180,6 @@ export default class extends Vue {
 		}).finally(()=>{
 			this.btn_loadding.submit_2 = false
 		})
-		// this.$message.success('success')
 		await this.$alert('성공적으로 변경되었습니다.','비밀번호 변경',{
 			confirmButtonText: '확인',
 		}).finally(()=>{
@@ -212,5 +211,8 @@ export default class extends Vue {
 }
 .width_70 {
     width: 70%;
+}
+.send_btn{
+	width: 28%;
 }
 </style>
