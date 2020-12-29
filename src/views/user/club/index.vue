@@ -11,14 +11,14 @@
 			</div>
 			<div class="flex" v-if="status_str(ele) === '승인대기' || status_str(ele) === '진행대기'">
 				<el-button class="right_btn" type="danger" @click="un_join(ele)">신청취소</el-button>
-				<el-button class="right_btn" type="primary" @click="$router.push(`/myclub/${ele.club.id}`)">내용보기</el-button>
+				<el-button class="right_btn" type="primary" @click="go_myclub(ele)">내용보기</el-button>
 			</div>
 			<div class="flex" v-if="status_str(ele) === '진행중'">
-				<el-button class="right_btn" type="success" @click="$router.push(`/myclub/${ele.club.id}`)">참여하기</el-button>
+				<el-button class="right_btn" type="success" @click="go_myclub(ele)">참여하기</el-button>
 			</div>
 			<div class="flex" v-if="status_str(ele) === '진행완료'">
 				<el-button class="right_btn" type="success">수료증 발급</el-button>
-				<el-button class="right_btn" type="primary" @click="$router.push(`/myclub/${ele.club.id}`)">내용보기</el-button>
+				<el-button class="right_btn" type="primary" @click="go_myclub(ele)">내용보기</el-button>
 			</div>
 			<div class="flex" v-if="status_str(ele) === '취소완료' || status_str(ele) === '환불대기' || status_str(ele) === '환불완료'">
 				<el-tooltip v-if="ele.refuse_reason !== null" class="item" effect="dark" :content="ele.refuse_reason" placement="top-start">
@@ -39,6 +39,7 @@ import { Vue, Component } from "vue-property-decorator";
 import Paper from "./components/paper.vue"
 import { More } from "@/mixin/more"
 import { api_user,user_club } from "@/api"
+import { Encryption } from "@/util/encryption"
 @Component({
 	components:{
 		Paper
@@ -68,6 +69,10 @@ export default class extends More(api_user.get_club) {
 		})
 		this.list = this.list.map(x => x.id === new_user_club.id ? new_user_club : x)
 		this.$message.success('삭제되었습니다.')
+	}
+
+	go_myclub(ele:user_club){
+		this.$router.push(`/myclub/${Encryption.base_enc(ele.club.id)}`)
 	}
 
 	status_str(ele:user_club){

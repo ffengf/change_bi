@@ -55,13 +55,14 @@ import { ElForm } from "element-ui/types/form";
 import { Vue, Component } from "vue-property-decorator";
 import Editor from "@/components/editor/index.vue"
 import UpFile from "@/components/upfile/index.vue"
+import { Encryption } from "@/util/encryption";
 @Component({
 	components:{ Editor,UpFile }
 })
 export default class extends More(api_myclub.task_list) {
 
 	filter = {
-		club_id: this.$route.params.id
+		club_id: Number(Encryption.base_dec(this.$route.params.id))
 	}
 
 	key = false

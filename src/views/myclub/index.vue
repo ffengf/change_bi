@@ -42,6 +42,7 @@ import Rview from "@/components/routerView/index.vue";
 import Bread from "@/components/bread/index.vue"
 import { api_club, club_info } from "@/api";
 import { numFormat } from "@/util/string";
+import { Encryption } from "@/util/encryption";
 @Component({
     components: {
 		Rview,
@@ -84,7 +85,7 @@ export default class extends Vue {
 	}
 
 	get id():number{
-		return Number(this.$route.params.id)
+		return Number(Encryption.base_dec(this.$route.params.id))
 	}
 
 	@Watch('id',{ immediate:true })
@@ -97,7 +98,7 @@ export default class extends Vue {
 	}
 
 	tab_click(uri:string){
-		this.$router.push(`/myclub/${this.id}/${uri}`)
+		this.$router.push(`/myclub/${Encryption.base_enc(this.id)}/${uri}`)
 	}
 
 	is_active(uri:string){

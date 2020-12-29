@@ -80,6 +80,7 @@
 <script lang="ts">
 import { api_myclub, discuss_list } from "@/api";
 import { UserModule } from "@/store/user";
+import { Encryption } from "@/util/encryption";
 import { Vue, Component, Prop, Emit } from "vue-property-decorator";
 interface children_submit {
 	to_user_id:number
@@ -113,7 +114,7 @@ export default class extends Vue {
         return UserModule.info;
 	}
 	get club_id() {
-        return +this.$route.params.id;
+        return Number(Encryption.base_dec(this.$route.params.id));
     }
 
     reapply() {

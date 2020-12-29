@@ -18,12 +18,13 @@
 <script lang="ts">
 import { api_myclub } from "@/api";
 import { More } from "@/mixin/more";
+import { Encryption } from "@/util/encryption";
 import { Vue, Component } from "vue-property-decorator";
 @Component
 export default class extends More(api_myclub.notice_list) {
 
 	filter = {
-		club_id: this.$route.params.id
+		club_id: Number(Encryption.base_dec(this.$route.params.id))
 	}
 
 	go_info(id:number){

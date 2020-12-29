@@ -27,6 +27,7 @@
 import { api_myclub, discuss_list } from "@/api";
 import { More } from "@/mixin/more";
 import { UserModule } from "@/store/user";
+import { Encryption } from "@/util/encryption";
 import { Vue, Component } from "vue-property-decorator";
 import Item from "./item.vue"
 
@@ -45,7 +46,7 @@ export default class extends More(api_myclub.get_discuss_list) {
     };
 
     get club_id() {
-        return +this.$route.params.id;
+        return Number(Encryption.base_dec(this.$route.params.id));
     }
 
     get user_info() {
