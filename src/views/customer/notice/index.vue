@@ -28,7 +28,7 @@ export default class extends Vue {
 
     @Watch("key")
     watch_key(key: boolean) {
-        const tabs = document.getElementById("customer_tab") as HTMLElement;
+		const tabs = document.getElementById("customer_tab") as HTMLElement;
         if (key) {
             tabs.style.display = "flex";
         } else {
@@ -37,7 +37,10 @@ export default class extends Vue {
     }
 
     destroyed() {
-        const tabs = document.getElementById("customer_tab") as HTMLElement;
+		const tabs = document.getElementById("customer_tab") as HTMLElement | null;
+		if(tabs === null){
+			return
+		}
         tabs.style.display = "flex";
     }
 

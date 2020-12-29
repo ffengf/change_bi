@@ -76,7 +76,10 @@ export default class extends Vue {
 	}
 
 	destroyed(){
-		const tabs = document.getElementById("customer_tab") as HTMLElement;
+		const tabs = document.getElementById("customer_tab") as HTMLElement | null;
+		if(tabs === null){
+			return
+		}
 		tabs.style.display = "flex";
 	}
 
