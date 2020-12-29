@@ -196,7 +196,7 @@ export default class extends Vue {
 				flex-direction: column;
 				align-items: center;
 				.box{
-					height: 4.5rem;
+					min-height: 4.5rem;
 					width: 100%;
 					border-bottom: 1px solid #324b9b;
 					box-sizing: border-box;

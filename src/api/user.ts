@@ -96,7 +96,7 @@ class User extends Http {
 	}
 
 	get_club = (data: req_list) => {
-		return this.get<res_list<user_club>>({ ...data,page_size:5 }, '/user/club/')
+		return this.get<res_list<user_club>>({ ...data,page_size:20 }, '/user/club/')
 	}
 
 	get_pay = (data: req_list) => {
@@ -113,6 +113,10 @@ class User extends Http {
 
 	del_club(id:number){
 		return this.server.delete(`/user/club/${id}/`)
+	}
+
+	un_join_club(id:number){
+		return this.post<user_club>({},`/user/club/${id}/cancel/`)
 	}
 
 	exchange_coupon(redeem_code: string) {

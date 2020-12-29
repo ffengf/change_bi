@@ -73,7 +73,7 @@ var User = /** @class */ (function (_super) {
             return _this.get(__assign(__assign({}, data), { page_size: 5 }), '/user/coupon/');
         };
         _this.get_club = function (data) {
-            return _this.get(__assign(__assign({}, data), { page_size: 5 }), '/user/club/');
+            return _this.get(__assign(__assign({}, data), { page_size: 20 }), '/user/club/');
         };
         _this.get_pay = function (data) {
             return _this.get(__assign(__assign({}, data), { page_size: 5 }), '/order/');
@@ -88,6 +88,9 @@ var User = /** @class */ (function (_super) {
     };
     User.prototype.del_club = function (id) {
         return this.server["delete"]("/user/club/" + id + "/");
+    };
+    User.prototype.un_join_club = function (id) {
+        return this.post({}, "/user/club/" + id + "/cancel/");
     };
     User.prototype.exchange_coupon = function (redeem_code) {
         return this.post({ redeem_code: redeem_code }, '/user/coupon/');

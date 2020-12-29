@@ -10,7 +10,7 @@
 				<h1>{{ ele.club.title }}</h1>
 			</div>
 			<div class="flex" v-if="status_str(ele) === '승인대기' || status_str(ele) === '진행대기'">
-				<el-button class="right_btn" type="danger">신청취소</el-button>
+				<el-button class="right_btn" type="danger" @click="un_join(ele)">신청취소</el-button>
 				<el-button class="right_btn" type="primary" @click="$router.push(`/myclub/${ele.club.id}`)">내용보기</el-button>
 			</div>
 			<div class="flex" v-if="status_str(ele) === '진행중'">
@@ -58,6 +58,15 @@ export default class extends More(api_user.get_club) {
 		})
 		this.list = this.list.filter(x => x.id !== ele.id)
 		this.count --
+		this.$message.success('삭제되었습니다.')
+	}
+
+	async un_join(ele:user_club){
+		this._loading = true
+		const new_user_club = await api_user.un_join_club(ele.id).finally(()=>{
+			this._loading = false
+		})
+		this.list = this.list.map(x => x.id === new_user_club.id ? new_user_club : x)
 		this.$message.success('삭제되었습니다.')
 	}
 
