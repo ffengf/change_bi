@@ -65,6 +65,8 @@
                         ref="inp"
                         v-model="dialog_info.content"
                         placeholder="내용을 작성해 보세요."
+						type="textarea"
+						resize="none"
                     ></el-input>
                     <div class="btn_box">
                         <span @click.stop="dialog_info.id === undefined ? submit() : edit_submit()">확인</span>
@@ -128,7 +130,7 @@ export default class extends Vue {
 
 	@Emit('submit')
 	async submit(){
-		if(this.dialog_info.content === ''){
+		if(this.dialog_info.content.replaceAll('\n','') === ''){
 			return this.$message.error('내용을 작성해 주세요.')
 		}
 		const club_id = this.club_id
@@ -142,7 +144,7 @@ export default class extends Vue {
 
 	@Emit('edit')
 	async edit_submit(){
-		if(this.dialog_info.content === ''){
+		if(this.dialog_info.content.replaceAll('\n','') === ''){
 			return this.$message.error('내용을 작성해 주세요.')
 		}
 		this._loading = true
@@ -225,7 +227,8 @@ export default class extends Vue {
             font-style: normal;
             letter-spacing: -0.35px;
             text-align: left;
-            color: #000000;
+			color: #000000;
+			word-break: break-all;
         }
         .reapply {
             cursor: pointer;
@@ -285,22 +288,19 @@ export default class extends Vue {
     #inp {
         width: 90%;
         position: relative;
-        border: 1px solid #ccc;
-        /deep/.el-input__inner {
-            margin-top: 1.2rem;
-            border: none !important;
-            font-family: NotoSansKR;
-            font-size: 13.5px;
-            font-weight: normal;
-            font-stretch: normal;
-            font-style: normal;
-            letter-spacing: -0.68px;
-            padding-left: 0.7rem !important;
-        }
-        .name {
-            position: absolute;
-            top: 0.4rem;
-            left: 0.7rem;
+		border: 1px solid #ccc;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		/deep/.el-textarea{
+			height: 100%;
+			.el-textarea__inner{
+				border: none;
+			}
+		}
+		.name {
+			margin-top: 0.4rem;
+			margin-left: 0.7rem;
             z-index: 100;
             font-family: NotoSansKR;
             font-size: 13.5px;

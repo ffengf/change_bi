@@ -351,6 +351,17 @@ h5 > p {
 h6 > p {
   white-space: nowrap;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+div,
+p {
+  word-break: break-all;
+  white-space: pre-wrap;
+}
 img {
   object-fit: cover;
 }

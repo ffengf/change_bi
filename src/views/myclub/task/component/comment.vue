@@ -22,7 +22,13 @@
 					<img :src="info.user.avatar" alt="">
 					<div id="inp" @click="$refs['inp'].focus()">
 						<div class="name">{{ user && user.real_name }}</div>
-						<el-input ref="inp" v-model="input" placeholder="내용을 작성해 보세요."></el-input>
+						<el-input
+							ref="inp"
+							v-model="input"
+							placeholder="내용을 작성해 보세요."
+							type="textarea"
+							resize="none"
+						></el-input>
 						<div class="btn_box">
 							<span @click.stop="submit">확인</span>
 							<span>|</span>
@@ -63,7 +69,13 @@
 				<img :src="user && user.avatar" alt="">
 				<div id="inp" @click="$refs['inp'].focus()">
 					<div class="name">{{ user && user.real_name }}</div>
-					<el-input ref="inp" v-model="old_info.content" placeholder="내용을 작성해 보세요."></el-input>
+					<el-input
+						ref="inp"
+						v-model="old_info.content"
+						placeholder="내용을 작성해 보세요."
+						type="textarea"
+						resize="none"
+					></el-input>
 					<div class="btn_box">
 						<span @click.stop="submit_edit">확인</span>
 						<span>|</span>
@@ -138,7 +150,7 @@ export default class extends Vue {
 	}
 
 	async submit(){
-		if(this.input === ''){
+		if(this.input.replaceAll('\n','') === ''){
 			return this.$message.error('내용을 작성해 주세요.')
 		}
 		const attendance_id = this.info.id as number
@@ -174,7 +186,7 @@ export default class extends Vue {
 
 	async submit_edit(){
 		const info = this.old_info
-		if(info.content === ''){
+		if(info.content.replaceAll('\n','') === ''){
 			return this.$message.error('내용을 작성해 주세요.')
 		}
 		this._loading = true
@@ -299,20 +311,19 @@ export default class extends Vue {
 			width: 86%;
 			position: relative;
 			border: 1px solid #ccc;
-			/deep/.el-input__inner{
-				margin-top: 1.2rem;
-				border: none !important;
-				font-family: NotoSansKR;
-				font-size: 13.5px;
-				font-weight: normal;
-				font-stretch: normal;
-				font-style: normal;
-				letter-spacing: -0.68px;
+			border: 1px solid #ccc;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			/deep/.el-textarea{
+				height: 100%;
+				.el-textarea__inner{
+					border: none;
+				}
 			}
-			.name{
-				position: absolute;
-				top: 0.4rem;
-				left: 0.7rem;
+			.name {
+				margin-top: 0.4rem;
+				margin-left: 0.7rem;
 				z-index: 100;
 				font-family: NotoSansKR;
 				font-size: 13.5px;
