@@ -34,4 +34,9 @@ export default class extends Vue {
 		}
 	}
 }
+@media screen and (max-width: 1024px){
+	#serial{
+		margin-top: 1rem;
+	}
+}
 </style>

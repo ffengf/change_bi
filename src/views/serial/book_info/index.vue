@@ -20,7 +20,7 @@
 					<div class="line"></div>
 					<img :src="info.author_img">
 					<h1>작가 소개</h1>
-					<h2>{{ info.author_desc }}</h2>
+					<h2 id="chapters_box">{{ info.author_desc }}</h2>
 				</div>
 				<div class="chapters_box">
 					<h1>연재 읽기</h1>
@@ -44,6 +44,7 @@
 				</div>
 			</div>
 		</div>
+		<a class="look sm-up" href="#chapters_box">look</a>
     </div>
 </template>
 
@@ -303,6 +304,21 @@ export default class extends Vue {
 					align-self: center;
 				}
 			}
+		}
+		.look{
+			position: fixed;
+			z-index: 1000;
+			bottom: 2vh;
+			width: 90vw;
+			height: 2.2rem;
+			display: block;
+			text-align: center;
+			line-height: 2.2rem;
+			border-color:#3fa535;
+			background: #3fa535;
+			color: #fff;
+			text-decoration:none;
+			font-size: 14px;
 		}
 	}
 }
