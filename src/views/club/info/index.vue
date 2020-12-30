@@ -27,7 +27,7 @@
 					<h1>결제하기</h1>
 					<div class="how">
 						<div>결제방법</div>
-						<el-select v-model="pay_type" placeholder="결제 방법 선택">
+						<el-select class="select_what" v-model="pay_type" placeholder="결제 방법 선택" :popper-append-to-body="false">
 							<el-option value="card" label="신용카드"></el-option>
 							<el-option value="trans" label="계좌이체"></el-option>
 							<el-option value="phone" label="휴대폰결제"></el-option>
@@ -36,7 +36,7 @@
 					<div class="line"></div>
 					<div class="how">
 						<div>쿠폰 선택</div>
-						<el-select v-model="coupon" placeholder="쿠폰을 선택">
+						<el-select class="select_what" v-model="coupon" placeholder="쿠폰을 선택" :popper-append-to-body="false">
 							<el-option value="" label="쿠폰 없음">
 								<span style="float: left">쿠폰 없음</span>
 								<span style="float: right; color: #8492a6; font-size: 13px">0</span>
@@ -255,9 +255,7 @@ export default class extends Vue {
 			min-height: 5.25rem;
 			background: #324b9b;
 			box-sizing: border-box;
-			padding-top: 1.5rem;
-			padding-left: 1.4rem;
-			padding-bottom: 1.5rem;
+			padding: 1.5rem 1.4rem;
 			h1,h2{
 				color: #fff;
 			}
@@ -380,7 +378,6 @@ export default class extends Vue {
 						box-sizing: border-box!important;
 						height: 2rem;
 						width: 7.5rem;
-
 					}
 				}
 				.line{
@@ -430,6 +427,12 @@ export default class extends Vue {
 		}
 	}
 }
+.select_what{
+	/deep/.el-select-dropdown__wrap{
+		margin-bottom: 0!important;
+	}
+}
+
 @media only screen and (max-width: 1024px) {
 	.bottom{
 		border: none!important;

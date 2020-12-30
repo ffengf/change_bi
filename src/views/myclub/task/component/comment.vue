@@ -36,7 +36,8 @@
 						<div class="content">
 							<div class="h2">
 								<span>{{ ele.create_time }}</span>
-								<span>|</span>
+								<br class="sm-up">
+								<span class="sm-down">|</span>
 								<span v-if="ele.delete === 0">{{ ele.user.real_name }}</span>
 								<span v-else>ㅇㅇㅇ님</span>
 							</div>
@@ -59,7 +60,7 @@
 			id="dialog"
 		>
 			<div class="user_inp">
-				<img :src="user.avatar" alt="">
+				<img :src="user && user.avatar" alt="">
 				<div id="inp" @click="$refs['inp'].focus()">
 					<div class="name">{{ user && user.real_name }}</div>
 					<el-input ref="inp" v-model="old_info.content" placeholder="내용을 작성해 보세요."></el-input>

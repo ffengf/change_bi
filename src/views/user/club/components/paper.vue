@@ -45,7 +45,6 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import html2canvas from "html2canvas"
 import jsPDF from "jspdf"
 import { Loading } from "element-ui"
 import { UserModule } from "@/store/user";

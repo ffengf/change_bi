@@ -61,7 +61,8 @@ export default class extends Vue {
 .list {
     width: 100%;
     display: flex;
-    flex-direction: column;
+	flex-direction: column;
+	position: relative;
     .top_btn {
         align-self: flex-end;
         height: 2rem;
@@ -100,5 +101,14 @@ export default class extends Vue {
         margin-top: 2.5rem;
         margin-bottom: 6rem;
     }
+}
+@media screen and (max-width: 1024px) {
+	.list {
+		.top_btn {
+			position: absolute;
+			top: -2.3rem;
+			width: 5rem;
+		}
+	}
 }
 </style>

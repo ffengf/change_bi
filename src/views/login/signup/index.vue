@@ -60,6 +60,7 @@
 						placeholder="YYYY"
 						class="date_picker"
 						value-format="yyyy"
+						:pickerOptions="pickerOptions"
 					>
 					</el-date-picker>
                 </el-form-item>
@@ -516,6 +517,13 @@ export default class extends Vue {
 
 	async created(){
 		this.get_content()
+	}
+
+
+	pickerOptions = {
+		disabledDate(time) {
+            return time.getTime() > Date.now();
+        }
 	}
 }
 </script>

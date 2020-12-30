@@ -28,7 +28,7 @@ export default class extends More(api_myclub.notice_list) {
 	}
 
 	go_info(id:number){
-		this.$router.push(this.$route.path + '?id=' + id)
+		this.$router.push(this.$route.path + '?id=' + Encryption.base_enc(id))
 	}
 }
 </script>
@@ -40,7 +40,7 @@ export default class extends More(api_myclub.notice_list) {
 	display: flex;
 	flex-direction: column;
 	li{
-		height: 3.8rem;
+		min-height: 3.8rem;
 		border-bottom: 1px solid #324b9b;
 		cursor: pointer;
 		h2{
@@ -75,6 +75,7 @@ export default class extends More(api_myclub.notice_list) {
 			font-size: 12.5px;
 			letter-spacing: -0.34px;
 			color: #858585;
+			margin-bottom: 0.2rem;
 			/deep/ * {
 				font-size: 12.5px!important;
 				letter-spacing: -0.34px!important;

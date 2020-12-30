@@ -33,6 +33,7 @@
 
 <script lang="ts">
 import { api_myclub,club_notice } from "@/api";
+import { Encryption } from "@/util/encryption";
 import { Vue, Component, Watch } from "vue-property-decorator";
 
 @Component
@@ -56,13 +57,13 @@ export default class extends Vue {
 	}
 
     get id(): number {
-        return +this.$route.query.id;
+        return Number(Encryption.base_dec(this.$route.query.id as string));
     }
 
     set id(id: number) {
         this.$router.push({
             path: this.$route.path,
-            query: { id: String(id) },
+            query: { id: Encryption.base_enc(id.toString()) },
         });
 	}
 

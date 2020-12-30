@@ -211,7 +211,6 @@ export default class extends Vue {
 		}
 		.mid{
 			width: 100%;
-			height: 11rem;
 			box-sizing: border-box;
 			border-left: 1px solid #dfdfdf;
 			border-right: 1px solid #dfdfdf;

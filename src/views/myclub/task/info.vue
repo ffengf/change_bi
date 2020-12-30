@@ -126,6 +126,7 @@ import { Vue, Component, Watch } from "vue-property-decorator";
 import { Mixin_list } from "@/mixin/list";
 import { ElForm } from "element-ui/types/form";
 import Comments from "./component/comment.vue";
+import { Encryption } from "@/util/encryption";
 @Component({
     components: {
         Editor,
@@ -179,13 +180,13 @@ export default class extends Mixin_list<task_attend_list>(
     }
 
     get id(): number {
-        return +this.$route.query.id;
+        return Number(Encryption.base_dec(this.$route.query.id as string));
     }
 
     set id(id: number) {
         this.$router.push({
             path: this.$route.path,
-            query: { id: String(id) },
+            query: { id: Encryption.base_enc(id.toString()) },
         });
     }
 
@@ -241,7 +242,7 @@ export default class extends Mixin_list<task_attend_list>(
 
 <style lang='less' scoped>
 #info .info {
-    height: 3.8rem;
+    min-height: 3.8rem;
     border-bottom: 1px solid #324b9b;
     position: relative;
     .btn {
@@ -267,12 +268,13 @@ export default class extends Mixin_list<task_attend_list>(
             margin: 0 0.3rem;
         }
     }
-    h1 {
+    >h1 {
         font-size: 22px;
         font-weight: 500;
         letter-spacing: -0.41px;
         color: #000000;
-        margin: 0.3rem 0;
+		margin: 0.3rem 0;
+		width: 55%;
     }
 }
 #info .inner {

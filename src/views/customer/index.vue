@@ -47,6 +47,8 @@ export default class extends Vue {
 		text-align: center;
 		line-height: 3rem;
 		font-family: NotoSansKR-Medium;
+		box-sizing: border-box;
+		z-index: 1000;
 		.item{
 			border: 1px solid #324b9b;
 			width: 34%;
@@ -62,9 +64,28 @@ export default class extends Vue {
 		width: 100%;
 	}
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) and (min-width: 301px) {
 	.item{
 		font-size: 16px !important;
+	}
+}
+@media screen and (max-width: 300px) {
+	.item{
+		font-size: 12px !important;
+	}
+}
+@media screen and (max-width: 1024px) {
+	#customer{
+		margin-top: 4rem;
+		.tab{
+			width: 90vw;
+			position: fixed;
+			top: 3.5rem;
+		}
+		.body{
+			margin-top: 0;
+			width: 100%;
+		}
 	}
 }
 </style>

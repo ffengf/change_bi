@@ -83,7 +83,7 @@ export default class extends More(api_myclub.task_list) {
 	}
 
 	go_info(id:number){
-		this.$router.push(this.$route.path + '?id=' + id)
+		this.$router.push(this.$route.path + '?id=' + Encryption.base_enc(id.toString()))
 	}
 
 	async sign(attendance_id:null|number,task_id:number){
@@ -137,7 +137,7 @@ export default class extends More(api_myclub.task_list) {
 	display: flex;
 	flex-direction: column;
 	li{
-		height: 3.8rem;
+		min-height: 3.8rem;
 		border-bottom: 1px solid #324b9b;
 		cursor: pointer;
 		position: relative;
@@ -171,6 +171,7 @@ export default class extends More(api_myclub.task_list) {
 			letter-spacing: -0.41px;
 			color: #000000;
 			margin-top: 0.2rem;
+			width: 58%;
 		}
 		.inner_detail{
 			margin-top: 0.2rem;
