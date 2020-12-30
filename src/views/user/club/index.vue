@@ -20,7 +20,7 @@
 				<el-button class="right_btn" type="success" @click="go_myclub(ele)">참여하기</el-button>
 			</div>
 			<div class="flex" v-if="status_str(ele) === '진행완료'">
-				<el-button class="right_btn" type="success">수료증 발급</el-button>
+				<el-button class="right_btn" type="success" @click="open(ele)">수료증 발급</el-button>
 				<el-button class="right_btn" type="primary" @click="go_myclub(ele)">내용보기</el-button>
 			</div>
 			<div class="flex" v-if="status_str(ele) === '취소완료' || status_str(ele) === '환불대기' || status_str(ele) === '환불완료'">
@@ -31,7 +31,6 @@
 			</div>
 		</div>
 		<el-button class="more" type="success" :disabled="disabled">더 보기</el-button>
-		<el-button class="more" type="success" @click="open">test</el-button>
 
 		<Paper ref="paper" />
     </div>
@@ -43,15 +42,18 @@ import Paper from "./components/paper.vue"
 import { More } from "@/mixin/more"
 import { api_user,user_club } from "@/api"
 import { Encryption } from "@/util/encryption"
+
 @Component({
 	components:{
 		Paper
 	}
 })
 export default class extends More(api_user.get_club) {
-	open(){
+	open(ele:user_club){
 		(this.$refs['paper'] as any).open({
-			name:10
+			start_time:ele.club.start_time,
+			end_time:ele.club.end_time,
+			title:ele.club.title
 		})
 	}
 
