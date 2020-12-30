@@ -3,15 +3,14 @@
 		<el-dialog
 			title="수료증 발급"
 			:visible.sync="key"
-			:width="`${width}%`"
 		>
 			<div class="body" ref="body">
-				<div class="postion" :id="width === 90 && is_phone === false ? 'print' : ''">
+				<div class="postion">
 					<h1 class="na">클럽창작과비평제장장장</h1>
 					<h2 class="na">수료증</h2>
 					<h3>name</h3>
 					<img class="paper_line" src="@/assets/img/paper_line.jpg" alt="">
-					<p>활동기간 2020. 03. - 2020. 08.</p>
+					<p>활동기간 2020. 03. 01 - 2020. 08. 01</p>
 					<h4>
 						<p>위 사람은 창비에서 주관하는</p>
 						<p>'클럽 창작과비평 제1장'에 참여하여</p>
@@ -126,39 +125,42 @@ export default class extends Vue {
 			flex-direction: column;
 			align-items: center;
 			h1{
-				width: 12rem;
-				margin-top: 4rem;
-				font-size: 1.5rem;
+				width: 240px;
+				margin-top: 20px;
+				font-size: 20px;
 				color: #2b8e6d;
 				font-weight: 700;
 				text-align: center;
 			}
 			h2{
-				margin-top: 0.5rem;
-				font-size: 1.5rem;
+				margin-top: 6px;
+				font-size: 20px;
 				color: #2b8e6d;
 				font-weight: 500;
 				text-align: center;
 			}
 			h3{
-				margin-top: 1.5rem;
+				margin-top: 0.5rem;
 			}
 			.paper_line{
-				width: 11rem;
-				height: 1rem;
+				width: 220px;
+				height: 20px;
 				object-fit: contain;
 			}
 			h4{
-				margin-top: 1rem;
+				margin-top: 10px;
 				text-align: center;
-				line-height: 1.15rem;
+				// line-height: 1.15rem;
+				p{
+					font-size: 10px;
+				}
 			}
 		}
 	}
 	/deep/.el-dialog{
 		margin-top: 3vh!important;
-		// min-width: 300px !important;
-		// width: 300px!important;
+		min-width: 300px !important;
+		width: 300px!important;
 	}
 	/deep/.el-dialog__header{
 		padding-top: 18px;
@@ -174,9 +176,11 @@ export default class extends Vue {
 		}
 	}
 	.dialog-footer{
+		display: flex;
+		justify-content: space-between;
 		>*{
 			height: 2.2rem;
-			width: 7rem;
+			width: 6rem;
 		}
 	}
 }
@@ -218,50 +222,4 @@ export default class extends Vue {
 }
 
 
-
-@media only screen and (max-width: 1024px) {
-	.dialog-footer{
-		>*{
-			width: 5rem!important;
-		}
-	}
-}
-@media only screen and (max-width: 1024px) {
-	.dialog-footer{
-		>*{
-			width: 5rem!important;
-		}
-	}
-}
-@media only screen and (max-width: 550px) {
-	.postion{
-		h1{
-			font-size: 20px!important;
-			margin-top: 1rem!important;
-		}
-		h2{
-			font-size: 20px!important;
-			margin-top: 0.5rem!important;
-		}
-		h3{
-			margin-top: 0.5rem!important;
-		}
-		.paper_line{
-			width: 11rem;
-			height: 1rem;
-			object-fit: contain;
-		}
-		h4{
-			margin-top: 1rem;
-			// line-height: 0.7rem!important;
-		}
-	}
-}
-@media only screen and (max-width: 350px) {
-	.postion{
-		h4{
-			line-height: 0.7rem!important;
-		}
-	}
-}
 </style>
