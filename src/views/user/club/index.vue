@@ -9,7 +9,10 @@
 				</h2>
 				<h1>{{ ele.club.title }}</h1>
 			</div>
-			<div class="flex" v-if="status_str(ele) === '승인대기' || status_str(ele) === '진행대기'">
+			<div class="flex" v-if="status_str(ele) === '승인대기'">
+				<el-button class="right_btn" type="danger" @click="un_join(ele)">신청취소</el-button>
+			</div>
+			<div class="flex" v-if="status_str(ele) === '진행대기'">
 				<el-button class="right_btn" type="danger" @click="un_join(ele)">신청취소</el-button>
 				<el-button class="right_btn" type="primary" @click="go_myclub(ele)">내용보기</el-button>
 			</div>

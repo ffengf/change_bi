@@ -73,7 +73,7 @@
 						<PhoneSend :phone="info.phone" class="btn" size="default" content="인증" />
                     </div>
                 </el-form-item>
-                <el-form-item prop="code" label="인증번호">
+                <el-form-item prop="code" label="인증번호" v-if="info.phone !== older.phone || info.phone.length === 0">
                     <div class="flex">
                         <el-input
                             class="inp"
