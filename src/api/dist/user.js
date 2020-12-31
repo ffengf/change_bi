@@ -114,6 +114,9 @@ var User = /** @class */ (function (_super) {
     User.prototype.get_user_info = function () {
         return this.get({}, '/user/info/');
     };
+    User.prototype.edit_pass = function (data) {
+        return this.patch(data, '/user/password/');
+    };
     return User;
 }(base_1.Http));
 exports.api_user = new User('/user/');

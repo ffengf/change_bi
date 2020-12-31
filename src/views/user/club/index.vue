@@ -112,6 +112,7 @@ export default class extends More(api_user.get_club) {
 .flex{
 	width: 12rem;
 	justify-content: space-between;
+	flex-shrink: 0;
 	&::before{
 		content: '';
 	}
@@ -125,9 +126,9 @@ export default class extends More(api_user.get_club) {
      	text-overflow: ellipsis;
 	}
 }
-// @media only screen and (max-width: 1024px) {
-// 	.flex{
-// 		width: 12rem;
-// 	}
-// }
+@media only screen and (max-width: 1024px) {
+	.flex{
+		width: 9rem;
+	}
+}
 </style>

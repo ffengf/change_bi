@@ -3,16 +3,14 @@
         <el-dialog :visible.sync="keys" width="30%">
             <div class="body" v-loading="_loading">
                 <div class="user_top">
-                    <div class="left">
-                        <img :src="info.user.avatar" alt="" />
-                        <div class="left_right">
-                            <h2 class="h2">{{ info.user.real_name }}</h2>
-                            <h1 class="h1">{{ info.title }}</h1>
-                        </div>
-                    </div>
+					<img :src="info.user.avatar" alt="" />
+					<div class="left_right">
+						<h2 class="h2">{{ info.user.real_name }}</h2>
+						<h1 class="h1">{{ info.title }}</h1>
+					</div>
                     <div class="right">{{ info.create_time }}</div>
                 </div>
-				<div class="file_name" @click="download(info.attach)">
+				<div class="file_name" @click="download(info.attach)" v-if="info.file_name !== null">
 					<img src="@/assets/img/file.png" alt="">
 					<span>{{ info.file_name }}</span>
 				</div>
@@ -47,7 +45,7 @@
 								<span v-if="ele.delete === 0">{{ ele.user.real_name }}</span>
 								<span v-else>ㅇㅇㅇ님</span>
 							</div>
-							<div class="h1" v-if="ele.delete === 0">{{ ele.content }}</div>
+							<div class="h1 show_br" v-if="ele.delete === 0">{{ ele.content }}</div>
 							<div class="h1" v-else>삭제된 게시글입니다.</div>
 							<div class="btn_box" v-if="ele.user.id === user_id && ele.delete === 0">
 								<span @click="edit(ele)">수정</span>
@@ -209,43 +207,40 @@ export default class extends Vue {
 #comments {
     .user_top {
         width: 100%;
-        height: 4.5rem;
+        padding: 1rem 0;
         border-bottom: 1px solid #324b9b;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        .left {
-            display: flex;
-            img {
-                width: 2.2rem;
-                height: 2.2rem;
-                border-radius: 50%;
-                overflow: hidden;
-            }
-            .left_right {
-                margin-left: 0.75rem;
-                height: 2.2rem;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                .h2 {
-                    font-family: NotoSansKR;
-                    font-size: 11.5px;
-                    font-weight: 500;
-                    font-stretch: normal;
-                    font-style: normal;
-                    letter-spacing: -0.29px;
-                }
-                .h1 {
-                    font-family: NotoSansKR;
-                    font-size: 16.5px;
-                    font-weight: 500;
-                    font-stretch: normal;
-                    font-style: normal;
-					letter-spacing: -0.41px;
-					margin: 0;
-                }
-            }
+		img {
+			width: 2.2rem;
+			height: 2.2rem;
+			border-radius: 50%;
+			overflow: hidden;
+		}
+		.left_right {
+			margin-left: 0.75rem;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			flex: 1;
+			.h2 {
+				font-family: NotoSansKR;
+				font-size: 11.5px;
+				font-weight: 500;
+				font-stretch: normal;
+				font-style: normal;
+				letter-spacing: -0.29px;
+			}
+			.h1 {
+				font-family: NotoSansKR;
+				font-size: 16.5px;
+				font-weight: 500;
+				font-stretch: normal;
+				font-style: normal;
+				letter-spacing: -0.41px;
+				margin: 0;
+			}
         }
         .right {
             font-family: NotoSansKR;

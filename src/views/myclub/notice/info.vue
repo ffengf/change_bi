@@ -77,7 +77,7 @@ export default class extends Vue {
 
 <style lang='less' scoped>
 .info{
-	height: 3.8rem;
+	min-height: 3.8rem;
 	border-bottom: 1px solid #324b9b;
 	h2{
 		font-family: NotoSansKR;

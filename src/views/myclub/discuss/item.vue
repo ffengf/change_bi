@@ -11,7 +11,7 @@
                     }}</span>
                     <span v-else>ㅇㅇㅇ님</span>
                 </div>
-                <div class="h1" v-if="info.delete === 0">
+                <div class="h1 show_br" v-if="info.delete === 0">
                     {{ info.content }}
                 </div>
                 <div class="h1" v-else>삭제된 게시글입니다.</div>
@@ -38,7 +38,7 @@
                         }}</span>
                         <span v-else>ㅇㅇㅇ님</span>
                     </div>
-                    <div class="h1" v-if="e.delete === 0">
+                    <div class="h1 show_br" v-if="e.delete === 0">
                         {{ e.content }}
                     </div>
                     <div class="h1" v-else>삭제된 게시글입니다.</div>

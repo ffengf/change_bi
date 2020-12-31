@@ -135,6 +135,14 @@ class User extends Http {
 		return this.get<user_info>({},'/user/info/')
 	}
 
+	edit_pass(data:{
+		old_password:string
+		new_password1:string
+		new_password2:string
+	}){
+		return this.patch(data,'/user/password/')
+	}
+
 }
 
 

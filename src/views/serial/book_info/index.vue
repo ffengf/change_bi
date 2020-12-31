@@ -131,6 +131,10 @@ export default class extends Vue {
 		return this.count <= this.list.length
 	}
 
+	show_look(){
+
+	}
+
     created() {
 		this.get_info();
 		this.get_chapter_list()
@@ -183,7 +187,6 @@ export default class extends Vue {
 				}
 			}
 			.author_box{
-				height: 36.2rem;
 				padding: 1.5rem ;
 				border: 1px solid #dfdfdf;
 				border-bottom: none;
@@ -204,7 +207,7 @@ export default class extends Vue {
 					font-stretch: normal;
 					font-style: normal;
 					letter-spacing: -0.65px;
-					min-height: 6.5rem;
+
 				}
 				.line{
 					height: 1px;

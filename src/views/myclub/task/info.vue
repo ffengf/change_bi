@@ -31,13 +31,11 @@
                 :key="ele.id"
                 @click="show_comment(ele.id)"
             >
-                <div class="left">
-                    <img :src="ele.user.avatar" alt="" />
-                    <div class="left_right">
-                        <h2>{{ ele.user.real_name }}</h2>
-                        <h1>{{ ele.title }}</h1>
-                    </div>
-                </div>
+                <img :src="ele.user.avatar" alt="" />
+				<div class="left_right">
+					<h2>{{ ele.user.real_name }}</h2>
+					<h1>{{ ele.title }}</h1>
+				</div>
                 <div class="right">{{ ele.create_time }}</div>
             </li>
         </ul>
@@ -310,43 +308,40 @@ export default class extends Mixin_list<task_attend_list>(
     min-height: 2rem;
     li {
         width: 100%;
-        height: 4.5rem;
+        padding: 1rem 0;
         border-bottom: 1px solid #e5e5e5;
         display: flex;
         justify-content: space-between;
         align-items: center;
         cursor: pointer;
-        .left {
-            display: flex;
-            img {
-                width: 2.2rem;
-                height: 2.2rem;
-                border-radius: 50%;
-                overflow: hidden;
-            }
-            .left_right {
-                margin-left: 0.75rem;
-                height: 2.2rem;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                h2 {
-                    font-family: NotoSansKR;
-                    font-size: 11.5px;
-                    font-weight: 500;
-                    font-stretch: normal;
-                    font-style: normal;
-                    letter-spacing: -0.29px;
-                }
-                h1 {
-                    font-family: NotoSansKR;
-                    font-size: 16.5px;
-                    font-weight: 500;
-                    font-stretch: normal;
-                    font-style: normal;
-                    letter-spacing: -0.41px;
-                }
-            }
+		img {
+			width: 2.2rem;
+			height: 2.2rem;
+			border-radius: 50%;
+			overflow: hidden;
+		}
+		.left_right {
+			padding-left: 0.75rem;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			flex: 1;
+			h2 {
+				font-family: NotoSansKR;
+				font-size: 11.5px;
+				font-weight: 500;
+				font-stretch: normal;
+				font-style: normal;
+				letter-spacing: -0.29px;
+			}
+			h1 {
+				font-family: NotoSansKR;
+				font-size: 16.5px;
+				font-weight: 500;
+				font-stretch: normal;
+				font-style: normal;
+				letter-spacing: -0.41px;
+			}
         }
         .right {
             font-family: NotoSansKR;
