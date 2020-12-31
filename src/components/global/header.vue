@@ -70,7 +70,16 @@
 					</div>
 				</template>
             </div>
-            <el-drawer append-to-body :visible.sync="key" direction="ltr" :withHeader="false" :showClose="false" size="60%" class="drawer">
+            <el-drawer append-to-body :visible.sync="key" direction="ltr" :withHeader="false" :showClose="false" size="70%" class="drawer">
+				<div class="inp">
+					<el-input
+						placeholder="독서모임을 검색해보세요."
+						v-model="input"
+						@keyup.enter.native="search"
+					>
+						<i class="el-input__icon el-icon-search" slot="suffix" @click="search"></i>
+					</el-input>
+				</div>
                 <el-menu :default-active="defaultActive" router>
                     <template v-for="ele in tab">
                         <el-submenu  :key="ele.index" :index="ele.index" v-if="ele.children" class="phone_tab">

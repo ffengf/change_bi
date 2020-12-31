@@ -1,6 +1,6 @@
 <template>
     <div class="warpper" v-loading="_loading">
-		<h1>총 {{ count }}개 모임이 검색되었습니다.</h1>
+		<h1 class="top">총 {{ count }}개 모임이 검색되었습니다.</h1>
 		<div class="line"></div>
 		<ul class="box_list" v-if="list.length !==0">
 			<el-card shadow="never" class="item" v-for="(ele) in list" :key="ele.id" @click.native="go(ele)">
@@ -19,7 +19,7 @@
 			</el-card>
 		</ul>
 		<div class="none" v-else>
-			<i class="el-icon-search icon"></i>
+			<img src="@/assets/img/search.png" alt="">
 			<h1>검색된 모임이 없습니다.</h1>
 			<h2>모임명 또는 키워드를 확인하여 검색해 주세요.</h2>
 		</div>
@@ -62,6 +62,9 @@ export default class extends More(api_club.get_list,false) {
 	padding: 4rem 0 5rem 0;
 	display: flex;
 	flex-direction: column;
+	.top{
+		font-size: 16px;
+	}
 	.line{
 		height: 4px;
 		background: #324b9b;
@@ -123,17 +126,19 @@ export default class extends More(api_club.get_list,false) {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		.icon{
-			font-size: 250px;
-			color: #858585;
+		img{
+			width: 8rem;
+			height: 8rem;
 			margin-top: 2rem;
 		}
 		h1{
 			margin-top: 1rem;
 			color: #324b9b;
+			font-size: 18px;
 		}
 		h2{
 			margin-top: 0.5rem;
+			font-size: 12px;
 		}
 	}
 	.more{
@@ -154,6 +159,9 @@ export default class extends More(api_club.get_list,false) {
 	color: #df5400;
 }
 @media only screen and (max-width: 1024px) {
+	.warpper{
+		padding-top: 1rem;
+	}
 	.box_list{
 		.item{
 			width: 100%!important;
