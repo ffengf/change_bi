@@ -1,4 +1,5 @@
 
+import { UserModule } from '@/store/user'
 import { req_list, res_list } from '@/types/global'
 import { Http } from "./http/base"
 
@@ -143,6 +144,9 @@ class User extends Http {
 		return this.patch(data,'/user/password/')
 	}
 
+	edit_user(data:any){
+		return this.patch(data,`/user/${UserModule.info?.id}/`)
+	}
 }
 
 

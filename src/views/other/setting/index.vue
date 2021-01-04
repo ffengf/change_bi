@@ -1,6 +1,6 @@
 <template>
     <div class="login_warpper kr-re" id="sign_up" v-if="type === 0" v-loading="_loading">
-        <h1>회원가입</h1>
+        <h1>개인정보 수정</h1>
         <div class="flex_column">
             <el-form
                 ref="form"
@@ -9,7 +9,7 @@
                 :rules="rules"
                 label-width="80px"
             >
-                <el-form-item prop="username" label="아이디(이메일)">
+                <el-form-item prop="username" label="아이디(이메일)" v-if="false">
                     <div class="flex">
                         <el-input
                             class="inp"
@@ -23,20 +23,6 @@
                             >중복확인</el-button
                         >
                     </div>
-                </el-form-item>
-                <el-form-item prop="password" label="비밀번호">
-                    <el-input
-                        v-model="info.password"
-                        placeholder="영문, 숫자, 특수문자 포함 8자 이상 입력"
-                        show-password
-                    ></el-input>
-                </el-form-item>
-                <el-form-item prop="again_pass" label="비밀번호확인">
-                    <el-input
-                        v-model="info.again_pass"
-                        placeholder="비밀번호를 한번 더 입력해주세요."
-                        show-password
-                    ></el-input>
                 </el-form-item>
                 <el-form-item prop="real_name" label="이름">
                     <div class="flex name_sex">
@@ -168,13 +154,13 @@
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item label="이용약관동의" prop="all">
-                    <el-checkbox v-model="info.all" @change="all_change">이용약관동의</el-checkbox>
+                    <el-checkbox :value="true" :disabled="true">이용약관동의</el-checkbox>
                     <div style="
 						display: flex;
 						flex-direction: column;
 						margin-left: 1rem;
 					">
-						<el-checkbox v-model="all_1">
+						<el-checkbox :value="true" :disabled="true">
                             <span>서비스이용약관(필수)</span>
                             <el-button
                                 type="text"
@@ -184,7 +170,7 @@
                                 >자세히보기</el-button
                             >
                         </el-checkbox>
-                        <el-checkbox v-model="all_2">
+                        <el-checkbox :value="true" :disabled="true">
                             <span>개인정보 수집·이용 동의 (필수)</span>
                             <el-button
                                 type="text"
@@ -245,35 +231,15 @@
 			</span>
 		</el-dialog>
     </div>
-	<div class="login_warpper success" v-else v-loading="_loading">
-		<img src="@/assets/img/success.png" alt="">
-		<h2>
-			<p class="kr-li">스위치 홈페이지</p>
-			<p>회원가입이 완료 되었습니다.</p>
-		</h2>
-		<p class="mid kr-re">안내사항입니다.</p>
-		<h3 class="kr-re">
-			<p>내일의 나를 성장시키는 이야기</p>
-			<p>지금 스위치에서 만나보세요!</p>
-		</h3>
-		<div class="btn_box">
-			<el-button
-				@click="$router.push('/')"
-				>홈으로 이동</el-button
-			>
-			<el-button type="success" @click="$router.push('/login/signin')"
-				>로그인하기</el-button
-			>
-		</div>
-	</div>
 </template>
 
 <script lang="ts">
-import { api_login, sign_up,api_service } from "@/api";
+import { api_login, sign_up,api_service, api_user } from "@/api";
 import { ElForm } from "element-ui/types/form";
 import { Vue, Component, Watch } from "vue-property-decorator";
 import { mapObjIndexed } from "ramda"
-import PhoneSend from "../components/phoneSend.vue"
+import PhoneSend from "@/views/login/components/phoneSend.vue"
+import { UserModule } from "@/store/user";
 @Component({
 	components:{
 		PhoneSend
@@ -293,28 +259,10 @@ export default class extends Vue {
     };
 
 
-	validatePass_8(rules, value, callback){
-		const reg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/
-		if(reg.test(value)){
-			(this.$refs["form"] as ElForm).validateField("again_pass")
-			callback()
-		}else{
-			callback(new Error("영문,숫자,특수문자 포함 8자 이상 입력"));
-		}
-	}
-
-    validatePass(rules, value, callback) {
-        if (this.info.password !== this.info.again_pass) {
-            callback(new Error("비밀번호와 비밀번호 확인이 일치하지 않습니다."));
-        } else {
-            callback();
-        }
-    }
-
     async check_mail() {
 		this.btn_loadding.mail = true;
 		(this.$refs["form"] as ElForm).validateField("username",async (err_str)=>{
-			if(err_str === '이메일 중복확인을 해주세요.'){
+			if(err_str === '이메일 중복확인을 해주세요.' || err_str === ""){
 				const data = await api_login.check_username({
 					username: this.info.username,
 				}).finally(()=>{
@@ -382,20 +330,6 @@ export default class extends Vue {
                 trigger: "change",
             },
         ],
-        password: [
-            {
-				validator: this.validatePass_8,
-                required: true,
-                trigger: ["change"],
-            },
-        ],
-        again_pass: [
-            {
-                required: true,
-                validator: this.validatePass,
-                trigger: ["change"],
-            },
-        ],
         real_name: [{ required: true, message:'이름을 입력해 주세요.' }],
         gender: [{ required: true }],
         birth: [{ required: true, message:'태어난 년도를 선택해 주세요.'  }],
@@ -414,7 +348,6 @@ export default class extends Vue {
         is_publish: [{ required: true }],
         is_email: [{ required: true }],
 		is_sms: [{ required: true }],
-		all:[{ required: true }],
     };
     info = {
         username: "",
@@ -473,22 +406,20 @@ export default class extends Vue {
 
     async submit() {
 		await (this.$refs['form'] as ElForm).validate()
-		if(this.info.all === false){
-			return this.$message.error('이용약관을 동의해 주세요.')
-		}
+		this._loading = true
 		const info = mapObjIndexed((v,k)=>{
 			if(typeof v === 'boolean'){
-				// return Boolean(v)
 				return v === true ? 1 : 0
 			}else{
 				return v
 			}
 		})({ ...this.info })
-		this._loading = true
-		await api_login.signup(info as any as sign_up).finally(()=>{
+		await api_user.edit_user(info).finally(()=>{
 			this._loading = false
 		})
-		this.type = 1
+		UserModule.get_info()
+		this.$message.success('success')
+		this.$router.replace('/user')
     }
 
     searchAds() {
@@ -528,9 +459,25 @@ export default class extends Vue {
 		}
 	}
 
+	async get_info(){
+		this._loading = true
+		const info = await (api_user.get_user_info() as Promise<any>).finally(()=>{
+			this._loading = false
+		})
+		this.info = {
+			...info,
+			favorite_category:info.favorite_category.map(x => +x),
+			is_sms:Boolean(info.is_sms),
+			is_email:Boolean(info.is_email),
+		}
+		this.older.username = info.username
+		this.older.phone = info.phone
+	}
+
 
 	async created(){
 		this.get_content()
+		this.get_info()
 	}
 
 
@@ -613,6 +560,10 @@ export default class extends Vue {
 .radio_group{
 	display: flex;
 	flex-wrap: nowrap;
+}
+
+.login_warpper{
+	margin: 3rem 0;
 }
 
 @media only screen and (max-width: 1024px) {

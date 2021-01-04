@@ -388,7 +388,11 @@ img{
 		}
 	}
 }
-
+.inp{
+	/deep/.el-input__inner{
+		padding-right: 2rem !important;
+	}
+}
 </style>
 <style lang="less">
 .el-dropdown-menu{

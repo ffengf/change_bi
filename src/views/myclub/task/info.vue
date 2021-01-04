@@ -100,7 +100,7 @@
                         />
                     </el-form-item>
                     <div class="line"></div>
-                    <el-form-item label="제목" prop="content">
+                    <el-form-item label="내용" prop="content">
                         <Editor v-model="form.content" />
                     </el-form-item>
                 </el-form>

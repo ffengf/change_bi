@@ -61,6 +61,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 exports.api_user = void 0;
+var user_1 = require("@/store/user");
 var base_1 = require("./http/base");
 var User = /** @class */ (function (_super) {
     __extends(User, _super);
@@ -116,6 +117,10 @@ var User = /** @class */ (function (_super) {
     };
     User.prototype.edit_pass = function (data) {
         return this.patch(data, '/user/password/');
+    };
+    User.prototype.edit_user = function (data) {
+        var _a;
+        return this.patch(data, "/user/" + ((_a = user_1.UserModule.info) === null || _a === void 0 ? void 0 : _a.id) + "/");
     };
     return User;
 }(base_1.Http));

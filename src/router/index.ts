@@ -304,6 +304,11 @@ const routes: RouteConfig[] = [
 						path: 'notice/:id',
 						name: 'other_notice',
 						component: () => import('@/views/other/notice/index.vue'),
+					},
+					{
+						path: 'setting',
+						name: 'other_setting',
+						component: () => import('@/views/other/setting/index.vue'),
 					}
 				]
 			},

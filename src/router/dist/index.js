@@ -302,6 +302,11 @@ var routes = [
                         path: 'notice/:id',
                         name: 'other_notice',
                         component: function () { return Promise.resolve().then(function () { return require('@/views/other/notice/index.vue'); }); }
+                    },
+                    {
+                        path: 'setting',
+                        name: 'other_setting',
+                        component: function () { return Promise.resolve().then(function () { return require('@/views/other/setting/index.vue'); }); }
                     }
                 ]
             },

@@ -29,7 +29,7 @@
                     </div>
                     <div class="kr-re">
                         <p class="pb10 user_line color_primary fs16">회원정보</p>
-                        <p class="fs14 mt10 pointer">개인정보 수정</p>
+                        <p class="fs14 mt10 pointer" @click="$router.push('/other/setting')">개인정보 수정</p>
 						<p class="fs14 mt10 pointer" @click="key = true">改密码</p>
                         <p class="pb10 user_line color_primary fs16 mt20">서비스 이용내역</p>
                         <p class="mt10 fs14 pointer">찜</p>
@@ -48,7 +48,7 @@
             </div>
         </div>
 		<el-dialog title="title" :visible.sync="key" width="25%">
-            <div class="dialog" v-loading="_loading">
+            <div class="dialog" v-loading="loading_dialog">
 				<el-form
 					ref="form"
 					label-position="top"
@@ -97,6 +97,7 @@ import Bread from "@/components/bread/index.vue";
 import { UserModule } from "@/store/user";
 import { api_login, api_user } from "@/api";
 import { ElForm } from "element-ui/types/form";
+import { mapObjIndexed } from "ramda";
 @Component({
     components: {
         Rview,
@@ -104,6 +105,8 @@ import { ElForm } from "element-ui/types/form";
     },
 })
 export default class extends Vue {
+
+	loading_dialog = false
 
 	get info(){
 		return UserModule.info === null ? {} : UserModule.info
@@ -167,12 +170,17 @@ export default class extends Vue {
 	key = false
 	async submit(){
 		await (this.$refs["form"] as ElForm).validate();
-		this._loading = true
+		this.loading_dialog = true
 		await api_user.edit_pass(this.form).finally(()=>{
-			this._loading = false
+			this.loading_dialog = false
 		})
 		this.key = false
 		this.$message.success('success')
+		this.form = mapObjIndexed( x => '')(this.form) as {
+			old_password: string;
+			new_password1: string;
+			new_password2: string;
+		}
 	}
 
 	validatePass_8(rules, value, callback){

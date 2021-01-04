@@ -141,9 +141,18 @@ export default class extends Vue {
 }
 
 .width_70 {
-    width: 70%;
+    width: 65%;
 }
-.send_btn{
-	width: 25%;
+// .send_btn{
+// 	width: 25%;
+// }
+@media only screen and (max-width: 1024px) {
+	.width_70 {
+		width: 100%;
+		flex: 1;
+	}
+	// .send_btn{
+	// 	width: 50%;
+	// }
 }
 </style>

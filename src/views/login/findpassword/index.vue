@@ -210,9 +210,9 @@ export default class extends Vue {
     }
 }
 .width_70 {
-    width: 70%;
+    width: 65%;
 }
-.send_btn{
-	width: 28%;
-}
+// .send_btn{
+// 	width: 28%;
+// }
 </style>

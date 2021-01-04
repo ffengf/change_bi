@@ -93,14 +93,19 @@ export default class extends Vue {
 }
 @media only screen and (max-width: 1024px) {
     .min_width1100 {
-        min-width: auto !important;
+        min-width: 100% !important;
     }
     .w75vw {
         width: 100vw !important;
     }
     .right {
         width: 100% !important;
-        padding: 3rem 1.5rem 0 1.5rem !important;
+		padding: 0 1.5rem 0 1.5rem !important;
+		margin-top: 0!important;
+		.box{
+			width: 100%!important;
+			max-width: 20rem;
+		}
     }
 }
 </style>
