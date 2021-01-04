@@ -147,6 +147,10 @@ class User extends Http {
 	edit_user(data:any){
 		return this.patch(data,`/user/${UserModule.info?.id}/`)
 	}
+
+	unregister(){
+		return this.post({},`/user/unregister`)
+	}
 }
 
 

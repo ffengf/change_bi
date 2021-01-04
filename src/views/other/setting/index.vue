@@ -197,7 +197,7 @@
 
                 </el-form-item>
             </el-form>
-            <el-button type="success" @click="submit">가입하기</el-button>
+            <el-button type="success" @click="submit">수정하기</el-button>
         </div>
 
         <el-dialog class="dialogDaum" :visible.sync="key">
@@ -414,12 +414,15 @@ export default class extends Vue {
 				return v
 			}
 		})({ ...this.info })
-		await api_user.edit_user(info).finally(()=>{
+		api_user.edit_user(info).catch(()=>{
 			this._loading = false
+		}).then(async ()=>{
+			await UserModule.get_info()
+			this._loading = false
+			this.$message.success('수정 되었습니다.')
+			this.$router.replace('/user')
 		})
-		UserModule.get_info()
-		this.$message.success('success')
-		this.$router.replace('/user')
+
     }
 
     searchAds() {

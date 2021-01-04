@@ -44,7 +44,7 @@
 				</div>
 			</div>
 		</div>
-		<a class="look sm-up" href="#chapters_box">look</a>
+		<a class="look sm-up" href="#chapters_box">연재읽기</a>
     </div>
 </template>
 

@@ -63,7 +63,8 @@
 								<el-dropdown-item command="/user/active">나의 이벤트</el-dropdown-item>
 								<el-dropdown-item command="/user/pay">결제내역</el-dropdown-item>
 								<el-dropdown-item command="/user/coupon">쿠폰조회</el-dropdown-item>
-								<!-- <el-dropdown-item command="logout">개인정보 수정x</el-dropdown-item> -->
+								<el-dropdown-item command="/other/setting">개인정보 수정</el-dropdown-item>
+								<el-dropdown-item command="edit_pass">비밀번호 수정</el-dropdown-item>
 								<el-dropdown-item command="logout">로그아웃</el-dropdown-item>
 							</el-dropdown-menu>
 						</el-dropdown>
@@ -142,7 +143,8 @@
 								<el-dropdown-item command="/user/active">나의 이벤트</el-dropdown-item>
 								<el-dropdown-item command="/user/pay">결제내역</el-dropdown-item>
 								<el-dropdown-item command="/user/coupon">쿠폰조회</el-dropdown-item>
-								<!-- <el-dropdown-item command="logout">개인정보 수정x</el-dropdown-item> -->
+								<el-dropdown-item command="/other/setting">개인정보 수정</el-dropdown-item>
+								<el-dropdown-item command="edit_pass">비밀번호 수정</el-dropdown-item>
 								<el-dropdown-item command="logout">로그아웃</el-dropdown-item>
 							</el-dropdown-menu>
 						</el-dropdown>
@@ -150,13 +152,19 @@
 				</div>
 			</div>
         </div>
+		<EditPass ref="edit_pass" />
     </div>
 </template>
 
 <script lang="ts">
+import EditPass from "@/views/user/component/editpass.vue"
 import { UserModule } from "@/store/user";
 import { Vue, Component, Watch } from "vue-property-decorator";
-@Component
+@Component({
+	components:{
+		EditPass
+	}
+})
 export default class extends Vue {
     key = false;
 
@@ -211,6 +219,8 @@ export default class extends Vue {
 			UserModule.logout()
 			this.$message.success('로그아웃 되었습니다.')
 			this.$router.push('/')
+		}else if(type === 'edit_pass'){
+			(this.$refs['edit_pass'] as any).key = true
 		}else{
 			this.$router.push(type)
 		}

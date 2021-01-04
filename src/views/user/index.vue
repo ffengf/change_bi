@@ -21,23 +21,22 @@
 							</div>
 						</el-upload>
                         <p class="user_name kr-bo">{{ info.real_name }} 님</p>
-                        <p class="color_success b mt30 fs16 pb10 user_line">
-                            참여 관리
-                        </p>
-                        <p class="mt10 fs14 pointer">나의 모임</p>
-                        <p class="mt10 fs14 pointer">나의 이벤트</p>
+                        <p class="color_success b mt30 fs16 pb10 user_line">참여 관리</p>
+                        <p class="mt10 fs14 pointer" @click="$router.push('/user/club')">나의 모임</p>
+                        <p class="mt10 fs14 pointer" @click="$router.push('/user/active')">나의 이벤트</p>
+						<p class="mt10 fs14 pointer" @click="unregister">회원탈퇴</p>
                     </div>
                     <div class="kr-re">
                         <p class="pb10 user_line color_primary fs16">회원정보</p>
                         <p class="fs14 mt10 pointer" @click="$router.push('/other/setting')">개인정보 수정</p>
-						<p class="fs14 mt10 pointer" @click="key = true">改密码</p>
+						<p class="fs14 mt10 pointer" @click="$refs['edit_pass'].key = true">비밀번호 수정</p>
                         <p class="pb10 user_line color_primary fs16 mt20">서비스 이용내역</p>
-                        <p class="mt10 fs14 pointer">찜</p>
-                        <p class="mt10 fs14 pointer">나의 모임</p>
-                        <p class="mt10 fs14 pointer">나의 이벤트</p>
-                        <p class="mt10 fs14 pointer">결제내역</p>
-                        <p class="mt10 fs14 pointer">쿠폰조회</p>
-                        <p class="mt10 fs14 pointer">로그아웃</p>
+                        <p class="mt10 fs14 pointer" @click="$router.push('/user/collect')">찜</p>
+                        <p class="mt10 fs14 pointer" @click="$router.push('/user/club')">나의 모임</p>
+                        <p class="mt10 fs14 pointer" @click="$router.push('/user/active')">나의 이벤트</p>
+                        <p class="mt10 fs14 pointer" @click="$router.push('/user/pay')">결제내역</p>
+                        <p class="mt10 fs14 pointer" @click="$router.push('/user/coupon')">쿠폰조회</p>
+                        <p class="mt10 fs14 pointer" @click="logout">로그아웃</p>
                     </div>
                 </div>
                 <div class="content">
@@ -47,46 +46,9 @@
 				</div>
             </div>
         </div>
-		<el-dialog title="title" :visible.sync="key" width="25%">
-            <div class="dialog" v-loading="loading_dialog">
-				<el-form
-					ref="form"
-					label-position="top"
-					:model="form"
-					:rules="rules"
-					label-width="80px"
-				>
-					<el-form-item prop="old_password" label="old_password">
-						<el-input
-							autocomplete="off"
-							v-model="form.old_password"
-							placeholder="비밀번호를 한번 더 입력해주세요."
-							show-password
-						></el-input>
-					</el-form-item>
-					<el-form-item prop="new_password1" label="new_password1">
-						<el-input
-							autocomplete="off"
-							v-model="form.new_password1"
-							placeholder="영문, 숫자, 특수문자 포함 8자 이상 입력"
-							show-password
-						></el-input>
-					</el-form-item>
-					<el-form-item prop="new_password2" label="new_password2">
-						<el-input
-							autocomplete="off"
-							v-model="form.new_password2"
-							placeholder="비밀번호를 한번 더 입력해주세요."
-							show-password
-						></el-input>
-					</el-form-item>
-				</el-form>
-                <div class="dialog_btn_box">
-                    <el-button type="success" @click="submit">submit</el-button>
-					<el-button @click="key = false">close</el-button>
-                </div>
-            </div>
-        </el-dialog>
+
+		<EditPass ref="edit_pass" />
+
     </div>
 </template>
 
@@ -94,6 +56,7 @@
 import { Vue, Component } from "vue-property-decorator";
 import Rview from "@/components/routerView/index.vue";
 import Bread from "@/components/bread/index.vue";
+import EditPass from "./component/editpass.vue"
 import { UserModule } from "@/store/user";
 import { api_login, api_user } from "@/api";
 import { ElForm } from "element-ui/types/form";
@@ -101,12 +64,26 @@ import { mapObjIndexed } from "ramda";
 @Component({
     components: {
         Rview,
-        Bread,
+		Bread,
+		EditPass
     },
 })
 export default class extends Vue {
 
-	loading_dialog = false
+	async unregister(){
+		await this.$confirm('탈퇴후 모든 정보가 삭제될것 입니다. 정말 탈퇴 하시겠습니까?', '알림', {
+			confirmButtonText: '탈퇴',
+			cancelButtonText: '취소',
+		})
+		await api_user.unregister()
+		this.logout()
+	}
+
+	logout(){
+		UserModule.logout()
+		this.$message.success('로그아웃 되었습니다.')
+		this.$router.push('/')
+	}
 
 	get info(){
 		return UserModule.info === null ? {} : UserModule.info
@@ -139,67 +116,6 @@ export default class extends Vue {
 		this.$message.error('업로드 실패되었습니다.')
 	}
 
-	form = {
-		old_password:'',
-		new_password1:'',
-		new_password2:''
-	}
-	rules = {
-		old_password:[
-            {
-				validator: this.validatePass_8,
-                required: true,
-                trigger: ["change"],
-            },
-        ],
-		new_password1: [
-            {
-				validator: this.validatePass_8,
-                required: true,
-                trigger: ["change"],
-            },
-        ],
-        new_password2: [
-            {
-                required: true,
-                validator: this.validatePass,
-                trigger: ["change"],
-            },
-        ],
-	}
-	key = false
-	async submit(){
-		await (this.$refs["form"] as ElForm).validate();
-		this.loading_dialog = true
-		await api_user.edit_pass(this.form).finally(()=>{
-			this.loading_dialog = false
-		})
-		this.key = false
-		this.$message.success('success')
-		this.form = mapObjIndexed( x => '')(this.form) as {
-			old_password: string;
-			new_password1: string;
-			new_password2: string;
-		}
-	}
-
-	validatePass_8(rules, value, callback){
-		const reg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/
-		if(reg.test(value)){
-			(this.$refs["form"] as ElForm).validateField("again_pass")
-			callback()
-		}else{
-			callback(new Error("영문,숫자,특수문자 포함 8자 이상 입력"));
-		}
-	}
-
-    validatePass(rules, value, callback) {
-        if (this.form.new_password1 !== this.form.new_password2) {
-            callback(new Error("비밀번호와 비밀번호 확인이 일치하지 않습니다."));
-        } else {
-            callback();
-        }
-    }
 }
 </script>
 
@@ -355,42 +271,6 @@ export default class extends Vue {
 			}
 		}
 	}
-	/deep/.el-dialog__wrapper {
-        border-radius: 0;
-        .el-dialog__header {
-            background: #324b9b;
-            padding: 0.7rem;
-            .el-dialog__headerbtn {
-                i {
-                    color: #fff;
-                    font-size: 20px;
-                }
-            }
-            .el-dialog__title {
-                color: #fff;
-            }
-        }
-        .el-dialog {
-            border-radius: 0;
-        }
-    }
-    .dialog {
-        .inp {
-            /deep/.el-input__inner {
-                border: 1px solid #000 !important;
-                padding: 0.75rem 0.5rem !important;
-            }
-        }
-        .dialog_btn_box {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 1.5rem;
-            > * {
-                width: 49.5%;
-                height: 2.2rem;
-            }
-        }
-    }
 }
 .user_line{
 	border-bottom:1px solid #324b9b

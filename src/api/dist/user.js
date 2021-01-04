@@ -122,6 +122,9 @@ var User = /** @class */ (function (_super) {
         var _a;
         return this.patch(data, "/user/" + ((_a = user_1.UserModule.info) === null || _a === void 0 ? void 0 : _a.id) + "/");
     };
+    User.prototype.unregister = function () {
+        return this.post({}, "/user/unregister");
+    };
     return User;
 }(base_1.Http));
 exports.api_user = new User('/user/');
