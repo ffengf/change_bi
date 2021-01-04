@@ -55,7 +55,7 @@
 					<div :class="['icon',active === 'user' ? 'active':'']">
 						<el-dropdown trigger="click" @command="user" placement="bottom" @visible-change="is_active($event,'user')">
 							<span class="el-dropdown-link">
-								<img src="@/assets/img/user.png" width="23px" alt="" srcset="">
+								<img :src="avatar" width="23px" alt="" srcset="">
 							</span>
 							<el-dropdown-menu slot="dropdown">
 								<el-dropdown-item command="/user/collect">찜</el-dropdown-item>
@@ -135,7 +135,7 @@
 					<div :class="['icon',active === 'user' ? 'active':'']">
 						<el-dropdown trigger="click" @command="user" placement="bottom" @visible-change="is_active($event,'user')">
 							<span class="el-dropdown-link">
-								<img src="@/assets/img/user.png" width="23px" alt="" srcset="">
+								<img :src="avatar" width="23px" alt="" srcset="">
 							</span>
 							<el-dropdown-menu slot="dropdown">
 								<el-dropdown-item command="/user/collect">찜</el-dropdown-item>
@@ -246,6 +246,10 @@ export default class extends Vue {
 		const value = this.input
 		this.$router.push(`/other/search?value=${value}`)
 		// this.input = ''
+	}
+
+	get avatar(){
+		return UserModule.info?.avatar
 	}
 
 }

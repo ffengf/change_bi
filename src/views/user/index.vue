@@ -24,7 +24,6 @@
                         <p class="color_success b mt30 fs16 pb10 user_line">참여 관리</p>
                         <p class="mt10 fs14 pointer" @click="$router.push('/user/club')">나의 모임</p>
                         <p class="mt10 fs14 pointer" @click="$router.push('/user/active')">나의 이벤트</p>
-						<p class="mt10 fs14 pointer" @click="unregister">회원탈퇴</p>
                     </div>
                     <div class="kr-re">
                         <p class="pb10 user_line color_primary fs16">회원정보</p>
@@ -37,6 +36,8 @@
                         <p class="mt10 fs14 pointer" @click="$router.push('/user/pay')">결제내역</p>
                         <p class="mt10 fs14 pointer" @click="$router.push('/user/coupon')">쿠폰조회</p>
                         <p class="mt10 fs14 pointer" @click="logout">로그아웃</p>
+						<br>
+						<p class="mt10 fs14 pointer ccc" @click="unregister">회원탈퇴</p>
                     </div>
                 </div>
                 <div class="content">
@@ -76,12 +77,12 @@ export default class extends Vue {
 			cancelButtonText: '취소',
 		})
 		await api_user.unregister()
-		this.logout()
+		this.logout('unregister success')
 	}
 
-	logout(){
+	logout(str = '로그아웃 되었습니다.'){
 		UserModule.logout()
-		this.$message.success('로그아웃 되었습니다.')
+		this.$message.success(str)
 		this.$router.push('/')
 	}
 
@@ -282,6 +283,9 @@ export default class extends Vue {
 	/deep/.el-upload-list {
 		display: none!important;
 	}
+}
+.ccc{
+	color: #cccccc;
 }
 @media only screen and (max-width: 1024px) {
 	.user_information,.content{

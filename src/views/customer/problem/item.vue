@@ -3,8 +3,8 @@
         <div class="item">
             <p>{{ info.tag }}</p>
             <h1>Q. {{ info.question }}?</h1>
-            <i class="icon el-icon-arrow-up" @click="show" v-if="key"></i>
-            <i class="icon el-icon-arrow-down" @click="show" v-else></i>
+            <i id="icon" class="icon el-icon-arrow-up" @click="show" v-if="key"></i>
+            <i id="icon" class="icon el-icon-arrow-down" @click="show" v-else></i>
         </div>
         <h2 class="content inner" v-if="key" v-html="info.answer"></h2>
     </div>
@@ -78,5 +78,16 @@ export default class extends Vue {
             word-break: break-all;
         }
     }
+}
+@media screen and (max-width: 1024px) {
+	h1{
+		font-size: 16.5px!important;
+	}
+	#icon {
+		font-size: 24px!important;
+		&::before{
+			font-size: 24px!important;
+		}
+	}
 }
 </style>

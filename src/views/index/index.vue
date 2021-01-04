@@ -419,6 +419,7 @@ export default class extends Vue {
 		}
 	}
 	.text_carousel{
+		margin: 0!important;
 		/deep/.el-carousel__container{
 			height: 26rem!important;
 		}
@@ -446,6 +447,7 @@ export default class extends Vue {
 	}
 	.img_box{
 		height: 16rem!important;
+		margin: 0!important;
 		.bb{
 			height: 100%;
 			display: flex;
@@ -457,6 +459,14 @@ export default class extends Vue {
 				top: auto!important;
 				transform:translate(0,0)!important;
 			}
+		}
+	}
+	.text_box{
+		h1{
+			font-size: 30px!important;
+		}
+		h2{
+			font-size: 12px!important;
 		}
 	}
 }
@@ -482,7 +492,7 @@ export default class extends Vue {
 	}
 	.text_carousel{
 		/deep/.el-carousel__container{
-			height: 26rem!important;
+			height: 17rem!important;
 		}
 		/deep/.el-carousel__arrow--left{
 			left: 1rem !important ;
