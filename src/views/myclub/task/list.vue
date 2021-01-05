@@ -23,7 +23,7 @@
 			:visible.sync="key"
 			width="30%"
 		>
-			<div class="body" ref="body">
+			<div class="body" ref="body" v-loading='submit_loading'>
 				<h1>제출하기 : 11월 넷째주 미션 제출해주세요!</h1>
 				<div class="line"></div>
 				<el-form ref="form" :model="form" :rules="rules" label-position="top" label-width="80px">
@@ -110,18 +110,19 @@ export default class extends More(api_myclub.task_list) {
 		this.key = true
 	}
 
+	submit_loading = false
 
 	async submit(){
 		await (this.$refs['form'] as ElForm).validate()
-		this._loading = true
+		this.submit_loading = true
 		if(this.form.id === null){
 			const { id } = await api_myclub.add_attend({ ...this.form }).finally(()=>{
-				this._loading = false
+				this.submit_loading = false
 			})
 			this.list = this.list.map(x => x.id === this.form.task_id ? { ...x,attendance_id:id } : x)
 		}else{
 			await api_myclub.edit_attend({ ...this.form }).finally(()=>{
-				this._loading = false
+				this.submit_loading = false
 			})
 		}
 		this.$message.success('미션 제출 되었습니다.')

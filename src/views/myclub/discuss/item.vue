@@ -55,7 +55,7 @@
         </div>
 
         <el-dialog width="30%" :visible.sync="key" id="dialog">
-            <div class="user_inp" v-loading="_loading">
+            <div class="user_inp" v-loading="submit_loading">
                 <img :src="user_info && user_info.avatar" alt="" />
                 <div id="inp" @click="$refs['inp'].focus()">
                     <div class="name">
@@ -128,15 +128,17 @@ export default class extends Vue {
         this.key = true;
     }
 
+	submit_loading = false
+
 	@Emit('submit')
 	async submit(){
 		if(this.dialog_info.content.replaceAll('\n','') === ''){
 			return this.$message.error('내용을 작성해 주세요.')
 		}
 		const club_id = this.club_id
-		this._loading = true
+		this.submit_loading = true
 		const data = await api_myclub.add_discuss({ club_id,...this.dialog_info }).finally(()=>{
-			this._loading = false
+			this.submit_loading = false
 		})
 		this.key = false
 		return data
@@ -147,9 +149,9 @@ export default class extends Vue {
 		if(this.dialog_info.content.replaceAll('\n','') === ''){
 			return this.$message.error('내용을 작성해 주세요.')
 		}
-		this._loading = true
+		this.submit_loading = true
 		const data = await api_myclub.edit_discuss({ ...this.dialog_info } as edit_submit).finally(()=>{
-			this._loading = false
+			this.submit_loading = false
 		})
 		this.key = false
 		return data
