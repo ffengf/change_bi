@@ -124,7 +124,6 @@ export default class extends More(api_user.get_club) {
 
 <style lang='less' scoped>
 .flex{
-	width: 12rem;
 	justify-content: space-between;
 }
 .green{
