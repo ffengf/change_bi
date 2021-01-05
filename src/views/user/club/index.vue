@@ -3,20 +3,21 @@
 		<div class="box" v-for="(ele) in list" :key="ele.id">
 			<div class="box_left">
 				<h2>
-					<span>{{ status_str(ele) }}</span>
+					<span :class="class_name(status_str(ele))">{{ status_str(ele) }}</span>
 					<span>|</span>
 					<span>{{ ele.club.start_time }} ~ {{ ele.club.end_time }}</span>
 				</h2>
 				<h1>{{ ele.club.title }}</h1>
+				<h6 v-if="ele.refuse_reason !== null">{{ ele.refuse_reason }}</h6>
 			</div>
-			<div class="flex" v-if="status_str(ele) === '승인대기'">
+			<div class="flex" v-if="status_str(ele) === '승인대기' || status_str(ele) === '승인완료'">
 				<el-button class="right_btn" type="danger" @click="un_join(ele)">신청취소</el-button>
 			</div>
 			<div class="flex" v-if="status_str(ele) === '진행대기'">
 				<el-button class="right_btn" type="danger" @click="un_join(ele)">신청취소</el-button>
 				<el-button class="right_btn" type="primary" @click="go_myclub(ele)">내용보기</el-button>
 			</div>
-			<div class="flex" v-if="status_str(ele) === '진행중'">
+			<div class="flex" v-if="status_str(ele) === '진행 중'">
 				<el-button class="right_btn" type="success" @click="go_myclub(ele)">참여하기</el-button>
 			</div>
 			<div class="flex" v-if="status_str(ele) === '진행완료'">
@@ -24,9 +25,6 @@
 				<el-button class="right_btn" type="primary" @click="go_myclub(ele)">내용보기</el-button>
 			</div>
 			<div class="flex" v-if="status_str(ele) === '취소완료' || status_str(ele) === '환불대기' || status_str(ele) === '환불완료'">
-				<el-tooltip v-if="ele.refuse_reason !== null" class="item" effect="dark" :content="ele.refuse_reason" placement="top-start">
-					<div class="text">{{ ele.refuse_reason }}</div>
-				</el-tooltip>
 				<el-button class="right_btn" type="danger" @click="del(ele)">삭제</el-button>
 			</div>
 		</div>
@@ -73,7 +71,7 @@ export default class extends More(api_user.get_club) {
 			this._loading = false
 		})
 		this.list = this.list.map(x => x.id === new_user_club.id ? new_user_club : x)
-		this.$message.success('삭제되었습니다.')
+		this.$message.success('반영되었습니다.')
 	}
 
 	go_myclub(ele:user_club){
@@ -93,15 +91,31 @@ export default class extends More(api_user.get_club) {
 			case 1 :
 				switch(ele.club.status){
 					case 1 :
-						return '진행중'
+						return '진행 중'
 					case 2 :
 						return '진행완료'
-					default :
+					case 0:
+					case 3:
+						return '승인완료'
+					case 5 :
 						return '진행대기'
 				}
 			default :
 				return ''
 		}
+	}
+
+	class_name(key:"승인대기" | "취소완료" | "진행 중" | "진행완료" | "승인완료" | "진행대기" | "환불대기" | "환불완료"){
+		return {
+			'승인대기':'orange',
+			'취소완료':'red',
+			'진행 중' :'blue',
+			'진행완료':'info',
+			'승인완료':'light_green',
+			'진행대기':'green',
+			'환불대기':'red',
+			'환불완료':'red',
+		}[key]
 	}
 }
 </script>
@@ -112,23 +126,37 @@ export default class extends More(api_user.get_club) {
 .flex{
 	width: 12rem;
 	justify-content: space-between;
-	flex-shrink: 0;
-	&::before{
-		content: '';
-	}
-	.right_btn{
-		width: 45% !important;
-	}
-	.text{
-		width: 45%!important;
-		overflow: hidden;
-		white-space: nowrap;
-     	text-overflow: ellipsis;
-	}
+}
+.green{
+	color: #3fa535;
+}
+.blue{
+	color: #324b9b;
+}
+.info{
+	color: #909399;
+}
+.red{
+	color: #F56C6C;
+}
+.orange{
+	color: orange;
+}
+.light_green{
+	color: rgb(138, 192, 7);
+}
+h6{
+	margin-top: 0.2rem;
+	font-size: 12px;
+	color: #F56C6C;
 }
 @media only screen and (max-width: 1024px) {
 	.flex{
-		width: 9rem;
+		width: auto;
+		flex-direction: column;
+		.right_btn{
+			margin: 0.2rem 0;
+		}
 	}
 }
 </style>

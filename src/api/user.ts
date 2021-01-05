@@ -4,25 +4,20 @@ import { req_list, res_list } from '@/types/global'
 import { Http } from "./http/base"
 
 
-// USER_ACTIVITY_STATUS
-// (0, "申请中"),
-// (1, "已通过"),
-// (2, "已取消")
 export interface user_active {
 	id: number
-	title: string
-	type: 1 | 2
-	start_time: string
-	end_time: string
 	status: 0 | 1 | 2
 	refuse_reason: string
+	activity:{
+		id:number
+		title: string
+		type: 1 | 2
+		start_time: string
+		end_time: string
+		status:0|1|2|3|4|5
+	}
 }
-// COUPON_STATUS = (
-// 	(0, "未使用"),
-// 	(1, "已使用"),
-// 	(2, "已过期"),
-// )
-// type : 0:创作者与批评俱乐部  1:Book Club
+
 export interface user_coupon {
 	id: number
 	status: 0 | 1 | 2
@@ -118,6 +113,14 @@ class User extends Http {
 
 	un_join_club(id:number){
 		return this.post<user_club>({},`/user/club/${id}/cancel/`)
+	}
+
+	un_join_active(id:number){
+		return this.post<user_active>({},`/user/activity/${id}/cancel/`)
+	}
+
+	del_active(id:number){
+		return this.delete(id,'/user/activity/')
 	}
 
 	exchange_coupon(redeem_code: string) {

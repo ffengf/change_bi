@@ -93,6 +93,12 @@ var User = /** @class */ (function (_super) {
     User.prototype.un_join_club = function (id) {
         return this.post({}, "/user/club/" + id + "/cancel/");
     };
+    User.prototype.un_join_active = function (id) {
+        return this.post({}, "/user/activity/" + id + "/cancel/");
+    };
+    User.prototype.del_active = function (id) {
+        return this["delete"](id, '/user/activity/');
+    };
     User.prototype.exchange_coupon = function (redeem_code) {
         return this.post({ redeem_code: redeem_code }, '/user/coupon/');
     };

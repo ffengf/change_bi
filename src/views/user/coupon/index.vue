@@ -23,7 +23,7 @@
         <el-button class="more" type="success" @click="more" :disabled="disabled">더 보기</el-button>
 
         <el-dialog title="쿠폰 등록하기" :visible.sync="key" width="25%">
-            <div class="dialog" v-loading="_loading">
+            <div class="dialog" v-loading="dialog_loading">
                 <h1>쿠폰번호를 입력해주세요.</h1>
                 <el-input
                     class="inp"
@@ -55,7 +55,7 @@ import { numFormat } from "@/util/string";
 export default class extends More(api_user.get_coupon) {
     key = false;
 	code = "";
-
+	dialog_loading = false
 	numFormat = numFormat
 
 	async del(id:number){
@@ -71,9 +71,9 @@ export default class extends More(api_user.get_coupon) {
 		if(this.code === ''){
 			return this.$message.error('쿠폰번호를 입력해 주세요.')
 		}
-		this._loading = true
+		this.dialog_loading = true
 		await api_user.exchange_coupon(this.code).finally(()=>{
-			this._loading = false
+			this.dialog_loading = false
 		})
 		this.$message.success('등록 되었습니다.')
 		this.key = false
