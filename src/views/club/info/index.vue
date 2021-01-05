@@ -445,6 +445,12 @@ export default class extends Vue {
 				height: auto;
 			}
 		}
+		>.left{
+			order: 1;
+		}
+		>.right{
+			order: 0;
+		}
 	}
 	.btn{
 		position: fixed;

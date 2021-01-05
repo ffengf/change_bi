@@ -16,7 +16,7 @@ export default class extends Vue {}
 </script>
 
 <style scoped>
-.slide-fade-enter-active {
+/* .slide-fade-enter-active {
     transition: all 0.1s ease;
 }
 .slide-fade-leave-active {
@@ -26,5 +26,5 @@ export default class extends Vue {}
 .slide-fade-leave-to {
     transform: translateX(10px);
     opacity: 0;
-}
+} */
 </style>

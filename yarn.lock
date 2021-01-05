@@ -3833,10 +3833,10 @@ element-theme@^2.0.1:
     ora "^0.3.0"
     run-sequence "^1.2.2"
 
-element-ui@^2.14.0:
-  version "2.14.0"
-  resolved "https://registry.npm.taobao.org/element-ui/download/element-ui-2.14.0.tgz?cache=0&sync_timestamp=1603958155882&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Felement-ui%2Fdownload%2Felement-ui-2.14.0.tgz#dcff2718fb485542ea5b5a1f5c0daf1113477b24"
-  integrity sha1-3P8nGPtIVULqW1ofXA2vERNHeyQ=
+element-ui@2.14.1:
+  version "2.14.1"
+  resolved "https://registry.npm.taobao.org/element-ui/download/element-ui-2.14.1.tgz#8b5745c7366c1c1a603bb6c021286ea7187e2aa2"
+  integrity sha1-i1dFxzZsHBpgO7bAIShupxh+KqI=
   dependencies:
     async-validator "~1.8.1"
     babel-helper-vue-jsx-merge-props "^2.0.0"

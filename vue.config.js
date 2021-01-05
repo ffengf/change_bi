@@ -18,7 +18,7 @@ module.exports = {
 		config
 			.plugin('html')
 			.tap(args => {
-				args[0].title = 'switch'
+				args[0].title = '스위치 | Story with Changbi'
 				return args
 			})
 	},

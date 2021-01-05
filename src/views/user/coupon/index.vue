@@ -18,7 +18,7 @@
                 <h1>{{ ele.coupon.title }} <span class="small">({{ numFormat(ele.coupon.amount) }}원)</span> </h1>
             </div>
             <div class="text" v-if="ele.status !== 2">{{ ele.coupon.redeem_code }}</div>
-			<el-button v-else type="warning" class="right_btn" @click="del(ele.id)">삭제</el-button>
+			<el-button v-else type="danger" class="right_btn" @click="del(ele.id)">삭제</el-button>
         </div>
         <el-button class="more" type="success" @click="more" :disabled="disabled">더 보기</el-button>
 

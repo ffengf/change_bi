@@ -2,9 +2,11 @@
     <div id="box_header">
         <Bread :new_list="new_list" />
         <div class="box_line"></div>
-        <h2>이벤트</h2>
-        <div class="line"></div>
-        <h1>오직 스위치에서만 제공하는 이벤트</h1>
+        <template v-if="!$route.path.includes('info')">
+			<h2>이벤트</h2>
+			<div class="line"></div>
+			<h1>오직 스위치에서만 제공하는 이벤트</h1>
+		</template>
         <div class="tab">
             <div :class="['item',active('1') ? 'active' :'']" @click="move('1')">서평단 신청</div>
             <div :class="['item',active('2') ? 'active' :'']" @click="move('2')">강연 초대</div>
@@ -100,11 +102,21 @@ export default class extends Vue {
     }
 }
 @media only screen and (max-width: 1024px){
+	.box_line{
+		margin: 1.25rem 0;
+	}
+	h1{
+		font-size: 20px!important;
+	}
 	.tab {
 		position: fixed;
 		width: 90vw!important;
-		top: 4vh;
+		top: 4.2vh;
 		z-index: 2000;
+		height: 2.5rem!important;
+		> .item {
+            line-height: 2.5rem!important;
+        }
 	}
 }
 </style>

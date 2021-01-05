@@ -395,24 +395,24 @@ export default class extends Vue {
 				/deep/.el-card__body {
 					display: flex;
 					flex-direction: column;
-					align-items: center;
+					// align-items: center;
 				}
 				h1,h2,h3{
 					width: auto!important;
 				}
 				h3{
 					width: 100%!important;
-					text-align: center;
+					// text-align: center;
 					display: flex!important;
 					flex-direction: column!important;
-					align-items: center;
+					// align-items: center;
 					p{
 						width: 85%!important;
 						// width: auto!important;
 					}
 				}
 				img {
-                    width: 80vw!important;
+                    width: 90vw!important;
                 }
 			}
 		}

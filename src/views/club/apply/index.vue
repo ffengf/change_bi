@@ -168,15 +168,22 @@
 		</div>
 		<div class="box" id="href">
 			<div class="w70vw min_width1000 ccc">
-				<h1>신청하기</h1>
-				<div class="line"></div>
-				<div class="btn_box">
+				<h1 class="">신청하기</h1>
+				<div class="line sm-down"></div>
+				<div class="btn_box sm-down">
 					<el-button :type="filter.status === '' ? 'primary' : 'default'" class="btn" @click="filter.status = ''">전체</el-button>
 					<el-button :type="filter.status === 4 ? 'primary' : 'default'" class="btn" @click="filter.status = 4">모집대기</el-button>
 					<el-button :type="filter.status === 0 ? 'primary' : 'default'" class="btn" @click="filter.status = 0">모집 중</el-button>
 					<el-button :type="filter.status === 5 ? 'primary' : 'default'" class="btn" @click="filter.status = 5">모집마감</el-button>
 					<el-button :type="filter.status === 1 ? 'primary' : 'default'" class="btn" @click="filter.status = 1">진행 중</el-button>
 				</div>
+				<el-select class="select_what sm-up" v-model="filter.status" placeholder="결제 방법 선택" :popper-append-to-body="false">
+					<el-option value label="전체"></el-option>
+					<el-option :value="4" label="모집대기"></el-option>
+					<el-option :value="0" label="모집 중"></el-option>
+					<el-option :value="5" label="모집마감"></el-option>
+					<el-option :value="1" label="진행 중"></el-option>
+				</el-select>
 			</div>
 		</div>
 		<ul class="box_list w70vw min_width1000" v-loading="_loading">
@@ -709,6 +716,61 @@ export default class extends More(api_club.get_apply_list) {
 				}
 			}
 		}
+	}
+}
+</style>
+
+<style lang="less" scoped>
+@media only screen and (max-width: 1024px) {
+	.creation{
+		.warpper{
+			h1{
+				font-size: 28px;
+			}
+			h2{
+				font-size: 28px;
+			}
+			h3{
+				font-size: 12px;
+			}
+		}
+		.list{
+			.item{
+				.v1{
+					h3{
+						margin-top: 2.5rem;
+					}
+				}
+				.v2{
+					margin-top: 5rem;
+				}
+			}
+		}
+		.box{
+			height: 5rem;
+			.ccc{
+				justify-content: space-between;
+				align-items: center;
+				.select_what{
+					width: 6rem;
+					/deep/.el-input__inner{
+						border: 1px solid #324b9b!important;
+						padding-left: 1rem!important;
+						box-sizing: border-box;
+						background: #324b9b!important;
+						color: #fff;
+					}
+					/deep/.el-input__icon{
+						&::before{
+							color: #fff;
+						}
+					}
+				}
+			}
+		}
+	}
+	.creation .box .ccc h1{
+		margin-top: 0;
 	}
 }
 </style>

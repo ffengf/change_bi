@@ -301,8 +301,12 @@ export default class extends Vue {
 			.left,.right{
 				width: 90vw!important;
 			}
-			> .right{
+			> .left{
 				margin-top: 3rem;
+				order: 1;
+			}
+			> .right{
+				order: 0;
 				img{
 					align-self: center;
 				}

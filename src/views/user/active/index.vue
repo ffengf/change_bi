@@ -39,6 +39,8 @@ export default class extends More(api_user.get_active) {
 
 
 <style lang='less' scoped>
-
+.box_left{
+	cursor: pointer;
+}
 
 </style>

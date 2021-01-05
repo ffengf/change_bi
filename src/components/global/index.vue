@@ -33,8 +33,6 @@ export default class extends Vue {
 	watch(){
 		(this.$refs['scrollbar'] as any).wrap.scrollTop = 0
 	}
-
-    created() {}
 }
 </script>
 
@@ -42,6 +40,10 @@ export default class extends Vue {
 #page {
 	width: 100vw;
 	height: 100vh;
+	.container{
+		width: 100%;
+		height: 100%;
+	}
     .el-header {
         height: 3.5rem !important;
         width: 100vw;
