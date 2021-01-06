@@ -44,7 +44,7 @@ export default class extends Vue {
 		}
 	}
 	rules={
-		username:[{ required:true }],
+		username:[{ required:true,message:'아이디를 작성해 주세요.' }],
 		password:[{ required:true,validator: this.validatePass_8  }],
 	}
     info = {

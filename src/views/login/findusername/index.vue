@@ -84,7 +84,7 @@ export default class extends Vue {
     }
     rules = {
         phone: [{ required: true, validator: this.validatePhone }],
-        code: [{ required: true }],
+        code: [{ required: true,message:'인증번호를 입력해 주세요.' }],
     };
     info = {
         phone: "",

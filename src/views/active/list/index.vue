@@ -10,7 +10,7 @@
 				</div>
 				<div class="bottom">
 					<div class="left">
-						<img src="@/assets/img/user_green.png">
+						<img src="@/assets/img/active.png">
 						<p>스위치</p>
 					</div>
 					<div class="right">{{ ele.create_time }} 작성</div>
