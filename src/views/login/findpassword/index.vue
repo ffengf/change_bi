@@ -122,7 +122,7 @@ export default class extends Vue {
 
     rules = {
 		phone: [{ required: true, validator: this.validatePhone }],
-		code: [{ required: true, }],
+		code: [{ required: true,message:'인증번호를 입력해 주세요.' }],
 		username: [{ required: true, validator: this.validateEmail }],
 		password: [{ required: true, validator: this.validatePass_8  }],
 		again_pass: [
