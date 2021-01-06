@@ -13,7 +13,7 @@
 						<img src="@/assets/img/user_green.png">
 						<p>스위치</p>
 					</div>
-					<div class="right">{{ ele.start_time }} 작성</div>
+					<div class="right">{{ ele.create_time }} 작성</div>
 				</div>
 			</li>
 
