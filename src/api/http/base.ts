@@ -34,7 +34,7 @@ server.interceptors.response.use(({ data, status }) => {
 	return data
 }, err => {
 	if (err?.response?.status === 401) {
-		Vue.$message.error(`401:error`)
+		Vue.$message.error(`권한이 부여되지 않았습니다.`)
 		return Promise.reject(err)
 	}
 	if (err?.response?.status === 403) {
@@ -57,7 +57,7 @@ server.interceptors.response.use(({ data, status }) => {
 		})
 		return Promise.reject(err)
 	}
-	Vue.$message.error(`fail:serve error`)
+	Vue.$message.error(`서비스 응답 오류`)
 	return Promise.reject(err)
 })
 

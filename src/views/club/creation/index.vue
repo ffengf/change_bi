@@ -18,11 +18,25 @@
 			<div class="left">
 				<img src="@/assets/img/left.png" alt="">
 			</div>
-			<h1 class="mid">
+			<h1 class="mid sm-down">
 				<p><span>클럽 창작과비평은</span> 계간 『창작과비평』을 함께 읽는 활동입니다. 『창작과비평』은 1966년 창간 이래 우리 문학과 지식계에 큰 발자취를</p>
 				<p>남겨온, 한국을 대표하는 문예지입니다. 주요 작가들의 시와 소설 신작은 물론 최근 정치 · 사회 이슈에 대한 심도 있는 비평 등 다양한 글을</p>
 				<p>만날 수 있습니다. 클럽 창작과비평 클러버가 되면 『창작과비평』 종이책을 제공받고, 정해진 미션에 따라 같이 읽어나가는 활동을 하게 </p>
 				<p>됩니다. 매년 2월, 8월 클러버를 모집하며, 한 기수당 6개월간 2개 호를 함께 읽습니다.</p>
+			</h1>
+			<h1 class="mid sm-up">
+				<p><span>클럽 창작과비평은</span></p>
+				<p>계간 『창작과비평』을 함께 읽는 활동입니다.</p>
+				<p>『창작과비평』은 1966년 창간 이래</p>
+				<p>우리 문학과 지식계에 큰 발자취를 남겨온,</p>
+				<p>한국을 대표하는 문예지입니다.</p>
+				<p>주요 작가들의 시와 소설 신작은 물론</p>
+				<p>최근 정치 · 사회 이슈에 대한 심도 있는 비평 등</p>
+				<p>다양한 글을 만날 수 있습니다.</p>
+				<p>클럽 창작과비평 클러버가 되면</p>
+				<p>『창작과비평』 종이책을 제공받고, 정해진 미션에 따라 같이 읽어나가는 활동을 하게 됩니다.</p>
+				<p>매년 2월, 8월 클러버를 모집하며,</p>
+				<p>한 기수당 6개월간 2개 호를 함께 읽습니다.</p>
 			</h1>
 			<div class="right">
 				<img src="@/assets/img/right.png" alt="">
@@ -265,6 +279,7 @@ export default class extends More(api_club.get_creation_list) {
 		margin-bottom: 6.6rem;
 		box-sizing: border-box;
 		white-space:nowrap;
+		position: relative;
 		.left,.right{
 			position: relative;
 		}
@@ -579,6 +594,17 @@ export default class extends More(api_club.get_creation_list) {
 			}
 			h3{
 				font-size: 12px;
+			}
+		}
+		.content{
+			.left,.right{
+				position: absolute;
+			}
+			.left{
+				top: -1rem;
+			}
+			.right{
+				right: 0;
 			}
 		}
 		.list{

@@ -11,6 +11,7 @@
                     <span>|</span>
                     <span>
 						{{ ele.create_time }} 등록
+						<br class="sm-up" />
 						(유효기간 : {{ ele.coupon.start_time }} ~ {{ ele.coupon.end_time }})
 						<span v-if="ele.use_time !== null"> | {{ ele.use_time }}사용</span>
 					</span>

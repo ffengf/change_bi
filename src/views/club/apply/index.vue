@@ -18,11 +18,24 @@
 			<div class="left">
 				<img src="@/assets/img/left.png" alt="">
 			</div>
-			<h1 class="mid">
+			<h1 class="mid sm-down">
 				<p>습관처럼 책을 사고 있진 않나요? 책을 의무적으로 읽고 있다고요? 우리는 도대체 왜 책을 읽기 시작했을까요?</p>
 				<p>'책'과 '나'를 연결하기란 쉽지 않아요. 그런데도 우리는 책을 펼칠 때마다 꿈꿉니다. 이 책으로 인해 나와 세상이 조금은 변화하기를요.</p>
 				<p>필라멘트는 생각했어요. 독서는 책을 읽는 것이 아니라 책을 경험하는 것이다.</p>
 				<p>독서라는 경험을 통해 나와 세상을 환하게 밝힐 당신을 필라멘트는 기다립니다. 어려워하지 마세요. 연결되면 시작할 수 있어요.</p>
+			</h1>
+			<h1 class="mid sm-up">
+				<p>습관처럼 책을 사고 있진 않나요?</p>
+				<p>책을 의무적으로 읽고 있다고요?</p>
+				<p>우리는 도대체 왜 책을 읽기 시작했을까요?</p>
+				<p>'책'과 '나'를 연결하기란 쉽지 않아요.</p>
+				<p>그런데도 우리는 책을 펼칠 때마다 꿈꿉니다.</p>
+				<p>이 책으로 인해 나와 세상이 조금은 변화하기를요.</p>
+				<p>필라멘트는 생각했어요.</p>
+				<p>독서는 책을 읽는 것이 아니라 책을 경험하는 것이다.</p>
+				<p>독서라는 경험을 통해 나와 세상을 환하게 밝힐</p>
+				<p>당신을 필라멘트는 기다립니다.</p>
+				<p>어려워하지 마세요. 연결되면 시작할 수 있어요.</p>
 			</h1>
 			<div class="right">
 				<img src="@/assets/img/right.png" alt="">
@@ -84,7 +97,7 @@
 				</div>
 			</li>
 		</ul>
-		<div class="flow w70vw min_width1000 sm-down">
+		<div class="flow w70vw min_width1000">
 			<h1>사용설명서</h1>
 			<div class="line"></div>
 			<h2>
@@ -143,7 +156,7 @@
 					</h2>
 				</div>
 			</div>
-			<div class="text_box">
+			<div class="text_box sm-down">
 				<div>
 					<h1>어떤 미션을 하게 되나요?</h1>
 					<h2>
@@ -154,13 +167,40 @@
 				</div>
 				<div>
 					<h1>
-						<p>인증이란? 서로의 ‘작심삼개월’을</p>
+						<p>인증이란? 서로의 '작심삼개월'을</p>
 						<p>즐거워하고 응원하는 일.</p>
 					</h1>
 					<h2>
 						<p>① 북메이트의 안내에 따라 게시판에 미션을 인증해주세요. </p>
 						<p>② 미션을 인증하기까지의 희로애락, 미션을 인증하는 순간의 쾌감, </p>
 						<p class="mr-left">미션 성공과 실패의 웃픈 이야기, 그리고 책 수다는 댓글로, 대댓글로! </p>
+						<p>③ 프로 댓글러에게는 깜짝, 깜찍 선물을 드려요.</p>
+					</h2>
+				</div>
+			</div>
+			<div class="text_box sm-up">
+				<div>
+					<h1>어떤 미션을 하게 되나요?</h1>
+					<h2>
+						<p>클럽에 따라 인증 방법은 다양하게 구성됩니다.</p>
+						<p> 글을 쓰거나 사진을 찍거나,</p>
+						<p>영상을 촬영해야 할지도 몰라요.</p>
+						<p>일주일 동안 그림을 그리고, 달리기를 하고,</p>
+						<p>한밤에 야식을 먹게 될 수도 있다는 사실!</p>
+					</h2>
+				</div>
+				<div class="two">
+					<h1>
+						<p>인증이란?</p>
+						<p>서로의 '작심삼개월'을</p>
+						<p>즐거워하고 응원하는 일.</p>
+					</h1>
+					<h2>
+						<p>① 북메이트의 안내에 따라 게시판에 미션을 인증해주세요. </p>
+						<p>② 미션을 인증하기까지의 희로애락,</p>
+						<p class="mr-left">미션을 인증하는 순간의 쾌감,</p>
+						<p class="mr-left">미션 성공과 실패의 웃픈 이야기,</p>
+						<p class="mr-left">그리고 책 수다는 댓글로, 대댓글로! </p>
 						<p>③ 프로 댓글러에게는 깜짝, 깜찍 선물을 드려요.</p>
 					</h2>
 				</div>
@@ -306,6 +346,7 @@ export default class extends More(api_club.get_apply_list) {
 		margin-bottom: 6.6rem;
 		box-sizing: border-box;
 		white-space:nowrap;
+		position: relative;
 		.left,.right{
 			position: relative;
 		}
@@ -472,6 +513,7 @@ export default class extends More(api_club.get_apply_list) {
 					width: 5rem;
 					align-items: center;
 					align-self: center;
+					object-fit: contain;
 				}
 				.line{
 					height: 2px;
@@ -734,6 +776,17 @@ export default class extends More(api_club.get_apply_list) {
 				font-size: 12px;
 			}
 		}
+		.content{
+			.left,.right{
+				position: absolute;
+			}
+			.left{
+				top: -1rem;
+			}
+			.right{
+				right: 0;
+			}
+		}
 		.list{
 			.item{
 				.v1{
@@ -771,6 +824,32 @@ export default class extends More(api_club.get_apply_list) {
 	}
 	.creation .box .ccc h1{
 		margin-top: 0;
+	}
+	.flow{
+		.flow_box{
+			flex-wrap: wrap;
+			flex-direction: column;
+			.item{
+				width: 100%!important;
+				align-items: center;
+			}
+			>img{
+				align-self: center;
+				transform:rotate(90deg);
+				margin: 2.5rem 0;
+			}
+		}
+		.text_box{
+			flex-wrap: wrap;
+			div{
+				h2{
+					font-size: 14px!important;
+				}
+			}
+			.two{
+				margin-top: 2rem;
+			}
+		}
 	}
 }
 </style>

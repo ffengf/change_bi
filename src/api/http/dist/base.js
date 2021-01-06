@@ -33,7 +33,7 @@ server.interceptors.response.use(function (_a) {
 }, function (err) {
     var _a, _b, _c;
     if (((_a = err === null || err === void 0 ? void 0 : err.response) === null || _a === void 0 ? void 0 : _a.status) === 401) {
-        main_1.app.$message.error("401:error");
+        main_1.app.$message.error("\uAD8C\uD55C\uC774 \uBD80\uC5EC\uB418\uC9C0 \uC54A\uC558\uC2B5\uB2C8\uB2E4.");
         return Promise.reject(err);
     }
     if (((_b = err === null || err === void 0 ? void 0 : err.response) === null || _b === void 0 ? void 0 : _b.status) === 403) {
@@ -57,7 +57,7 @@ server.interceptors.response.use(function (_a) {
         });
         return Promise.reject(err);
     }
-    main_1.app.$message.error("fail:serve error");
+    main_1.app.$message.error("\uC11C\uBE44\uC2A4 \uC751\uB2F5 \uC624\uB958");
     return Promise.reject(err);
 });
 var Http = /** @class */ (function () {

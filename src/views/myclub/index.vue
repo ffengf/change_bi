@@ -361,7 +361,11 @@ export default class extends Vue {
 			}
 		}
 		.right{
+			order: 0;
+		}
+		.left{
 			order: 1;
+			margin-top: 2rem;
 		}
 	}
 }

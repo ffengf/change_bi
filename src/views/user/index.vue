@@ -77,7 +77,7 @@ export default class extends Vue {
 			cancelButtonText: '취소',
 		})
 		await api_user.unregister()
-		this.logout('unregister success')
+		this.logout('탈퇴 완료되었습니다.')
 	}
 
 	logout(str = '로그아웃 되었습니다.'){
