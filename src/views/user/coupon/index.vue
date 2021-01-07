@@ -23,7 +23,7 @@
         </div>
         <el-button class="more" type="success" @click="more" :disabled="disabled">더 보기</el-button>
 
-        <el-dialog title="쿠폰 등록하기" :visible.sync="key" width="25%">
+        <el-dialog title="쿠폰 등록하기" :visible="key" width="25%" :before-close="close">
             <div class="dialog" v-loading="dialog_loading">
                 <h1>쿠폰번호를 입력해주세요.</h1>
                 <el-input
@@ -33,7 +33,7 @@
                 ></el-input>
                 <div class="dialog_btn_box">
                     <el-button type="success" @click="submit">등록하기</el-button>
-					<el-button @click="key = false">취소</el-button>
+					<el-button @click="close">취소</el-button>
                 </div>
             </div>
         </el-dialog>
@@ -47,6 +47,7 @@ import Bread from "@/components/bread/index.vue";
 import { More } from "@/mixin/more";
 import { api_user, user_coupon } from "@/api";
 import { numFormat } from "@/util/string";
+import { ElForm } from "element-ui/types/form";
 @Component({
     components: {
         Rview,
@@ -77,9 +78,13 @@ export default class extends More(api_user.get_coupon) {
 			this.dialog_loading = false
 		})
 		this.$message.success('등록 되었습니다.')
-		this.key = false
-		this.code = ''
+		this.close()
 		this.clear_list()
+	}
+
+	close(){
+		this.code = ''
+		this.key = false;
 	}
 }
 </script>

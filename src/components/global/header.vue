@@ -55,7 +55,7 @@
 					<div :class="['icon',active === 'user' ? 'active':'']">
 						<el-dropdown trigger="click" @command="user" placement="bottom" @visible-change="is_active($event,'user')">
 							<span class="el-dropdown-link">
-								<img :src="avatar" width="23px" alt="" srcset="">
+								<img :src="avatar" width="23px" alt="" srcset="" class="avatar">
 							</span>
 							<el-dropdown-menu slot="dropdown">
 								<el-dropdown-item command="/user/collect">찜</el-dropdown-item>
@@ -135,7 +135,7 @@
 					<div :class="['icon',active === 'user' ? 'active':'']">
 						<el-dropdown trigger="click" @command="user" placement="bottom" @visible-change="is_active($event,'user')">
 							<span class="el-dropdown-link">
-								<img :src="avatar" width="23px" alt="" srcset="">
+								<img :src="avatar" width="23px" alt="" srcset="" class="avatar">
 							</span>
 							<el-dropdown-menu slot="dropdown">
 								<el-dropdown-item command="/user/collect">찜</el-dropdown-item>
@@ -406,6 +406,9 @@ img{
 	/deep/.el-input__inner{
 		padding-right: 2rem !important;
 	}
+}
+.avatar{
+	border-radius: 50%;
 }
 </style>
 <style lang="less">

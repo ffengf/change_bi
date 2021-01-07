@@ -201,7 +201,7 @@ var routes = [
                         path: 'club',
                         name: 'user_club',
                         meta: {
-                            title: '독서모임'
+                            title: '나의 모임'
                         },
                         component: function () { return Promise.resolve().then(function () { return require('@/views/user/club/index.vue'); }); }
                     },

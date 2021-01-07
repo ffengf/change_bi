@@ -87,7 +87,7 @@ export default class extends Vue {
 </script>
 
 <style lang="less" scoped>
-.info_box{
-	margin-top: -0.7rem;
-}
+// .info_box{
+	// margin-top: -0.7rem;
+// }
 </style>

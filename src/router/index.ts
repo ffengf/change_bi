@@ -203,7 +203,7 @@ const routes: RouteConfig[] = [
 						path: 'club',
 						name: 'user_club',
 						meta: {
-							title: '독서모임'
+							title: '나의 모임'
 						},
 						component: () => import('@/views/user/club/index.vue'),
 					},

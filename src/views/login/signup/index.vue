@@ -314,7 +314,7 @@ export default class extends Vue {
     async check_mail() {
 		this.btn_loadding.mail = true;
 		(this.$refs["form"] as ElForm).validateField("username",async (err_str)=>{
-			if(err_str === '이메일 중복확인을 해주세요.'){
+			if(err_str === '이메일 중복확인을 해주세요.' || err_str === ''){
 				const data = await api_login.check_username({
 					username: this.info.username,
 				}).finally(()=>{
@@ -322,7 +322,7 @@ export default class extends Vue {
 				})
 				this.older.username = this.info.username;
 				await (this.$refs["form"] as ElForm).validateField("username");
-				this.$message.success("success");
+				this.$message.success("중복된 아이디가 없습니다.");
 			}else{
 				this.$message.error(err_str)
 				this.btn_loadding.mail = false;

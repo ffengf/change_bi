@@ -8,11 +8,14 @@
                 <li @click="$router.push('/service/privacy')">개인정보취급방침</li>
             </ul>
             <div class="content kr-re">
-                <p>법인명 : (주)창비 <span>|</span> 사업자등록번호 : 105-81-63672 <span>|</span>
+                <p>법인명 : (주)창비 <span>|</span> 사업자등록번호 : 105-81-63672 <span class="sm-down">|</span>
+				<br class="sm-up">
                 개인정보책임자 : 이정원</p>
-                <p>주소 : 경기도 파주시 회동길 184 (문발동) <span>|</span> 대표이사 : 강일우 <span>|</span>
+                <p>주소 : 경기도 파주시 회동길 184 (문발동) <span>|</span> 대표이사 : 강일우 <span class="sm-down">|</span>
+				<br class="sm-up">
                 통신판매업 : 제2009-경기파주-1928호</p>
-                <p>전화 : 031-955-3333 (월~금, 10~17시) <span>|</span> 팩스 : 031-955-3400 <span>|</span>
+                <p>전화 : 031-955-3333 (월~금, 10~17시) <span>|</span> 팩스 : 031-955-3400 <span class="sm-down">|</span>
+				<br class="sm-up">
                 이메일 : supporter@changbi.com</p>
             </div>
 
@@ -82,7 +85,6 @@ export default class extends Vue {}
 	.link_box{
 		justify-content: space-around;
 		li{
-			width: 49%;
 			margin: 0.5rem 0!important;
 			text-align: center;
 		}

@@ -1,5 +1,5 @@
 <template>
-    <el-dialog id="dialog" title="비밀번호 수정" :visible.sync="key" width="25%" append-to-body>
+    <el-dialog id="dialog" title="비밀번호 수정" :visible="key" width="25%" append-to-body :before-close="close">
 		<div class="dialog" v-loading="_loading">
 			<el-form
 				ref="form"
@@ -35,7 +35,7 @@
 			</el-form>
 			<div class="dialog_btn_box">
 				<el-button type="success" @click="submit">수정하기</el-button>
-				<el-button @click="key = false">닫기</el-button>
+				<el-button @click="close">닫기</el-button>
 			</div>
 		</div>
 	</el-dialog>
@@ -92,13 +92,18 @@ export default class extends Vue {
 		await api_user.edit_pass(this.form).finally(()=>{
 			this._loading = false
 		})
-		this.key = false
+		this.close()
 		this.$message.success('수정 되었습니다.')
 		this.form = mapObjIndexed( x => '')(this.form) as {
 			old_password: string;
 			new_password1: string;
 			new_password2: string;
 		}
+	}
+
+	async close(){
+		await (this.$refs['form'] as ElForm).resetFields()
+		this.key = false;
 	}
 
 	validatePass_8(rules, value, callback){
