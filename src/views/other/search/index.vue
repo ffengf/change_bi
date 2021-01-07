@@ -18,7 +18,7 @@
 				<h3>{{ ele.subtitle }}</h3>
 			</el-card>
 		</ul>
-		<div class="none" v-else>
+		<div class="nones" v-else>
 			<img src="@/assets/img/search.png" alt="">
 			<h1>검색된 모임이 없습니다.</h1>
 			<h2>모임명 또는 키워드를 확인하여 검색해 주세요.</h2>
@@ -122,23 +122,24 @@ export default class extends More(api_club.get_list,false) {
 			}
 		}
 	}
-	.none{
+	.nones{
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		height: 50vh;
 		img{
 			width: 8rem;
 			height: 8rem;
 			margin-top: 2rem;
 		}
 		h1{
-			margin-top: 1rem;
+			margin-top: 2rem;
 			color: #324b9b;
-			font-size: 18px;
+			font-size: 24px;
 		}
 		h2{
-			margin-top: 0.5rem;
-			font-size: 12px;
+			margin-top: 1rem;
+			font-size: 14px;
 		}
 	}
 	.more{

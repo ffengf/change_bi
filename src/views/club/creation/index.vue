@@ -189,7 +189,7 @@
 				</el-select>
 			</div>
 		</div>
-		<ul class="box_list w70vw min_width1000" v-loading="_loading">
+		<ul class="box_list w70vw min_width1000" v-loading="_loading" v-if="list.length !== 0">
 			<el-card shadow="never" class="item" v-for="(ele) in list" :key="ele.id" @click.native="$router.push(`/club/creation/info/${ele.id}`)">
 				<img :src="ele.cover" alt="">
 				<h1>{{ ele.title }}</h1>
@@ -205,6 +205,9 @@
 				<h3>{{ ele.subtitle }}</h3>
 			</el-card>
 		</ul>
+		<div class="none" v-loading="_loading" v-else>
+			해당되는 모임이 없습니다.
+		</div>
 		<el-button type="success" class="more" @click="more" :disabled="disabled">더 보기</el-button>
     </div>
 </template>
