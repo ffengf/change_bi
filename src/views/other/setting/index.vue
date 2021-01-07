@@ -330,7 +330,10 @@ export default class extends Vue {
                 trigger: "change",
             },
         ],
-        real_name: [{ required: true, message:'이름을 입력해 주세요.' }],
+        real_name: [
+			{ required: true, message:'이름을 입력해 주세요.' },
+			{ max:10, message:'10자 이내로 작성해 주세요.' }
+		],
         gender: [{ required: true }],
         birth: [{ required: true, message:'태어난 년도를 선택해 주세요.'  }],
         phone: [
