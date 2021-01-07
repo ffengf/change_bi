@@ -8,7 +8,7 @@
 			:on-error="error"
         >
 			<div class="inp_box">
-				<el-input v-model="name" placeholder="4째주 미션 제출합니다!" disabled></el-input>
+				<el-input v-model="name" disabled></el-input>
 				<el-button type="success" plain >찾아보기</el-button>
 			</div>
         </el-upload>

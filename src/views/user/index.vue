@@ -35,7 +35,7 @@
                         <p class="mt10 fs14 pointer" @click="$router.push('/user/active')">나의 이벤트</p>
                         <p class="mt10 fs14 pointer" @click="$router.push('/user/pay')">결제내역</p>
                         <p class="mt10 fs14 pointer" @click="$router.push('/user/coupon')">쿠폰조회</p>
-                        <p class="mt10 fs14 pointer" @click="logout">로그아웃</p>
+                        <p class="mt10 fs14 pointer" @click="logout()">로그아웃</p>
 						<br>
 						<p class="mt10 fs14 pointer ccc" @click="unregister">회원탈퇴</p>
                     </div>
@@ -82,6 +82,7 @@ export default class extends Vue {
 
 	logout(str = '로그아웃 되었습니다.'){
 		UserModule.logout()
+		console.log(123123)
 		this.$message.success(str)
 		this.$router.push('/')
 	}

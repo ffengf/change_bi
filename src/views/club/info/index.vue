@@ -116,7 +116,7 @@ export default class extends Vue {
 		if(this.choose_coupon === undefined){
 			return this.info.price
 		}
-		return this.info.price - this.choose_coupon.coupon.amount < 149 ? 150 : this.info.price - this.choose_coupon.coupon.amount
+		return this.info.price - this.choose_coupon.coupon.amount < 0 ? 0 : this.info.price - this.choose_coupon.coupon.amount
 	}
 
 	get choose_coupon(){
@@ -181,7 +181,20 @@ export default class extends Vue {
 		await api_club.pay_check(this.info.id,this.choose_coupon?.id).finally(()=>{
 			this._loading = false
 		})
-		this.pay()
+		const coupon_id = this.choose_coupon?.id
+		const club_id = this.info.id
+		if(this.price === 0 && coupon_id !== undefined){
+			await api_club.use_coupon_free({ club_id,coupon_id })
+			await this.$confirm('신청이 완료되었습니다.',{
+				confirmButtonText: '나의 모임',
+				cancelButtonText: '이전으로',
+			})
+			this.$router.push('/user/club')
+		}else if(this.price < 150){
+			this.$message.error('쿠폰 사용에 오류가 있습니다. 관리자에게 문의해주세요.')
+		}else{
+			this.pay()
+		}
 	}
 
 	async get_coupon_list(type:0|1){
@@ -456,12 +469,13 @@ export default class extends Vue {
 	}
 	.btn{
 		position: fixed;
-		bottom: 0;
-		width: 90%!important;
-		left: 50%;
-		transform: translateX(-50%);
+		bottom: 0.5rem;
+		width: 40%!important;
+		&:nth-of-type(1){
+			left: 1rem;
+		}
 		&:nth-of-type(2){
-			bottom: 7vh;
+			right: 1rem;
 		}
 	}
 }

@@ -50,6 +50,9 @@ var Club = /** @class */ (function (_super) {
     Club.prototype.pay_join = function (data) {
         return this.post(data, '/order/');
     };
+    Club.prototype.use_coupon_free = function (data) {
+        return this.post(data, '/order/');
+    };
     Club.prototype.pay_check = function (club_id, coupon_id) {
         return this.post({ coupon_id: coupon_id }, "/club/" + club_id + "/check/");
     };

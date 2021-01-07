@@ -34,7 +34,7 @@
     </div>
 	<div class="warpper" v-loading="_loading" v-else>
 		<div class="none">
-			신청하신 이벤트가 없습니다.
+			찜하신 모임이 없습니다.
 		</div>
 	</div>
 </template>

@@ -285,7 +285,8 @@ export default class extends Vue {
         height: 2.2rem;
         border-radius: 50%;
         overflow: hidden;
-        margin-top: 0.5rem;
+		margin-top: 0.5rem;
+		margin-right: 0.5rem;
     }
     #inp {
         width: 90%;
@@ -334,5 +335,10 @@ export default class extends Vue {
             }
         }
     }
+}
+#dialog{
+	/deep/.el-dialog__header{
+		padding: 0;
+	}
 }
 </style>

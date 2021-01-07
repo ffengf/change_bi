@@ -55,6 +55,13 @@ class Club extends Http {
 		return this.post(data, '/order/')
 	}
 
+	use_coupon_free(data:{
+		club_id: number
+		coupon_id: number
+	}){
+		return this.post(data, '/order/')
+	}
+
 	pay_check(club_id: number, coupon_id: number | undefined) {
 		return this.post({ coupon_id },`/club/${club_id}/check/`)
 	}

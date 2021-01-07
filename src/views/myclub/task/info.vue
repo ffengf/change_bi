@@ -82,7 +82,6 @@
                     <el-form-item label="제목" prop="title">
                         <el-input
                             v-model="form.title"
-                            placeholder="4째주 미션 제출합니다!"
                         ></el-input>
                     </el-form-item>
                     <div class="line"></div>
