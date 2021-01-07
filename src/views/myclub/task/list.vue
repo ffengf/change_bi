@@ -1,20 +1,24 @@
 <template>
     <div class="list" v-loading="_loading">
-		<ul v-for="ele in list" :key="ele.id">
-			<li @click="go_info(ele.id)">
-				<h2>
-					<span>{{ ele.create_time }}</span>
-					<span>|</span>
-					<span>운영자 작성</span>
-				</h2>
-				<h1>{{ ele.title }}</h1>
-				<p class="inner_detail" v-html="ele.content"></p>
-				<el-button class="btn" type="success" @click.stop="sign(null,ele.id)" v-if="ele.attendance_id === null">제출하기</el-button>
-				<el-button class="btn" type="primary" @click.stop="sign(ele.attendance_id,ele.id)" v-else>수정하기</el-button>
-			</li>
-		</ul>
-		<el-button class="more" type="success" @click="more" :disabled="disabled">더 보기</el-button>
-
+		<template v-if="list.length !== 0">
+			<ul v-for="ele in list" :key="ele.id">
+				<li @click="go_info(ele.id)">
+					<h2>
+						<span>{{ ele.create_time }}</span>
+						<span>|</span>
+						<span>운영자 작성</span>
+					</h2>
+					<h1>{{ ele.title }}</h1>
+					<p class="inner_detail" v-html="ele.content"></p>
+					<el-button class="btn" type="success" @click.stop="sign(null,ele.id)" v-if="ele.attendance_id === null">제출하기</el-button>
+					<el-button class="btn" type="primary" @click.stop="sign(ele.attendance_id,ele.id)" v-else>수정하기</el-button>
+				</li>
+			</ul>
+			<el-button class="more" type="success" @click="more" :disabled="disabled">더 보기</el-button>
+		</template>
+		<div v-else class="none">
+			작성된 미션 게시글이 없습니다.
+		</div>
 
 
 

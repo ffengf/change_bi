@@ -140,7 +140,7 @@ export default class extends Vue {
 			height: 21.5rem;
 		}
 		.tab{
-			margin: 1.5rem 0;
+			margin: 1.5rem 0 0.5rem 0;
 			display: flex;
 			width: 100%;
 			height: 2.5rem;

@@ -25,6 +25,15 @@ server.interceptors.response.use(function (_a) {
     if (data.code === 50001) {
         return data;
     }
+    if (data.code === 4004) {
+        main_1.app.$alert('잘못된 접근입니다. 홈페이지로 이동하겠습니다.', {
+            confirmButtonText: '확인',
+            callback: function () {
+                main_1.app.$router.replace('/');
+            }
+        });
+        return;
+    }
     if (data.code) {
         main_1.app.$message.error(data.msg);
         return Promise.reject(data);

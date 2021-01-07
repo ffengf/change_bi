@@ -180,6 +180,12 @@ acronym {
 html {
   font-size: 20px;
 }
+.none {
+  height: 10rem;
+  width: 100%;
+  line-height: 10rem;
+  text-align: center;
+}
 .login_warpper > h1 {
   color: #000000;
   font-size: 46px;

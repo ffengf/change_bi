@@ -1,17 +1,22 @@
 <template>
     <div class="list" v-loading="_loading">
-		<ul v-for="ele in list" :key="ele.id">
-			<li @click="go_info(ele.id)">
-				<h2>
-					<span>{{ ele.create_time }}</span>
-					<span>|</span>
-					<span>운영자 작성</span>
-				</h2>
-				<h1>{{ ele.title }}</h1>
-				<p class="inner_detail" v-html="ele.content"></p>
-			</li>
-		</ul>
-		<el-button class="more" type="success" @click="more" :disabled="disabled">더 보기</el-button>
+		<template v-if="list.length !== 0">
+			<ul v-for="ele in list" :key="ele.id">
+				<li @click="go_info(ele.id)">
+					<h2>
+						<span>{{ ele.create_time }}</span>
+						<span>|</span>
+						<span>운영자 작성</span>
+					</h2>
+					<h1>{{ ele.title }}</h1>
+					<p class="inner_detail" v-html="ele.content"></p>
+				</li>
+			</ul>
+			<el-button class="more" type="success" @click="more" :disabled="disabled">더 보기</el-button>
+		</template>
+		<div v-else class="none">
+			작성된 공지사항이 없습니다.
+		</div>
     </div>
 </template>
 

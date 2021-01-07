@@ -1,38 +1,42 @@
 <template>
     <div class="warpper" v-loading="_loading">
-		<div class="box" v-for="(ele) in list" :key="ele.id">
-			<div class="box_left">
-				<h2>
-					<span :class="class_name(status_str(ele))">{{ status_str(ele) }}</span>
-					<span>|</span>
-					<span>{{ ele.club.start_time }} ~ {{ ele.club.end_time }}</span>
-				</h2>
-				<h1>{{ ele.club.title }}</h1>
-				<h6 v-if="ele.refuse_reason !== null">{{ ele.refuse_reason }}</h6>
+		<template v-if="list.length !== 0">
+			<div class="box" v-for="(ele) in list" :key="ele.id">
+				<div class="box_left">
+					<h2>
+						<span :class="class_name(status_str(ele))">{{ status_str(ele) }}</span>
+						<span>|</span>
+						<span>{{ ele.club.start_time }} ~ {{ ele.club.end_time }}</span>
+					</h2>
+					<h1>{{ ele.club.title }}</h1>
+					<h6 v-if="ele.refuse_reason !== null">{{ ele.refuse_reason }}</h6>
+				</div>
+				<div class="flex" v-if="status_str(ele) === '승인대기' || status_str(ele) === '승인완료'">
+					<el-button class="right_btn" type="danger" @click="un_join(ele)">신청취소</el-button>
+				</div>
+				<div class="flex" v-if="status_str(ele) === '진행대기'">
+					<el-button class="right_btn" type="danger" @click="un_join(ele)">신청취소</el-button>
+					<el-button class="right_btn" type="primary" @click="go_myclub(ele)">내용보기</el-button>
+				</div>
+				<div class="flex" v-if="status_str(ele) === '진행 중'">
+					<el-button class="right_btn" type="success" @click="go_myclub(ele)">참여하기</el-button>
+				</div>
+				<div class="flex" v-if="status_str(ele) === '진행완료'">
+					<el-button class="right_btn" type="success" @click="open(ele)">수료증 발급</el-button>
+					<el-button class="right_btn" type="primary" @click="go_myclub(ele)">내용보기</el-button>
+				</div>
+				<div class="flex" v-if="status_str(ele) === '취소완료' || status_str(ele) === '환불완료'">
+					<el-button class="right_btn" type="danger" @click="del(ele)">삭제</el-button>
+				</div>
+				<div class="flex" v-if="status_str(ele) === '환불대기'">
+					<!--  -->
+				</div>
 			</div>
-			<div class="flex" v-if="status_str(ele) === '승인대기' || status_str(ele) === '승인완료'">
-				<el-button class="right_btn" type="danger" @click="un_join(ele)">신청취소</el-button>
-			</div>
-			<div class="flex" v-if="status_str(ele) === '진행대기'">
-				<el-button class="right_btn" type="danger" @click="un_join(ele)">신청취소</el-button>
-				<el-button class="right_btn" type="primary" @click="go_myclub(ele)">내용보기</el-button>
-			</div>
-			<div class="flex" v-if="status_str(ele) === '진행 중'">
-				<el-button class="right_btn" type="success" @click="go_myclub(ele)">참여하기</el-button>
-			</div>
-			<div class="flex" v-if="status_str(ele) === '진행완료'">
-				<el-button class="right_btn" type="success" @click="open(ele)">수료증 발급</el-button>
-				<el-button class="right_btn" type="primary" @click="go_myclub(ele)">내용보기</el-button>
-			</div>
-			<div class="flex" v-if="status_str(ele) === '취소완료' || status_str(ele) === '환불완료'">
-				<el-button class="right_btn" type="danger" @click="del(ele)">삭제</el-button>
-			</div>
-			<div class="flex" v-if="status_str(ele) === '환불대기'">
-				<!--  -->
-			</div>
+			<el-button class="more" type="success" :disabled="disabled">더 보기</el-button>
+		</template>
+		<div v-else class="none">
+			신청하신 모임이 없습니다.
 		</div>
-		<el-button class="more" type="success" :disabled="disabled">더 보기</el-button>
-
 		<Paper ref="paper" />
     </div>
 </template>

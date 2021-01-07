@@ -18,9 +18,12 @@
                 </div>
             </div>
         </div>
-		<ul>
+		<ul v-if="list.length !== 0">
 			<Item v-for="ele in list" :key="ele.id" :info="ele" @submit="children_submit" @remove="children_remove" @edit="children_submit" />
 		</ul>
+		<div v-else class="none">
+			작성된 자유 게시글이 없습니다.
+		</div>
 		<el-button class="more" type="success" @click="more" :disabled="disabled">더 보기</el-button>
     </div>
 </template>

@@ -27,6 +27,15 @@ server.interceptors.response.use(({ data, status }) => {
 	if(data.code === 50001){
 		return data
 	}
+	if(data.code === 4004){
+		Vue.$alert('잘못된 접근입니다. 홈페이지로 이동하겠습니다.',{
+			confirmButtonText:'확인',
+			callback(){
+				Vue.$router.replace('/')
+			}
+		})
+		return
+	}
 	if (data.code) {
 		Vue.$message.error(data.msg)
 		return Promise.reject(data)

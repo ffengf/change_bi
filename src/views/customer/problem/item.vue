@@ -2,7 +2,7 @@
     <div class="box">
         <div class="item">
             <p>{{ info.tag }}</p>
-            <h1>Q. {{ info.question }}?</h1>
+            <h1>Q. {{ info.question }}</h1>
             <i id="icon" class="icon el-icon-arrow-up" @click="show" v-if="key"></i>
             <i id="icon" class="icon el-icon-arrow-down" @click="show" v-else></i>
         </div>

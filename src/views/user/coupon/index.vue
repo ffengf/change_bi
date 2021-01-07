@@ -69,11 +69,15 @@ export default class extends More(api_user.get_coupon) {
 	numFormat = numFormat
 
 	async del(id:number){
+		await this.$confirm('정말 삭제 하시겠습니까?', {
+			confirmButtonText: '삭제',
+			cancelButtonText: '취소',
+		})
 		this._loading = true
 		await api_user.del_coupon(id).finally(()=>{
 			this._loading = false
 		})
-		this.$message.success('del:success')
+		this.$message.success('삭제 되었습니다.')
 		this.clear_list()
 	}
 
