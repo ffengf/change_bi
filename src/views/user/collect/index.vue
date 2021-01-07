@@ -1,5 +1,5 @@
 <template>
-    <div id="collect" v-loading="_loading">
+    <div id="collect" v-loading="_loading" v-if="list.length !== 0">
         <ul>
             <li
                 class="item"
@@ -32,6 +32,11 @@
             </li>
         </ul>
     </div>
+	<div class="warpper" v-loading="_loading" v-else>
+		<div class="none">
+			신청하신 이벤트가 없습니다.
+		</div>
+	</div>
 </template>
 
 <script lang="ts">

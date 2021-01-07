@@ -49,11 +49,14 @@ export interface user_club {
 
 
 export interface user_info {
-	id:number
-	username:string
-	phone:string
+	username: string
+	phone: string
+	id: number
 	real_name:string
 	avatar:string
+	address:string
+	address_code:string
+	address_detail:string
 }
 
 

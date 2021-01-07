@@ -24,8 +24,11 @@
 				<el-button class="right_btn" type="success" @click="open(ele)">수료증 발급</el-button>
 				<el-button class="right_btn" type="primary" @click="go_myclub(ele)">내용보기</el-button>
 			</div>
-			<div class="flex" v-if="status_str(ele) === '취소완료' || status_str(ele) === '환불대기' || status_str(ele) === '환불완료'">
+			<div class="flex" v-if="status_str(ele) === '취소완료' || status_str(ele) === '환불완료'">
 				<el-button class="right_btn" type="danger" @click="del(ele)">삭제</el-button>
+			</div>
+			<div class="flex" v-if="status_str(ele) === '환불대기'">
+				<!--  -->
 			</div>
 		</div>
 		<el-button class="more" type="success" :disabled="disabled">더 보기</el-button>
@@ -56,6 +59,10 @@ export default class extends More(api_user.get_club) {
 	}
 
 	async del(ele:user_club){
+		await this.$confirm('정말 삭제 하시겠습니까?', {
+			confirmButtonText: '삭제',
+			cancelButtonText: '취소',
+		})
 		this._loading = true
 		await api_user.del_club(ele.id).finally(()=>{
 			this._loading = false
@@ -66,6 +73,10 @@ export default class extends More(api_user.get_club) {
 	}
 
 	async un_join(ele:user_club){
+		await this.$confirm('정말로 신청 취소 하시겠습니까?', {
+			confirmButtonText: '신청 취소',
+			cancelButtonText: '닫기',
+		})
 		this._loading = true
 		const new_user_club = await api_user.un_join_club(ele.id).finally(()=>{
 			this._loading = false

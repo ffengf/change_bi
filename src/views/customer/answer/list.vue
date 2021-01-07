@@ -1,17 +1,22 @@
 <template>
     <div class="list">
         <el-button type="success" class="top_btn" @click="change_type('question')">질문하기</el-button>
-        <div class="box" v-for="(ele,index) in list" :key="index">
-            <div class="top">
-                <span class="color_success" v-if="ele.status === 0">답변대기</span>
-				<span class="color_primary" v-if="ele.status === 1">답변완료</span>
-                <span class="lines"></span>
-                <span>{{ ele.create_time }}</span>
-            </div>
-            <h1 @click="change_what(index)">{{ ele.title }}</h1>
-        </div>
+        <template v-if="list.length !== 0">
+			<div class="box" v-for="(ele,index) in list" :key="index">
+				<div class="top">
+					<span class="color_success" v-if="ele.status === 0">답변대기</span>
+					<span class="color_primary" v-if="ele.status === 1">답변완료</span>
+					<span class="lines"></span>
+					<span>{{ ele.create_time }}</span>
+				</div>
+				<h1 @click="change_what(index)">{{ ele.title }}</h1>
+			</div>
 
-        <el-button type="success" class="btn" @click="more" :disabled="disabled">더 보기</el-button>
+			<el-button type="success" class="btn" @click="more" :disabled="disabled">더 보기</el-button>
+		</template>
+		<div class="none">
+			질문하신 내역이 없습니다.
+		</div>
     </div>
 </template>
 
@@ -100,7 +105,13 @@ export default class extends Vue {
         align-self: center;
         margin-top: 2.5rem;
         margin-bottom: 6rem;
-    }
+	}
+	.none{
+		width: 100%;
+		text-align: center;
+		height: 10rem;
+		line-height: 10rem;
+	}
 }
 @media screen and (max-width: 1024px) {
 	.list {

@@ -1,20 +1,25 @@
 <template>
     <div class="warpper">
-		<div class="box" v-for="ele in list" :key="ele.id">
-			<div class="box_left">
-                <h2>
-					<span class="color_primary">{{ pay_methods(ele.pay_method) }}</span>
-                    <span>|</span>
-                    <span>{{ ele.create_time }}</span>
-                </h2>
-                <h1>
-					{{ ele.club.title }}
-					<span class="small">{{ ele.club.option }}</span>
-				</h1>
-            </div>
-			<div class="text">{{ numFormat(ele.pay_amount) }} 원</div>
+		<template v-if="list.length !== 0">
+			<div class="box" v-for="ele in list" :key="ele.id">
+				<div class="box_left">
+					<h2>
+						<span class="color_primary">{{ pay_methods(ele.pay_method) }}</span>
+						<span>|</span>
+						<span>{{ ele.create_time }}</span>
+					</h2>
+					<h1>
+						{{ ele.club.title }}
+						<span class="small">{{ ele.club.option }}</span>
+					</h1>
+				</div>
+				<div class="text">{{ numFormat(ele.pay_amount) }} 원</div>
+			</div>
+			<el-button class="more" type="success" @click="more" :disabled="disabled">더 보기</el-button>
+		</template>
+		<div class="none">
+			결제하신 내역이 없습니다.
 		</div>
-		<el-button class="more" type="success" @click="more" :disabled="disabled">더 보기</el-button>
     </div>
 </template>
 

@@ -16,6 +16,10 @@ export interface info {
 	id: number
 	real_name:string
 	avatar:string
+	address:string
+	address_code:string
+	address_detail:string
+
 }
 
 
@@ -56,25 +60,19 @@ export default class User extends VuexModule {
 		if(this.TOKEN === null){
 			return
 		}
-		const { id,username,phone,real_name,avatar } = await api_user.get_user_info()
-		this.SET_INFO({ id,username,phone,real_name,avatar })
+		const { id,username,phone,real_name,avatar,address,address_code,address_detail } = await api_user.get_user_info()
+		this.SET_INFO({ id,username,phone,real_name,avatar,address,address_code,address_detail })
 	}
 	@Action
 	public set_info(info:info){
-		const { id,username,phone,real_name,avatar } = info
-		this.SET_INFO({ id,username,phone,real_name,avatar })
+		const { id,username,phone,real_name,avatar,address,address_code,address_detail } = info
+		this.SET_INFO({ id,username,phone,real_name,avatar,address,address_code,address_detail })
 	}
 
 
 	@Mutation
-	private SET_INFO({ username, id, phone, real_name,avatar }: user_info) {
-		this.INFO = {
-			id,
-			username,
-			phone,
-			real_name,
-			avatar
-		}
+	private SET_INFO({ id,username,phone,real_name,avatar,address,address_code,address_detail }: user_info) {
+		this.INFO = { id,username,phone,real_name,avatar,address,address_code,address_detail }
 	}
 
 

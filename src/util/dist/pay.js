@@ -12,6 +12,7 @@ var __assign = (this && this.__assign) || function () {
 };
 exports.__esModule = true;
 exports.pay = void 0;
+var user_1 = require("@/store/user");
 exports.pay = function (amount, pay_method, other) {
     if (other === void 0) { other = {}; }
     var pg = {
@@ -20,8 +21,9 @@ exports.pay = function (amount, pay_method, other) {
         card: 'danal_tpay'
     }[pay_method];
     return new Promise(function (resolve, reject) {
+        var _a, _b, _c, _d, _e;
         try {
-            IMP.request_pay(__assign(__assign({ name: '주문명:결제테스트', buyer_email: 'iamport@siot.do', buyer_name: '구매자이름', buyer_tel: '01052301547', buyer_addr: '서울특별시 강남구 삼성동', buyer_postcode: '123-456', pg: pg, merchant_uid: "switch_" + new Date().getTime() }, other), { amount: amount,
+            IMP.request_pay(__assign(__assign({ name: '', buyer_email: (_a = user_1.UserModule.info) === null || _a === void 0 ? void 0 : _a.username, buyer_name: (_b = user_1.UserModule.info) === null || _b === void 0 ? void 0 : _b.real_name, buyer_tel: (_c = user_1.UserModule.info) === null || _c === void 0 ? void 0 : _c.phone, buyer_addr: (_d = user_1.UserModule.info) === null || _d === void 0 ? void 0 : _d.address_detail, buyer_postcode: (_e = user_1.UserModule.info) === null || _e === void 0 ? void 0 : _e.address_code, pg: pg, merchant_uid: "switch_" + new Date().getTime() }, other), { amount: amount,
                 pay_method: pay_method }), function (res) {
                 if (res.success) {
                     resolve(res);

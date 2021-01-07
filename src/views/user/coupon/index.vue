@@ -2,41 +2,49 @@
     <div class="warpper" v-loading="_loading">
         <el-button class="exchange" @click="key = true">쿠폰 등록하기</el-button>
 
-        <div class="box" v-for="ele in list" :key="ele.id">
-            <div class="box_left">
-                <h2>
-                    <span class="color_success" v-if="ele.status === 0" >사용가능</span>
-					<span class="color_primary" v-if="ele.status === 1" >사용완료</span>
-					<span class="color_primary" v-if="ele.status === 2" >기한만료</span>
-                    <span>|</span>
-                    <span>
-						{{ ele.create_time }} 등록
-						<br class="sm-up" />
-						(유효기간 : {{ ele.coupon.start_time }} ~ {{ ele.coupon.end_time }})
-						<span v-if="ele.use_time !== null"> | {{ ele.use_time }}사용</span>
-					</span>
-                </h2>
-                <h1>{{ ele.coupon.title }} <span class="small">({{ numFormat(ele.coupon.amount) }}원)</span> </h1>
-            </div>
-            <div class="text" v-if="ele.status !== 2">{{ ele.coupon.redeem_code }}</div>
-			<el-button v-else type="danger" class="right_btn" @click="del(ele.id)">삭제</el-button>
-        </div>
-        <el-button class="more" type="success" @click="more" :disabled="disabled">더 보기</el-button>
+        <template v-if="list.length !== 0">
+			<div class="box" v-for="ele in list" :key="ele.id">
+				<div class="box_left">
+					<h2>
+						<span class="color_success" v-if="ele.status === 0" >사용가능</span>
+						<span class="color_primary" v-if="ele.status === 1" >사용완료</span>
+						<span class="color_primary" v-if="ele.status === 2" >기한만료</span>
+						<span>|</span>
+						<span>
+							{{ ele.create_time }} 등록
+							<br class="sm-up" />
+							(유효기간 : {{ ele.coupon.start_time }} ~ {{ ele.coupon.end_time }})
+							<span v-if="ele.use_time !== null"> | {{ ele.use_time }}사용</span>
+						</span>
+					</h2>
+					<h1>{{ ele.coupon.title }} <span class="small">({{ numFormat(ele.coupon.amount) }}원)</span> </h1>
+				</div>
+				<div class="text" v-if="ele.status !== 2">{{ ele.coupon.redeem_code }}</div>
+				<el-button v-else type="danger" class="right_btn" @click="del(ele.id)">삭제</el-button>
+			</div>
+			<el-button class="more" type="success" @click="more" :disabled="disabled">더 보기</el-button>
+		</template>
+		<div class="none" v-else>
+			등록하신 쿠폰이 없습니다.
+		</div>
 
-        <el-dialog title="쿠폰 등록하기" :visible="key" width="25%" :before-close="close">
-            <div class="dialog" v-loading="dialog_loading">
-                <h1>쿠폰번호를 입력해주세요.</h1>
-                <el-input
-                    class="inp"
-                    v-model="code"
-                    placeholder="0000000"
-                ></el-input>
-                <div class="dialog_btn_box">
-                    <el-button type="success" @click="submit">등록하기</el-button>
-					<el-button @click="close">취소</el-button>
-                </div>
-            </div>
-        </el-dialog>
+
+
+
+		<el-dialog title="쿠폰 등록하기" :visible="key" width="25%" :before-close="close">
+				<div class="dialog" v-loading="dialog_loading">
+					<h1>쿠폰번호를 입력해주세요.</h1>
+					<el-input
+						class="inp"
+						v-model="code"
+						placeholder="0000000"
+					></el-input>
+					<div class="dialog_btn_box">
+						<el-button type="success" @click="submit">등록하기</el-button>
+						<el-button @click="close">취소</el-button>
+					</div>
+				</div>
+			</el-dialog>
     </div>
 </template>
 

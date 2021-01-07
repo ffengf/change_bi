@@ -269,6 +269,10 @@ export default class extends Vue {
 					width: 10rem;
 					height: 2.2rem;
 				}
+				.none{
+					height: 10rem;
+					line-height: 10rem;
+				}
 			}
 		}
 	}

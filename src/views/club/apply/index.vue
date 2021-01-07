@@ -815,6 +815,9 @@ export default class extends More(api_club.get_apply_list) {
 				align-items: center;
 				.select_what{
 					width: 6rem;
+					/deep/.el-select-dropdown__wrap{
+						margin-bottom: 0!important;
+					}
 					/deep/.el-input__inner{
 						border: 1px solid #324b9b!important;
 						padding-left: 1rem!important;

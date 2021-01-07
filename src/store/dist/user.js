@@ -98,7 +98,7 @@ var User = /** @class */ (function (_super) {
     };
     User.prototype.get_info = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, id, username, phone, real_name, avatar;
+            var _a, id, username, phone, real_name, avatar, address, address_code, address_detail;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -107,26 +107,20 @@ var User = /** @class */ (function (_super) {
                         }
                         return [4 /*yield*/, api_1.api_user.get_user_info()];
                     case 1:
-                        _a = _b.sent(), id = _a.id, username = _a.username, phone = _a.phone, real_name = _a.real_name, avatar = _a.avatar;
-                        this.SET_INFO({ id: id, username: username, phone: phone, real_name: real_name, avatar: avatar });
+                        _a = _b.sent(), id = _a.id, username = _a.username, phone = _a.phone, real_name = _a.real_name, avatar = _a.avatar, address = _a.address, address_code = _a.address_code, address_detail = _a.address_detail;
+                        this.SET_INFO({ id: id, username: username, phone: phone, real_name: real_name, avatar: avatar, address: address, address_code: address_code, address_detail: address_detail });
                         return [2 /*return*/];
                 }
             });
         });
     };
     User.prototype.set_info = function (info) {
-        var id = info.id, username = info.username, phone = info.phone, real_name = info.real_name, avatar = info.avatar;
-        this.SET_INFO({ id: id, username: username, phone: phone, real_name: real_name, avatar: avatar });
+        var id = info.id, username = info.username, phone = info.phone, real_name = info.real_name, avatar = info.avatar, address = info.address, address_code = info.address_code, address_detail = info.address_detail;
+        this.SET_INFO({ id: id, username: username, phone: phone, real_name: real_name, avatar: avatar, address: address, address_code: address_code, address_detail: address_detail });
     };
     User.prototype.SET_INFO = function (_a) {
-        var username = _a.username, id = _a.id, phone = _a.phone, real_name = _a.real_name, avatar = _a.avatar;
-        this.INFO = {
-            id: id,
-            username: username,
-            phone: phone,
-            real_name: real_name,
-            avatar: avatar
-        };
+        var id = _a.id, username = _a.username, phone = _a.phone, real_name = _a.real_name, avatar = _a.avatar, address = _a.address, address_code = _a.address_code, address_detail = _a.address_detail;
+        this.INFO = { id: id, username: username, phone: phone, real_name: real_name, avatar: avatar, address: address, address_code: address_code, address_detail: address_detail };
     };
     Object.defineProperty(User.prototype, "token", {
         get: function () {

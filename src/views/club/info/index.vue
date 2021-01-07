@@ -146,7 +146,7 @@ export default class extends Vue {
 			return this.$message.error('결제 방법 선택')
 		}
 		this._loading = true
-		pay(this.price,this.pay_type)
+		pay(this.price,this.pay_type,{ name:this.info.title })
 			.then((res:any)=>{
 				console.log('success',res)
 				const merchant_uid:string = res.merchant_uid
