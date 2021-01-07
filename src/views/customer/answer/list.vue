@@ -14,7 +14,7 @@
 
 			<el-button type="success" class="btn" @click="more" :disabled="disabled">더 보기</el-button>
 		</template>
-		<div class="none">
+		<div class="none" v-else>
 			질문하신 내역이 없습니다.
 		</div>
     </div>

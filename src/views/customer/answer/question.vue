@@ -1,5 +1,5 @@
 <template>
-    <div class="question">
+    <div class="question" v-loading="_loading">
         <el-input v-model="info.title" placeholder="*제목"></el-input>
 		<div class="line" style="margin-top:0.8rem"></div>
 		<div class="editor">
@@ -48,7 +48,10 @@ export default class extends Vue {
 		if(this.info.question === ''){
 			return this.$message.error('내용을 작성해 주세요.')
 		}
-		await api_customer.post_qa(this.info)
+		this._loading = true
+		await api_customer.post_qa(this.info).finally(()=>{
+			this._loading = false
+		})
 		this.$message.success('문의사항이 제출 되었습니다.')
 		this.clear()
 		this.ret_list()
