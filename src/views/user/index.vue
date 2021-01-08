@@ -82,7 +82,6 @@ export default class extends Vue {
 
 	logout(str = '로그아웃 되었습니다.'){
 		UserModule.logout()
-		console.log(123123)
 		this.$message.success(str)
 		this.$router.push('/')
 	}

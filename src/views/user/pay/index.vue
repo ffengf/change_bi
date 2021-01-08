@@ -1,5 +1,5 @@
 <template>
-    <div class="warpper">
+    <div class="warpper" v-loading="_loading">
 		<template v-if="list.length !== 0">
 			<div class="box" v-for="ele in list" :key="ele.id">
 				<div class="box_left">
