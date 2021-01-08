@@ -36,7 +36,7 @@
 					</el-form-item>
 					<div class="line"></div>
 					<el-form-item prop="file_name">
-						<span slot="label">첨부파일 <span class="color_92">(.pdf, .hwp, docx, doc, pptx, ppt, jpg, jpeg)</span>
+						<span slot="label">첨부파일 <span class="color_92">(.pdf, .hwp, docx, doc, pptx, ppt, jpg, jpeg, zip)</span>
 						</span>
 						<UpFile :name.sync="form.file_name" :url.sync="form.attach" />
 					</el-form-item>

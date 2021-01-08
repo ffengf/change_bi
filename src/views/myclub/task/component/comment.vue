@@ -36,14 +36,16 @@
 				</div>
 				<ul class="comments_list">
 					<li v-for="ele in info.comment_list" :key="ele.id">
-						<img :src="ele.user.avatar" alt="">
+						<img v-if="ele.delete === 0" :src="ele.user.avatar" alt="">
+						<img v-else src="@/assets/img/user_big.png" alt="" />
 						<div class="content">
 							<div class="h2">
 								<span>{{ ele.create_time }}</span>
 								<br class="sm-up">
-								<span class="sm-down">|</span>
-								<span v-if="ele.delete === 0">{{ ele.user.real_name }}</span>
-								<span v-else>ㅇㅇㅇ님</span>
+								<template v-if="ele.delete === 0">
+									<span class="sm-down">|</span>
+									<span>{{ ele.user.real_name }}</span>
+								</template>
 							</div>
 							<div class="h1 show_br" v-if="ele.delete === 0">{{ ele.content }}</div>
 							<div class="h1" v-else>삭제된 게시글입니다.</div>

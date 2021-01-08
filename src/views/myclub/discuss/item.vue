@@ -1,15 +1,17 @@
 <template>
     <li class="item" v-loading="_loading">
         <div class="show">
-            <img :src="info.from_user.avatar" alt="" />
+            <img v-if="info.delete === 0" :src="info.from_user.avatar" alt="" />
+			<img v-else src="@/assets/img/user_big.png" alt="" />
             <div class="content">
                 <div class="h2">
                     <span>{{ info.create_time }}</span>
-                    <span>|</span>
-                    <span v-if="info.delete === 0">{{
-                        info.from_user.real_name
-                    }}</span>
-                    <span v-else>ㅇㅇㅇ님</span>
+                    <template v-if="info.delete === 0">
+						<span>|</span>
+						<span>{{
+							info.from_user.real_name
+						}}</span>
+					</template>
                 </div>
                 <div class="h1 show_br" v-if="info.delete === 0">
                     {{ info.content }}
@@ -28,15 +30,17 @@
         </div>
         <div class="children_box" v-if="info.reply_list.length !== 0">
             <div class="children" v-for="e in info.reply_list" :key="e.id">
-                <img :src="e.from_user.avatar" alt="" />
+                <img v-if="e.delete === 0" :src="e.from_user.avatar" alt="" />
+				<img v-else src="@/assets/img/user_big.png" alt="" />
                 <div class="content">
                     <div class="h2">
                         <span>{{ e.create_time }}</span>
-                        <span>|</span>
-                        <span v-if="e.delete === 0">{{
-                            e.from_user.real_name
-                        }}</span>
-                        <span v-else>ㅇㅇㅇ님</span>
+                        <template v-if="e.delete === 0">
+							<span>|</span>
+							<span>{{
+								e.from_user.real_name
+							}}</span>
+						</template>
                     </div>
                     <div class="h1 show_br" v-if="e.delete === 0">
                         {{ e.content }}

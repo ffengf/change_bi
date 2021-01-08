@@ -90,7 +90,7 @@
                             >첨부파일
                             <span class="color_92"
                                 >(.pdf, .hwp, docx, doc, pptx, ppt, jpg,
-                                jpeg)</span
+                                jpeg, zip)</span
                             >
                         </span>
                         <UpFile

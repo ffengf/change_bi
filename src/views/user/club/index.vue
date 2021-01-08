@@ -32,7 +32,7 @@
 					<!--  -->
 				</div>
 			</div>
-			<el-button class="more" type="success" :disabled="disabled">더 보기</el-button>
+			<el-button class="more" type="success" :disabled="disabled" @click="more">더 보기</el-button>
 		</template>
 		<div v-else class="none">
 			신청하신 모임이 없습니다.
