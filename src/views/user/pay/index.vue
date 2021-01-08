@@ -17,7 +17,7 @@
 			</div>
 			<el-button class="more" type="success" @click="more" :disabled="disabled">더 보기</el-button>
 		</template>
-		<div class="none">
+		<div v-else class="none">
 			결제하신 내역이 없습니다.
 		</div>
     </div>
