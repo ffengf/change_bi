@@ -39,11 +39,13 @@ import { numFormat } from "@/util/string";
 export default class extends More(api_user.get_pay) {
 	numFormat = numFormat
 
-	pay_methods(e:'card'|'trans'|'phone'){
+	pay_methods(e:'card'|'trans'|'phone'|'coupon'|'other'){
 		return {
 			card:'신용카드',
 			trans:'계좌이체',
 			phone:'휴대폰결제',
+			coupon:'쿠폰결제',
+			other:'쿠폰결제'
 		}[e]
 	}
 }
