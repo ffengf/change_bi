@@ -26,6 +26,7 @@
 							placeholder="내용을 작성해 보세요."
 							type="textarea"
 							resize="none"
+							:maxlength="300"
 						></el-input>
 						<div class="btn_box">
 							<span @click.stop="submit">확인</span>
@@ -75,6 +76,7 @@
 						placeholder="내용을 작성해 보세요."
 						type="textarea"
 						resize="none"
+						:maxlength="300"
 					></el-input>
 					<div class="btn_box">
 						<span @click.stop="submit_edit">확인</span>

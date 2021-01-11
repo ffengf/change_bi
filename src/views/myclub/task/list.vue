@@ -33,7 +33,9 @@
 				<div class="line"></div>
 				<el-form ref="form" :model="form" :rules="rules" label-position="top" label-width="80px">
 					<el-form-item label="제목" prop="title">
-						<el-input v-model="form.title"></el-input>
+						<el-input v-model="form.title" :maxlength="30">
+							<div slot="suffix"  class="color_80">{{ form.title.length }}/30</div>
+						</el-input>
 					</el-form-item>
 					<div class="line"></div>
 					<el-form-item prop="file_name">
