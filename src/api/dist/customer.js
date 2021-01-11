@@ -32,16 +32,16 @@ var Customer = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Customer.prototype.get_notice = function (data) {
-        return this.get(__assign({ page_size: 10 }, data), '/notice');
+        return this.get(__assign({ page_size: 10 }, data), '/notice/');
     };
     Customer.prototype.get_faq = function (data) {
-        return this.get(__assign({ page_size: 10 }, data), '/faq');
+        return this.get(__assign({ page_size: 10 }, data), '/faq/');
     };
     Customer.prototype.get_qa = function (data) {
-        return this.get(__assign({ page_size: 10 }, data), '/qa');
+        return this.get(__assign({ page_size: 10 }, data), '/qa/');
     };
     Customer.prototype.get_home = function () {
-        return this.get({ is_home: 1 }, '/notice');
+        return this.get({ is_home: 1 }, '/notice/');
     };
     Customer.prototype.post_qa = function (data) {
         return this.post(data, '/qa/');
