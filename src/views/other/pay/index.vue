@@ -3,8 +3,8 @@
 		<template v-if="pay_type === 'success'">
 			<img src="@/assets/img/success.png" alt="">
 			<h1>결제가 완료되었습니다.</h1>
-			<h2>안내사항입니다.</h2>
-			<h3>기타안내</h3>
+			<h2>모임 신청이 제출되었습니다.</h2>
+			<h3>아래 버튼을 선택하여 신청/결제 내역을 확인해 주세요.</h3>
 			<div class="btn_box">
 				<el-button type="success" @click="go_1">나의모임</el-button>
 				<el-button type="default" @click="go_2">결제내역</el-button>
@@ -13,8 +13,8 @@
 		<template v-if="pay_type === 'fail'">
 			<img src="@/assets/img/fail.png" alt="">
 			<h1>결제가 실패하였습니다.</h1>
-			<h2>안내사항입니다.</h2>
-			<h3>기타안내</h3>
+			<h2> </h2>
+			<h3>결제가 취소되었습니다. 다시 시도해주세요.</h3>
 			<div class="btn_box">
 				<el-button type="success" @click="go_1">다시시도</el-button>
 				<el-button type="default" @click="go_2">결제내역</el-button>

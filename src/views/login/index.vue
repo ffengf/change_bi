@@ -31,7 +31,7 @@ export default class extends Vue {
 	created(){
 		if(UserModule.token !== null && UserModule.token !== ''){
 			this._loading = true
-			this.$message.success('你已登陆，为您跳转至首页')
+			this.$message.success('로그인 되었습니다. 홈페이지로 이동하겠습니다.')
 			setTimeout(() => {
 				this.$router.push('/')
 			}, 1000);

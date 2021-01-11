@@ -70,11 +70,13 @@ export default class extends Vue {
 			this.btn_loadding.submit = false
 		})
 		this.$message.success('로그인 환영합니다.')
-		if(this.$route.query.last === undefined){
-			this.$router.push('/')
-		}else{
-			this.$router.push(this.$route.query.last as string)
-		}
+		setTimeout(()=>{
+			if(this.$route.query.last === undefined){
+				this.$router.push('/')
+			}else{
+				this.$router.push(this.$route.query.last as string)
+			}
+		},1000)
 	}
 
 	created(){

@@ -40,7 +40,7 @@
 					<div class="line"></div>
 					<div class="how">
 						<div>쿠폰 선택</div>
-						<el-select class="select_what" v-model="coupon" placeholder="쿠폰을 선택" :popper-append-to-body="false">
+						<el-select class="select_what select_coupon" v-model="coupon" placeholder="쿠폰을 선택" :popper-append-to-body="false">
 							<el-option value="" label="쿠폰 없음">
 								<span style="float: left">쿠폰 없음</span>
 								<span style="float: right; color: #8492a6; font-size: 13px">0</span>
@@ -188,10 +188,16 @@ export default class extends Vue {
 		await api_club.pay_check(this.info.id,this.choose_coupon?.id).finally(()=>{
 			this._loading = false
 		})
-		const coupon_id = this.choose_coupon?.id
+		const choose_coupon = this.choose_coupon
 		const club_id = this.info.id
-		if(this.price === 0 && coupon_id !== undefined){
-			await api_club.use_coupon_free({ club_id,coupon_id })
+		if(this.price === 0 && choose_coupon !== undefined){
+			if(this.info.price < choose_coupon.coupon.amount){
+				await this.$confirm('쿠폰 할인 금액이 서비스 금액을 초과합니다. 쿠폰 사용 시 초과 금액은 환불이 되지 않습니다. 정말 진행하시겠습니까?',{
+					confirmButtonText: '결제하기',
+					cancelButtonText: '취소하기',
+				})
+			}
+			await api_club.use_coupon_free({ club_id,coupon_id:choose_coupon.id })
 			await this.$confirm('신청이 완료되었습니다.',{
 				confirmButtonText: '나의 모임',
 				cancelButtonText: '이전으로',
@@ -452,6 +458,15 @@ export default class extends Vue {
 .select_what{
 	/deep/.el-select-dropdown__wrap{
 		margin-bottom: 0!important;
+		overflow: hidden!important;
+	}
+}
+.select_coupon{
+	/deep/.el-select-dropdown__wrap{
+		margin-right: 0!important;
+		.el-select-dropdown__list{
+			width: 10rem;
+		}
 	}
 }
 

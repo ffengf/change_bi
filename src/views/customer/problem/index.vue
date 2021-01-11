@@ -28,7 +28,7 @@ export default class extends Vue {
 	@Watch('page')
 	async get_list(){
 		if (this.list.length === this.count && this.list.length !== 0) {
-            return this.$message.error("没有更多了");
+            return this.$message.error("추가 내용이 없습니다.");
 		}
 		this._loading = true
         const { results, count } = await api_customer.get_faq({

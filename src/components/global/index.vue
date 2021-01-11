@@ -36,7 +36,7 @@ export default class extends Vue {
 }
 </script>
 
-<style lang='less'>
+<style lang='less' scoped>
 #page {
 	width: 100vw;
 	height: 100vh;

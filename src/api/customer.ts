@@ -1,4 +1,5 @@
 
+import { UserModule } from '@/store/user'
 import { req_list,res_list } from '@/types/global'
 import { Http } from "./http/base"
 
