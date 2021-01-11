@@ -10,7 +10,8 @@
             </h2>
             <h1>{{ info.title }}</h1>
         </div>
-        <div class="inner" v-html="info.content"></div>
+        <!-- <div class="inner" v-html="info.content"></div> -->
+		<Inner :val="info.content" />
         <div class="line"></div>
         <div class="btn_box">
             <el-button
@@ -36,12 +37,14 @@
 
 <script lang="ts">
 import { Vue, Component, Watch } from "vue-property-decorator";
+import Inner from "@/components/inner/index.vue"
 import Bread from "@/components/bread/index.vue";
 import { Nocopy } from "@/mixin/nocopy"
 import { api_serial, chapter_info, date_info } from "@/api";
 @Component({
     components: {
-        Bread,
+		Bread,
+		Inner,
     },
 })
 export default class extends Nocopy {

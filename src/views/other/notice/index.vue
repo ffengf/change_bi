@@ -8,7 +8,8 @@
             </div>
             <h1>{{ info.title }}</h1>
         </div>
-        <h2 class="inner" v-html="info.content"></h2>
+        <!-- <h2 class="inner" v-html="info.content"></h2> -->
+		<Inner :val="info.content" />
         <div class="btn_box">
             <el-button
                 class="btns aaa"
@@ -34,8 +35,12 @@
 <script lang="ts">
 import { api_customer, notice } from "@/api";
 import { Vue, Component } from "vue-property-decorator";
-
-@Component
+import Inner from "@/components/inner/index.vue"
+@Component({
+	components:{
+		Inner,
+	}
+})
 export default class extends Vue {
     list: (notice & { cover: string })[] = [];
 

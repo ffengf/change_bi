@@ -8,7 +8,8 @@
 			</h2>
 			<h1>{{ info.title }}</h1>
 		</div>
-		<div class="inner" v-html="info.content"></div>
+		<!-- <div class="inner" v-html="info.content"></div> -->
+		<Inner :val="info.content" />
 		<div class="btn_box">
             <el-button
                 class="btns aaa"
@@ -35,8 +36,12 @@
 import { api_myclub,club_notice } from "@/api";
 import { Encryption } from "@/util/encryption";
 import { Vue, Component, Watch } from "vue-property-decorator";
-
-@Component
+import Inner from "@/components/inner/index.vue"
+@Component({
+	components:{
+		Inner
+	}
+})
 export default class extends Vue {
 
 	info:club_notice = {

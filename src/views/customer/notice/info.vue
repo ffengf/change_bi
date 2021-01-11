@@ -8,7 +8,8 @@
 			</div>
 			<h1>{{ info.title }}</h1>
 		</div>
-		<h2 class="inner" v-html="info.content"></h2>
+		<!-- <h2 class="inner" v-html="info.content"></h2> -->
+		<Inner :val="info.content" />
 		<div class="btn_box">
 			<el-button class="btns aaa" type="default" :disabled="what === 0" @click="change_what(what - 1)">이전 글</el-button>
 			<el-button class="btns" type="success" @click="show_list">목록으로</el-button>
@@ -20,7 +21,12 @@
 <script lang="ts">
 import { Vue, Component, Prop, Model, Emit } from "vue-property-decorator";
 import { notice } from "@/api"
-@Component
+import Inner from "@/components/inner/index.vue"
+@Component({
+	components:{
+		Inner,
+	}
+})
 export default class extends Vue {
 	@Model("update:keys", { type: Boolean, required: true })
 	readonly keys!: boolean;

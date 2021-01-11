@@ -10,10 +10,12 @@
 			<h1>Q.{{ info.title }}</h1>
 		</div>
 		<div class="warpper">
-			<h2 class="inner" v-html="info.question"></h2>
+			<!-- <h2 class="inner" v-html="info.question"></h2> -->
+			<Inner :val="info.question" />
 			<template v-if="info.status === 1">
 				<div class="answer">답변드립니다.</div>
-				<h2 class="inner" v-html="info.answer"></h2>
+				<!-- <h2 class="inner" v-html="info.answer"></h2> -->
+				<Inner :val="info.question" />
 			</template>
 		</div>
 		<div class="btn_box">
@@ -27,9 +29,14 @@
 <script lang="ts">
 import { Vue, Component, Model, Emit, Prop } from "vue-property-decorator";
 import { api_customer, qa } from "@/api"
+import Inner from "@/components/inner/index.vue"
 type type = "list" | "info" | "question";
 
-@Component
+@Component({
+	components:{
+		Inner,
+	}
+})
 export default class extends Vue {
 	@Model('update:type',{ required:true,type:String })
 	readonly type !:type

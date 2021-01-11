@@ -6,14 +6,20 @@
             <i id="icon" class="icon el-icon-arrow-up" @click="show" v-if="key"></i>
             <i id="icon" class="icon el-icon-arrow-down" @click="show" v-else></i>
         </div>
-        <h2 class="content inner" v-if="key" v-html="info.answer"></h2>
+        <!-- <h2 class="content inner" v-if="key" v-html="info.answer"></h2> -->
+		<Inner class="content" v-if="key" :val="info.answer" />
     </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
 import { faq } from "@/api";
-@Component
+import Inner from "@/components/inner/index.vue"
+@Component({
+    components: {
+		Inner,
+    },
+})
 export default class extends Vue {
     key = false;
 

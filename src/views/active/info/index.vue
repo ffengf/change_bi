@@ -8,7 +8,8 @@
         </h2>
         <h1>{{ info.title }}</h1>
         <div class="line"></div>
-        <div class="inner" v-html="info.content"></div>
+        <!-- <div class="inner" v-html="info.content"></div> -->
+		<Inner :val="info.content" />
 		<el-button type="primary" class="join" @click="join" :disabled="info.is_apply">신청하기</el-button>
 		<div class="line"></div>
         <div class="btn_box">
@@ -23,9 +24,11 @@
 import { active, api_active } from "@/api";
 import { Vue, Component, Watch } from "vue-property-decorator";
 import BoxHeader from "../header.vue";
+import Inner from "@/components/inner/index.vue"
 @Component({
     components: {
-        BoxHeader,
+		BoxHeader,
+		Inner,
     },
 })
 export default class extends Vue {

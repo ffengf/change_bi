@@ -6,7 +6,8 @@
 				<el-menu-item index="use">서비스이용약관</el-menu-item>
 				<el-menu-item index="privacy">개인정보취급방침</el-menu-item>
 			</el-menu>
-			<div class="mt20 inner" v-html="inner"></div>
+			<!-- <div class="mt20 inner" v-html="inner"></div> -->
+			<Inner class="mt20" :val="inner" />
 		</div>
     </div>
 </template>
@@ -14,10 +15,14 @@
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import { api_service } from "@/api"
+import Inner from "@/components/inner/index.vue"
+type route_type = "content" | "use" | "privacy";
 
-type route_type = "content" | "use" | "privacy"
-
-@Component
+@Component({
+	components:{
+		Inner,
+	}
+})
 export default class extends Vue {
 
 	info = {

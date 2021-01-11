@@ -22,7 +22,8 @@
                 >수정하기</el-button
             >
         </div>
-        <div class="inner" v-html="info.content"></div>
+        <!-- <div class="inner" v-html="info.content"></div> -->
+		<Inner :val="info.content" />
         <h1 class="title">제출 완료 {{ total }}</h1>
         <div class="line"></div>
         <ul class="attend">
@@ -124,11 +125,13 @@ import { Mixin_list } from "@/mixin/list";
 import { ElForm } from "element-ui/types/form";
 import Comments from "./component/comment.vue";
 import { Encryption } from "@/util/encryption";
+import Inner from "@/components/inner/index.vue"
 @Component({
     components: {
         Editor,
         UpFile,
-        Comments,
+		Comments,
+		Inner,
     },
 })
 export default class extends Mixin_list<task_attend_list>(

@@ -4,11 +4,13 @@
 			<img :src="info.cover">
 			<div class="title">상세설명</div>
 			<div class="line"></div>
-			<div class="box inner" v-html="info.content"></div>
+			<!-- <div class="box inner" v-html="info.content"></div> -->
+			<Inner :val="info.content" />
 			<template v-if="info.price !== 0">
 				<div class="title mt">환불규정</div>
 				<div class="line"></div>
-				<div class="box inner" v-html="info.refund_desc"></div>
+				<!-- <div class="box inner" v-html="info.refund_desc"></div> -->
+				<Inner :val="info.refund_desc" />
 			</template>
 		</div>
 		<div class="right">
@@ -69,7 +71,12 @@ import { api_club, api_user, club_info, user_coupon } from "@/api";
 import { Vue, Component, Watch, Emit } from "vue-property-decorator";
 import { numFormat } from "@/util/string"
 import { pay, pay_type } from "@/util/pay";
-@Component
+import Inner from "@/components/inner/index.vue"
+@Component({
+	components:{
+		Inner,
+	}
+})
 export default class extends Vue {
 
 	numFormat = numFormat

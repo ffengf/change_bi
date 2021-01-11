@@ -3,7 +3,8 @@
         <Bread :new_list="bread" />
         <div class="box_line"></div>
 		<div class="warpper">
-			<div class="left inner" v-html="info.detail"></div>
+			<!-- <div class="left inner" v-html="info.detail"></div> -->
+			<Inner class="left" :val="info.detail" />
 			<div class="right">
 				<div class="name_box">
 					<h1>{{ info.title }}</h1>
@@ -51,11 +52,13 @@
 <script lang="ts">
 import { Vue, Component, Watch } from "vue-property-decorator";
 import Bread from "@/components/bread/index.vue";
+import Inner from "@/components/inner/index.vue"
 import { api_serial, book_info,chapter_list } from "@/api";
 import { takeLast } from "ramda";
 @Component({
     components: {
-        Bread,
+		Bread,
+		Inner,
     },
 })
 export default class extends Vue {

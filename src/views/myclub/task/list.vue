@@ -9,7 +9,8 @@
 						<span>운영자 작성</span>
 					</h2>
 					<h1>{{ ele.title }}</h1>
-					<p class="inner_detail" v-html="ele.content"></p>
+					<!-- <p class="inner_detail" v-html="ele.content"></p> -->
+					<Inner class="inner_detail" :val="ele.content" />
 					<el-button class="btn" type="success" @click.stop="sign(null,ele.id)" v-if="ele.attendance_id === null">제출하기</el-button>
 					<el-button class="btn" type="primary" @click.stop="sign(ele.attendance_id,ele.id)" v-else>수정하기</el-button>
 				</li>
@@ -61,8 +62,13 @@ import { Vue, Component } from "vue-property-decorator";
 import Editor from "@/components/editor/index.vue"
 import UpFile from "@/components/upfile/index.vue"
 import { Encryption } from "@/util/encryption";
+import Inner from "@/components/inner/index.vue"
 @Component({
-	components:{ Editor,UpFile }
+	components:{
+		Editor,
+		UpFile,
+		Inner,
+	}
 })
 export default class extends More(api_myclub.task_list) {
 

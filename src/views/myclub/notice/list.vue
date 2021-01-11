@@ -9,7 +9,8 @@
 						<span>운영자 작성</span>
 					</h2>
 					<h1>{{ ele.title }}</h1>
-					<p class="inner_detail" v-html="ele.content"></p>
+					<!-- <p class="inner_detail" v-html="ele.content"></p> -->
+					<Inner class="inner_detail" :val="ele.content" />
 				</li>
 			</ul>
 			<el-button class="more" type="success" @click="more" :disabled="disabled">더 보기</el-button>
@@ -25,7 +26,12 @@ import { api_myclub } from "@/api";
 import { More } from "@/mixin/more";
 import { Encryption } from "@/util/encryption";
 import { Vue, Component } from "vue-property-decorator";
-@Component
+import Inner from "@/components/inner/index.vue"
+@Component({
+    components: {
+		Inner,
+    },
+})
 export default class extends More(api_myclub.notice_list) {
 
 	filter = {

@@ -214,7 +214,8 @@
 			:visible.sync="key_1"
 			width="50%"
 		>
-			<span v-html="content.use"></span>
+			<!-- <span v-html="content.use"></span> -->
+			<Inner :val="content.use" />
 			<span slot="footer" class="dialog-footer">
 				<el-button type="primary" @click="key_1 = false">확인</el-button>
 			</span>
@@ -225,7 +226,8 @@
 			:visible.sync="key_2"
 			width="50%"
 		>
-			<span v-html="content.privacy"></span>
+			<!-- <span v-html="content.privacy"></span> -->
+			<Inner :val="content.privacy" />
 			<span slot="footer" class="dialog-footer">
 				<el-button type="primary" @click="key_2 = false">확인</el-button>
 			</span>
@@ -240,9 +242,11 @@ import { Vue, Component, Watch } from "vue-property-decorator";
 import { mapObjIndexed } from "ramda"
 import PhoneSend from "@/views/login/components/phoneSend.vue"
 import { UserModule } from "@/store/user";
+import Inner from "@/components/inner/index.vue"
 @Component({
 	components:{
-		PhoneSend
+		PhoneSend,
+		Inner,
 	}
 })
 export default class extends Vue {
