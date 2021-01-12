@@ -33,6 +33,7 @@
 							<span>|</span>
 							<span @click.stop="input = ''">취소</span>
 						</div>
+						<div class="len_text color_80">{{ input.length }}/300</div>
 					</div>
 				</div>
 				<ul class="comments_list">
@@ -83,6 +84,7 @@
 						<span>|</span>
 						<span @click.stop="old_info.content = ''">취소</span>
 					</div>
+					<div class="len_text color_80">{{ old_info.content.length }}/300</div>
 				</div>
 			</div>
 		</el-dialog>
@@ -208,6 +210,12 @@ export default class extends Vue {
 </script>
 
 <style lang="less" scoped>
+.len_text{
+	position: absolute;
+	right: 0.5rem;
+	top: 0.3rem;
+	font-size: 14px;
+}
 #comments {
     .user_top {
         width: 100%;

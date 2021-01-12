@@ -206,7 +206,7 @@
 			</el-card>
 		</ul>
 		<div class="none" v-loading="_loading" v-else>
-			해당되는 모임이 없습니다.
+			해당하는 모임이 없습니다.
 		</div>
 		<el-button type="success" class="more" @click="more" :disabled="disabled">더 보기</el-button>
     </div>

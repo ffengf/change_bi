@@ -65,6 +65,7 @@ import Editor from "@/components/editor/index.vue"
 import UpFile from "@/components/upfile/index.vue"
 import { Encryption } from "@/util/encryption";
 import Inner from "@/components/inner/index.vue"
+import { editor_length } from "@/util/string";
 @Component({
 	components:{
 		Editor,
@@ -126,6 +127,9 @@ export default class extends More(api_myclub.task_list) {
 
 	async submit(){
 		await (this.$refs['form'] as ElForm).validate()
+		if(editor_length(this.form.content) > 1000){
+			return this.$message.error('글자 수 제한이 초과되었습니다. 1000자 이내로 작성해 주세요.')
+		}
 		this.submit_loading = true
 		if(this.form.id === null){
 			const { id } = await api_myclub.add_attend({ ...this.form }).finally(()=>{

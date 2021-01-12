@@ -8,3 +8,8 @@ export function numFormat(num:number | string) {
 		});
 	})
 }
+
+export function editor_length(html_str:string) {
+	const reg = /<.+?>/g
+	return html_str.replace(reg,'').length
+}

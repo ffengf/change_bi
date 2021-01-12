@@ -17,6 +17,7 @@
                     <span>|</span>
                     <span @click.stop="submit_info.content = ''">취소</span>
                 </div>
+				<div class="len_text color_80">{{ submit_info.content.length }}/300</div>
             </div>
         </div>
 		<ul v-if="list.length !== 0">
@@ -103,6 +104,12 @@ export default class extends More(api_myclub.get_discuss_list) {
 
 
 <style lang='less' scoped>
+.len_text{
+	position: absolute;
+	right: 0.5rem;
+	top: 0.3rem;
+	font-size: 14px;
+}
 #discuss {
 	display: flex;
 	flex-direction: column;

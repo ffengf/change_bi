@@ -1,6 +1,8 @@
 <template>
     <div class="question" v-loading="_loading">
-        <el-input v-model="info.title" placeholder="*제목"></el-input>
+        <el-input v-model="info.title" placeholder="*제목" :maxlength="30">
+			<div slot="suffix"  class="color_80 suffix">{{ info.title.length }}/30</div>
+		</el-input>
 		<div class="line" style="margin-top:0.8rem"></div>
 		<div class="editor">
 			<Editor v-model="info.question" :id="'summernote' + new Date().getTime()" />
@@ -17,6 +19,7 @@
 import { Vue, Component, Model, Emit } from "vue-property-decorator";
 import Editor from "@/components/editor/index.vue"
 import { api_customer, post_qa } from "@/api"
+import { editor_length } from "@/util/string";
 type type = "list" | "info" | "question";
 
 @Component({
@@ -48,6 +51,9 @@ export default class extends Vue {
 		if(this.info.question === ''){
 			return this.$message.error('내용을 작성해 주세요.')
 		}
+		if(editor_length(this.info.question) > 1000){
+			return this.$message.error('글자 수 제한이 초과되었습니다. 1000자 이내로 작성해 주세요.')
+		}
 		this._loading = true
 		await api_customer.post_qa(this.info).finally(()=>{
 			this._loading = false
@@ -68,6 +74,9 @@ export default class extends Vue {
 		padding: 5px !important;
 		padding-left: 10px!important;
 		font-family: NotoSansKR-Regular !important;;
+	}
+	.suffix{
+		margin-top: 0.5rem;
 	}
 	.line{
 		height: 1px;

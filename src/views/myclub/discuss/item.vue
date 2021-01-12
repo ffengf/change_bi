@@ -78,6 +78,7 @@
                         <span>|</span>
                         <span @click.stop="dialog_info.content = ''">취소</span>
                     </div>
+					<div class="len_text color_80">{{ dialog_info.content.length }}/300</div>
                 </div>
             </div>
         </el-dialog>
@@ -190,6 +191,12 @@ export default class extends Vue {
 
 
 <style lang='less' scoped>
+.len_text{
+	position: absolute;
+	right: 0.5rem;
+	top: 0.3rem;
+	font-size: 14px;
+}
 .item {
     width: 100%;
     padding: 0.7rem 0;

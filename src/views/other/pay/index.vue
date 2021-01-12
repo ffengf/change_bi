@@ -77,6 +77,7 @@ export default class extends Vue {
 	}
 	.btn_box{
 		margin-top: 4rem;
+		display: flex;
 		>*{
 			margin: 0 0.2rem;
 			width: 8.6rem;
