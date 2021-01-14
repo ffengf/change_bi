@@ -5,7 +5,12 @@
 			<li class="item" v-for="(ele,index) in list" :key="index" @click="move(ele.id)">
 				<img :src="ele.cover">
 				<div class="top">
-					<h2>{{ active_type === '1' ? '서평단 신청': '강연 초대' }}</h2>
+					<h2>
+						<span class="green" v-if="ele.status === 0">모집 중</span>
+						<span class="orange" v-if="ele.status === 5">모집마감</span>
+						<span style="margin:0 0.3rem">|</span>
+						<span>{{ ele.start_time }} ~ {{ ele.end_time }}</span>
+					</h2>
 					<h1>{{ ele.title }}</h1>
 				</div>
 				<div class="bottom">
@@ -108,7 +113,7 @@ export default class extends More(api_active.get_list,false) {
 			}
 			.top{
 				h2{
-					color: #3fa535;
+					// color: #3fa535;
 					font-family: NotoSansKR;
 					font-size: 12px;
 					font-weight: 500;
@@ -170,6 +175,15 @@ export default class extends More(api_active.get_list,false) {
 		align-self: center;
 	}
 
+}
+.green{
+	color: #3fa535;
+}
+.blue{
+	color: #324b9b;
+}
+.orange{
+	color: #df5400;
 }
 @media only screen and (max-width: 1024px){
 	.item{

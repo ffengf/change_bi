@@ -1,42 +1,72 @@
 <template>
-    <div class="warpper" v-loading="_loading">
-		<h1 class="top">총 {{ count }}개 모임이 검색되었습니다.</h1>
-		<div class="line"></div>
-		<ul class="box_list" v-if="list.length !==0">
-			<el-card shadow="never" class="item" v-for="(ele) in list" :key="ele.id" @click.native="go(ele)">
-				<img :src="ele.cover" alt="">
-				<h1>{{ ele.title }}</h1>
-				<h2>
-					<span class="green" v-if="ele.status === 0">모집 중</span>
-					<span class="blue" v-if="ele.status === 1">진행 중</span>
-					<span class="orange" v-if="ele.status === 3">마감 임박</span>
-					<span class="blue" v-if="ele.status === 4">모집대기</span>
-					<span class="orange" v-if="ele.status === 5">모집마감</span>
-					<span>|</span>
-					<span>{{ ele.start_time }} ~ {{ ele.end_time }}</span>
-				</h2>
-				<h3>{{ ele.subtitle }}</h3>
-			</el-card>
-		</ul>
-		<div class="nones" v-else>
-			<img src="@/assets/img/search.png" alt="">
-			<h1>검색된 모임이 없습니다.</h1>
-			<h2>모임명 또는 키워드를 확인하여 검색해 주세요.</h2>
+    <div style="width:100%;height:100%" v-loading="_loading">
+		<div class="warpper" style="padding-bottom:0">
+			<h1 class="top">총 {{ club_list.length }}개 모임이 검색되었습니다.</h1>
+			<div class="line"></div>
+			<ul class="box_list" v-if="club_list.length !==0">
+				<el-card shadow="never" class="item" v-for="(ele) in club_list" :key="ele.id" @click.native="go_club(ele)">
+					<img :src="ele.cover" alt="">
+					<h1>{{ ele.title }}</h1>
+					<h2>
+						<span class="green" v-if="ele.status === 0">모집 중</span>
+						<span class="blue" v-if="ele.status === 1">진행 중</span>
+						<span class="orange" v-if="ele.status === 3">마감 임박</span>
+						<span class="blue" v-if="ele.status === 4">모집대기</span>
+						<span class="orange" v-if="ele.status === 5">모집마감</span>
+						<span>|</span>
+						<span>{{ ele.start_time }} ~ {{ ele.end_time }}</span>
+					</h2>
+					<h3>{{ ele.subtitle }}</h3>
+				</el-card>
+			</ul>
+			<div class="nones" v-else>
+				<img src="@/assets/img/search.png" alt="">
+				<h1>검색된 모임이 없습니다.</h1>
+				<h2>모임명 또는 키워드를 확인하여 검색해 주세요.</h2>
+			</div>
 		</div>
-		<el-button type="success" class="more" @click="more" :disabled="disabled" v-if="list.length !==0">더 보기</el-button>
+		<div class="warpper" style="padding-top:2rem">
+			<h1 class="top">총 {{ book_list.length }}개 작품이 검색되었습니다.</h1>
+			<div class="line"></div>
+			<ul class="box_list" v-if="book_list.length !==0">
+				<el-card class="card" shadow="never" @click.native="go_info(ele.id,'search')" v-for="ele in book_list" :key="ele.id">
+                    <img
+                        :src="ele.cover"
+                    />
+                    <h1>{{ ele.title }}</h1>
+                    <h2>
+                        <span class="owner">{{ ele.author_name }} 작가</span>
+                        <el-divider
+                            direction="vertical"
+                            class="lines_000"
+                        ></el-divider>
+						<span v-if="ele.status === 0" class="green">연재중</span>
+                        <span v-if="ele.status === 1" class="blue">완결</span>
+                    </h2>
+                </el-card>
+			</ul>
+			<div class="nones" v-else>
+				<img src="@/assets/img/search.png" alt="">
+				<h1>검색된 작품이 없습니다.</h1>
+				<h2>작품명 또는 작가명을 확인하여 검색해 주세요.</h2>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script lang="ts">
-import { api_club, club_list } from "@/api";
+import { api_other, book_data, club_list } from "@/api";
 import { More } from "@/mixin/more";
 import { Vue, Component, Watch } from "vue-property-decorator";
 @Component
-export default class extends More(api_club.get_list,false) {
+export default class extends Vue{
 
 	filter = {
 		search:this.value
 	}
+
+	club_list:club_list[] = []
+	book_list:book_data[] = []
 
 	@Watch('value',{ immediate:true })
 	watch_value(){
@@ -44,9 +74,27 @@ export default class extends More(api_club.get_list,false) {
 		this.clear_list()
 	}
 
-	go(ele:club_list){
+	clear_list(){
+		this.club_list = []
+		this.book_list = []
+		this.get_list()
+	}
+
+	async get_list(){
+		this._loading = true
+		const { club_list,book_list } = await api_other.get_active(this.value).finally(()=>{
+			this._loading = false
+		})
+		this.club_list = club_list
+		this.book_list = book_list
+	}
+
+	go_club(ele:club_list){
 		const type = ele.type === 0 ? 'creation' : 'apply'
 		this.$router.push(`/club/${type}/info/${ele.id}`)
+	}
+	go_info(id:number,bread_date:string){
+		this.$router.push(`/serial/book_info/${id}?bread_date=${bread_date}`)
 	}
 
     get value() {
@@ -72,12 +120,12 @@ export default class extends More(api_club.get_list,false) {
 	.box_list{
 		display: flex;
 		flex-wrap: wrap;
-		.item{
+		.item,.card{
 			width: 33%;
-			overflow: hidden;
-			cursor: pointer;
 			margin-top: 3.5rem;
 			box-sizing: border-box;
+			cursor: pointer;
+			overflow: hidden;
 			/deep/.el-card__body{
 				padding: 0.5rem!important;
 				box-sizing: border-box !important;
@@ -86,6 +134,9 @@ export default class extends More(api_club.get_list,false) {
 				width: 15rem;
 				height: 11rem;
 			}
+		}
+		.item{
+
 			h1{
 				margin-top: 1.25rem;
 				font-family: NotoSansKR;
@@ -119,6 +170,45 @@ export default class extends More(api_club.get_list,false) {
 				letter-spacing: -0.33px;
 				text-align: left;
 				color: #858585;
+			}
+		}
+		.card {
+			h1 {
+				margin-top: 1.25rem;
+				// font-family: NotoSansKR;
+				font-size: 19px;
+				font-weight: 500;
+				font-stretch: normal;
+				font-style: normal;
+				letter-spacing: -0.95px;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				width: 16rem;
+			}
+			h2 {
+				margin: 0.65rem 0 0.76rem 0;
+				font-family: NotoSansKR-Medium;
+				font-size: 12px;
+				font-weight: normal;
+				font-stretch: normal;
+				font-style: normal;
+				letter-spacing: -0.3px;
+			}
+			h3 {
+				font-family: NotoSansKR-Regular;
+				font-size: 13px;
+				font-weight: normal;
+				font-stretch: normal;
+				font-style: normal;
+				letter-spacing: -0.33px;
+				color: #858585;
+				p {
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					width: 16rem;
+				}
 			}
 		}
 	}
@@ -164,7 +254,7 @@ export default class extends More(api_club.get_list,false) {
 		padding-top: 1rem;
 	}
 	.box_list{
-		.item{
+		.item,.card{
 			width: 100%!important;
 			img{
 				width: 100%!important;

@@ -226,7 +226,7 @@
 				<div class="line sm-down"></div>
 				<div class="btn_box sm-down">
 					<el-button :type="filter.status === '' ? 'primary' : 'default'" class="btn" @click="filter.status = ''">전체</el-button>
-					<el-button :type="filter.status === 4 ? 'primary' : 'default'" class="btn" @click="filter.status = 4">모집대기</el-button>
+					<!-- <el-button :type="filter.status === 4 ? 'primary' : 'default'" class="btn" @click="filter.status = 4">모집대기</el-button> -->
 					<el-button :type="filter.status === 0 ? 'primary' : 'default'" class="btn" @click="filter.status = 0">모집 중</el-button>
 					<el-button :type="filter.status === 5 ? 'primary' : 'default'" class="btn" @click="filter.status = 5">모집마감</el-button>
 					<el-button :type="filter.status === 1 ? 'primary' : 'default'" class="btn" @click="filter.status = 1">진행 중</el-button>
@@ -248,7 +248,7 @@
 					<span class="green" v-if="ele.status === 0">모집 중</span>
 					<span class="blue" v-if="ele.status === 1">진행 중</span>
 					<span class="orange" v-if="ele.status === 3">마감 임박</span>
-					<span class="blue" v-if="ele.status === 4">모집대기</span>
+					<!-- <span class="blue" v-if="ele.status === 4">모집대기</span> -->
 					<span class="orange" v-if="ele.status === 5">모집마감</span>
 					<span>|</span>
 					<span>{{ ele.start_time }} ~ {{ ele.end_time }}</span>

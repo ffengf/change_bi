@@ -2,9 +2,11 @@
     <div id="active_info" v-loading="_loading">
         <BoxHeader :new_list="bread" />
         <h2>
-            <span>{{ active_type === "1" ? "서평단 신청" : "강연 초대" }}</span>
+			<span class="green" v-if="info.status === 0">모집 중</span>
+			<span class="orange" v-if="info.status === 5">모집마감</span>
+            <!-- <span>{{ active_type === "1" ? "서평단 신청" : "강연 초대" }}</span> -->
             <span>|</span>
-            <span>{{ info.start_time }}</span>
+            <span>{{ info.start_time }} ~ {{ info.end_time }}</span>
         </h2>
         <h1>{{ info.title }}</h1>
         <div class="line"></div>
@@ -119,6 +121,15 @@ export default class extends Vue {
 
 
 <style lang='less' scoped>
+.green{
+	color: #3fa535;
+}
+.blue{
+	color: #324b9b;
+}
+.orange{
+	color: #df5400;
+}
 #active_info{
 	width: 100%;
 	display: flex;
