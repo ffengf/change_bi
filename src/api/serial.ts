@@ -40,6 +40,7 @@ export interface book_info extends book_data {
 	detail:string
 	author_desc:string
 	author_img:string
+	link:string|null
 }
 
 export interface chapter_list {

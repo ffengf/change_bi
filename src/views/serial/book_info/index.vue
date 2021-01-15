@@ -42,21 +42,24 @@
 						</li>
 					</ul>
 					<el-button class="btn" type="success" @click="more" :disabled="disabled">더 보기</el-button>
+					<el-button class="btn" type="primary" @click="winopen" v-if="info.link !== null">서점에서 확인하기</el-button>
+				</div>
+				<div class="zan">
+					123
 				</div>
 			</div>
 		</div>
 		<a class="look sm-up" href="#chapters_box">연재읽기</a>
 		<ShareNetwork
-    network="Facebook"
-    url="http://switch.changbi.com/serial/book_info/9?bread_date=스위치%20ON"
-    title="this is title"
-    description="this is description"
-    quote="this is quote"
-    hashtags="hello,wolrd"
-	@open="open"
-  >
-    Share on Facebook
-</ShareNetwork>
+			network="Facebook"
+			url="http://switch.changbi.com/serial/book_info/9?bread_date=스위치%20ON"
+			title="this is title"
+			description="this is description"
+			quote="this is quote"
+			hashtags="hello,wolrd"
+		>
+			Share on Facebook
+		</ShareNetwork>
     </div>
 </template>
 
@@ -88,7 +91,8 @@ export default class extends Vue {
 		chapters: [],
 		book_desc:"",
 		detail:"",
-		author_desc:""
+		author_desc:"",
+		link:null
     };
 
     bread = [
@@ -146,8 +150,8 @@ export default class extends Vue {
 		return this.count <= this.list.length
 	}
 
-	open(){
-		console.log('123')
+	winopen(){
+		window.open(this.info.link as string)
 	}
 
     created() {
@@ -298,6 +302,10 @@ export default class extends Vue {
 				}
 				.btn{
 					width: 100%;
+					&:nth-of-type(2){
+						margin-left: 0;
+						margin-top: 1rem;
+					}
 				}
 			}
 		}
