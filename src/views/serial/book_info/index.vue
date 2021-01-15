@@ -45,21 +45,29 @@
 					<el-button class="btn" type="primary" @click="winopen" v-if="info.link !== null">서점에서 확인하기</el-button>
 				</div>
 				<div class="zan">
-					123
+					<div class="zan_left">
+						<img v-if="info.is_like === 0" @click="is_like(1)" src="@/assets/img/un_zan.png" alt="" >
+						<img v-else src="@/assets/img/is_zan.png" @click="is_like(0)" alt="">
+						<span>{{ info.like_num }} 명이 좋아합니다.</span>
+					</div>
+					<div class="zan_right">
+						<ShareNetwork
+							network="Facebook"
+							url="http://switch.changbi.com/serial/book_info/9?bread_date=스위치%20ON"
+						>
+							<img src="@/assets/img/fa.png" alt="">
+						</ShareNetwork>
+						<ShareNetwork
+							network="Twitter"
+							url="http://switch.changbi.com/serial/book_info/9?bread_date=스위치%20ON"
+						>
+							<img src="@/assets/img/tw.png" alt="">
+						</ShareNetwork>
+					</div>
 				</div>
 			</div>
 		</div>
 		<a class="look sm-up" href="#chapters_box">연재읽기</a>
-		<ShareNetwork
-			network="Facebook"
-			url="http://switch.changbi.com/serial/book_info/9?bread_date=스위치%20ON"
-			title="this is title"
-			description="this is description"
-			quote="this is quote"
-			hashtags="hello,wolrd"
-		>
-			Share on Facebook
-		</ShareNetwork>
     </div>
 </template>
 
@@ -92,7 +100,9 @@ export default class extends Vue {
 		book_desc:"",
 		detail:"",
 		author_desc:"",
-		link:null
+		link:null,
+		like_num:0,
+		is_like:0,
     };
 
     bread = [
@@ -152,6 +162,18 @@ export default class extends Vue {
 
 	winopen(){
 		window.open(this.info.link as string)
+	}
+
+	async is_like(action:0|1){
+		this._loading = true
+		await api_serial.post_like(this.info.id,action).finally(()=>{
+			this._loading = false
+		})
+		this.info = {
+			...this.info,
+			like_num:action === 0 ? this.info.like_num - 1 : this.info.like_num + 1,
+			is_like:action
+		}
 	}
 
     created() {
@@ -305,6 +327,29 @@ export default class extends Vue {
 					&:nth-of-type(2){
 						margin-left: 0;
 						margin-top: 1rem;
+					}
+				}
+			}
+			.zan{
+				display: flex;
+				justify-content: space-between;
+				margin-top: 0.5rem;
+				img{
+					width: 1.7rem;
+					height: 1.7rem;
+					cursor: pointer;
+				}
+				.zan_left{
+					display: flex;
+					align-items: center;
+					span{
+						font-size: 14px;
+						margin-left: 0.5rem;
+					}
+				}
+				.zan_right{
+					> * {
+						margin: 0 0.2rem;
 					}
 				}
 			}

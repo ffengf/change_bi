@@ -139,6 +139,9 @@ var Serial = /** @class */ (function (_super) {
             });
         });
     };
+    Serial.prototype.post_like = function (id, action) {
+        return this.post({ action: action }, "/book/" + id + "/like/");
+    };
     return Serial;
 }(base_1.Http));
 exports.api_serial = new Serial('/book/');

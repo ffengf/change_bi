@@ -41,6 +41,8 @@ export interface book_info extends book_data {
 	author_desc:string
 	author_img:string
 	link:string|null
+	is_like:0|1
+	like_num:number
 }
 
 export interface chapter_list {
@@ -130,6 +132,10 @@ class Serial extends Http {
 
 	async get_chapter_info(id:number){
 		return this.get<chapter_info>({},`/book/chapter/${id}/`)
+	}
+
+	post_like(id:number,action:0|1){
+		return this.post({ action },`/book/${id}/like/`)
 	}
 
 }
