@@ -11,7 +11,7 @@ build-job:
     - npm install                                                  # 安装依赖
     - npm run build                                                # 打包构建
     - cp -r $CI_PROJECT_DIR/dist/* $DEPLOY_PATH                    # 将打包完成的文件复制到部署路径
-	- rm -rf $CI_PROJECT_DIR/node_modules
+    - rm -rf $CI_PROJECT_DIR/node_modules
     - sudo nginx -s reload                                         # 重启Nginx
   tags:
     - switch_web                                                   # gitlab-runner tag
