@@ -48,7 +48,7 @@
 		<a class="look sm-up" href="#chapters_box">연재읽기</a>
 		<ShareNetwork
     network="Facebook"
-    url="http://switch.changbi.com/"
+    url="http://switch.changbi.com/serial/book_info/9?bread_date=스위치%20ON"
     title="this is title"
     description="this is description"
     quote="this is quote"
