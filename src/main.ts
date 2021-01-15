@@ -2,6 +2,7 @@ import 'babel-polyfill'
 import "vue-tsx-support/enable-check";
 import Vue from 'vue';
 import Element from 'element-ui'
+import VueSocialSharing from 'vue-social-sharing'
 
 import App from './App.vue';
 import router from './router';
@@ -22,6 +23,7 @@ Vue.config.productionTip = true;
 
 Vue.use(Element)
 Vue.mixin(Loading)
+Vue.use(VueSocialSharing)
 
 UserModule.get_info()
 

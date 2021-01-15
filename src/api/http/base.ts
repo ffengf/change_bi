@@ -11,6 +11,7 @@ const server = axios.create({
 	headers: {
 		"Accept": 'application/json',
 		"Content-Type": 'application/json',
+		"Accept-Language": 'kr;q=0.9',
 	},
 })
 

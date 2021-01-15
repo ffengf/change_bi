@@ -9,7 +9,8 @@ var server = axios_1["default"].create({
     timeout: 10000,
     headers: {
         "Accept": 'application/json',
-        "Content-Type": 'application/json'
+        "Content-Type": 'application/json',
+        "Accept-Language": 'kr;q=0.9'
     }
 });
 server.interceptors.request.use(function (config) {

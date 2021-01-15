@@ -5,6 +5,7 @@ require("babel-polyfill");
 require("vue-tsx-support/enable-check");
 var vue_1 = require("vue");
 var element_ui_1 = require("element-ui");
+var vue_social_sharing_1 = require("vue-social-sharing");
 var App_vue_1 = require("./App.vue");
 var router_1 = require("./router");
 var i18n_1 = require("@/i18n");
@@ -20,6 +21,7 @@ IMP.init('imp07867187');
 vue_1["default"].config.productionTip = true;
 vue_1["default"].use(element_ui_1["default"]);
 vue_1["default"].mixin(loading_1.Loading);
+vue_1["default"].use(vue_social_sharing_1["default"]);
 user_1.UserModule.get_info();
 exports.app = new vue_1["default"]({
     router: router_1["default"],

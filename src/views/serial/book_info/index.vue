@@ -46,6 +46,17 @@
 			</div>
 		</div>
 		<a class="look sm-up" href="#chapters_box">연재읽기</a>
+		<ShareNetwork
+    network="Facebook"
+    url="http://www.qq.com"
+    title="this is title"
+    description="this is description"
+    quote="this is quote"
+    hashtags="hello,wolrd"
+	@open="open"
+  >
+    Share on Facebook
+</ShareNetwork>
     </div>
 </template>
 
@@ -55,6 +66,7 @@ import Bread from "@/components/bread/index.vue";
 import Inner from "@/components/inner/index.vue"
 import { api_serial, book_info,chapter_list } from "@/api";
 import { takeLast } from "ramda";
+
 @Component({
     components: {
 		Bread,
@@ -134,8 +146,8 @@ export default class extends Vue {
 		return this.count <= this.list.length
 	}
 
-	show_look(){
-
+	open(){
+		console.log('123')
 	}
 
     created() {
