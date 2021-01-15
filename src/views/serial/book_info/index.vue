@@ -53,13 +53,15 @@
 					<div class="zan_right">
 						<ShareNetwork
 							network="Facebook"
-							url="http://switch.changbi.com/serial/book_info/9?bread_date=스위치%20ON"
+							title="Facebook"
+							:url="share_url"
 						>
 							<img src="@/assets/img/fa.png" alt="">
 						</ShareNetwork>
 						<ShareNetwork
 							network="Twitter"
-							url="http://switch.changbi.com/serial/book_info/9?bread_date=스위치%20ON"
+							title="Twitter"
+							:url="share_url"
 						>
 							<img src="@/assets/img/tw.png" alt="">
 						</ShareNetwork>
@@ -125,13 +127,22 @@ export default class extends Vue {
 
     get bread_date() {
         return this.$route.query.bread_date;
-    }
+	}
+
+	get share_url(){
+		const base = 'http://13.125.137.129:8000'
+		return `${base}/book/detail/${this.info.id}`
+	}
 
     async get_info() {
         this._loading = true;
-        this.info = await api_serial.get_info(this.id).finally(() => {
+        const info:book_info = await api_serial.get_info(this.id).finally(() => {
             this._loading = false;
-        });
+		});
+		this.info = info;
+		(document.getElementById('og_title') as HTMLMetaElement).content = info.title;
+		(document.getElementById('og_description') as HTMLMetaElement).content = info.book_desc;
+		(document.getElementById('og_image') as HTMLMetaElement).content = info.author_img;
 		this.bread.splice(2,1,{ title:this.info.title })
 	}
 

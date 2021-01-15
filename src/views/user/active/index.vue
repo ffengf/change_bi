@@ -14,7 +14,7 @@
 				<el-button class="right_btn" type="danger" v-if="show_un_join(ele)" @click="un_join(ele)">신청취소</el-button>
 				<el-button class="right_btn" type="danger" v-if="ele.status === 2" @click="del(ele)">삭제</el-button>
 			</div>
-			<el-button class="more" type="success" :disabled="disabled">더 보기</el-button>
+			<el-button class="more" type="success" @click="more" :disabled="disabled">더 보기</el-button>
 		</template>
 		<div v-else class="none">
 			신청하신 이벤트가 없습니다.
