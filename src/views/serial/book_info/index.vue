@@ -48,7 +48,7 @@
 		<a class="look sm-up" href="#chapters_box">연재읽기</a>
 		<ShareNetwork
     network="Facebook"
-    url="http://www.qq.com"
+    url="http://switch.changbi.com/"
     title="this is title"
     description="this is description"
     quote="this is quote"
