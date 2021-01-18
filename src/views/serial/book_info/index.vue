@@ -130,7 +130,8 @@ export default class extends Vue {
 	}
 
 	get share_url(){
-		const base = 'http://13.125.137.129:8000'
+		// const base = 'http://13.125.137.129:8000'
+		const base = 'http://switch.changbi.com:8000'
 		return `${base}/book/detail/${this.info.id}`
 	}
 
@@ -140,16 +141,13 @@ export default class extends Vue {
             this._loading = false;
 		});
 		this.info = info;
-		(document.getElementById('og_title') as HTMLMetaElement).content = info.title;
-		(document.getElementById('og_description') as HTMLMetaElement).content = info.book_desc;
-		(document.getElementById('og_image') as HTMLMetaElement).content = info.author_img;
 		this.bread.splice(2,1,{ title:this.info.title })
 	}
 
 	@Watch('page')
 	async get_chapter_list(){
 		if (this.list.length === this.count && this.list.length !== 0) {
-            return this.$message.error("没有更多了");
+            return this.$message.error("추가 내용이 없습니다.");
 		}
 		this._loading = true
 		const { count,results } = await api_serial.get_chapter({ book_id:this.id,page:this.page }).finally(()=>{

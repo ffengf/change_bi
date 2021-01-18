@@ -34,7 +34,7 @@ export const Mixin_list = <T extends Id>(axios_get:(data:req_list)=> Promise<res
 			this.selete = val
 		}
 
-		sort_change({ prop, order }: Record<string, string>) {//ascending 升 id
+		sort_change({ prop, order }: Record<string, string>) {//ascending id
 			if (order === null) {
 				this.ordering = ''
 				return
