@@ -38,11 +38,8 @@ var Active = /** @class */ (function (_super) {
     Active.prototype.get_info = function (id) {
         return this.get({}, "/book/activity/" + id + "/");
     };
-    Active.prototype.join = function (id) {
-        return this.post({ status: 1 }, "/book/activity/" + id + "/apply/");
-    };
-    Active.prototype.cancel = function (id) {
-        return this.post({ status: 0 }, "/book/activity/" + id + "/apply/");
+    Active.prototype.join = function (id, apply_reason) {
+        return this.post({ status: 1, apply_reason: apply_reason }, "/book/activity/" + id + "/apply/");
     };
     return Active;
 }(base_1.Http));

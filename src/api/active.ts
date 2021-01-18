@@ -29,14 +29,10 @@ class Active extends Http {
 		return this.get<active>({}, `/book/activity/${id}/`)
 	}
 
-	join(id:number){
+	join(id:number,apply_reason:string){
 		return this.post<{
 			code?:number
-		}>({ status:1 },`/book/activity/${id}/apply/`)
-	}
-
-	cancel(id:number){
-		return this.post({ status:0 },`/book/activity/${id}/apply/`)
+		}>({ status:1,apply_reason },`/book/activity/${id}/apply/`)
 	}
 }
 

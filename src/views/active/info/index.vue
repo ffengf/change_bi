@@ -12,13 +12,30 @@
         <div class="line"></div>
         <!-- <div class="inner" v-html="info.content"></div> -->
 		<Inner :val="info.content" />
-		<el-button type="primary" class="join" @click="join" :disabled="info.is_apply">신청하기</el-button>
+		<el-button type="primary" class="join" @click="key = true" :disabled="info.is_apply">신청하기</el-button>
 		<div class="line"></div>
         <div class="btn_box">
             <el-button @click="id = info.prev" :disabled="info.prev === null">이전 글</el-button>
             <el-button type="success" @click="ret">목록으로</el-button>
             <el-button @click="id = info.next" :disabled="info.next === null">다음 글</el-button>
         </div>
+		<el-dialog title="신청사유" :visible="key" width="30%" :before-close="close">
+			<div class="dialog" v-loading="dialog_loading">
+				<h1>쿠폰번호를 입력해주세요.</h1>
+				<el-input
+					class="inp"
+					v-model="apply_reason"
+					placeholder="신청사유를 작성해 주세요."
+					type="textarea"
+					:maxlength="500"
+				></el-input>
+				<div class="len_text color_80">{{ apply_reason.length }}/500</div>
+				<div class="dialog_btn_box">
+					<el-button type="success" @click="join">신청사유</el-button>
+					<el-button @click="close">취소</el-button>
+				</div>
+			</div>
+		</el-dialog>
     </div>
 </template>
 
@@ -43,8 +60,6 @@ export default class extends Vue {
             title: this.active_type === "1" ? "서평단 신청" : "강연 초대",
         },
     ];
-
-	ids:number[] = []
 
 	info:active = {
 		id:0,
@@ -94,11 +109,19 @@ export default class extends Vue {
 	}
 
 
+	key = false
+	apply_reason = ''
+	dialog_loading = false
 	async join(){
-		this._loading = true
-		const { code } = await api_active.join(this.id).finally(()=>{
-			this._loading = false
+		const apply_reason = this.apply_reason
+		if(apply_reason === ''){
+			return this.$message.error('쿠폰번호를 입력해 주세요.')
+		}
+		this.dialog_loading = true
+		const { code } = await api_active.join(this.id,apply_reason).finally(()=>{
+			this.dialog_loading = false
 		})
+		this.close()
 		this.get_info()
 		if(code === 50001){
 			await this.$confirm('이미 참여하고 있는 이벤트입니다. 나의 이벤트로 이동하시겠습니까?',{
@@ -113,6 +136,11 @@ export default class extends Vue {
 			})
 			this.$router.push('/user/active')
 		}
+	}
+
+	close(){
+		this.apply_reason = ''
+		this.key = false;
 	}
 
 }
@@ -186,5 +214,50 @@ export default class extends Vue {
 			height: 2.2rem;
 		}
 	}
+	/deep/.el-dialog__wrapper {
+        border-radius: 0;
+        .el-dialog__header {
+            background: #324b9b;
+            padding: 0.7rem;
+            .el-dialog__headerbtn {
+                i {
+                    color: #fff;
+                    font-size: 20px;
+                }
+            }
+            .el-dialog__title {
+                color: #fff;
+            }
+        }
+        .el-dialog {
+            border-radius: 0;
+        }
+    }
+    .dialog {
+        h1 {
+            font-family: NotoSansKR;
+            font-size: 17px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            letter-spacing: -0.43px;
+            margin-bottom: 0.5rem;
+        }
+        .inp {
+            /deep/.el-textarea__inner {
+                border: 1px solid #000 !important;
+				border-radius: 0!important;
+            }
+        }
+        .dialog_btn_box {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+            > * {
+                width: 49.5%;
+                height: 2.2rem;
+            }
+        }
+    }
 }
 </style>
