@@ -21,7 +21,6 @@
         </div>
 		<el-dialog title="신청사유" :visible="key" width="30%" :before-close="close">
 			<div class="dialog" v-loading="dialog_loading">
-				<h1>쿠폰번호를 입력해주세요.</h1>
 				<el-input
 					class="inp"
 					v-model="apply_reason"
@@ -31,7 +30,7 @@
 				></el-input>
 				<div class="len_text color_80">{{ apply_reason.length }}/500</div>
 				<div class="dialog_btn_box">
-					<el-button type="success" @click="join">신청사유</el-button>
+					<el-button type="success" @click="join">신청하기</el-button>
 					<el-button @click="close">취소</el-button>
 				</div>
 			</div>

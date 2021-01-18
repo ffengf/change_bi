@@ -42,7 +42,7 @@
 				<img src="@/assets/img/right.png" alt="">
 			</div>
 		</div>
-		<h1 class="title w70vw min_width1000">클럽 창작과 비평 활동</h1>
+		<h1 class="title w70vw min_width1000">클럽 창작과비평 활동</h1>
 		<ul class="list w70vw min_width1000">
 			<li class="item">
 				<div class="v1">
