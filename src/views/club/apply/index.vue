@@ -419,6 +419,7 @@ export default class extends More(api_club.get_apply_list) {
 			height: 16.5rem;
 			justify-content: space-between;
 			flex-direction: row;
+			margin-bottom: 5rem;
 			.v1,.v2{
 				box-sizing: border-box;
 				padding-top: 1.5rem;
