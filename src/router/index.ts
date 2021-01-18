@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
 import Rview from "@/components/routerView/index.vue";
-import { component } from 'vue/types/umd';
+
 Vue.use(VueRouter);
 
 
@@ -139,7 +139,7 @@ const routes: RouteConfig[] = [
 						path: 'creation',
 						name: 'creation',
 						meta: {
-							title: '클럽창작과비평',
+							title: '클럽 창작과비평',
 							cache: true
 						},
 						component: Rview,
@@ -165,7 +165,7 @@ const routes: RouteConfig[] = [
 						path: 'apply',
 						name: 'apply',
 						meta: {
-							title: '북클럽필라멘트',
+							title: '북클럽 필라멘트',
 							cache: true
 						},
 						component: Rview,

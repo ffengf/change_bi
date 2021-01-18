@@ -1,6 +1,6 @@
 <template>
     <div id="page">
-        <el-scrollbar ref="scrollbar" style="height: 100%">
+        <el-scrollbar id="scrollbar" ref="scrollbar" style="height: 100%">
             <el-container class="container">
                 <el-header>
                     <Header />

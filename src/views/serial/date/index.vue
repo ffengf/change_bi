@@ -1,35 +1,7 @@
 <template>
     <div class="date" v-loading="_loading">
         <Bread :new_list="new_list" />
-        <div class="box on">
-            <div class="top">
-                <h1>스위치 ON</h1>
-                <div class="lines"></div>
-            </div>
-            <div class="bottom">
-                <el-card class="card" shadow="never" @click.native="go_info(ele.id,'스위치 ON')" v-for="ele in info.top" :key="ele.id">
-                    <img
-                        :src="ele.cover"
-                    />
-                    <h1>{{ ele.title }}</h1>
-                    <h2>
-                        <span class="owner">{{ ele.author_name }} 작가</span>
-                        <el-divider
-                            direction="vertical"
-                            class="lines_000"
-                        ></el-divider>
-						<span v-if="ele.status === 0" class="status_0">연재중</span>
-                        <span v-if="ele.status === 1" class="status_1">완결</span>
-                    </h2>
-                    <h3>
-                        <p v-for="e in ele.chapters" :key="e.number" @click.stop="go_chapter(ele.id,e.id,'스위치 ON')">
-                            {{ e.number }}화<el-divider direction="vertical"></el-divider
-                            >{{ e.title }}
-                        </p>
-                    </h3>
-                </el-card>
-            </div>
-        </div>
+
 
 		<div class="box today" v-if="info.today.length !== 0">
             <div class="top">
@@ -198,6 +170,36 @@
                     </h2>
                     <h3>
                         <p v-for="e in ele.chapters" :key="e.number" @click.stop="go_chapter(ele.id,e.id,'금요연재')">
+                            {{ e.number }}화<el-divider direction="vertical"></el-divider
+                            >{{ e.title }}
+                        </p>
+                    </h3>
+                </el-card>
+            </div>
+        </div>
+
+		<div class="box on">
+            <div class="top">
+                <h1>스위치 ON</h1>
+                <div class="lines"></div>
+            </div>
+            <div class="bottom">
+                <el-card class="card" shadow="never" @click.native="go_info(ele.id,'스위치 ON')" v-for="ele in info.top" :key="ele.id">
+                    <img
+                        :src="ele.cover"
+                    />
+                    <h1>{{ ele.title }}</h1>
+                    <h2>
+                        <span class="owner">{{ ele.author_name }} 작가</span>
+                        <el-divider
+                            direction="vertical"
+                            class="lines_000"
+                        ></el-divider>
+						<span v-if="ele.status === 0" class="status_0">연재중</span>
+                        <span v-if="ele.status === 1" class="status_1">완결</span>
+                    </h2>
+                    <h3>
+                        <p v-for="e in ele.chapters" :key="e.number" @click.stop="go_chapter(ele.id,e.id,'스위치 ON')">
                             {{ e.number }}화<el-divider direction="vertical"></el-divider
                             >{{ e.title }}
                         </p>

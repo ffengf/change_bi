@@ -151,7 +151,7 @@
                 </el-form-item>
                 <el-form-item
                     prop="is_library"
-                    label="사서로 근무 중이신가요?"
+                    label="학교 또는 독서 지도 등 교육 관련 업계에 종사 중이신가요?"
                 >
                     <el-radio-group v-model="info.is_library">
                         <el-radio :label="1">예</el-radio>
@@ -253,7 +253,7 @@
 			<p class="kr-li">스위치 홈페이지</p>
 			<p>회원가입이 완료 되었습니다.</p>
 		</h2>
-		<p class="mid kr-re">안내사항입니다.</p>
+		<!-- <p class="mid kr-re">안내사항입니다.</p> -->
 		<h3 class="kr-re">
 			<p>내일의 나를 성장시키는 이야기</p>
 			<p>지금 스위치에서 만나보세요!</p>
@@ -416,7 +416,7 @@ export default class extends Vue {
         address: [{ required: true, message:'주소를 검색해 주세요.' }],
         address_code: [{ required: true, message:'주소를 검색해 주세요.' }],
         address_detail: [{ required: true, message:'주소를 검색해 주세요.'}],
-        favorite_category: [{ required: true }],
+        favorite_category: [{ required: true, message:'1개 이상 분야를 선택해 주세요.' }],
         is_library: [{ required: true }],
         is_publish: [{ required: true }],
         is_email: [{ required: true }],
@@ -604,9 +604,9 @@ export default class extends Vue {
     text-decoration: underline;
 }
 .checkbox {
-	justify-content: none!important;
+	justify-content: space-between!important;
 	> *{
-		width: 48px !important;
+		// width: 2rem !important;
 	}
 }
 

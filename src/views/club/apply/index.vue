@@ -220,7 +220,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="box" id="href">
+		<div id="href"></div>
+		<div class="box">
 			<div class="w70vw min_width1000 ccc">
 				<h1 class="">신청하기</h1>
 				<div class="line sm-down"></div>
@@ -245,9 +246,9 @@
 				<img :src="ele.cover" alt="">
 				<h1>{{ ele.title }}</h1>
 				<h2>
-					<span class="green" v-if="ele.status === 0">모집 중</span>
+					<span class="blink green" v-if="ele.status === 0">모집 중</span>
 					<span class="blue" v-if="ele.status === 1">진행 중</span>
-					<span class="orange" v-if="ele.status === 3">마감 임박</span>
+					<span class="blink orange" v-if="ele.status === 3">마감 임박</span>
 					<!-- <span class="blue" v-if="ele.status === 4">모집대기</span> -->
 					<span class="orange" v-if="ele.status === 5">모집마감</span>
 					<span>|</span>
@@ -417,7 +418,6 @@ export default class extends More(api_club.get_apply_list) {
 			display: flex;
 			height: 16.5rem;
 			justify-content: space-between;
-			margin-bottom: 5rem;
 			flex-direction: row;
 			.v1,.v2{
 				box-sizing: border-box;
@@ -490,7 +490,6 @@ export default class extends More(api_club.get_apply_list) {
 		}
 	}
 	.flow{
-		margin-bottom: 6rem;
 		> h1{
 			color: #324b9b;
 			font-family: NotoSansKR;
@@ -599,6 +598,9 @@ export default class extends More(api_club.get_apply_list) {
 				}
 			}
 		}
+	}
+	#href{
+		margin-bottom: 6rem;
 	}
 	.box{
 		width: 100vw;

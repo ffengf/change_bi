@@ -10,7 +10,7 @@
             <div class="content kr-re">
                 <p>법인명 : (주)창비 <span>|</span> 사업자등록번호 : 105-81-63672 <span class="sm-down">|</span>
 				<br class="sm-up">
-                개인정보책임자 : 이정원</p>
+                개인정보책임자 : 신문수</p>
                 <p>주소 : 경기도 파주시 회동길 184 (문발동) <span>|</span> 대표이사 : 강일우 <span class="sm-down">|</span>
 				<br class="sm-up">
                 통신판매업 : 제2009-경기파주-1928호</p>
