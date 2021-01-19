@@ -53,14 +53,14 @@
 					<div class="zan_right">
 						<ShareNetwork
 							network="Facebook"
-							title="Facebook"
+							:title="info.book_desc"
 							:url="share_url"
 						>
 							<img src="@/assets/img/fa.png" alt="">
 						</ShareNetwork>
 						<ShareNetwork
 							network="Twitter"
-							title="Twitter"
+							:title="info.book_desc"
 							:url="share_url"
 						>
 							<img src="@/assets/img/tw.png" alt="">
@@ -131,8 +131,8 @@ export default class extends Vue {
 
 	get share_url(){
 		// const base = 'http://13.125.137.129:8000'
-		const base = 'http://switch.changbi.com:8000'
-		return `${base}/book/detail/${this.info.id}`
+		const base = 'http://switch.changbi.com/bookinfo'
+		return `${base}/${this.info.id}`
 	}
 
     async get_info() {
