@@ -26,7 +26,7 @@ const alert_403 = debounce((err:any)=>{
 },100)
 
 const server = axios.create({
-	baseURL: 'http://13.125.137.129:8000',
+	baseURL: 'http://api.changbi.com',
 	timeout: 10000,
 	headers: {
 		"Accept": 'application/json',

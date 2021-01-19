@@ -130,8 +130,7 @@ export default class extends Vue {
 	}
 
 	get share_url(){
-		// const base = 'http://13.125.137.129:8000'
-		const base = 'http://switch.changbi.com/bookinfo'
+		const base = 'http://api.changbi.com/book/detail'
 		return `${base}/${this.info.id}`
 	}
 
