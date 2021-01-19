@@ -3,7 +3,7 @@
         <BoxHeader :new_list="bread" />
         <h2>
 			<span class="green" v-if="info.status === 0">모집 중</span>
-			<span class="blue" v-if="ele.status === 3">마감임박</span>
+			<span class="blue" v-if="info.status === 3">마감임박</span>
 			<span class="orange" v-if="info.status === 5">모집마감</span>
             <!-- <span>{{ active_type === "1" ? "서평단 신청" : "강연 초대" }}</span> -->
             <span>|</span>
