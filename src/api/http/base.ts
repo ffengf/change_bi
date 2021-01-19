@@ -3,7 +3,27 @@ import axios, { AxiosInstance } from 'axios';
 
 import { app as Vue } from '@/main'
 import { UserModule } from '@/store/user';
+import { debounce,throttle } from '@/util/function';
 
+const alert_403 = debounce((err:any)=>{
+	let title = ''
+	if(err?.response?.data === 4001){
+		title = '토큰 유효기간이 지났습니다.'
+	}else{
+		title = '로그인후 다시 시도해 주세요.'
+	}
+	Vue.$alert(title,{
+		confirmButtonText:'로그인 하기',
+		callback(){
+			Vue.$router.push({
+				path:'/login',
+				query:{
+					last:Vue.$route.path
+				}
+			})
+		}
+	})
+},100)
 
 const server = axios.create({
 	baseURL: 'http://13.125.137.129:8000',
@@ -48,23 +68,7 @@ server.interceptors.response.use(({ data, status }) => {
 		return Promise.reject(err)
 	}
 	if (err?.response?.status === 403) {
-		let title = ''
-		if(err?.response?.data === 4001){
-			title = '토큰 유효기간이 지났습니다.'
-		}else{
-			title = '로그인후 다시 시도해 주세요.'
-		}
-		Vue.$alert(title,{
-			confirmButtonText:'로그인 하기',
-			callback(){
-				Vue.$router.push({
-					path:'/login',
-					query:{
-						last:Vue.$route.path
-					}
-				})
-			}
-		})
+		alert_403(err)
 		return Promise.reject(err)
 	}
 	Vue.$message.error(`서비스 응답 오류`)
