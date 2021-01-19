@@ -8,7 +8,6 @@ build-job:
   stage: build
   script:
     - cd $CI_PROJECT_DIR                                           # 进入代码目录
-    - npm install                                                  # 安装依赖
     - npm run build                                                # 打包构建
     - cp -r $CI_PROJECT_DIR/dist/* $DEPLOY_PATH                    # 将打包完成的文件复制到部署路径
     - sudo nginx -s reload                                         # 重启Nginx
