@@ -23,6 +23,24 @@ vue_1["default"].use(element_ui_1["default"]);
 vue_1["default"].mixin(loading_1.Loading);
 vue_1["default"].use(vue_social_sharing_1["default"]);
 user_1.UserModule.get_info();
+vue_1["default"].prototype.$message = function (msg) {
+    return element_ui_1.Message({
+        message: msg,
+        duration: 1000
+    });
+};
+vue_1["default"].prototype.$message.success = function (msg) {
+    return element_ui_1.Message.success({
+        message: msg,
+        duration: 1000
+    });
+};
+vue_1["default"].prototype.$message.error = function (msg) {
+    return element_ui_1.Message.warning({
+        message: msg,
+        duration: 1000
+    });
+};
 exports.app = new vue_1["default"]({
     router: router_1["default"],
     i18n: i18n_1["default"],

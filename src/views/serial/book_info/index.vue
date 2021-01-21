@@ -11,7 +11,7 @@
 					<h2>
 						<span>{{ info.author_name }} 작가</span>
 						<span class="lines">|</span>
-						<span v-if="info.status === 0" class="status_0">연재중</span>
+						<span v-if="info.status === 0" class="status_0">연재 중</span>
                         <span v-if="info.status === 1" class="status_1">완결</span>
 					</h2>
 				</div>

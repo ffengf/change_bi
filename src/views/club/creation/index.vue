@@ -12,7 +12,7 @@
 				<p>우리 함께 문학과 세상에 대해 이야기해요.</p>
 				<p>한 계절 동안 함께 『창작과비평』을 읽어 나갈 분들을 모집합니다.</p>
 			</h3>
-			<a href="#href" class="btn">신청하기</a>
+			<a class="btn" v-loading="_loading" @click="are_you_ok">신청하기</a>
 		</div>
 		<div class="content w70vw min_width1000">
 			<div class="left">
@@ -219,11 +219,27 @@ import { More } from "@/mixin/more"
 export default class extends More(api_club.get_creation_list) {
 	filter = {
 		status:''
-	}
+	} as any
 
 	@Watch('filter.status')
 	watch_status(){
 		this.clear_list()
+	}
+
+
+	async are_you_ok(){
+		console.log(this.list)
+		if(this._loading === true) return
+		if(this.filter.status === 0){
+			if(this.list[0] !== undefined){
+				this.$router.push(`/club/creation/info/${this.list[0].id}`)
+			}else{
+				return this.$message.error('nonono')
+			}
+		}else{
+			const { results } = await api_club.get_creation_list({ page:1,page_size:1,status:0 })
+			this.$router.push(`/club/creation/info/${results[0].id}`)
+		}
 	}
 }
 </script>
@@ -293,6 +309,7 @@ export default class extends More(api_club.get_creation_list) {
 			text-align: center;
 			line-height: 2.2rem;
 			font-size: 14px;
+			cursor: pointer;
 		}
 	}
 	.content{

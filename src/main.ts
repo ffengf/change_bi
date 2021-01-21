@@ -1,7 +1,7 @@
 import 'babel-polyfill'
 import "vue-tsx-support/enable-check";
 import Vue from 'vue';
-import Element from 'element-ui'
+import Element, { Message } from 'element-ui'
 import VueSocialSharing from 'vue-social-sharing'
 
 import App from './App.vue';
@@ -26,6 +26,27 @@ Vue.mixin(Loading)
 Vue.use(VueSocialSharing)
 
 UserModule.get_info()
+
+Vue.prototype.$message = function (msg) {
+	return Message({
+		message: msg,
+		duration: 1000
+	})
+
+}
+Vue.prototype.$message.success = function (msg) {
+	return Message.success({
+		message: msg,
+		duration: 1000
+	})
+}
+Vue.prototype.$message.error = function (msg) {
+	return Message.warning({
+		message: msg,
+		duration: 1000
+	})
+}
+
 
 export const app = new Vue({
 	router,

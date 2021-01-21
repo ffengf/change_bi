@@ -40,7 +40,7 @@ export default class extends Vue {
 		if(reg.test(value)){
 			callback()
 		}else{
-			callback(new Error("영문, 숫자, 특수문자 포함 8자 이상 입력"));
+			callback(new Error("영문, 숫자, 특수문자(! 또는 @) 포함 8자 이상 입력"));
 		}
 	}
 	rules={

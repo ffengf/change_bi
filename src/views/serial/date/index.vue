@@ -19,7 +19,7 @@
                             direction="vertical"
                             class="lines_000"
                         ></el-divider>
-						<span v-if="ele.status === 0" class="status_0">연재중</span>
+						<span v-if="ele.status === 0" class="status_0">연재 중</span>
                         <span v-if="ele.status === 1" class="status_1">완결</span>
                     </h2>
                     <h3>
@@ -49,7 +49,7 @@
                             direction="vertical"
                             class="lines_000"
                         ></el-divider>
-						<span v-if="ele.status === 0" class="status_0">연재중</span>
+						<span v-if="ele.status === 0" class="status_0">연재 중</span>
                         <span v-if="ele.status === 1" class="status_1">완결</span>
                     </h2>
                     <h3>
@@ -78,7 +78,7 @@
                             direction="vertical"
                             class="lines_000"
                         ></el-divider>
-						<span v-if="ele.status === 0" class="status_0">연재중</span>
+						<span v-if="ele.status === 0" class="status_0">연재 중</span>
                         <span v-if="ele.status === 1" class="status_1">완결</span>
                     </h2>
                     <h3>
@@ -107,7 +107,7 @@
                             direction="vertical"
                             class="lines_000"
                         ></el-divider>
-						<span v-if="ele.status === 0" class="status_0">연재중</span>
+						<span v-if="ele.status === 0" class="status_0">연재 중</span>
                         <span v-if="ele.status === 1" class="status_1">완결</span>
                     </h2>
                     <h3>
@@ -136,7 +136,7 @@
                             direction="vertical"
                             class="lines_000"
                         ></el-divider>
-						<span v-if="ele.status === 0" class="status_0">연재중</span>
+						<span v-if="ele.status === 0" class="status_0">연재 중</span>
                         <span v-if="ele.status === 1" class="status_1">완결</span>
                     </h2>
                     <h3>
@@ -165,7 +165,7 @@
                             direction="vertical"
                             class="lines_000"
                         ></el-divider>
-						<span v-if="ele.status === 0" class="status_0">연재중</span>
+						<span v-if="ele.status === 0" class="status_0">연재 중</span>
                         <span v-if="ele.status === 1" class="status_1">완결</span>
                     </h2>
                     <h3>
@@ -195,7 +195,7 @@
                             direction="vertical"
                             class="lines_000"
                         ></el-divider>
-						<span v-if="ele.status === 0" class="status_0">연재중</span>
+						<span v-if="ele.status === 0" class="status_0">연재 중</span>
                         <span v-if="ele.status === 1" class="status_1">완결</span>
                     </h2>
                     <h3>

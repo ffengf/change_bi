@@ -20,7 +20,7 @@
 					<el-input
 						autocomplete="off"
 						v-model="form.new_password1"
-						placeholder="영문, 숫자, 특수문자 포함 8자 이상 입력"
+						placeholder="영문, 숫자, 특수문자(! 또는 @) 포함 8자 이상 입력"
 						show-password
 					></el-input>
 				</el-form-item>

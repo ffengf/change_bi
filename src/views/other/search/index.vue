@@ -40,7 +40,7 @@
                             direction="vertical"
                             class="lines_000"
                         ></el-divider>
-						<span v-if="ele.status === 0" class="green">연재중</span>
+						<span v-if="ele.status === 0" class="green">연재 중</span>
                         <span v-if="ele.status === 1" class="blue">완결</span>
                     </h2>
                 </el-card>

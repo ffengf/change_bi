@@ -27,7 +27,7 @@
                 <el-form-item prop="password" label="비밀번호">
                     <el-input
                         v-model="info.password"
-                        placeholder="영문, 숫자, 특수문자 포함 8자 이상 입력"
+                        placeholder="영문, 숫자, 특수문자(! 또는 @) 포함 8자 이상 입력"
                         show-password
                     ></el-input>
                 </el-form-item>
@@ -303,7 +303,7 @@ export default class extends Vue {
 			(this.$refs["form"] as ElForm).validateField("again_pass")
 			callback()
 		}else{
-			callback(new Error("영문, 숫자, 특수문자 포함 8자 이상 입력"));
+			callback(new Error("영문, 숫자, 특수문자(! 또는 @) 포함 8자 이상 입력"));
 		}
 	}
 

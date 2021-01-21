@@ -30,5 +30,8 @@ export default class extends Vue {
 	/deep/img{
 		max-width: 100%!important;
 	}
+	/deep/ *{
+		max-width: 100%;
+	}
 }
 </style>
