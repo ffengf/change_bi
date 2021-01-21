@@ -23,15 +23,27 @@ export default class extends Vue {
 	width: 100%;
 	word-break: break-all;
 	line-height: 1.5rem;
-	/deep/p{
+	/deep/ p{
 		word-break: break-all;
 		font-size: 14px;
 	}
-	/deep/img{
+	/deep/ img{
 		max-width: 100%!important;
 	}
-	/deep/ *{
-		max-width: 100%;
+	// /deep/ *{
+	// 	max-width: 100%!important;
+	// }
+	/deep/ .table-bordered td, .table-bordered th{
+		border: 1px solid #dee2e6;
+	}
+	/deep/ .table-bordered {
+		border: 1px solid #dee2e6;
+	}
+	/deep/ .table {
+		width: 300px;
+		margin-bottom: 1rem;
+		color: #212529;
 	}
 }
 </style>
+
