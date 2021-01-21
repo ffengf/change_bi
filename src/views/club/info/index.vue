@@ -137,7 +137,7 @@ export default class extends Vue {
 
 	get can_apply(){
 		const start = new Date(this.info.apply_start).getTime()
-		const end = new Date(this.info.apply_end).getTime()
+		const end = new Date(this.info.apply_end).getTime() + 86400000
 		const now = new Date().getTime()
 		return (start < now) && (now < end)
 	}

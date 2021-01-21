@@ -68,10 +68,9 @@
                 >다음 글</el-button
             >
         </div>
-
         <el-dialog :visible.sync="key" width="30%">
             <div class="body" ref="body" v-loading="submit_loading">
-                <h1>제출하기 : 11월 넷째주 미션 제출해주세요!</h1>
+                <h1>제출하기 : {{ info.title }}</h1>
                 <div class="line"></div>
                 <el-form
                     ref="form"

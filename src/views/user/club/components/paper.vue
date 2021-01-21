@@ -109,7 +109,7 @@ export default class extends Vue {
 			ctx.drawImage(img_line, width/2 - (img_line.width / 2), 770);
 
 			ctx.font = '50px NotoSansKR'
-			ctx.fillText('클럽 창작과비평제 1장',width/2,950)
+			ctx.fillText(info.title,width/2,950)
 
 			ctx.fillStyle = '#000'
 			ctx.fillText(`활동기간 ${info.start_time} - ${info.end_time}`,width/2,1050)

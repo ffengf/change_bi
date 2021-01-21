@@ -11,8 +11,8 @@
 					<h1>{{ ele.title }}</h1>
 					<!-- <p class="inner_detail" v-html="ele.content"></p> -->
 					<Inner class="inner_detail" :val="ele.content" />
-					<el-button class="btn" type="success" @click.stop="sign(null,ele.id)" v-if="ele.attendance_id === null">제출하기</el-button>
-					<el-button class="btn" type="primary" @click.stop="sign(ele.attendance_id,ele.id)" v-else>수정하기</el-button>
+					<el-button class="btn" type="success" @click.stop="sign(null,ele.id,ele.title)" v-if="ele.attendance_id === null">제출하기</el-button>
+					<el-button class="btn" type="primary" @click.stop="sign(ele.attendance_id,ele.id,ele.title)" v-else>수정하기</el-button>
 				</li>
 			</ul>
 			<el-button class="more" type="success" @click="more" :disabled="disabled">더 보기</el-button>
@@ -29,7 +29,7 @@
 			width="30%"
 		>
 			<div class="body" ref="body" v-loading='submit_loading'>
-				<h1>제출하기 : 11월 넷째주 미션 제출해주세요!</h1>
+				<h1>제출하기 : {{ diolog_title }}</h1>
 				<div class="line"></div>
 				<el-form ref="form" :model="form" :rules="rules" label-position="top" label-width="80px">
 					<el-form-item label="제목" prop="title">
@@ -99,7 +99,10 @@ export default class extends More(api_myclub.task_list) {
 		this.$router.push(this.$route.path + '?id=' + Encryption.base_enc(id.toString()))
 	}
 
-	async sign(attendance_id:null|number,task_id:number){
+
+	diolog_title = ''
+	async sign(attendance_id:null|number,task_id:number,title:string){
+		this.diolog_title = title
 		if(attendance_id === null){
 				this.form = {
 				id:attendance_id,

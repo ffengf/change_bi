@@ -4,9 +4,9 @@
         <div class="box_line"></div>
         <template v-if="!$route.path.includes('info')">
 			<!-- <h2>이벤트</h2> -->
-			<div class="line sm-down"></div>
 			<h1>오직 스위치에서만 제공하는 이벤트</h1>
 			<div class="line sm-up"></div>
+			<div class="line sm-down"></div>
 		</template>
         <div class="tab">
             <div :class="['item',active('1') ? 'active' :'']" @click="move('1')">서평단 신청</div>
@@ -71,7 +71,8 @@ export default class extends Vue {
         font-stretch: normal;
         font-style: normal;
         letter-spacing: -1.5px;
-        color: #3fa535;
+		color: #3fa535;
+		margin-top: 1.25rem;
     }
     .tab {
         margin-top: 1.4rem;
