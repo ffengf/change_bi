@@ -30,14 +30,16 @@ export default class extends Vue {
 	/deep/ img{
 		max-width: 100%!important;
 	}
-	// /deep/ *{
-	// 	max-width: 100%!important;
-	// }
 	/deep/ .table-bordered td, .table-bordered th{
 		border: 1px solid #dee2e6;
 	}
-	/deep/ .table-bordered {
-		border: 1px solid #dee2e6;
+	/deep/ .table-bordered tr{
+		width: 30rem;
+		display: flex;
+		justify-content: space-between;
+		> * {
+			flex: 1;
+		}
 	}
 	/deep/ .table {
 		width: 300px;
