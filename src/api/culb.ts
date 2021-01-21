@@ -22,6 +22,8 @@ export interface club_info extends club_list {
 	option_desc: string
 	other_title: string
 	other_content: string
+	apply_end:string
+	apply_start:string
 }
 
 class Club extends Http {

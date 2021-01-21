@@ -57,7 +57,10 @@
 					</div>
 				</div>
 				<el-button v-if="info.price === 0" type="success" class="btn" @click="free">신청하기</el-button>
-				<el-button v-else type="success" class="btn" @click="check_coupon">결제하기</el-button>
+				<template v-else>
+					<el-button v-if="can_apply" type="success" class="btn" @click="check_coupon">결제하기</el-button>
+					<el-button v-else type="success" class="btn" :disabled="true">신청 종료</el-button>
+				</template>
 
 				<el-button type="primary" class="btn" v-if="info.is_collect === 0" @click="collect(1)">찜하기</el-button>
 				<el-button type="danger" class="btn" v-else @click="collect(0)">찜 취소</el-button>
@@ -99,6 +102,8 @@ export default class extends Vue {
 		type:0,
 		other_title:'',
 		other_content:'',
+		apply_start:'',
+		apply_end:''
 	}
 	pay_type:pay_type | '' = ''
 
@@ -128,6 +133,13 @@ export default class extends Vue {
 
 	get choose_coupon(){
 		return this.coupon_list.find(x => x.id === this.coupon)
+	}
+
+	get can_apply(){
+		const start = new Date(this.info.apply_start).getTime()
+		const end = new Date(this.info.apply_end).getTime()
+		const now = new Date().getTime()
+		return (start < now) && (now < end)
 	}
 
 
@@ -184,6 +196,9 @@ export default class extends Vue {
 	}
 
 	async check_coupon(){
+		if(this.can_apply === false){
+			return this.$message.error('신청 종료')
+		}
 		this._loading = true
 		await api_club.pay_check(this.info.id,this.choose_coupon?.id).finally(()=>{
 			this._loading = false

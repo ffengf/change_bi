@@ -88,6 +88,9 @@ export default class extends Vue {
 	key = false
 	async submit(){
 		await (this.$refs["form"] as ElForm).validate();
+		if(this.form.old_password === this.form.new_password1){
+			return this.$message.error('기존 비밀번호와 일치한 번호입니다.')
+		}
 		this._loading = true
 		await api_user.edit_pass(this.form).finally(()=>{
 			this._loading = false

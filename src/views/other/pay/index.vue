@@ -12,7 +12,7 @@
 		</template>
 		<template v-if="pay_type === 'fail'">
 			<img src="@/assets/img/fail.png" alt="">
-			<h1>결제가 실패하였습니다.</h1>
+			<h1>결제에 실패하였습니다.</h1>
 			<h2> </h2>
 			<h3>결제가 취소되었습니다. 다시 시도해주세요.</h3>
 			<div class="btn_box">

@@ -31,7 +31,7 @@ export default class extends Vue {
 		}).finally(()=>{
 			this._loading = false;
 		})
-		this.time = 60
+		this.time = 180
 		this.Interval_timer = setInterval(()=>{
 			this.time--
 			if(this.time <= 0){

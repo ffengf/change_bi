@@ -3,7 +3,7 @@
         <Bread :new_list="new_list" />
         <div class="box_line"></div>
         <template v-if="!$route.path.includes('info')">
-			<h2>이벤트</h2>
+			<!-- <h2>이벤트</h2> -->
 			<div class="line sm-down"></div>
 			<h1>오직 스위치에서만 제공하는 이벤트</h1>
 			<div class="line sm-up"></div>

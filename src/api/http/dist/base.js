@@ -27,7 +27,7 @@ var alert_403 = function_1.debounce(function (err) {
     });
 }, 100);
 var server = axios_1["default"].create({
-    baseURL: 'http://api.changbi.com',
+    baseURL: 'https://api.changbi.com',
     timeout: 10000,
     headers: {
         "Accept": 'application/json',

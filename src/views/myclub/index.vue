@@ -82,6 +82,8 @@ export default class extends Vue {
 		type:0,
 		other_title:'',
 		other_content:'',
+		apply_end:'',
+		apply_start:''
 	}
 
 	get id():number{

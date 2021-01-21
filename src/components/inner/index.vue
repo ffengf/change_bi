@@ -22,8 +22,10 @@ export default class extends Vue {
 .inner{
 	width: 100%;
 	word-break: break-all;
+	line-height: 1.5rem;
 	/deep/p{
 		word-break: break-all;
+		font-size: 14px;
 	}
 	/deep/img{
 		max-width: 100%!important;

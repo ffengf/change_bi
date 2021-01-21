@@ -15,7 +15,7 @@
 			<template v-if="info.status === 1">
 				<div class="answer">답변드립니다.</div>
 				<!-- <h2 class="inner" v-html="info.answer"></h2> -->
-				<Inner :val="info.question" />
+				<Inner :val="info.answer" />
 			</template>
 		</div>
 		<div class="btn_box">
