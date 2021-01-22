@@ -167,6 +167,17 @@
                         <el-radio :label="0">아니오</el-radio>
                     </el-radio-group>
                 </el-form-item>
+				<el-form-item
+                    prop="project"
+                    label="클럽 창작과비평 활동 이력이 있으신가요?"
+                >
+                    <el-checkbox-group v-model="info.project">
+                        <el-checkbox :label="0">프롤로그</el-checkbox>
+						<el-checkbox :label="1">제1장</el-checkbox>
+						<el-checkbox :label="2">제2장</el-checkbox>
+						<el-checkbox :label="3">없음</el-checkbox>
+                    </el-checkbox-group>
+                </el-form-item>
                 <el-form-item label="이용약관동의" prop="all">
                     <el-checkbox v-model="info.all" @change="all_change">이용약관동의</el-checkbox>
                     <div style="
@@ -422,6 +433,7 @@ export default class extends Vue {
         is_email: [{ required: true }],
 		is_sms: [{ required: true }],
 		all:[{ required: true }],
+		project:[{ required: true,message:'활동 이력을 선택해 주세요.' }]
     };
     info = {
         username: "",
@@ -435,7 +447,8 @@ export default class extends Vue {
         address: "",
         address_code: "",
         address_detail: "",
-        favorite_category: [0],
+		favorite_category: [0],
+		project:[0],
         is_library: 1,
         is_publish: 1,
         is_email: true,

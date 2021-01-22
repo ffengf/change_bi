@@ -9,7 +9,7 @@
 				<!-- <p>『필라멘트』</p> -->
 			</h2>
 			<h3>
-				<p>삼개월 동안 세권의 책을 함께 읽고 미션을 수행하며</p>
+				<p>3개월 동안 3권의 책을 함께 읽고 미션을 수행하며</p>
 				<p>책이 나의 생활과 경험으로 이어지도록 합니다.</p>
 			</h3>
 			<a href="#href" class="btn">신청하기</a>
@@ -164,7 +164,7 @@
 				<div class="item">
 					<img src="@/assets/img/club/book/5.png" alt="">
 					<div class="line"></div>
-					<h1>독서 모임<span class="small">(온/오프라인)</span></h1>
+					<h1>독서모임<span class="small">(온/오프라인)</span></h1>
 					<h2>
 						<p>때때로 얼굴을 마주 보고</p>
 						<p>이야기 나눌 거예요.</p>
