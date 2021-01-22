@@ -70,7 +70,7 @@
         </div>
         <el-dialog :visible.sync="key" width="30%">
             <div class="body" ref="body" v-loading="submit_loading">
-                <h1>제출하기 : {{ info.title }}</h1>
+                <h1>{{ info.title }}</h1>
                 <div class="line"></div>
                 <el-form
                     ref="form"

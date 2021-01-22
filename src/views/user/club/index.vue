@@ -2,7 +2,7 @@
     <div class="warpper" v-loading="_loading">
 		<template v-if="list.length !== 0">
 			<div class="box" v-for="(ele) in list" :key="ele.id">
-				<div class="box_left">
+				<div class="box_left cu" @click="go_info(ele)">
 					<h2>
 						<span :class="class_name(status_str(ele))">{{ status_str(ele) }}</span>
 						<span>|</span>
@@ -92,6 +92,9 @@ export default class extends More(api_user.get_club) {
 	go_myclub(ele:user_club){
 		this.$router.push(`/myclub/${Encryption.base_enc(ele.club.id)}`)
 	}
+	go_info(ele:user_club){
+		this.$router.push(`/club/${'creation'}/info/${ele.club.id}`)
+	}
 
 	status_str(ele:user_club){
 		switch(ele.status){
@@ -163,6 +166,9 @@ h6{
 	margin-top: 0.2rem;
 	font-size: 12px;
 	color: #F56C6C;
+}
+.cu{
+	cursor: pointer;
 }
 @media only screen and (max-width: 1024px) {
 	.flex{

@@ -505,7 +505,14 @@ export default class extends Vue {
                 width: "100%",
                 onComplete: (data) => {
                     this.info.address_code = data.zonecode;
-                    this.info.address = data.address;
+					this.info.address = data.address;
+					console.log(data)
+					if(data.userSelectedType === 'J'){
+						this.info.address_detail = data.jibunAddress
+					}
+					if(data.userSelectedType === 'R'){
+						this.info.address_detail = data.roadAddress
+					}
                     this.key = false;
                     (this.$refs["address_detail"] as HTMLInputElement).focus();
                 },
@@ -605,9 +612,9 @@ export default class extends Vue {
 }
 .checkbox {
 	justify-content: space-between!important;
-	> *{
+	// > *{
 		// width: 2rem !important;
-	}
+	// }
 }
 
 .date_picker{

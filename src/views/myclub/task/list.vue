@@ -29,7 +29,7 @@
 			width="30%"
 		>
 			<div class="body" ref="body" v-loading='submit_loading'>
-				<h1>제출하기 : {{ diolog_title }}</h1>
+				<h1>{{ diolog_title }}</h1>
 				<div class="line"></div>
 				<el-form ref="form" :model="form" :rules="rules" label-position="top" label-width="80px">
 					<el-form-item label="제목" prop="title">

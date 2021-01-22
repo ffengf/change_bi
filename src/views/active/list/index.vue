@@ -9,8 +9,8 @@
 						<span class="green" v-if="ele.status === 0">모집 중</span>
 						<span class="blue" v-if="ele.status === 3">마감임박</span>
 						<span class="orange" v-if="ele.status === 5">모집마감</span>
-						<span style="margin:0 0.3rem">|</span>
-						<span>{{ ele.start_time }} ~ {{ ele.end_time }}</span>
+						<span v-if="ele.status !== 5" style="margin:0 0.3rem">|</span>
+						<span v-if="ele.status !== 5">{{ ele.start_time }} ~ {{ ele.end_time }}</span>
 					</h2>
 					<h1>{{ ele.title }}</h1>
 				</div>

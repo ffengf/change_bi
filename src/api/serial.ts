@@ -83,19 +83,19 @@ class Serial extends Http {
 				...base,
 				day_of_week: 0,
 			}):[],
-			new Date().getDay() !== 2 ?this.get_list({
+			new Date().getDay() !== 2 ? this.get_list({
 				...base,
 				day_of_week: 1,
 			}): [],
-			new Date().getDay() !== 3 ?this.get_list({
+			new Date().getDay() !== 3 ? this.get_list({
 				...base,
 				day_of_week: 2,
 			}): [],
-			new Date().getDay() !== 4 ?this.get_list({
+			new Date().getDay() !== 4 ? this.get_list({
 				...base,
 				day_of_week: 3,
 			}): [],
-			new Date().getDay() !== 5 ?this.get_list({
+			new Date().getDay() !== 5 ? this.get_list({
 				...base,
 				day_of_week: 4,
 			}): [],
