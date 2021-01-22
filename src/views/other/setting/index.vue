@@ -555,9 +555,9 @@ export default class extends Vue {
 }
 .checkbox {
 	justify-content: none!important;
-	> *{
-		width: 48px !important;
-	}
+	// > *{
+	// 	width: 48px !important;
+	// }
 }
 
 .date_picker{

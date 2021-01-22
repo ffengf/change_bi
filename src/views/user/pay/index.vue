@@ -1,7 +1,7 @@
 <template>
     <div class="warpper" v-loading="_loading">
 		<template v-if="list.length !== 0">
-			<div class="box" v-for="ele in list" :key="ele.id">
+			<div class="box cu" v-for="ele in list" :key="ele.id" @click="link(ele)">
 				<div class="box_left">
 					<h2>
 						<span class="color_primary">{{ pay_methods(ele.pay_method) }}</span>
@@ -28,7 +28,7 @@ import { Vue, Component } from "vue-property-decorator";
 import Rview from "@/components/routerView/index.vue";
 import Bread from "@/components/bread/index.vue"
 import { More } from "@/mixin/more";
-import { api_user } from "@/api";
+import { api_user, user_pay } from "@/api";
 import { numFormat } from "@/util/string";
 @Component({
     components: {
@@ -48,6 +48,13 @@ export default class extends More(api_user.get_pay) {
 			other:'쿠폰결제'
 		}[e]
 	}
+
+	link(ele:user_pay){
+		if(ele.receipt_url === null){
+			return this.$message('무료 구매는 영수증이 없습니다.')
+		}
+		window.open(ele.receipt_url)
+	}
 }
 </script>
 
@@ -58,5 +65,9 @@ export default class extends More(api_user.get_pay) {
 .small{
 	font-size: 13.5px;
 	letter-spacing: -0.68px;
+}
+
+.cu{
+	cursor: pointer;
 }
 </style>

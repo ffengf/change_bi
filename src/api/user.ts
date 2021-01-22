@@ -44,6 +44,7 @@ export interface user_club {
 		start_time: string
 		end_time: string
 		status: 0 | 1 | 2 | 3 | 4 | 5
+		type: 0 | 1
 	}
 }
 
@@ -65,6 +66,7 @@ export interface user_pay {
 	create_time:string
 	pay_amount:string
 	pay_method:string
+	receipt_url:string | null
 	club:{
 		id:number
 		title:string

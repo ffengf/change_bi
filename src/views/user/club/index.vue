@@ -93,7 +93,10 @@ export default class extends More(api_user.get_club) {
 		this.$router.push(`/myclub/${Encryption.base_enc(ele.club.id)}`)
 	}
 	go_info(ele:user_club){
-		this.$router.push(`/club/${'creation'}/info/${ele.club.id}`)
+		if(this.status_str(ele) === '진행완료'){
+			return this.$message.error('진행완료된 모임입니다.')
+		}
+		this.$router.push(`/club/${ ele.club.type == 0 ? 'creation' : 'apply' }/info/${ele.club.id}`)
 	}
 
 	status_str(ele:user_club){
