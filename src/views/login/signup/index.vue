@@ -518,13 +518,11 @@ export default class extends Vue {
                 width: "100%",
                 onComplete: (data) => {
                     this.info.address_code = data.zonecode;
-					this.info.address = data.address;
-					console.log(data)
 					if(data.userSelectedType === 'J'){
-						this.info.address_detail = data.jibunAddress
+						this.info.address = data.jibunAddress
 					}
 					if(data.userSelectedType === 'R'){
-						this.info.address_detail = data.roadAddress
+						this.info.address = data.roadAddress
 					}
                     this.key = false;
                     (this.$refs["address_detail"] as HTMLInputElement).focus();

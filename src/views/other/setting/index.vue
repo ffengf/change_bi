@@ -137,7 +137,7 @@
                 </el-form-item>
                 <el-form-item
                     prop="is_library"
-                    label="사서로 근무 중이신가요?"
+                    label="학교 또는 독서 지도 등 교육 관련 업계에 종사 중이신가요?"
                 >
                     <el-radio-group v-model="info.is_library">
                         <el-radio :label="1">예</el-radio>
@@ -452,7 +452,12 @@ export default class extends Vue {
                 width: "100%",
                 onComplete: (data) => {
                     this.info.address_code = data.zonecode;
-                    this.info.address = data.address;
+                    if(data.userSelectedType === 'J'){
+						this.info.address = data.jibunAddress
+					}
+					if(data.userSelectedType === 'R'){
+						this.info.address = data.roadAddress
+					}
                     this.key = false;
                     (this.$refs["address_detail"] as HTMLInputElement).focus();
                 },

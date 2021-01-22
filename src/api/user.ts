@@ -38,6 +38,7 @@ export interface user_club {
 	id: number
 	status: 0 | 1 | 2 | 3 | 4
 	refuse_reason: string | null
+	allow_print:boolean
 	club:{
 		id:number
 		title: string

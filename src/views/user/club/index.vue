@@ -22,7 +22,7 @@
 					<el-button class="right_btn" type="success" @click="go_myclub(ele)">참여하기</el-button>
 				</div>
 				<div class="flex" v-if="status_str(ele) === '진행완료'">
-					<el-button class="right_btn" type="success" @click="open(ele)">수료증 발급</el-button>
+					<el-button class="right_btn" type="success" @click="open(ele)" v-if="ele.allow_print">수료증 발급</el-button>
 					<el-button class="right_btn" type="primary" @click="go_myclub(ele)">내용보기</el-button>
 				</div>
 				<div class="flex" v-if="status_str(ele) === '취소완료' || status_str(ele) === '환불완료'">
