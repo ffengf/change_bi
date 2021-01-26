@@ -18,7 +18,8 @@ exports.pay = function (amount, pay_method, other) {
     var pg = {
         phone: 'danal',
         trans: 'danal_tpay',
-        card: 'danal_tpay'
+        card: 'danal_tpay',
+        naverpay: 'naverpay'
     }[pay_method];
     return new Promise(function (resolve, reject) {
         var _a, _b, _c, _d, _e;
