@@ -1,7 +1,9 @@
 <template>
     <div class="notice" v-loading='_loading'>
-        <List :keys.sync="key" :list="list" :page.sync="page" v-if="key" :what.sync="what" :disabled="disabled" />
-        <Info :keys.sync="key" :list="list" :page.sync="page" :what.sync="what" :count="count" v-else />
+        <keep-alive>
+			<List v-if="id === null" />
+			<Info :id="id" v-else />
+		</keep-alive>
     </div>
 </template>
 
@@ -9,7 +11,6 @@
 import { Vue, Component, Watch } from "vue-property-decorator";
 import List from "./list.vue";
 import Info from "./info.vue";
-import { api_customer, notice } from "../../../api/customer";
 @Component({
     components: {
         List,
@@ -17,14 +18,7 @@ import { api_customer, notice } from "../../../api/customer";
     }
 })
 export default class extends Vue {
-    key = true;
 
-    page = 1;
-    count = 0;
-
-	what = 0
-
-	list: notice[] = [];
 
     @Watch("key")
     watch_key(key: boolean) {
@@ -42,36 +36,10 @@ export default class extends Vue {
 			return
 		}
         tabs.style.display = "flex";
-    }
-
-    @Watch("page")
-    async get_list() {
-        if (this.list.length === this.count && this.list.length !== 0) {
-            return this.$message.error("추가 내용이 없습니다.");
-		}
-		this._loading = true
-        const { results, count } = await api_customer.get_notice({
-            page: this.page
-        }).finally(()=>{
-			this._loading = false
-		})
-        this.list = [...this.list, ...results];
-        this.count = count;
 	}
 
-	@Watch('what')
-	watch_what(what:number){
-		if(what + 1 > this.list.length){
-			this.page ++
-		}
-	}
-
-    created() {
-        this.get_list();
-	}
-
-	get disabled():boolean{
-		return this.count <= this.list.length
+	get id(){
+		return this.$route.query.id ?  +this.$route.query.id : null
 	}
 }
 </script>

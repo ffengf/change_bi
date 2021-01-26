@@ -68,6 +68,7 @@ export interface user_pay {
 	pay_amount:string
 	pay_method:string
 	receipt_url:string | null
+	status: 1 | 3
 	club:{
 		id:number
 		title:string

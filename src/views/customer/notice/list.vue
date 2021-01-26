@@ -1,12 +1,12 @@
 <template>
-    <div class="list">
-		<div class="box" v-for="(ele,index) in list" :key="ele.id">
+    <div class="list" v-loading="_loading">
+		<div class="box" v-for="(ele) in list" :key="ele.id">
 			<div class="top">
 				<span class="color_success">공지사항</span>
 				<span class="lines"></span>
 				<span>{{ ele.create_time }}</span>
 			</div>
-			<h1 @click="change_what(index)">{{ ele.title }}</h1>
+			<h1 @click="go_info(ele.id)">{{ ele.title }}</h1>
 		</div>
 
 		<el-button type="success" class="btn" @click="more" :disabled="disabled">더 보기</el-button>
@@ -15,35 +15,12 @@
 
 <script lang="ts">
 import { Vue, Component, Emit, Model, Prop } from "vue-property-decorator";
-import { notice } from '@/api';
+import { api_customer } from '@/api';
+import { More } from "@/mixin/more";
 @Component
-export default class extends Vue {
-	@Model("update:keys", { type: Boolean, required: true })
-	readonly keys!: boolean;
-    @Emit("update:keys")
-    change_keys() {
-        return false;
-	}
-
-	@Prop({ required:true })
-	list !:notice[]
-
-	@Prop({ required:true })
-	disabled !:boolean
-
-	@Model("update:page", { type: Number, required: true })
-	readonly page!: number;
-    @Emit("update:page")
-    more() {
-        return this.page + 1;
-	}
-
-	@Model("update:what", { type: Number, required: true })
-	readonly what!: number;
-    @Emit("update:what")
-    change_what(index: number) {
-		this.change_keys()
-		return index
+export default class extends More(api_customer.get_notice) {
+	go_info(id:number){
+		this.$router.push(`/customer/notice?id=${id}`)
 	}
 
 }

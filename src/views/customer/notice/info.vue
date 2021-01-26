@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-loading="_loading">
 		<div class="item">
 			<div class="top">
 				<span class="color_success">공지사항</span>
@@ -8,19 +8,18 @@
 			</div>
 			<h1>{{ info.title }}</h1>
 		</div>
-		<!-- <h2 class="inner" v-html="info.content"></h2> -->
 		<Inner :val="info.content" />
 		<div class="btn_box">
-			<el-button class="btns aaa" type="default" :disabled="what === 0" @click="change_what(what - 1)">이전 글</el-button>
-			<el-button class="btns" type="success" @click="show_list">목록으로</el-button>
-			<el-button class="btns aaa" type="default" :disabled="what + 1 === count" @click="change_what(what + 1)">다음 글</el-button>
+			<el-button class="btns aaa" type="default" :disabled="info.prev === null" @click="change_id(info.prev)">이전 글</el-button>
+			<el-button class="btns" type="success" @click="ret_list">목록으로</el-button>
+			<el-button class="btns aaa" type="default" :disabled="info.next === null" @click="change_id(info.next)">다음 글</el-button>
 		</div>
 	</div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Model, Emit } from "vue-property-decorator";
-import { notice } from "@/api"
+import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import { api_customer, notice_info } from "@/api"
 import Inner from "@/components/inner/index.vue"
 @Component({
 	components:{
@@ -28,29 +27,39 @@ import Inner from "@/components/inner/index.vue"
 	}
 })
 export default class extends Vue {
-	@Model("update:keys", { type: Boolean, required: true })
-	readonly keys!: boolean;
-    @Emit("update:keys")
-    show_list() {
-        return true;
+
+	@Prop({ required:true,type:Number })
+	id !: number
+
+	@Watch('id',{ immediate:true })
+	watch_id(){
+		this.get_info()
 	}
 
-	@Model("update:what", { type: Number, required: true })
-	readonly what!: number;
-    @Emit("update:what")
-    change_what(index: number) {
-		return index
+	async get_info(){
+		this._loading = true
+		this.info = await api_customer.get_notice_info(this.id).finally(()=>{
+			this._loading = false
+		})
 	}
 
-	@Prop({ required:true })
-	count !:number
-
-	@Prop({ required:true })
-	list !:notice[]
-
-	get info(){
-		return this.list[this.what]
+	info:notice_info = {
+		next:null,
+		prev:null,
+		id:0,
+		title: '',
+		content: '',
+		create_time: '',
 	}
+
+	change_id(id:number){
+		this.$router.push(`/customer/notice?id=${id}`)
+	}
+
+	ret_list(){
+		this.$router.push('/customer/notice')
+	}
+
 }
 </script>
 

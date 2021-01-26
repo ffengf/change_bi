@@ -13,7 +13,8 @@
 						<span class="small">{{ ele.club.option }}</span>
 					</h1>
 				</div>
-				<div class="text">{{ numFormat(ele.pay_amount) }} 원</div>
+				<div class="text" v-if="ele.status === 1">{{ numFormat(ele.pay_amount) }} 원</div>
+				<div class="text red" v-else>- {{ numFormat(ele.pay_amount) }} 원</div>
 			</div>
 			<el-button class="more" type="success" @click="more" :disabled="disabled">더 보기</el-button>
 		</template>
@@ -51,7 +52,11 @@ export default class extends More(api_user.get_pay) {
 
 	link(ele:user_pay){
 		if(ele.receipt_url === null){
-			return this.$message('무료 구매는 영수증이 없습니다.')
+			if(ele.pay_method === 'phone'){
+				return this.$message('휴대폰 결제의 경우 제공되는 매출전표 서비스가 없습니다.')
+			}else{
+				return this.$message('무료 결제의 경우 제공되는 매출전표 서비스가 없습니다.')
+			}
 		}
 		window.open(ele.receipt_url)
 	}
@@ -69,5 +74,9 @@ export default class extends More(api_user.get_pay) {
 
 .cu{
 	cursor: pointer;
+}
+
+.red{
+	color: #F56C6C!important;
 }
 </style>

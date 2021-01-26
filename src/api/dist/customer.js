@@ -29,10 +29,14 @@ var base_1 = require("./http/base");
 var Customer = /** @class */ (function (_super) {
     __extends(Customer, _super);
     function Customer() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.get_notice = function (data) {
+            return _this.get(__assign({ page_size: 10 }, data), '/notice/');
+        };
+        return _this;
     }
-    Customer.prototype.get_notice = function (data) {
-        return this.get(__assign({ page_size: 10 }, data), '/notice/');
+    Customer.prototype.get_notice_info = function (id) {
+        return this.get({}, "/notice/" + id + "/");
     };
     Customer.prototype.get_faq = function (data) {
         return this.get(__assign({ page_size: 10 }, data), '/faq/');
