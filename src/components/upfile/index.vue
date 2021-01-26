@@ -1,7 +1,7 @@
 <template>
     <div id="upload_file" v-loading="_loading">
         <el-upload
-            :action="'http://13.125.137.129:8000' + '/file_upload'"
+            :action="'https://api.changbi.com' + '/file_upload'"
             :before-upload="beforeUpload"
             multiple
 			:on-success="success"

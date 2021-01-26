@@ -100,7 +100,7 @@ export default {
                             var formData = new FormData();
                             formData.append("file", files[0]);
                             $.ajax({
-                                url: 'http://13.125.137.129:8000' + "/file_upload",
+                                url: 'https://api.changbi.com' + "/file_upload",
                                 type: "POST",
                                 data: formData,
                                 processData: false,

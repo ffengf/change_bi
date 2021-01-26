@@ -8,7 +8,7 @@
                     <div class="bg_color_primary">마이페이지</div>
                     <div>
 						<el-upload
-							:action="'http://13.125.137.129:8000' + '/file_upload'"
+							:action="'https://api.changbi.com' + '/file_upload'"
 							class="upload"
 							accept="image/jpeg,image/gif,image/jpg,image/png"
 							:before-upload="beforeUpload"

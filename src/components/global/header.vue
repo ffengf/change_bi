@@ -8,7 +8,7 @@
 				@click="$router.push('/')"
             />
             <div>
-                <el-menu menu-trigger="click"  mode="horizontal" class="tab" router text-color="#000" active-text-color="#000">
+                <el-menu menu-trigger="hover"  mode="horizontal" class="tab" router text-color="#000" active-text-color="#000">
                     <template v-for="(ele,index) in tab">
                         <el-submenu :key="index + ele.index" :index="ele.index" v-if="ele.children">
                             <template slot="title"><h1>{{ ele.name }}</h1></template>
@@ -35,7 +35,7 @@
             </div>
             <div class="right">
                 <div :class="['icon',active === 'customer' ? 'active':'']">
-                    <el-dropdown trigger="click" @command="customer" placement="bottom" @visible-change="is_active($event,'customer')">
+                    <el-dropdown trigger="hover" @command="customer" placement="bottom" @visible-change="is_active($event,'customer')">
                         <span class="el-dropdown-link">
 							<img src="@/assets/img/customer.png" alt="" srcset="">
                         </span>
@@ -53,7 +53,7 @@
 				</template>
 				<template v-else>
 					<div :class="['icon',active === 'user' ? 'active':'']">
-						<el-dropdown trigger="click" @command="user" placement="bottom" @visible-change="is_active($event,'user')">
+						<el-dropdown trigger="hover" @command="user" placement="bottom" @visible-change="is_active($event,'user')">
 							<span class="el-dropdown-link">
 								<el-image :src="avatar" class="avatar"/>
 							</span>
