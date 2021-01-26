@@ -12,7 +12,7 @@
 					resize="none"
 					:maxlength="300"
                 ></el-input>
-                <div class="btn_box">
+                <div class="btn_box" v-if="club_type">
                     <span @click.stop="submit">확인</span>
                     <span>|</span>
                     <span @click.stop="submit_info.content = ''">취소</span>
@@ -98,6 +98,11 @@ export default class extends More(api_myclub.get_discuss_list) {
 		}) as discuss_list[]
 	}
 
+
+	get club_type():Boolean{
+		const type = document.getElementById('club_type') as HTMLElement;
+		return type.innerText === '진행완료' ? false : true;
+	}
 }
 </script>
 

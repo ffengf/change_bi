@@ -11,6 +11,7 @@
                 class="btn"
                 type="success"
                 @click.stop="sign(info.attendance_id)"
+				v-show="club_type"
                 v-if="info.attendance_id === null"
                 >제출하기</el-button
             >
@@ -18,6 +19,7 @@
                 class="btn"
                 type="primary"
                 @click.stop="sign(info.attendance_id)"
+				v-show="club_type"
                 v-else
                 >수정하기</el-button
             >
@@ -242,6 +244,13 @@ export default class extends Mixin_list<task_attend_list>(
 
 	show_comment(id:number){
 		(this.$refs['comment'] as any).open(id)
+	}
+
+
+
+	get club_type():Boolean{
+		const type = document.getElementById('club_type') as HTMLElement;
+		return type.innerText === '진행완료' ? false : true;
 	}
 }
 </script>

@@ -11,8 +11,8 @@
 					<h1>{{ ele.title }}</h1>
 					<!-- <p class="inner_detail" v-html="ele.content"></p> -->
 					<Inner class="inner_detail" :val="ele.content" />
-					<el-button class="btn" type="success" @click.stop="sign(null,ele.id,ele.title)" v-if="ele.attendance_id === null">제출하기</el-button>
-					<el-button class="btn" type="primary" @click.stop="sign(ele.attendance_id,ele.id,ele.title)" v-else>수정하기</el-button>
+					<el-button v-show="club_type" class="btn" type="success" @click.stop="sign(null,ele.id,ele.title)" v-if="ele.attendance_id === null">제출하기</el-button>
+					<el-button v-show="club_type" class="btn" type="primary" @click.stop="sign(ele.attendance_id,ele.id,ele.title)" v-else>수정하기</el-button>
 				</li>
 			</ul>
 			<el-button class="more" type="success" @click="more" :disabled="disabled">더 보기</el-button>
@@ -146,6 +146,12 @@ export default class extends More(api_myclub.task_list) {
 		}
 		this.$message.success('미션 제출 되었습니다.')
 		this.key = false
+	}
+
+
+	get club_type():Boolean{
+		const type = document.getElementById('club_type') as HTMLElement;
+		return type.innerText === '진행완료' ? false : true;
 	}
 }
 </script>

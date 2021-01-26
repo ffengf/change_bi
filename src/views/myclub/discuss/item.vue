@@ -17,13 +17,13 @@
                     {{ info.content }}
                 </div>
                 <div class="h1" v-else>삭제된 게시글입니다.</div>
-                <div class="reapply" @click="reapply">댓글쓰기</div>
+                <div class="reapply" @click="reapply" v-if="club_type">댓글쓰기</div>
                 <div
                     class="btn_box"
                     v-if="info.from_user.id === user_id && info.delete === 0"
                 >
-                    <span @click="edit(info)">수정</span>
-                    <span>|</span>
+                    <span @click="edit(info)" v-if="club_type">수정</span>
+                    <span v-if="club_type">|</span>
                     <span @click="remove(info.id,null)">삭제</span>
                 </div>
             </div>
@@ -50,8 +50,8 @@
                         class="btn_box"
                         v-if="e.from_user.id === user_id && e.delete === 0"
                     >
-                        <span @click="edit(e)">수정</span>
-                        <span>|</span>
+                        <span v-if="club_type" @click="edit(e)">수정</span>
+                        <span v-if="club_type">|</span>
                         <span @click="remove(e.id,info.id)">삭제</span>
                     </div>
                 </div>
@@ -184,6 +184,13 @@ export default class extends Vue {
 			id,
 			parent_id
 		}
+	}
+
+
+
+	get club_type():Boolean{
+		const type = document.getElementById('club_type') as HTMLElement;
+		return type.innerText === '진행완료' ? false : true;
 	}
 }
 </script>

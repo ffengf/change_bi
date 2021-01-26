@@ -28,7 +28,7 @@
 							resize="none"
 							:maxlength="300"
 						></el-input>
-						<div class="btn_box">
+						<div class="btn_box" v-if="club_type">
 							<span @click.stop="submit">확인</span>
 							<span>|</span>
 							<span @click.stop="input = ''">취소</span>
@@ -52,8 +52,8 @@
 							<div class="h1 show_br" v-if="ele.delete === 0">{{ ele.content }}</div>
 							<div class="h1" v-else>삭제된 게시글입니다.</div>
 							<div class="btn_box" v-if="ele.user.id === user_id && ele.delete === 0">
-								<span @click="edit(ele)">수정</span>
-								<span>|</span>
+								<span v-if="club_type" @click="edit(ele)">수정</span>
+								<span v-if="club_type">|</span>
 								<span @click="remove(ele.id)">삭제</span>
 							</div>
 						</div>
@@ -205,6 +205,12 @@ export default class extends Vue {
 		})
 		this.out_key = false
 		this.$message.success('수정 되었습니다.')
+	}
+
+
+	get club_type():Boolean{
+		const type = document.getElementById('club_type') as HTMLElement;
+		return type.innerText === '진행완료' ? false : true;
 	}
 }
 </script>
