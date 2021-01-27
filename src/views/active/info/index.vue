@@ -7,7 +7,7 @@
 			<span class="orange" v-if="info.status === 5">모집마감</span>
             <!-- <span>{{ active_type === "1" ? "서평단 신청" : "강연 초대" }}</span> -->
             <span>|</span>
-            <span>{{ ele.apply_start }} ~ {{ ele.apply_end }}</span>
+            <span>{{ info.apply_start }} ~ {{ info.apply_end }}</span>
         </h2>
         <h1>{{ info.title }}</h1>
         <div class="line"></div>
@@ -115,7 +115,7 @@ export default class extends Vue {
 	async join(){
 		const apply_reason = this.apply_reason
 		if(apply_reason === ''){
-			return this.$message.error('쿠폰번호를 입력해 주세요.')
+			return this.$message.error('신청사유를 작성해 주세요.')
 		}
 		this.dialog_loading = true
 		const { code } = await api_active.join(this.id,apply_reason).finally(()=>{
