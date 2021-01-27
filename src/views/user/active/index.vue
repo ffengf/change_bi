@@ -5,8 +5,8 @@
 				<div class="box_left" @click="go(ele)">
 					<h2>
 						<span :class="class_name(type(ele))">{{ type(ele) }}</span>
-						<span>|</span>
-						<span>{{ ele.activity.start_time }} ~ {{ ele.activity.end_time }}</span>
+						<!-- <span>|</span>
+						<span>{{ ele.activity.start_time }} ~ {{ ele.activity.end_time }}</span> -->
 					</h2>
 					<h1>{{ ele.activity.title }}</h1>
 					<h6 v-if="ele.refuse_reason !== null">{{ ele.refuse_reason }}</h6>
@@ -46,17 +46,18 @@ export default class extends More(api_user.get_active) {
 			case 2 :
 				return '취소완료'
 			case 1 :
-				switch(ele.activity.status){
-					case 1 :
-						return '진행 중'
-					case 2 :
-						return '진행완료'
-					case 0:
-					case 3:
-						return '승인완료'
-					case 5 :
-						return '진행대기'
-				}
+				return '신청완료'
+				// switch(ele.activity.status){
+				// 	case 1 :
+				// 		return '진행 중'
+				// 	case 2 :
+				// 		return '진행완료'
+				// 	case 0:
+				// 	case 3:
+				// 		return '승인완료'
+				// 	case 5 :
+				// 		return '진행대기'
+				// }
 			default :
 				return ''
 		}
@@ -95,7 +96,7 @@ export default class extends More(api_user.get_active) {
 	}
 
 
-	class_name(key:"승인대기" | "취소완료" | "진행 중" | "진행완료" | "승인완료" | "진행대기"){
+	class_name(key:"승인대기" | "취소완료" | "진행 중" | "진행완료" | "승인완료" | "진행대기" | "신청완료"){
 		return {
 			'승인대기':'orange',
 			'취소완료':'red',
@@ -103,6 +104,7 @@ export default class extends More(api_user.get_active) {
 			'진행완료':'info',
 			'승인완료':'light_green',
 			'진행대기':'green',
+			'신청완료':'green',
 		}[key]
 	}
 }

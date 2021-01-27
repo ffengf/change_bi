@@ -6,6 +6,7 @@
 		<div class="box today" v-if="info.today.length !== 0">
             <div class="top">
                 <h1>{{ today_title }}</h1>
+				<h1 v-show="false" @click="show_list">{{ new Date().getDay() }}</h1>
             </div>
             <div class="bottom">
                 <el-card class="card" shadow="never" @click.native="go_info(ele.id,today_title)" v-for="ele in info.today" :key="ele.id">
@@ -254,6 +255,10 @@ export default class extends Vue {
 
 	get today_title(){
 		return ['월요연재','화요연재','수요연재','목요연재','금요연재'][new Date().getDay() - 1]
+	}
+
+	show_list(){
+		console.log(this.info)
 	}
 }
 </script>
