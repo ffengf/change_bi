@@ -9,7 +9,7 @@
 					<h1 v-show="false" @click="show_list">{{ new Date().getDay() }}</h1>
 				</div>
 				<div class="bottom">
-					<el-card class="card" shadow="never" v-for="data in ele.data" :key="data.id" @click.native="go_info(data.id,today_title)" >
+					<el-card class="card" shadow="never" v-for="data in ele.data" :key="data.id" @click.native="go_info(data.id,ele.title)" >
 						<img
 							:src="data.cover"
 						/>
@@ -24,7 +24,7 @@
 							<span v-if="data.status === 1" class="status_1">완결</span>
 						</h2>
 						<h3>
-							<p v-for="e in data.chapters" :key="e.number" @click.stop="go_chapter(data.id,e.id,today_title)">
+							<p v-for="e in data.chapters" :key="e.number" @click.stop="go_chapter(data.id,e.id,ele.title)">
 								{{ e.number }}화<el-divider direction="vertical"></el-divider
 								>{{ e.title }}
 							</p>
