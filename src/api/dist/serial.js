@@ -61,6 +61,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 exports.api_serial = void 0;
+var ramda_1 = require("ramda");
 var base_1 = require("./http/base");
 var Serial = /** @class */ (function (_super) {
     __extends(Serial, _super);
@@ -81,39 +82,21 @@ var Serial = /** @class */ (function (_super) {
         });
     };
     Serial.prototype.date_list = function () {
-        return __awaiter(this, void 0, Promise, function () {
-            var base, _a, top, today, o1, o2, o3, o4, o5;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        base = {
-                            page: 1,
-                            page_size: 3
-                        };
-                        return [4 /*yield*/, Promise.all([
-                                this.get_list(__assign(__assign({}, base), { is_switch_on: 1 })),
-                                this.get_list(__assign(__assign({}, base), { day_of_week: new Date().getDay() - 1 })),
-                                new Date().getDay() !== 1 ? this.get_list(__assign(__assign({}, base), { day_of_week: 0 })) : [],
-                                new Date().getDay() !== 2 ? this.get_list(__assign(__assign({}, base), { day_of_week: 1 })) : [],
-                                new Date().getDay() !== 3 ? this.get_list(__assign(__assign({}, base), { day_of_week: 2 })) : [],
-                                new Date().getDay() !== 4 ? this.get_list(__assign(__assign({}, base), { day_of_week: 3 })) : [],
-                                new Date().getDay() !== 5 ? this.get_list(__assign(__assign({}, base), { day_of_week: 4 })) : [],
-                            ])];
+        return __awaiter(this, void 0, void 0, function () {
+            var results, day_string;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.get()];
                     case 1:
-                        _a = _b.sent(), top = _a[0], today = _a[1], o1 = _a[2], o2 = _a[3], o3 = _a[4], o4 = _a[5], o5 = _a[6];
-                        return [2 /*return*/, {
-                                top: top, today: today, o1: o1, o2: o2, o3: o3, o4: o4, o5: o5
-                            }];
+                        results = _a.sent();
+                        day_string = ['월요연재', '화요연재', '수요연재', '목요연재', '금요연재'];
+                        return [2 /*return*/, results.map(function (x) { return (__assign(__assign({}, x), { title: ramda_1.is(Number, x.title) ? day_string[x.title] : '스위치 ON' })); })];
                 }
             });
         });
     };
     Serial.prototype.get_today = function () {
-        return this.get_list({
-            page: 1,
-            page_size: 3,
-            day_of_week: new Date().getDay() - 1
-        });
+        return this.get({ is_today: 1 });
     };
     Serial.prototype.get_info = function (id) {
         return __awaiter(this, void 0, void 0, function () {

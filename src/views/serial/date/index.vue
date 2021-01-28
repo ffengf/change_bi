@@ -2,8 +2,40 @@
     <div class="date" v-loading="_loading">
         <Bread :new_list="new_list" />
 
+		<template v-for="(ele,index) in info">
+			<div :class="['box',index === 0 ? 'today':'',index === info.length - 1 ? 'on':'']" :key="ele.title" v-if="ele.data.length !== 0">
+				<div class="top">
+					<h1>{{ ele.title }}</h1>
+					<h1 v-show="false" @click="show_list">{{ new Date().getDay() }}</h1>
+				</div>
+				<div class="bottom">
+					<el-card class="card" shadow="never" v-for="data in ele.data" :key="data.id" @click.native="go_info(data.id,today_title)" >
+						<img
+							:src="data.cover"
+						/>
+						<h1>{{ data.title }}</h1>
+						<h2>
+							<span class="owner">{{ data.author_name }} 작가</span>
+							<el-divider
+								direction="vertical"
+								class="lines_000"
+							></el-divider>
+							<span v-if="data.status === 0" class="status_0">연재 중</span>
+							<span v-if="data.status === 1" class="status_1">완결</span>
+						</h2>
+						<h3>
+							<p v-for="e in data.chapters" :key="e.number" @click.stop="go_chapter(data.id,e.id,today_title)">
+								{{ e.number }}화<el-divider direction="vertical"></el-divider
+								>{{ e.title }}
+							</p>
+						</h3>
+					</el-card>
+				</div>
+			</div>
+		</template>
 
-		<div class="box today" v-if="info.today.length !== 0">
+
+		<!-- <div class="box today" v-if="info.today.length !== 0">
             <div class="top">
                 <h1>{{ today_title }}</h1>
 				<h1 v-show="false" @click="show_list">{{ new Date().getDay() }}</h1>
@@ -207,7 +239,7 @@
                     </h3>
                 </el-card>
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -223,15 +255,7 @@ import { api_serial, date_info } from "@/api";
 export default class extends Vue {
     new_list = [{ title: "매일연재" }];
 
-    info: date_info = {
-        o1: [],
-        o2: [],
-        o3: [],
-        o4: [],
-        o5: [],
-        today: [],
-        top: [],
-	};
+    info: date_info = []
 
     async get_info() {
 		this._loading = true
@@ -253,13 +277,6 @@ export default class extends Vue {
         this.get_info();
 	}
 
-	get today_title(){
-		return ['월요연재','화요연재','수요연재','목요연재','금요연재'][new Date().getDay() - 1]
-	}
-
-	show_list(){
-		console.log(this.info)
-	}
 }
 </script>
 
@@ -349,8 +366,8 @@ export default class extends Vue {
                     }
                 }
             }
-        }
-    }
+		}
+	}
 }
 .on {
     .top {

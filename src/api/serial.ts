@@ -1,5 +1,6 @@
 
 import { res_list } from '@/types/global'
+import { is } from 'ramda'
 import { Http } from "./http/base"
 
 interface data {
@@ -25,15 +26,7 @@ export interface book_data {
 	chapters: chapters[]
 }
 
-export interface date_info {
-	o1:book_data[]
-	o2:book_data[]
-	o3:book_data[]
-	o4:book_data[]
-	o5:book_data[]
-	today:book_data[]
-	top:book_data[]
-}
+export type date_info = { title:number|string,data:book_data[] }[]
 
 export interface book_info extends book_data {
 	book_desc:string
@@ -64,54 +57,14 @@ class Serial extends Http {
 		return results
 	}
 
-	async date_list() :Promise<date_info> {
-		const base = {
-			page: 1,
-			page_size: 3
-		}
-		const [top, today, o1, o2, o3, o4, o5] = await Promise.all([
-			this.get_list({
-				...base,
-				is_switch_on: 1
-			}),
-			this.get_list({
-				...base,
-				day_of_week: new Date().getDay() - 1,
-				// is_recommend: 1
-			}),
-			new Date().getDay() !== 1 ? this.get_list({
-				...base,
-				day_of_week: 0,
-			}):[],
-			new Date().getDay() !== 2 ? this.get_list({
-				...base,
-				day_of_week: 1,
-			}): [],
-			new Date().getDay() !== 3 ? this.get_list({
-				...base,
-				day_of_week: 2,
-			}): [],
-			new Date().getDay() !== 4 ? this.get_list({
-				...base,
-				day_of_week: 3,
-			}): [],
-			new Date().getDay() !== 5 ? this.get_list({
-				...base,
-				day_of_week: 4,
-			}): [],
-		])
-		return {
-			top, today, o1, o2, o3, o4, o5
-		}
+	async date_list() {
+		const results = await this.get<date_info>()
+		const day_string = ['월요연재','화요연재','수요연재','목요연재','금요연재']
+		return results.map(x => ({ ...x,title:is(Number,x.title) ? day_string[x.title] : '스위치 ON' }))
 	}
 
 	get_today(){
-		return this.get_list({
-			page:1,
-			page_size:3,
-			day_of_week: new Date().getDay() - 1,
-			// is_recommend: 1
-		})
+		return this.get<book_data[]>({ is_today:1 })
 	}
 
 	async get_info(id:number){
