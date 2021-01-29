@@ -4,7 +4,7 @@
         <h2>
 			<span class="green" v-if="info.status === 1">모집 중</span>
 			<span class="blue" v-if="info.status === 2">마감임박</span>
-			<span class="orange" v-if="info.status === 3">모집마감</span>
+			<span class="orange" v-if="info.status === 3">모집 마감</span>
             <!-- <span>{{ active_type === "1" ? "서평단 신청" : "강연 초대" }}</span> -->
             <span>|</span>
             <span>{{ info.apply_start }} ~ {{ info.apply_end }}</span>

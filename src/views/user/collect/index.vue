@@ -15,7 +15,7 @@
 					<span v-if="ele.club.status === 1">진행 중</span>
 					<span v-if="ele.club.status === 3">마감 임박</span>
 					<span v-if="ele.club.status === 4">모집대기</span>
-					<span v-if="ele.club.status === 5">모집마감</span>
+					<span v-if="ele.club.status === 5">모집 마감</span>
                     <span>|</span>
                     <span
                         >{{ ele.club.start_time }} ~

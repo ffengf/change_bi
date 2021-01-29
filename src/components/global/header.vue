@@ -26,7 +26,7 @@
             </div>
             <div class="inp">
                 <el-input
-                    placeholder="독서모임을 검색해보세요."
+                    placeholder="모임/연재를 검색해보세요."
                     v-model="input"
 					@keyup.enter.native="search"
                 >
@@ -74,7 +74,7 @@
             <el-drawer append-to-body :visible.sync="key" direction="ltr" :withHeader="false" :showClose="false" size="70%" class="drawer">
 				<div class="inp">
 					<el-input
-						placeholder="독서모임을 검색해보세요."
+						placeholder="모임/연재를 검색해보세요."
 						v-model="input"
 						@keyup.enter.native="search"
 					>

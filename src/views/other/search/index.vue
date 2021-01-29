@@ -12,7 +12,7 @@
 						<span class="blue" v-if="ele.status === 1">진행 중</span>
 						<span class="orange" v-if="ele.status === 3">마감 임박</span>
 						<span class="blue" v-if="ele.status === 4">모집대기</span>
-						<span class="orange" v-if="ele.status === 5">모집마감</span>
+						<span class="orange" v-if="ele.status === 5">모집 마감</span>
 						<span>|</span>
 						<span>{{ ele.start_time }} ~ {{ ele.end_time }}</span>
 					</h2>

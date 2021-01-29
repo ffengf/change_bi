@@ -226,14 +226,14 @@
 					<el-button :type="filter.status === '' ? 'primary' : 'default'" class="btn" @click="filter.status = ''">전체</el-button>
 					<!-- <el-button :type="filter.status === 4 ? 'primary' : 'default'" class="btn" @click="filter.status = 4">모집대기</el-button> -->
 					<el-button :type="filter.status === 0 ? 'primary' : 'default'" class="btn" @click="filter.status = 0">모집 중</el-button>
-					<el-button :type="filter.status === 5 ? 'primary' : 'default'" class="btn" @click="filter.status = 5">모집마감</el-button>
+					<el-button :type="filter.status === 5 ? 'primary' : 'default'" class="btn" @click="filter.status = 5">모집 마감</el-button>
 					<el-button :type="filter.status === 1 ? 'primary' : 'default'" class="btn" @click="filter.status = 1">진행 중</el-button>
 				</div>
 				<el-select class="select_what sm-up" v-model="filter.status" placeholder="결제 방법 선택" :popper-append-to-body="false">
 					<el-option value label="전체"></el-option>
 					<el-option :value="4" label="모집대기"></el-option>
 					<el-option :value="0" label="모집 중"></el-option>
-					<el-option :value="5" label="모집마감"></el-option>
+					<el-option :value="5" label="모집 마감"></el-option>
 					<el-option :value="1" label="진행 중"></el-option>
 				</el-select>
 			</div>
@@ -247,7 +247,7 @@
 					<span class="blue" v-if="ele.status === 1">진행 중</span>
 					<span class="blink orange" v-if="ele.status === 3">마감 임박</span>
 					<!-- <span class="blue" v-if="ele.status === 4">모집대기</span> -->
-					<span class="orange" v-if="ele.status === 5">모집마감</span>
+					<span class="orange" v-if="ele.status === 5">모집 마감</span>
 					<span>|</span>
 					<span>{{ ele.start_time }} ~ {{ ele.end_time }}</span>
 				</h2>
