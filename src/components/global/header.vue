@@ -41,7 +41,7 @@
                         </span>
                         <el-dropdown-menu slot="dropdown">
                             <el-dropdown-item command="/customer/notice">공지사항</el-dropdown-item>
-                            <el-dropdown-item command="/customer/problem">자주묻는질문</el-dropdown-item>
+                            <el-dropdown-item command="/customer/problem">자주 묻는 질문</el-dropdown-item>
                             <el-dropdown-item command="/customer/answer">1:1문의</el-dropdown-item>
                         </el-dropdown-menu>
                     </el-dropdown>
@@ -53,7 +53,7 @@
 				</template>
 				<template v-else>
 					<div :class="['icon',active === 'user' ? 'active':'']">
-						<el-dropdown trigger="hover" @command="user" placement="bottom" @visible-change="is_active($event,'user')">
+						<el-dropdown @click.native="$router.push('/user/collect')" trigger="hover" @command="user" placement="bottom" @visible-change="is_active($event,'user')">
 							<span class="el-dropdown-link">
 								<el-image :src="avatar" class="avatar"/>
 							</span>
@@ -97,7 +97,7 @@
 					<el-submenu  index="/customer" class="phone_tab">
 						<template slot="title"><h1 class="title_big">고객센터</h1></template>
 						<el-menu-item index="/customer/notice">공지사항</el-menu-item>
-						<el-menu-item index="/customer/problem">자주묻는질문</el-menu-item>
+						<el-menu-item index="/customer/problem">자주 묻는 질문</el-menu-item>
 						<el-menu-item index="/customer/answer">1:1문의</el-menu-item>
 					</el-submenu>
                 </el-menu>
@@ -121,7 +121,7 @@
 						</span>
 						<el-dropdown-menu slot="dropdown">
 							<el-dropdown-item command="/customer/notice">공지사항</el-dropdown-item>
-							<el-dropdown-item command="/customer/problem">자주묻는질문</el-dropdown-item>
+							<el-dropdown-item command="/customer/problem">자주 묻는 질문</el-dropdown-item>
 							<el-dropdown-item command="/customer/answer">1:1문의</el-dropdown-item>
 						</el-dropdown-menu>
 					</el-dropdown>

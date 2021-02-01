@@ -249,7 +249,7 @@
 					<!-- <span class="blue" v-if="ele.status === 4">모집대기</span> -->
 					<span class="orange" v-if="ele.status === 5">모집 마감</span>
 					<span>|</span>
-					<span>{{ ele.start_time }} ~ {{ ele.end_time }}</span>
+					<span>{{ ele.apply_start }} ~ {{ ele.apply_end }}</span>
 				</h2>
 				<h3>{{ ele.subtitle }}</h3>
 			</el-card>

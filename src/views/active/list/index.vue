@@ -7,7 +7,7 @@
 				<div class="top">
 					<h2>
 						<span class="green" v-if="ele.status === 1">모집 중</span>
-						<span class="blue" v-if="ele.status === 2">마감임박</span>
+						<span class="blue" v-if="ele.status === 2">마감 임박</span>
 						<span class="orange" v-if="ele.status === 3">모집 마감</span>
 						<span v-if="ele.status !== 5" style="margin:0 0.3rem">|</span>
 						<span v-if="ele.status !== 5">{{ ele.apply_start }} ~ {{ ele.apply_end }}</span>

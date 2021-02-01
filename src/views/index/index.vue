@@ -127,7 +127,8 @@ export default class extends Vue {
 	}
 
 	go_serial(id:number){
-		this.$router.push(`/serial/book_info/${id}?bread_date=화요연재`)
+		const day_string = ['월요연재','화요연재','수요연재','목요연재','금요연재'][new Date().getDay() - 1]
+		this.$router.push(`/serial/book_info/${id}?bread_date=${day_string}`)
 	}
 
 }

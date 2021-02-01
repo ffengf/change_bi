@@ -158,9 +158,9 @@
                     label="클럽 창작과비평 활동 이력이 있으신가요?"
                 >
                     <el-checkbox-group v-model="info.project">
-                        <el-checkbox :label="0">프롤로그</el-checkbox>
-						<el-checkbox :label="1">제1장</el-checkbox>
-						<el-checkbox :label="2">제2장</el-checkbox>
+                        <el-checkbox :disabled="info.project.includes(3)" :label="0">프롤로그</el-checkbox>
+						<el-checkbox :disabled="info.project.includes(3)" :label="1">제1장</el-checkbox>
+						<el-checkbox :disabled="info.project.includes(3)" :label="2">제2장</el-checkbox>
 						<el-checkbox :label="3">없음</el-checkbox>
                     </el-checkbox-group>
                 </el-form-item>
@@ -392,6 +392,13 @@ export default class extends Vue {
 	all_1 = true
 	all_2 = true
 	is = true
+
+	@Watch('info.project',{deep:true})
+	watch_project_disabled(type:number[]){
+		if(type.includes(3) && type.length !== 1 ){
+			this.info.project = [3]
+		}
+	}
 
 
 	@Watch('all_1',{ immediate:true })

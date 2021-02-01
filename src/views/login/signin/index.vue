@@ -4,7 +4,7 @@
         <div class="flex_column">
             <el-form ref="form" :model="info" :rules="rules">
                 <el-form-item prop="username">
-                    <el-input v-model="info.username" placeholder="아이디"></el-input>
+                    <el-input v-model="info.username" placeholder="아이디(이메일)"></el-input>
                 </el-form-item>
 				<el-form-item prop="password">
                     <el-input v-model="info.password" placeholder="비밀번호" show-password></el-input>

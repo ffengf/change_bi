@@ -5,7 +5,7 @@
 			<div class="line mt10"></div>
 			<ul class="tab" id="customer_tab">
 				<router-link class="item" to="/customer/notice" tag="li">공지사항</router-link>
-				<router-link class="item" to="/customer/problem" tag="li">자주묻는질문</router-link>
+				<router-link class="item" to="/customer/problem" tag="li">자주 묻는 질문</router-link>
 				<router-link class="item" to="/customer/answer" tag="li">1:1 문의</router-link>
 			</ul>
 			<div class="body">
