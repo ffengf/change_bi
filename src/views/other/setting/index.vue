@@ -144,7 +144,7 @@
                         <el-radio :label="0">아니오</el-radio>
                     </el-radio-group>
                 </el-form-item>
-                <el-form-item
+                <!-- <el-form-item
                     prop="is_publish"
                     label="향후 출판계 취업을 희망하시나요?"
                 >
@@ -152,7 +152,7 @@
                         <el-radio :label="1">예</el-radio>
                         <el-radio :label="0">아니오</el-radio>
                     </el-radio-group>
-                </el-form-item>
+                </el-form-item> -->
 				<el-form-item
                     prop="project"
                     label="클럽 창작과비평 활동 이력이 있으신가요?"
@@ -254,6 +254,7 @@ import { mapObjIndexed } from "ramda"
 import PhoneSend from "@/views/login/components/phoneSend.vue"
 import { UserModule } from "@/store/user";
 import Inner from "@/components/inner/index.vue"
+import { toTop } from "@/util/other";
 @Component({
 	components:{
 		PhoneSend,
@@ -299,7 +300,7 @@ export default class extends Vue {
         } else if (
             !value.match(/^[a-zA-Z0-9_-|.]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/)
         ) {
-            callback(new Error("정확한 이메일 주소를 이력해 주세요."));
+            callback(new Error("정확한 이메일 주소를 입력해 주세요."));
         } else if (this.older.username !== value) {
             callback(new Error("이메일 중복확인을 해주세요."));
         } else {
@@ -432,23 +433,28 @@ export default class extends Vue {
     key = false;
 
     async submit() {
-		await (this.$refs['form'] as ElForm).validate()
-		this._loading = true
-		const info = mapObjIndexed((v,k)=>{
-			if(typeof v === 'boolean'){
-				return v === true ? 1 : 0
-			}else{
-				return v
-			}
-		})({ ...this.info })
-		api_user.edit_user(info).catch(()=>{
-			this._loading = false
-		}).then(async ()=>{
-			await UserModule.get_info()
-			this._loading = false
-			this.$message.success('수정 되었습니다.')
-			this.$router.replace('/user')
-		})
+		try{
+			await (this.$refs['form'] as ElForm).validate()
+			this._loading = true
+			const info = mapObjIndexed((v,k)=>{
+				if(typeof v === 'boolean'){
+					return v === true ? 1 : 0
+				}else{
+					return v
+				}
+			})({ ...this.info })
+			api_user.edit_user(info).catch(()=>{
+				this._loading = false
+			}).then(async ()=>{
+				await UserModule.get_info()
+				this._loading = false
+				this.$message.success('수정 되었습니다.')
+				this.$router.replace('/user')
+			})
+		}catch(e){
+			this.$message.error('입력하신 정보가 정확하지 않습니다. 다시 한번 확인해 주세요.');
+			toTop()
+		}
 
     }
 

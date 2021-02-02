@@ -38,15 +38,16 @@
 						</el-input>
 					</el-form-item>
 					<div class="line"></div>
+					<el-form-item label="내용" prop="content">
+						<Editor v-model="form.content" />
+					</el-form-item>
+					<div class="line"></div>
 					<el-form-item prop="file_name">
 						<span slot="label">첨부파일 <span class="color_92">(.pdf, .hwp, docx, doc, pptx, ppt, jpg, jpeg, zip)</span>
 						</span>
 						<UpFile :name.sync="form.file_name" :url.sync="form.attach" />
 					</el-form-item>
 					<div class="line"></div>
-					<el-form-item label="내용" prop="content">
-						<Editor v-model="form.content" />
-					</el-form-item>
 				</el-form>
 				<div class="submit_box">
 					<el-button class="submit" type="success" @click="submit">제출하기</el-button>

@@ -1,0 +1,67 @@
+.el-input__inner {
+  border-radius: 0 !important;
+  border: none !important;
+  border-bottom: 1px solid #000 !important;
+  font-family: NotoSansKR;
+  padding: 0!important;
+}
+.el-button {
+  font-family: NotoSansKR;
+}
+.el-button--default {
+  color: #324b9b !important;
+  border: 1px solid #324b9b !important;
+}
+.success_btn {
+  background: #fff !important;
+}
+.success_btn:hover {
+  color: #3fa535 !important;
+}
+.success_btn:active {
+  color: #3fa535 !important;
+}
+.success_btn:focus {
+  color: #3fa535 !important;
+}
+.el-icon-arrow-up:before {
+  content: "\e78f" !important;
+  color: #000000;
+  font-size: 21px;
+}
+.el-checkbox__label {
+  color: #000 !important;
+}
+.el-checkbox__inner {
+  border: 1px solid #000 !important;
+  background-color: #fff !important;
+  border-radius: 0!important;
+}
+.el-checkbox__inner::after {
+  border-width: 2px !important;
+}
+.el-radio__input.is-checked + .el-radio__label {
+  color: #000 !important;
+}
+.el-radio__inner::after {
+  background-color: #000 !important;
+  width: 7px!important;
+  height: 7px!important;
+  border-radius: 50%!important;
+}
+.el-radio-button__inner {
+  margin: 0 0.1rem !important;
+  border-radius: 0!important;
+  border: 1px solid #324b9b !important;
+}
+.login_warpper /deep/ .el-form-item.is-required:not(.is-no-asterisk) > .el-form-item__label:before,
+.login_warpper .el-form-item.is-required:not(.is-no-asterisk) .el-form-item__label-wrap > .el-form-item__label:before {
+  margin-right: 0!important;
+  color: #ff0000 !important;
+}
+.el-message-box {
+  border-radius: 0!important;
+}
+.el-message-box .el-message-box__btns .el-button--primary {
+  color: #fff !important;
+}

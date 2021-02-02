@@ -8,10 +8,10 @@
                 <span>|</span>
                 <span>{{ author_name }} 작가</span>
             </h2>
-            <h1>{{ info.title }}</h1>
+            <h1>{{ info.title }}zxc</h1>
         </div>
         <!-- <div class="inner" v-html="info.content"></div> -->
-		<Inner :val="info.content" />
+		<Inner class="nocoyp" :val="info.content" />
         <div class="line"></div>
         <div class="btn_box">
             <el-button
@@ -207,12 +207,5 @@ export default class extends Nocopy {
         }
     }
 }
-</style>
 
-<style lang="less">
-@media print {
-	*{
-		display: none!important;
-	}
-}
 </style>

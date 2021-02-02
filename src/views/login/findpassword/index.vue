@@ -99,7 +99,7 @@ export default class extends Vue {
         } else if (
             !value.match(/^[a-zA-Z0-9_-|.]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/)
         ) {
-            callback(new Error("정확한 이메일 주소를 이력해 주세요."));
+            callback(new Error("정확한 이메일 주소를 입력해 주세요."));
         } else {
             callback();
         }
