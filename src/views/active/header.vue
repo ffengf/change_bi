@@ -9,8 +9,8 @@
 			<div class="line sm-down"></div>
 		</template>
         <div class="tab">
-            <div :class="['item',active('1') ? 'active' :'']" @click="move('1')">서평단 신청</div>
-            <div :class="['item',active('2') ? 'active' :'']" @click="move('2')">강연 초대</div>
+            <div :class="['item',active('1') ? 'active' :'']" @click="move('1')">서평단·강연</div>
+            <div :class="['item',active('2') ? 'active' :'']" @click="move('2')">스페셜 이벤트</div>
         </div>
     </div>
 </template>

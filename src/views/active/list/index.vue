@@ -60,7 +60,7 @@ export default class extends More(api_active.get_list,false) {
 		this.filter.type = this.active_type
 		this.clear_list()
         this.bread.splice(1,1,{
-			title:this.active_type === '1' ? '서평단 신청': '강연 초대'
+			title:this.active_type === '1' ? '서평단·강연': '스페셜 이벤트'
 		})
     }
 

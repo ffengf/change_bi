@@ -5,7 +5,7 @@
 			<span class="green" v-if="info.status === 1">모집 중</span>
 			<span class="blue" v-if="info.status === 2">마감 임박</span>
 			<span class="orange" v-if="info.status === 3">모집 마감</span>
-            <!-- <span>{{ active_type === "1" ? "서평단 신청" : "강연 초대" }}</span> -->
+            <!-- <span>{{ active_type === "1" ? "서평단·강연" : "스페셜 이벤트" }}</span> -->
             <span>|</span>
             <span>{{ info.apply_start }} ~ {{ info.apply_end }}</span>
         </h2>
@@ -57,7 +57,7 @@ export default class extends Vue {
             title: "이벤트",
         },
         {
-            title: this.active_type === "1" ? "서평단 신청" : "강연 초대",
+            title: this.active_type === "1" ? "서평단·강연" : "스페셜 이벤트",
         },
     ];
 
