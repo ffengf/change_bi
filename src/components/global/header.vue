@@ -111,7 +111,7 @@
                 src="@/assets/img/logo.png"
                 class="logo_sm"
                 alt="logo"
-				@click="$router.push('/')"
+				@click="phone_click"
             />
 			<div class="right">
 				<!-- <div :class="['icon',active === 'customer' ? 'active':'']">
@@ -250,6 +250,14 @@ export default class extends Vue {
 
 	get avatar(){
 		return UserModule.info?.avatar
+	}
+
+	phone_click(){
+		if(this.$route.name === 'index'){
+			history.go(0)
+		}else{
+			this.$router.push('/')
+		}
 	}
 
 }

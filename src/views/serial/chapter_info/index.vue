@@ -8,7 +8,7 @@
                 <span>|</span>
                 <span>{{ author_name }} 작가</span>
             </h2>
-            <h1>{{ info.title }}zxc</h1>
+            <h1>{{ info.title }}</h1>
         </div>
         <!-- <div class="inner" v-html="info.content"></div> -->
 		<Inner class="nocoyp" :val="info.content" />
