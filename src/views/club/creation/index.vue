@@ -230,13 +230,17 @@ export default class extends More(api_club.get_creation_list) {
 	async are_you_ok(){
 		if(this._loading === true) return
 		if(this.filter.status === 0){
+			console.log(this.list)
 			if(this.list[0] !== undefined){
 				this.$router.push(`/club/creation/info/${this.list[0].id}`)
 			}else{
-				return this.$message.error('nonono')
+				return this.$message.error('이번 기수는 신청 마감되었습니다. 2, 5, 8, 11월에 새 기수 모집이 시작됩니다!')
 			}
 		}else{
 			const { results } = await api_club.get_creation_list({ page:1,page_size:1,status:0 })
+			if(results[0] === undefined){
+				return this.$message.error('이번 기수는 신청 마감되었습니다. 2, 5, 8, 11월에 새 기수 모집이 시작됩니다!')
+			}
 			this.$router.push(`/club/creation/info/${results[0].id}`)
 		}
 	}
