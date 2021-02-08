@@ -27,7 +27,7 @@ export default class extends Vue {
 		word-break: break-all;
     font-size: 14px;
     span{
-      font-family:'Nanum Gothic' !important;
+      font-family:'Nanum Gothic',sans-serif !important;
     }
 	}
 	/deep/ img{
