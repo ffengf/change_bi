@@ -137,10 +137,12 @@ export default class extends Vue {
 	}
 
 	get can_apply(){
-		const start = new Date(this.info.apply_start).getTime()
-		const end = new Date(this.info.apply_end).getTime() + 86400000
-		const now = new Date().getTime()
-		return (start < now) && (now < end)
+    const startTime = this.info.apply_start.split('.').join('-')
+    const endTime = this.info.apply_end.split('.').join('-')
+    const start = new Date(startTime).getTime()
+    const end = new Date(endTime).getTime() + 86400000
+    const now = new Date().getTime()
+    return (start < now) && (now < end)
 	}
 
 
@@ -417,8 +419,8 @@ export default class extends Vue {
 					align-items: center;
 					justify-content: space-between;
 					/deep/.el-input__inner{
-						border: 1px solid #000000 !important;
-						padding: 0.75rem !important;
+            border: 1px solid #000000 !important;
+						padding: 0 0.75rem !important;
 						box-sizing: border-box!important;
 						height: 2rem;
 						width: 7.5rem;
