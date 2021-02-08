@@ -25,7 +25,12 @@ export default class extends Vue {
 	line-height: 1.5rem;
 	/deep/ p{
 		word-break: break-all;
-		font-size: 14px;
+    font-size: 14px;
+    span{
+      // font-family:'Nanum Gothic',sans-serif !important;
+      // font-family:'NotoSansKR-Regular' !important;
+      font-family:'Nanum Gothic' !important;
+    }
 	}
 	/deep/ img{
 		max-width: 100%!important;
