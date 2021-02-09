@@ -350,7 +350,8 @@ export default class extends Vue {
         if (value === "") {
             callback(new Error("이메일을 입력해 주세요."));
         } else if (
-            !value.match(/^[a-zA-Z0-9_-|.]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/)
+            // !value.match(/^[a-zA-Z0-9_-|.]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/) ||
+			!value.match(/^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/)
         ) {
             callback(new Error("정확한 이메일 주소를 입력해 주세요."));
         } else if (this.older.username !== value) {

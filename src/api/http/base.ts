@@ -4,6 +4,7 @@ import axios, { AxiosInstance } from 'axios';
 import { app as Vue } from '@/main'
 import { UserModule } from '@/store/user';
 import { debounce,throttle } from '@/util/function';
+import { Encryption } from '@/util/encryption';
 
 const alert_403 = debounce((err:any)=>{
 	let title = ''
@@ -15,10 +16,11 @@ const alert_403 = debounce((err:any)=>{
 	Vue.$alert(title,{
 		confirmButtonText:'로그인 하기',
 		callback(){
+			console.log(Encryption.base_enc(Vue.$route.fullPath))
 			Vue.$router.push({
 				path:'/login',
 				query:{
-					last:Vue.$route.path
+					last:Encryption.base_enc(Vue.$route.fullPath)
 				}
 			})
 		}

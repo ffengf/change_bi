@@ -33,6 +33,7 @@ import { api_login } from "@/api"
 import { ElForm } from "element-ui/types/form";
 import { UserModule } from "@/store/user"
 import StorageDb from "@/util/storage"
+import { Encryption } from "@/util/encryption";
 @Component
 export default class extends Vue {
 	validatePass_8(rules, value, callback){
@@ -74,7 +75,8 @@ export default class extends Vue {
 			if(this.$route.query.last === undefined){
 				this.$router.push('/')
 			}else{
-				this.$router.push(this.$route.query.last as string)
+				const last:string = Encryption.base_dec(this.$route.query.last as string)
+				this.$router.push(last)
 			}
 		},1000)
 	}
