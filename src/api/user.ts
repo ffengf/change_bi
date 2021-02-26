@@ -1,6 +1,7 @@
 
 import { UserModule } from '@/store/user'
 import { req_list, res_list } from '@/types/global'
+import StorageDb from '@/util/storage'
 import { Http } from "./http/base"
 
 
@@ -143,7 +144,9 @@ class User extends Http {
 	}
 
 	get_user_info(){
-		return this.get<user_info>({},'/user/info/')
+		const data = StorageDb.getLocal('fcm_reg_token') === null ?
+		{} : { fcm_reg_token:StorageDb.getLocal('fcm_reg_token') };  //phone
+		return this.get<user_info>(data,'/user/info/')
 	}
 
 	edit_pass(data:{
