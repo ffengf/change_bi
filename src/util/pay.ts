@@ -21,7 +21,7 @@ export const pay = (amount: number, pay_method: pay_type, other: Object = {}) =>
 				buyer_tel: UserModule.info?.phone,
 				buyer_addr: UserModule.info?.address_detail,
 				buyer_postcode: UserModule.info?.address_code,
-
+				app_scheme: 'switch.changbi',
 				pg,
 				merchant_uid:"switch_" + new Date().getTime() ,
 
