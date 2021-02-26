@@ -27,7 +27,7 @@ export const pay = (amount: number, pay_method: pay_type, other: Object = {}) =>
 
 				...other,
 				amount,
-				pay_method,
+				pay_method:pay_method === 'naverpay' ? undefined : pay_method,
 			}, (res:any) => {
 				if (res.success) {
 					resolve(res)

@@ -35,7 +35,7 @@
 							<el-option value="card" label="신용카드"></el-option>
 							<el-option value="trans" label="계좌이체"></el-option>
 							<el-option value="phone" label="휴대폰결제"></el-option>
-							<!-- <el-option value="naverpay" label="네이버페이"></el-option> -->
+							<el-option value="naverpay" label="네이버페이"></el-option>
 						</el-select>
 					</div>
 					<div class="line"></div>

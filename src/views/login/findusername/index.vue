@@ -143,9 +143,13 @@ export default class extends Vue {
 .width_70 {
     width: 65%;
 }
-// .send_btn{
-// 	width: 25%;
-// }
+.login_warpper{
+	/deep/.el-input__inner{
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+}
 @media only screen and (max-width: 1024px) {
 	.width_70 {
 		width: 100%;
