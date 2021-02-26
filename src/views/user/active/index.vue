@@ -11,8 +11,9 @@
 					<h1>{{ ele.activity.title }}</h1>
 					<h6 v-if="ele.refuse_reason !== null">{{ ele.refuse_reason }}</h6>
 				</div>
-				<el-button class="right_btn" type="danger" v-if="show_un_join(ele)" @click="un_join(ele)">신청취소</el-button>
+
 				<el-button class="right_btn" type="danger" v-if="ele.status === 2" @click="del(ele)">삭제</el-button>
+				<el-button class="right_btn" type="danger" v-else @click="un_join(ele)">신청취소</el-button>
 			</div>
 			<el-button class="more" type="success" @click="more" :disabled="disabled">더 보기</el-button>
 		</template>
