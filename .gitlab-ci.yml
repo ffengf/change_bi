@@ -3,6 +3,7 @@ stages:
 
 variables:
   DEPLOY_PATH: "/home/ubuntu/deploy/switch_web/"               # 项目的部署路径
+  DEV_PATH: "/home/ubuntu/deploy/switch_web_dev/"               # 项目的部署路径
 
 build-job:
   stage: build
@@ -16,5 +17,20 @@ build-job:
     - switch_web                                                   # gitlab-runner tag
   only:
     - main                                                         # 允许部署的分支
+  environment:
+    name: prod                                                     # 环境名称
+
+build-job-dev:
+  stage: build
+  script:
+    - cd $CI_PROJECT_DIR                                           # 进入代码目录
+    - npm install                                                  # 安装依赖
+    - npm run build                                                # 打包构建
+    - cp -r $CI_PROJECT_DIR/dist/* $DEV_PATH                    # 将打包完成的文件复制到部署路径
+    - sudo nginx -s reload                                         # 重启Nginx
+  tags:
+    - switch_web                                                   # gitlab-runner tag
+  only:
+    - dev                                                         # 允许部署的分支
   environment:
     name: prod                                                     # 环境名称
