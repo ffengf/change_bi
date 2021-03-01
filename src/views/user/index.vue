@@ -14,12 +14,17 @@
 							:before-upload="beforeUpload"
 							:on-success="success"
 							:on-error="error"
+							v-if="!is_iphone"
 						>
 							<div class="user_avatar">
 								<img :src="info.avatar" alt="" />
 								<img src="@/assets/img/user/2.png" alt="" />
 							</div>
 						</el-upload>
+						<div class="user_avatar" v-else>
+							<img :src="info.avatar" alt="" />
+							<img src="@/assets/img/user/2.png" alt="" />
+						</div>
                         <p class="user_name kr-bo">{{ info.real_name }} 님</p>
                         <p class="color_success b mt30 fs16 pb10 user_line">참여 관리</p>
                         <p class="mt10 fs14 pointer" @click="$router.push('/user/club')">나의 모임</p>
@@ -115,6 +120,10 @@ export default class extends Vue {
 	error(){
 		this._loading = false
 		this.$message.error('업로드 실패되었습니다.')
+	}
+
+	get is_iphone(){
+		return !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)
 	}
 
 }
