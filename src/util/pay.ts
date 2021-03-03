@@ -13,7 +13,7 @@ export const pay = (amount: number, pay_method: pay_type, other: Object = {}) =>
 	}[pay_method]
 	return new Promise((resolve, reject) => {
 		try {
-			IMP.request_pay({
+			const data = {
 
 				name: '',
 				buyer_email: UserModule.info?.username,
@@ -21,14 +21,25 @@ export const pay = (amount: number, pay_method: pay_type, other: Object = {}) =>
 				buyer_tel: UserModule.info?.phone,
 				buyer_addr: UserModule.info?.address_detail,
 				buyer_postcode: UserModule.info?.address_code,
-
+				app_scheme: 'switch.changbi',
 				pg,
 				merchant_uid:"switch_" + new Date().getTime() ,
 
 				...other,
 				amount,
-				pay_method:pay_method === 'naverpay' ? undefined : pay_method,
-			}, (res:any) => {
+				pay_method,
+				naverPopupMode:true,
+				naverProducts:[
+					{
+						"categoryType": "PRODUCT",
+						"categoryId": "DIGITAL_CONTENT",
+						"uid": "299911002",
+						"name": "러블리즈",
+						"count": 1
+					}
+				]
+			}
+			IMP.request_pay(data, (res:any) => {
 				if (res.success) {
 					resolve(res)
 				} else {
