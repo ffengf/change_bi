@@ -25,6 +25,8 @@ export const pay = (amount: number, pay_method: pay_type, other: Object = {}) =>
 				pg,
 				merchant_uid:"switch_" + new Date().getTime() ,
 
+				naverUseCfm: `${new Date().getFullYear()}${new Date().getMonth()+1 < 10 ? '0' + (new Date().getMonth()+1): new Date().getMonth()+1}${new Date().getDate() < 10 ? '0'+new Date().getDate():new Date().getDate()}`,
+
 				...other,
 				amount,
 				pay_method,
@@ -39,6 +41,7 @@ export const pay = (amount: number, pay_method: pay_type, other: Object = {}) =>
 					}
 				]
 			}
+			console.log(data)
 			IMP.request_pay(data, (res:any) => {
 				if (res.success) {
 					resolve(res)
