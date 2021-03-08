@@ -123,7 +123,8 @@ export default class extends Vue {
 	}
 
 	get is_iphone(){
-		return !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)
+		// return !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)
+		return false
 	}
 
 }
