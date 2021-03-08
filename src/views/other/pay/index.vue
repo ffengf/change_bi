@@ -14,7 +14,7 @@
 			<img src="@/assets/img/fail.png" alt="">
 			<h1>결제에 실패하였습니다.</h1>
 			<h2> </h2>
-			<h3>결제가 취소되었습니다. 다시 시도해주세요.</h3>
+			<h3>{{ fail_msg }}</h3>
 			<div class="btn_box">
 				<el-button type="success" @click="go_1">다시시도</el-button>
 				<el-button type="default" @click="go_2">결제내역</el-button>
@@ -24,6 +24,7 @@
 </template>
 
 <script lang="ts">
+import { Encryption } from "@/util/encryption";
 import { Vue, Component } from "vue-property-decorator";
 
 @Component
@@ -39,6 +40,11 @@ export default class extends Vue {
 
 	go_2(){
 		this.$router.replace(this.$route.query.go_2 as string)
+	}
+
+
+	get fail_msg(){
+		return (this.$route.query.fail_msg as string | undefined) || `결제가 취소되었습니다. 다시 시도해주세요.`
 	}
 }
 </script>

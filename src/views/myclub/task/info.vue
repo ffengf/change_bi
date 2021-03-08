@@ -70,7 +70,7 @@
                 >다음 글</el-button
             >
         </div>
-        <el-dialog :visible.sync="key" width="30%">
+        <el-dialog :visible.sync="key" width="30%" :close-on-click-modal="false">
             <div class="body" ref="body" v-loading="submit_loading">
                 <h1>{{ info.title }}</h1>
                 <div class="line"></div>

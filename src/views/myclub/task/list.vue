@@ -27,6 +27,7 @@
 			v-if="key"
 			:visible.sync="key"
 			width="30%"
+			:close-on-click-modal="false"
 		>
 			<div class="body" ref="body" v-loading='submit_loading'>
 				<h1>{{ diolog_title }}</h1>

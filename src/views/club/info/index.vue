@@ -76,6 +76,7 @@ import { Vue, Component, Watch, Emit } from "vue-property-decorator";
 import { numFormat } from "@/util/string"
 import { pay, pay_type } from "@/util/pay";
 import Inner from "@/components/inner/index.vue"
+import { Encryption } from "@/util/encryption";
 @Component({
 	components:{
 		Inner,
@@ -137,12 +138,12 @@ export default class extends Vue {
 	}
 
 	get can_apply(){
-    const startTime = this.info.apply_start.split('.').join('-')
-    const endTime = this.info.apply_end.split('.').join('-')
-    const start = new Date(startTime).getTime()
-    const end = new Date(endTime).getTime() + 86400000
-    const now = new Date().getTime()
-    return (start < now) && (now < end)
+		const startTime = this.info.apply_start.split('.').join('-')
+		const endTime = this.info.apply_end.split('.').join('-')
+		const start = new Date(startTime).getTime()
+		const end = new Date(endTime).getTime() + 86400000
+		const now = new Date().getTime()
+		return (start < now) && (now < end)
 	}
 
 
@@ -191,6 +192,7 @@ export default class extends Vue {
 					query:{
 						go_1:this.$route.path,
 						go_2:'/user/pay',
+						fail_msg:e?.error_msg
 					}
 				})
 			}).finally(()=>{
