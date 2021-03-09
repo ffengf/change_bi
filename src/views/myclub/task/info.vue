@@ -110,9 +110,8 @@
 					<div class="line"></div>
                 </el-form>
                 <div class="submit_box">
-                    <el-button class="submit" type="success" @click="submit"
-                        >제출하기</el-button
-                    >
+                    <el-button class="submit" type="success" @click="submit">제출하기</el-button>
+					<el-button v-if="form.id !== null" class="submit" type="danger" @click="remove_attend(form.id)">삭제하기</el-button>
                 </div>
             </div>
         </el-dialog>
@@ -233,6 +232,7 @@ export default class extends Mixin_list<task_attend_list>(
             await api_myclub.add_attend({ ...this.form }).finally(() => {
                 this.submit_loading = false;
             });
+			this.watch_id()
         } else {
             await api_myclub.edit_attend({ ...this.form }).finally(() => {
                 this.submit_loading = false;
@@ -246,7 +246,19 @@ export default class extends Mixin_list<task_attend_list>(
 	show_comment(id:number){
 		(this.$refs['comment'] as any).open(id)
 	}
-
+	async remove_attend(id:number){
+		await this.$confirm('제출하신 내용이 삭제될 예정입니다. 정말 삭제 하시겠습니까?',{
+			confirmButtonText: '삭제',
+			cancelButtonText: '취소',
+		})
+		await api_myclub.remove_attend(id)
+		this.$message.success('삭제되었습니다.')
+		this.key = false
+		this.info = {
+			...this.info,
+			attendance_id:null
+		}
+	}
 
 
 	get club_type():Boolean{

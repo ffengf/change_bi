@@ -52,6 +52,7 @@
 				</el-form>
 				<div class="submit_box">
 					<el-button class="submit" type="success" @click="submit">제출하기</el-button>
+					<el-button v-if="form.id !== null" class="submit" type="danger" @click="remove_attend(form.id)">삭제하기</el-button>
 				</div>
 			</div>
 		</el-dialog>
@@ -147,6 +148,17 @@ export default class extends More(api_myclub.task_list) {
 			})
 		}
 		this.$message.success('미션 제출 되었습니다.')
+		this.key = false
+	}
+
+	async remove_attend(id:number){
+		await this.$confirm('제출하신 내용이 삭제될 예정입니다. 정말 삭제 하시겠습니까?',{
+			confirmButtonText: '삭제',
+			cancelButtonText: '취소',
+		})
+		await api_myclub.remove_attend(id)
+		this.$message.success('삭제되었습니다.')
+		this.list = this.list.map(x => x.attendance_id === id ? { ...x,attendance_id:null } : x)
 		this.key = false
 	}
 

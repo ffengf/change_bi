@@ -116,6 +116,10 @@ class Myclub extends Http {
 		return this.patch(clean(req), `/club/attend/${id}/`)
 	}
 
+	remove_attend(id:number){
+		return this.delete(id,`/club/attend/`)
+	}
+
 	attend_info(id: number) {
 		return this.get<attend_base>({}, `/club/attend/${id}/`)
 	}
