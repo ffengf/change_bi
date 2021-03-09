@@ -19,7 +19,7 @@
                         <div class="flex">
                             <el-input
                                 v-model="info_1.phone"
-                                placeholder="휴대폰 번호('-'는 빼고 입력해주세요)"
+                                placeholder="'-'는 빼고 입력해주세요"
 								class="width_70"
                             ></el-input>
                             <PhoneSend class="send_btn" :phone="info_1.phone" />
