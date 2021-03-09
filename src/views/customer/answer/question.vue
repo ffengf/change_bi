@@ -1,9 +1,9 @@
 <template>
     <div class="question" v-loading="_loading">
-        <el-input v-model="info.title" placeholder="*제목" :maxlength="30">
-            <div slot="suffix" class="color_80 suffix">
+        <el-input v-model="info.title" placeholder="*제목">
+            <!-- <div slot="suffix" class="color_80 suffix">
                 {{ info.title.length }}/30
-            </div>
+            </div> -->
         </el-input>
         <div
             class="line"

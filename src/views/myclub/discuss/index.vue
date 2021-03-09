@@ -10,14 +10,13 @@
                     placeholder="내용을 작성해 보세요."
 					type="textarea"
 					resize="none"
-					:maxlength="300"
                 ></el-input>
                 <div class="btn_box" v-if="club_type">
                     <span @click.stop="submit">확인</span>
                     <span>|</span>
                     <span @click.stop="submit_info.content = ''">취소</span>
                 </div>
-				<div class="len_text color_80">{{ submit_info.content.length }}/300</div>
+				<!-- <div class="len_text color_80">{{ submit_info.content.length }}/300</div> -->
             </div>
         </div>
 		<ul v-if="list.length !== 0">

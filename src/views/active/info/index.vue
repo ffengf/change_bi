@@ -27,9 +27,8 @@
 					v-model="apply_reason"
 					placeholder="신청사유를 작성해 주세요."
 					type="textarea"
-					:maxlength="500"
 				></el-input>
-				<div class="len_text color_80">{{ apply_reason.length }}/500</div>
+				<!-- <div class="len_text color_80">{{ apply_reason.length }}/500</div> -->
 				<div class="dialog_btn_box">
 					<el-button type="success" @click="join">신청하기</el-button>
 					<el-button @click="close">취소</el-button>
