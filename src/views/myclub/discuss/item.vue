@@ -278,7 +278,7 @@ export default class extends Vue {
                 cursor: pointer;
             }
             span:nth-of-type(2) {
-                margin: 0 0.3rem;
+                margin: 0 1rem;
             }
         }
     }
@@ -349,7 +349,7 @@ export default class extends Vue {
                 color: #858585;
             }
             span:nth-of-type(2) {
-                margin: 0 0.3rem;
+                margin: 0 1rem;
             }
         }
     }

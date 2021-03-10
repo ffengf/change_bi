@@ -38,7 +38,7 @@
 									<div>{{ ele.title }}</div>
 								</div>
 							</el-tooltip>
-							<div class="right">{{ ele.create_time }}</div>
+							<div class="right">{{ ele.show_time }}</div>
 						</li>
 					</ul>
 					<el-button class="btn" type="success" @click="more" :disabled="disabled">더 보기</el-button>

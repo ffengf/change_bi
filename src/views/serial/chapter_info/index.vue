@@ -75,6 +75,7 @@ export default class extends Nocopy {
         title: "",
         create_time: "",
         content: "",
+		show_time:''
     };
 
     get book_id(): number {

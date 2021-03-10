@@ -43,6 +43,7 @@ export interface chapter_list {
 	number:number
 	title:string
 	create_time:string
+	show_time:string
 }
 
 export interface chapter_info extends chapter_list {

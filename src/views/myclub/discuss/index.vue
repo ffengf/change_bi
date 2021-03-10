@@ -178,7 +178,7 @@ export default class extends More(api_myclub.get_discuss_list) {
                     color: #858585;
                 }
                 span:nth-of-type(2) {
-                    margin: 0 0.3rem;
+                    margin: 0 1rem;
                 }
             }
         }
