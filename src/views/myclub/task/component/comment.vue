@@ -152,7 +152,7 @@ export default class extends Vue {
 	}
 
 	async submit(){
-		if(this.input.replaceAll('\n','') === ''){
+		if(this.input?.replaceAll('\n','') === ''){
 			return this.$message.error('내용을 작성해 주세요.')
 		}
 		const attendance_id = this.info.id as number
@@ -188,7 +188,7 @@ export default class extends Vue {
 
 	async submit_edit(){
 		const info = this.old_info
-		if(info.content.replaceAll('\n','') === ''){
+		if(info.content?.replaceAll('\n','') === ''){
 			return this.$message.error('내용을 작성해 주세요.')
 		}
 		this._loading = true

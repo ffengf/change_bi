@@ -137,7 +137,7 @@ export default class extends Vue {
 
 	@Emit('submit')
 	async submit(){
-		if(this.dialog_info.content.replaceAll('\n','') === ''){
+		if(this.dialog_info.content?.replaceAll('\n','') === ''){
 			return this.$message.error('내용을 작성해 주세요.')
 		}
 		const club_id = this.club_id
@@ -151,7 +151,7 @@ export default class extends Vue {
 
 	@Emit('edit')
 	async edit_submit(){
-		if(this.dialog_info.content.replaceAll('\n','') === ''){
+		if(this.dialog_info.content?.replaceAll('\n','') === ''){
 			return this.$message.error('내용을 작성해 주세요.')
 		}
 		this.submit_loading = true

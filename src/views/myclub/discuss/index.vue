@@ -60,7 +60,7 @@ export default class extends More(api_myclub.get_discuss_list) {
 	}
 
 	async submit(){
-		if(this.submit_info.content.replaceAll('\n','') === ''){
+		if(this.submit_info.content?.replaceAll('\n','') === ''){
 			return this.$message.error('내용을 작성해 주세요.')
 		}
 		this._loading = true
