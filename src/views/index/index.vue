@@ -80,6 +80,7 @@
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import { banner, api_home, book_data, api_serial, api_customer, notice } from '@/api';
+import { winopen } from "@/util/other"
 @Component
 export default class extends Vue {
 
@@ -123,7 +124,7 @@ export default class extends Vue {
 		if(url === null){
 			return
 		}
-		window.open(url)
+		winopen(url)
 	}
 
 	go_serial(id:number){

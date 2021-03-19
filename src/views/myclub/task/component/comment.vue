@@ -93,7 +93,7 @@
 import { api_myclub, comment_info, comment_small } from "@/api";
 import { UserModule } from "@/store/user";
 import { Vue, Component } from "vue-property-decorator";
-
+import { winopen } from "@/util/other"
 @Component
 export default class extends Vue {
 	keys = false
@@ -148,7 +148,7 @@ export default class extends Vue {
 	}
 
 	download(url:string){
-		window.open(url)
+		winopen(url)
 	}
 
 	async submit(){

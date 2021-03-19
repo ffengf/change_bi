@@ -79,7 +79,7 @@ import Bread from "@/components/bread/index.vue";
 import Inner from "@/components/inner/index.vue"
 import { api_serial, book_info,chapter_list } from "@/api";
 import { takeLast } from "ramda";
-
+import { winopen } from "@/util/other"
 @Component({
     components: {
 		Bread,
@@ -169,7 +169,7 @@ export default class extends Vue {
 	}
 
 	winopen(){
-		window.open(this.info.link as string)
+		winopen(this.info.link as string)
 	}
 
 	async is_like(action:0|1){

@@ -48,6 +48,7 @@ export interface chapter_list {
 
 export interface chapter_info extends chapter_list {
 	content:string
+	is_free?:0|1
 }
 
 class Serial extends Http {

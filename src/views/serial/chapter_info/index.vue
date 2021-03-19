@@ -41,6 +41,8 @@ import Inner from "@/components/inner/index.vue"
 import Bread from "@/components/bread/index.vue";
 import { Nocopy } from "@/mixin/nocopy"
 import { api_serial, chapter_info, date_info } from "@/api";
+import { Encryption } from '@/util/encryption';
+import { UserModule } from '../../../store/user';
 @Component({
     components: {
 		Bread,
@@ -116,7 +118,21 @@ export default class extends Nocopy {
             .get_chapter_info(this.info_id)
             .finally(() => {
                 this._loading = false;
-            });
+			});
+		if(info.is_free === 0 && UserModule.token === null){
+			this.$alert('로그인후 감상 가능합니다.',{
+				confirmButtonText:'확인 ',
+				callback:()=>{
+					this.$router.push({
+						path:"/login",
+						query:{
+							last:Encryption.base_enc(this.$route.fullPath)
+						}
+					})
+				}
+			})
+			return
+		}
         this.info = info;
         this.bread.splice(3, 1, { title: `${info.number} 화`, to: "" });
     }
@@ -158,6 +174,7 @@ export default class extends Nocopy {
 
 <style lang="less" scoped>
 #chapter_info {
+	max-width: 40rem;
     .top {
         min-height: 5rem;
         border-bottom: 1px solid #324b9b;

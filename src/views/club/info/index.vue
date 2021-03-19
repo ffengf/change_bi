@@ -35,7 +35,7 @@
 							<el-option value="card" label="신용카드"></el-option>
 							<el-option value="trans" label="계좌이체"></el-option>
 							<el-option value="phone" label="휴대폰결제"></el-option>
-							<el-option value="naverpay" label="네이버페이"></el-option>
+							<el-option value="naverpay" label="네이버페이" v-if="show_naverpay"></el-option>
 						</el-select>
 					</div>
 					<div class="line"></div>
@@ -77,6 +77,7 @@ import { numFormat } from "@/util/string"
 import { pay, pay_type } from "@/util/pay";
 import Inner from "@/components/inner/index.vue"
 import { Encryption } from "@/util/encryption";
+import { UserModule } from '@/store/user';
 @Component({
 	components:{
 		Inner,
@@ -244,6 +245,11 @@ export default class extends Vue {
 			is_collect
 		}
 		this.$message.success('반영 되었습니다.')
+	}
+
+	get show_naverpay(){
+		console.log(UserModule.info?.id)
+		return UserModule.info?.id === 4
 	}
 
 	created(){

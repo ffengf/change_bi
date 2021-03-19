@@ -31,6 +31,7 @@ import Bread from "@/components/bread/index.vue"
 import { More } from "@/mixin/more";
 import { api_user, user_pay } from "@/api";
 import { numFormat } from "@/util/string";
+import { winopen } from "@/util/other"
 @Component({
     components: {
 		Rview,
@@ -58,7 +59,7 @@ export default class extends More(api_user.get_pay) {
 				return this.$message('무료 결제의 경우 제공되는 매출전표 서비스가 없습니다.')
 			}
 		}
-		window.open(ele.receipt_url)
+		winopen(ele.receipt_url)
 	}
 }
 </script>

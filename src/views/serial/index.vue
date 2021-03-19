@@ -25,6 +25,8 @@ export default class extends Vue {
 #serial{
 	margin-top: 3.75rem;
 	.serial_box{
+		display: flex;
+		justify-content: center;
 		/deep/.box_line{
 			background: #324b9b;
 			height: 4px;
@@ -37,6 +39,9 @@ export default class extends Vue {
 @media screen and (max-width: 1024px){
 	#serial{
 		margin-top: 1rem;
+		.serial_box{
+			display: block;
+		}
 	}
 }
 </style>

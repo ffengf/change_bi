@@ -23,6 +23,18 @@ export default class extends Vue {
 	width: 100%;
 	word-break: break-all;
 	line-height: 1.5rem;
+	-webkit-user-select: none;
+	-webkit-touch-callout: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	/deep/ *{
+		-webkit-user-select: none;
+		-webkit-touch-callout: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
 	/deep/ p{
 		word-break: break-all;
     font-size: 14px;
