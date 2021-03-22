@@ -30,6 +30,7 @@
 							</p>
 						</h3>
 					</el-card>
+
 				</div>
 			</div>
 		</template>
@@ -293,7 +294,7 @@ export default class extends Vue {
         .top {
             height: 5.75rem;
             border: 1px solid #3fa535;
-            margin-bottom: 1.25rem;
+            // margin-bottom: 1.25rem;
             h1 {
                 padding: 1rem 0 0 1.5rem;
                 font-size: 30px;
@@ -313,14 +314,18 @@ export default class extends Vue {
         .bottom {
             display: flex;
             width: 100%;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			&::after{
+				content: '';
+				width: 33%;
+			}
             .card {
-                margin-left: 1.25rem;
+                // margin-left: 1.25rem;
+				margin-top: 1.25rem;
                 border-radius: 0;
 				cursor: pointer;
 				width: 33%;
-                &:nth-of-type(1) {
-                    margin: 0;
-                }
                 /deep/.el-card__body {
                     padding: 0 !important;
                 }
