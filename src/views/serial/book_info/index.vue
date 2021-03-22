@@ -25,6 +25,7 @@
 				</div>
 				<div class="chapters_box">
 					<h1>연재 읽기</h1>
+					<el-button class="first" type="primary" size="small" @click="go_first">첫화 보기</el-button>
 					<ul>
 						<li v-for="(ele) in list" :key="ele.id" @click="go_chapter(ele.id)">
 							<el-tooltip placement="top">
@@ -78,7 +79,6 @@ import { Vue, Component, Watch } from "vue-property-decorator";
 import Bread from "@/components/bread/index.vue";
 import Inner from "@/components/inner/index.vue"
 import { api_serial, book_info,chapter_list } from "@/api";
-import { takeLast } from "ramda";
 import { winopen } from "@/util/other"
 @Component({
     components: {
@@ -105,6 +105,7 @@ export default class extends Vue {
 		link:null,
 		like_num:0,
 		is_like:0,
+		first_chapter:0,
     };
 
     bread = [
@@ -184,9 +185,15 @@ export default class extends Vue {
 		}
 	}
 
+	go_first(){
+		this.$router.push(`/serial/chapter_info/${this.id}/${this.info.first_chapter}?bread_date=${this.bread_date}`)
+	}
+
     created() {
-		this.get_info();
-		this.get_chapter_list()
+		Promise.all([
+			this.get_info(),
+			this.get_chapter_list(),
+		])
     }
 }
 </script>
@@ -272,6 +279,13 @@ export default class extends Vue {
 			.chapters_box{
 				border: 3px solid #3fa535;
 				padding: 1.5rem;
+				position: relative;
+				.first{
+					position: absolute;
+					right: 1.5rem;
+					top: 1.4rem;
+					// width: 6rem;
+				}
 				h1{
 					font-size: 20px;
 					font-weight: 500;

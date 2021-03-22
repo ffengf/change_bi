@@ -14,7 +14,8 @@
 					<img src="@/assets/img/file.png" alt="">
 					<span>{{ info.file_name }}</span>
 				</div>
-				<div class="inner" v-html="info.content"></div>
+				<!-- <div class="inner" v-html="info.content"></div> -->
+				<Inner :val="info.content" />
 				<div class="len">댓글 {{ people_len }}</div>
 				<div class="user_inp">
 					<img :src="info.user.avatar" alt="">
@@ -94,7 +95,12 @@ import { api_myclub, comment_info, comment_small } from "@/api";
 import { UserModule } from "@/store/user";
 import { Vue, Component } from "vue-property-decorator";
 import { winopen } from "@/util/other"
-@Component
+import Inner from "@/components/inner/index.vue"
+@Component({
+	components:{
+		Inner
+	}
+})
 export default class extends Vue {
 	keys = false
 	input = ''

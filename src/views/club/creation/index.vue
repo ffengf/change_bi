@@ -230,7 +230,6 @@ export default class extends More(api_club.get_creation_list) {
 	async are_you_ok(){
 		if(this._loading === true) return
 		if(this.filter.status === 0){
-			console.log(this.list)
 			if(this.list[0] !== undefined){
 				this.$router.push(`/club/creation/info/${this.list[0].id}`)
 			}else{

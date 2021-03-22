@@ -36,6 +36,7 @@ export interface book_info extends book_data {
 	link:string|null
 	is_like:0|1
 	like_num:number
+	first_chapter:number
 }
 
 export interface chapter_list {
