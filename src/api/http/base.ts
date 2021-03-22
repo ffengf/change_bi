@@ -16,7 +16,6 @@ const alert_403 = debounce((err:any)=>{
 	Vue.$alert(title,{
 		confirmButtonText:'로그인 하기',
 		callback(){
-			console.log(Encryption.base_enc(Vue.$route.fullPath))
 			Vue.$router.push({
 				path:'/login',
 				query:{
