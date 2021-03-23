@@ -12,5 +12,9 @@ export const winopen = (str:string) => {
 	// }catch(e){
 	// 	window.location.href = str
 	// }
-	window.location.href = str
+	try{
+		location.href = str
+	}catch(e){
+		window.location.href = str
+	}
 }
