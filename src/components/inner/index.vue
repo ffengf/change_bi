@@ -44,10 +44,10 @@ export default class extends Vue {
 	}
 	/deep/ p{
 		word-break: break-all;
-    font-size: 14px;
-    span{
-      font-family:'Nanum Gothic',sans-serif !important;
-    }
+    	font-size: 14px;
+		span{
+			font-family:'Nanum Gothic',sans-serif !important;
+		}
 	}
 	/deep/ img{
 		max-width: 100%!important;

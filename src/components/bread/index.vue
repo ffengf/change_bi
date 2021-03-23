@@ -38,19 +38,23 @@ interface new_list {
 
 @Component
 export default class extends Vue {
-    list: RouteRecord[] = [];
+    // list: RouteRecord[] = [];
 
-    @Watch("$route")
-    getRouterList() {
-        this.list = this.$route.matched.slice(1);
+    // @Watch("$route")
+    // getRouterList() {
+    //     this.list = this.$route.matched.slice(1);
+	// }
+	get list(){
+		return this.$route.matched.slice(1)
 	}
+
 
 	@Prop({ type:Array,required:false,default:null })
 	new_list !: new_list[] | null
 
-    created() {
-        this.getRouterList();
-	}
+    // created() {
+    //     this.getRouterList();
+	// }
 }
 </script>
 
