@@ -7,9 +7,10 @@ export const toTop = () =>{
 }
 
 export const winopen = (str:string) => {
-	try{
-		window.open(str)
-	}catch(e){
-		window.location.href = str
-	}
+	// try{
+	// 	window.open(str)
+	// }catch(e){
+	// 	window.location.href = str
+	// }
+	window.location.href = str
 }
