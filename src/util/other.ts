@@ -12,9 +12,13 @@ export const winopen = (str:string) => {
 	// }catch(e){
 	// 	window.location.href = str
 	// }
-	try{
-		location.href = str
-	}catch(e){
-		window.location.href = str
-	}
+	// try{
+	// 	location.href = str
+	// }catch(e){
+	// 	window.location.href = str
+	// }
+
+	//@ts-ignore
+	window.location.target="_self";
+	window.location.href = str;
 }
