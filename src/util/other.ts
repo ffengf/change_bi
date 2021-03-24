@@ -21,5 +21,6 @@ export const winopen = (str:string) => {
 	//@ts-ignore
 	// window.location.target="_self";
 	// window.location.href = str;
-	open(str,'_self')
+
+	open(str,'_self')//ios app
 }
