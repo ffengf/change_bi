@@ -37,6 +37,7 @@ export interface book_info extends book_data {
 	is_like:0|1
 	like_num:number
 	first_chapter:number
+	is_subscribe:0|1
 }
 
 export interface chapter_list {
@@ -92,6 +93,10 @@ class Serial extends Http {
 
 	post_like(id:number,action:0|1){
 		return this.post({ action },`/book/${id}/like/`)
+	}
+
+	subscribe(id:number,action:0|1){
+		return this.post({ action },`/book/${id}/subscribe/`)
 	}
 
 }

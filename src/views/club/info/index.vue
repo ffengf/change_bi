@@ -186,7 +186,7 @@ export default class extends Vue {
 
 	async free(){
 		if(this.username === '' && this.is_self === false){
-			return this.$message.error('输入组长')
+			return this.$message.error('조장ID를 입력해 주세요.')
 		}
 		const { code } = await api_club.join(this.info.id,this.is_self ? undefined : this.username)
 		if(code === 50001){
@@ -211,7 +211,7 @@ export default class extends Vue {
 			return this.$message.error('결제 방법 선택')
 		}
 		if(this.username === '' && this.is_self === false){
-			return this.$message.error('输入组长')
+			return this.$message.error('조장ID를 입력해 주세요.')
 		}
 		this._loading = true
 		pay(this.price,this.pay_type,{ name:this.info.title })
