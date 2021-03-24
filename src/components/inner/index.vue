@@ -1,9 +1,9 @@
 <template>
-	<div class="inner" v-html="value"></div>
+	<div class="inner" ref="inner" v-html="value"></div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 @Component
 export default class extends Vue {
 	@Prop({ required:true })
@@ -14,6 +14,16 @@ export default class extends Vue {
 			return this.val
 		}
 		return ''
+	}
+
+	@Watch('value',{ immediate:true })
+	watch_val(){
+		this.$nextTick(()=>{
+			const dom = this.$refs['inner'] as Element
+			[...dom.getElementsByTagName('a')].forEach(x=>{
+				x.target = '_self'
+			})
+		})
 	}
 }
 </script>
