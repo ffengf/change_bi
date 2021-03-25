@@ -214,7 +214,7 @@ export default class extends Vue {
 			return this.$message.error('조장ID를 입력해 주세요.')
 		}
 		this._loading = true
-		pay(this.price,this.pay_type,{ name:this.info.title })
+		pay(this.price,this.pay_type,{ name:this.info.title },this.info.end_time.replace(/\./g,''),this.info.title)
 			.then((res:any)=>{
 				console.log('success',res)
 				const merchant_uid:string = res.merchant_uid
@@ -294,7 +294,8 @@ export default class extends Vue {
 	}
 
 	get show_naverpay(){
-		return UserModule.info?.id === 4
+		// return UserModule.info?.id === 4
+		return true
 	}
 
 	created(){
