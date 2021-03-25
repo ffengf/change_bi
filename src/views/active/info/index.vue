@@ -13,7 +13,7 @@
         <div class="line"></div>
         <!-- <div class="inner" v-html="info.content"></div> -->
 		<Inner :val="info.content" />
-		<el-button type="primary" class="join" @click="key = true" :disabled="info.is_apply">신청하기</el-button>
+		<el-button type="primary" class="join" @click="open" :disabled="info.is_apply">신청하기</el-button>
 		<div class="line"></div>
         <div class="btn_box">
             <el-button @click="id = info.prev" :disabled="info.prev === null">이전 글</el-button>
@@ -43,6 +43,9 @@ import { active, api_active } from "@/api";
 import { Vue, Component, Watch } from "vue-property-decorator";
 import BoxHeader from "../header.vue";
 import Inner from "@/components/inner/index.vue"
+import { UserModule } from "@/store/user";
+import { Encryption } from "@/util/encryption";
+import { winopen } from "@/util/other";
 @Component({
     components: {
 		BoxHeader,
@@ -75,6 +78,8 @@ export default class extends Vue {
 		apply_end: '',
 		prev:null,
 		next:null,
+		external_link:'',
+		apply_type:0
 	}
 
     get active_type() {
@@ -107,6 +112,25 @@ export default class extends Vue {
 		this.$router.push(`/active/${this.active_type}/list`)
 	}
 
+	open(){
+		if(UserModule.token === null){
+			return this.$alert('로그인후 다시 시도해 주세요.',{
+				confirmButtonText:'로그인 하기',
+				callback:()=>{
+					this.$router.push({
+						path:'/login',
+						query:{
+							last:Encryption.base_enc(this.$route.fullPath)
+						}
+					})
+				}
+			})
+		}
+		if(this.info.apply_type === 1){
+			return winopen(this.info.external_link)
+		}
+		this.key = true
+	}
 
 	key = false
 	apply_reason = ''
