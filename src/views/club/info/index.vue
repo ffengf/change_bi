@@ -294,8 +294,7 @@ export default class extends Vue {
 	}
 
 	get show_naverpay(){
-		// return UserModule.info?.id === 4
-		return true
+		return UserModule.info?.id === 4
 	}
 
 	created(){
