@@ -32,8 +32,8 @@
                             placeholder="이름을 입력해주세요."
                         ></el-input>
                         <el-radio-group v-model="info.gender" class="radio_group">
+							<el-radio-button label="1">여자</el-radio-button>
                             <el-radio-button label="0">남자</el-radio-button>
-                            <el-radio-button label="1">여자</el-radio-button>
                             <el-radio-button label="2">기타</el-radio-button>
                         </el-radio-group>
                     </div>
