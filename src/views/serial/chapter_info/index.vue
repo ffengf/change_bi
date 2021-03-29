@@ -32,6 +32,29 @@
                 >다음 글</el-button
             >
         </div>
+		<div class="share">
+			<div class="left">
+				<img v-if="info.is_like === 0" @click="is_like(1)" src="@/assets/img/un_zan.png" alt="" >
+				<img v-else src="@/assets/img/is_zan.png" @click="is_like(0)" alt="">
+				<span>{{ info.like_num }} 명이 좋아합니다.</span>
+			</div>
+			<div class="right">
+				<ShareNetwork
+					network="Facebook"
+					:title="info.title"
+					:url="share_url"
+				>
+					<img src="@/assets/img/fa.png" alt="">
+				</ShareNetwork>
+				<ShareNetwork
+					network="Twitter"
+					:title="info.title"
+					:url="share_url"
+				>
+					<img src="@/assets/img/tw.png" alt="">
+				</ShareNetwork>
+			</div>
+		</div>
     </div>
 </template>
 
@@ -77,8 +100,18 @@ export default class extends Nocopy {
         title: "",
         create_time: "",
         content: "",
-		show_time:''
+		show_time:'',
+		is_like:0,
+		like_num:0
     };
+
+	async is_like(action:0|1){
+		this._loading = true
+		await api_serial.chapter_list(this.info.id,action).finally(()=>{
+			this._loading = false
+		})
+		this.get_info()
+	}
 
     get book_id(): number {
         return Number(this.$route.params.book_id);
@@ -97,6 +130,10 @@ export default class extends Nocopy {
     get bread_date(): string {
         return this.$route.query.bread_date as string;
     }
+
+	get share_url(){
+		return `https://api.changbi.com/book/chapter/detail/${this.info_id}`
+	}
 
     async get_id_name() {
 		this._loading = true
@@ -216,7 +253,6 @@ export default class extends Nocopy {
     }
     .btn_box {
         margin-top: 2.5rem;
-        margin-bottom: 6rem;
         display: flex;
         justify-content: space-between;
         > * {
@@ -224,6 +260,32 @@ export default class extends Nocopy {
             height: 2.2rem;
         }
     }
+	.share{
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 4rem;
+		img{
+			width: 1.7rem;
+			height: 1.7rem;
+			cursor: pointer;
+		}
+		.left{
+			display: flex;
+			align-items: center;
+			span{
+				font-size: 14px;
+				margin-left: 0.5rem;
+			}
+		}
+		.right{
+			display: flex;
+			justify-content: flex-end;
+			margin-top: 1rem;
+			img{
+				margin-left: 0.3rem;
+			}
+		}
+	}
 }
 
 </style>
