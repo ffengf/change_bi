@@ -17,6 +17,8 @@ export interface active {
 	apply_end: string
 	prev:null|number
 	next:null|number
+	external_link:string
+	apply_type:0|1
 }
 
 

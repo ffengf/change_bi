@@ -43,16 +43,18 @@ class Club extends Http {
 		return this.get<club_info>({}, `${this.uri}${id}/`)
 	}
 
-	join(id: number) {
+	join(id: number,group_leader?:string) {
+		const data = group_leader === undefined ? { status:1 } : { status:1,group_leader }
 		return this.post<{
 			code?: number
-		}>({ status: 1 }, `/club/${id}/apply/`)
+		}>(data, `/club/${id}/apply/`)
 	}
 
 	pay_join(data: {
 		club_id: number
 		merchant_uid: string
 		coupon_id?: number
+		group_leader?:string
 	}) {
 		return this.post(data, '/order/')
 	}

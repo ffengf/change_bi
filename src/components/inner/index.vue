@@ -54,10 +54,10 @@ export default class extends Vue {
 	}
 	/deep/ p{
 		word-break: break-all;
-    font-size: 14px;
-    span{
-      font-family:'Nanum Gothic',sans-serif !important;
-    }
+    	font-size: 14px;
+		span{
+			font-family:'Nanum Gothic',sans-serif !important;
+		}
 	}
 	/deep/ img{
 		max-width: 100%!important;
@@ -77,6 +77,15 @@ export default class extends Vue {
 		width: 300px;
 		margin-bottom: 1rem;
 		color: #212529;
+	}
+	/deep/video{
+		width: 100%!important;
+	}
+	/deep/ *{
+		max-width: 100%!important;
+	}
+	*{
+		max-width: 100%!important;
 	}
 }
 </style>

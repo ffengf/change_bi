@@ -52,10 +52,41 @@
 							</el-option>
 						</el-select>
 					</div>
+					<div class="line"></div>
+					<div class="how">
+						<div>참여방식</div>
+						<el-select class="select_what" v-model="is_self" placeholder="쿠폰을 선택" :popper-append-to-body="false">
+							<el-option :value="true" label="개인"></el-option>
+							<el-option :value="false" label="그룹"></el-option>
+						</el-select>
+					</div>
+					<template v-if="!is_self">
+						<div class="line"></div>
+						<div class="how">
+							<div>조장 ID</div>
+							<el-input v-model="username" class="select_what" style="width:7.5rem"></el-input>
+						</div>
+					</template>
 					<div class="info_money">
 						<div class="left">결제금액</div>
 						<div class="right">{{ numFormat(price) }} 원</div>
 					</div>
+				</div>
+				<div class="pay" v-else>
+					<div class="how">
+						<div>참여방식</div>
+						<el-select class="select_what" v-model="is_self" placeholder="쿠폰을 선택" :popper-append-to-body="false">
+							<el-option :value="true" label="개인"></el-option>
+							<el-option :value="false" label="그룹"></el-option>
+						</el-select>
+					</div>
+					<template v-if="!is_self">
+						<div class="line"></div>
+						<div class="how">
+							<div>조장 ID</div>
+							<el-input v-model="username" class="select_what" style="width:7.5rem"></el-input>
+						</div>
+					</template>
 				</div>
 				<el-button v-if="info.price === 0" type="success" class="btn" @click="free">신청하기</el-button>
 				<template v-else>
@@ -78,12 +109,17 @@ import { pay, pay_type } from "@/util/pay";
 import Inner from "@/components/inner/index.vue"
 import { Encryption } from "@/util/encryption";
 import { UserModule } from '@/store/user';
+import { dissoc } from "ramda";
 @Component({
 	components:{
 		Inner,
 	}
 })
 export default class extends Vue {
+
+	is_self = true
+
+	username = ''
 
 	numFormat = numFormat
 
@@ -149,7 +185,10 @@ export default class extends Vue {
 
 
 	async free(){
-		const { code } = await api_club.join(this.info.id)
+		if(this.username === '' && this.is_self === false){
+			return this.$message.error('조장ID를 입력해 주세요.')
+		}
+		const { code } = await api_club.join(this.info.id,this.is_self ? undefined : this.username)
 		if(code === 50001){
 			await this.$confirm('이미 참여하고 있는 모임입니다. 나의 모임으로 이동하시겠습니까?',{
 				confirmButtonText: '이동',
@@ -171,12 +210,19 @@ export default class extends Vue {
 		if(this.pay_type === ''){
 			return this.$message.error('결제 방법 선택')
 		}
+		if(this.username === '' && this.is_self === false){
+			return this.$message.error('조장ID를 입력해 주세요.')
+		}
 		this._loading = true
-		pay(this.price,this.pay_type,{ name:this.info.title })
+		pay(this.price,this.pay_type,{ name:this.info.title },this.info.end_time.replace(/\./g,''),this.info.title)
 			.then((res:any)=>{
 				console.log('success',res)
 				const merchant_uid:string = res.merchant_uid
-				api_club.pay_join({ merchant_uid,coupon_id,club_id }).then(()=>{
+				let data = { merchant_uid,coupon_id,club_id,group_leader:this.username }
+				if(this.is_self === false){
+					data = dissoc('group_leader',data)
+				}
+				api_club.pay_join(data).then(()=>{
 					this.$router.push({
 						path: '/other/pay/success',
 						query:{
@@ -426,7 +472,7 @@ export default class extends Vue {
 					align-items: center;
 					justify-content: space-between;
 					/deep/.el-input__inner{
-            border: 1px solid #000000 !important;
+            			border: 1px solid #000000 !important;
 						padding: 0 0.75rem !important;
 						box-sizing: border-box!important;
 						height: 2rem;

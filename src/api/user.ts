@@ -40,6 +40,7 @@ export interface user_club {
 	status: 0 | 1 | 2 | 3 | 4
 	refuse_reason: string | null
 	allow_print:boolean
+	group_leader:null|string
 	club:{
 		id:number
 		title: string
@@ -145,7 +146,7 @@ class User extends Http {
 
 	get_user_info(){
 		const data = StorageDb.getLocal('fcm_reg_token') === null ?
-		{} : { fcm_reg_token:StorageDb.getLocal('fcm_reg_token') };  //phone
+		{} : { fcm_reg_token:StorageDb.getLocal('fcm_reg_token') };  //app
 		return this.get<user_info>(data,'/user/info/')
 	}
 

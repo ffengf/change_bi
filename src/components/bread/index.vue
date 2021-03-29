@@ -44,6 +44,10 @@ export default class extends Vue {
     getRouterList() {
         this.list = this.$route.matched.slice(1);
 	}
+	// get list(){
+	// 	return this.$route.matched.slice(1)
+	// }
+
 
 	@Prop({ type:Array,required:false,default:null })
 	new_list !: new_list[] | null

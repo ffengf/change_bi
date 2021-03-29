@@ -4,7 +4,7 @@ export type pay_type = 'card' | 'trans' | 'phone' | 'naverpay'
 
 
 
-export const pay = (amount: number, pay_method: pay_type, other: Object = {}) => {
+export const pay = (amount: number, pay_method: pay_type, other: Object = {},naverUseCfm:string,name:string) => {
 	const pg = {
 		phone:'danal',
 		trans:'danal_tpay',
@@ -24,19 +24,20 @@ export const pay = (amount: number, pay_method: pay_type, other: Object = {}) =>
 				app_scheme: 'switch.changbi',
 				pg,
 				merchant_uid:"switch_" + new Date().getTime() ,
-
-				naverUseCfm: `${new Date().getFullYear()}${new Date().getMonth()+1 < 10 ? '0' + (new Date().getMonth()+1): new Date().getMonth()+1}${new Date().getDate() < 10 ? '0'+new Date().getDate():new Date().getDate()}`,
-
+				//读书会截止时间
+				naverUseCfm,
+				// naverUseCfm: `${new Date().getFullYear()}${new Date().getMonth()+1 < 10 ? '0' + (new Date().getMonth()+1): new Date().getMonth()+1}${new Date().getDate() < 10 ? '0'+new Date().getDate():new Date().getDate()}`,
+				m_redirect_url:"https://switch.changbi.com/other/pay/success?go_1=%2Fuser%2Fclub&go_2=%2Fuser%2Fpay",
 				...other,
 				amount,
 				pay_method,
-				naverPopupMode:true,
+				naverPopupMode:false,
 				naverProducts:[
 					{
-						"categoryType": "PRODUCT",
-						"categoryId": "DIGITAL_CONTENT",
-						"uid": "299911002",
-						"name": "러블리즈",
+						"categoryType": "ETC",
+						"categoryId": "ETC",
+						"uid": "imp07867187",
+						"name": name,//读书会name
 						"count": 1
 					}
 				]

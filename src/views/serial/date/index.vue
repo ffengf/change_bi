@@ -6,7 +6,6 @@
 			<div :class="['box',index === 0 ? 'today':'',index === info.length - 1 ? 'on':'']" :key="ele.title" v-if="ele.data.length !== 0">
 				<div class="top">
 					<h1>{{ ele.title }}</h1>
-					<h1 v-show="false" @click="show_list">{{ new Date().getDay() }}</h1>
 				</div>
 				<div class="bottom">
 					<el-card class="card" shadow="never" v-for="data in ele.data" :key="data.id" @click.native="go_info(data.id,ele.title)" >

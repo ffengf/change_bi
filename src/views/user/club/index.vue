@@ -7,6 +7,9 @@
 						<span :class="class_name(status_str(ele))">{{ status_str(ele) }}</span>
 						<span>|</span>
 						<span>{{ ele.club.start_time }} ~ {{ ele.club.end_time }}</span>
+						<span class="margin">|</span>
+						<span v-if="ele.group_leader === null">개인</span>
+						<span v-else>조장ID:{{ ele.group_leader }}</span>
 					</h2>
 					<h1>{{ ele.club.title }}</h1>
 					<h6 v-if="ele.refuse_reason !== null">{{ ele.refuse_reason }}</h6>
@@ -172,6 +175,9 @@ h6{
 }
 .cu{
 	cursor: pointer;
+}
+.margin{
+	margin: 0 0.2rem;
 }
 @media only screen and (max-width: 1024px) {
 	.flex{
