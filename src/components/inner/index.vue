@@ -78,5 +78,14 @@ export default class extends Vue {
 		margin-bottom: 1rem;
 		color: #212529;
 	}
+	/deep/video{
+		width: 100%!important;
+	}
+	/deep/ *{
+		max-width: 100%!important;
+	}
+	*{
+		max-width: 100%!important;
+	}
 }
 </style>
