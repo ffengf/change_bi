@@ -16,7 +16,7 @@
 			<h2> </h2>
 			<h3>{{ fail_msg }}</h3>
 			<div class="btn_box">
-				<el-button type="success" @click="$router.push(-1)">다시시도</el-button>
+				<el-button type="success" @click="$router.push(-2)">다시시도</el-button>
 				<el-button type="default" @click="$router.push('/user/pay')">결제내역</el-button>
 			</div>
 		</template>
