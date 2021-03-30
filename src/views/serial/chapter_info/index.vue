@@ -13,25 +13,6 @@
         <!-- <div class="inner" v-html="info.content"></div> -->
 		<Inner class="nocoyp" :val="info.content" />
         <div class="line"></div>
-        <div class="btn_box">
-            <el-button
-                class="btns aaa"
-                type="default"
-                :disabled="prev === null"
-                @click="info_id = prev"
-                >이전 글</el-button
-            >
-            <el-button class="btns" type="success" @click="ret_list"
-                >목록으로</el-button
-            >
-            <el-button
-                class="btns aaa"
-                type="default"
-                :disabled="next === null"
-                @click="info_id = next"
-                >다음 글</el-button
-            >
-        </div>
 		<div class="share">
 			<div class="left">
 				<img v-if="info.is_like === 0" @click="is_like(1)" src="@/assets/img/un_zan.png" alt="" >
@@ -55,6 +36,26 @@
 				</ShareNetwork>
 			</div>
 		</div>
+        <div class="btn_box">
+            <el-button
+                class="btns aaa"
+                type="default"
+                :disabled="prev === null"
+                @click="info_id = prev"
+                >이전 글</el-button
+            >
+            <el-button class="btns" type="success" @click="ret_list"
+                >목록으로</el-button
+            >
+            <el-button
+                class="btns aaa"
+                type="default"
+                :disabled="next === null"
+                @click="info_id = next"
+                >다음 글</el-button
+            >
+        </div>
+
     </div>
 </template>
 
@@ -252,7 +253,8 @@ export default class extends Nocopy {
         margin: 2.5rem 0;
     }
     .btn_box {
-        margin-top: 2.5rem;
+		margin-top: 1rem;
+		margin-bottom: 4rem;
         display: flex;
         justify-content: space-between;
         > * {
@@ -263,7 +265,7 @@ export default class extends Nocopy {
 	.share{
 		display: flex;
 		justify-content: space-between;
-		margin-bottom: 4rem;
+		margin-top: -2rem;
 		img{
 			width: 1.7rem;
 			height: 1.7rem;
@@ -280,7 +282,7 @@ export default class extends Nocopy {
 		.right{
 			display: flex;
 			justify-content: flex-end;
-			margin-top: 1rem;
+			align-items: center;
 			img{
 				margin-left: 0.3rem;
 			}

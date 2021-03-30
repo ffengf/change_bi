@@ -56,15 +56,15 @@
 					<div class="how">
 						<div>참여방식</div>
 						<el-select class="select_what" v-model="is_self" placeholder="쿠폰을 선택" :popper-append-to-body="false">
-							<el-option :value="true" label="개인"></el-option>
-							<el-option :value="false" label="그룹"></el-option>
+							<el-option :value="true" label="개인 신청"></el-option>
+							<el-option :value="false" label="조별 신청" :disabled="$route.fullPath.includes('/club/creation/')"></el-option>
 						</el-select>
 					</div>
 					<template v-if="!is_self">
 						<div class="line"></div>
 						<div class="how">
-							<div>조장 ID</div>
-							<el-input v-model="username" class="select_what" style="width:7.5rem"></el-input>
+							<div>조장 아이디</div>
+							<el-input v-model="username" placeholder="아이디 입력" class="select_what" style="width:7.5rem"></el-input>
 						</div>
 					</template>
 					<div class="info_money">
@@ -76,15 +76,15 @@
 					<div class="how">
 						<div>참여방식</div>
 						<el-select class="select_what" v-model="is_self" placeholder="쿠폰을 선택" :popper-append-to-body="false">
-							<el-option :value="true" label="개인"></el-option>
-							<el-option :value="false" label="그룹"></el-option>
+							<el-option :value="true" label="개인 신청"></el-option>
+							<el-option :value="false" label="조별 신청" :disabled="$route.fullPath.includes('/club/creation/')"></el-option>
 						</el-select>
 					</div>
 					<template v-if="!is_self">
 						<div class="line"></div>
 						<div class="how">
-							<div>조장 ID</div>
-							<el-input v-model="username" class="select_what" style="width:7.5rem"></el-input>
+							<div>조장 아이디</div>
+							<el-input v-model="username" placeholder="아이디 입력" class="select_what" style="width:7.5rem"></el-input>
 						</div>
 					</template>
 				</div>

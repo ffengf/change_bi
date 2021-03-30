@@ -43,7 +43,7 @@
 						</li>
 					</ul>
 					<el-button class="btn" type="success" @click="more" :disabled="disabled">더 보기</el-button>
-					<el-button class="btn" :type="info.is_subscribe === 0 ? '' :'primary'" style="margin:0.5rem 0 0 0" @click="subscribe">카카오톡 알림받기</el-button>
+					<!-- <el-button class="btn" :type="info.is_subscribe === 0 ? '' :'primary'" style="margin:0.5rem 0 0 0" @click="subscribe">카카오톡 알림받기</el-button> -->
 					<el-button class="btn" type="primary" @click="winopen" v-if="info.link !== null">서점에서 확인하기</el-button>
 				</div>
 				<div class="zan">
