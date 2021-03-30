@@ -6,8 +6,8 @@
 			<h2>모임 신청이 제출되었습니다.</h2>
 			<h3>아래 버튼을 선택하여 신청/결제 내역을 확인해 주세요.</h3>
 			<div class="btn_box">
-				<el-button type="success">나의모임</el-button>
-				<el-button type="default">결제내역</el-button>
+				<el-button type="success" @click="$router.push('/user/club')">나의모임</el-button>
+				<el-button type="default" @click="$router.push('/user/pay')">결제내역</el-button>
 			</div>
 		</template>
 		<template v-else>
@@ -16,14 +16,15 @@
 			<h2> </h2>
 			<h3>{{ fail_msg }}</h3>
 			<div class="btn_box">
-				<el-button type="success">다시시도</el-button>
-				<el-button type="default">결제내역</el-button>
+				<el-button type="success" @click="$router.push(-1)">다시시도</el-button>
+				<el-button type="default" @click="$router.push('/user/pay')">결제내역</el-button>
 			</div>
 		</template>
     </div>
 </template>
 
 <script lang="ts">
+import { api_club } from "@/api";
 import { Encryption } from "@/util/encryption";
 import { Vue, Component } from "vue-property-decorator";
 
@@ -51,13 +52,11 @@ export default class extends Vue {
 		const merchant_uid = this.$route.query.merchant_uid
 		const data = JSON.parse(this.$route.query.submit_obj as string)
 		data.merchant_uid = merchant_uid
-		console.log(data)
+		api_club.pay_join(data)
 	}
 
 
 	created(){
-		console.log( decodeURIComponent( this.$route.query.submit_obj as string) )
-		console.log(this.pay_type)
 		console.log(this.$route.query)
 		if(this.pay_type === true){
 			this.submit()
