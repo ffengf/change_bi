@@ -1,6 +1,6 @@
 <template>
     <div id="pay" class="flex">
-		<template v-if="pay_type === 'success'">
+		<template v-if="pay_type">
 			<img src="@/assets/img/success.png" alt="">
 			<h1>결제가 완료되었습니다.</h1>
 			<h2>모임 신청이 제출되었습니다.</h2>
@@ -30,9 +30,9 @@ import { Vue, Component } from "vue-property-decorator";
 @Component
 export default class extends Vue {
 
-	// get pay_type():string{
-	// 	return this.$route.params.type
-	// }
+	get pay_type():boolean{
+		return Boolean(this.$route.query.imp_success)
+	}
 
 	// go_1(){
 	// 	this.$router.replace(this.$route.query.go_1 as string)
@@ -44,7 +44,12 @@ export default class extends Vue {
 
 
 	get fail_msg(){
-		return (this.$route.query.fail_msg as string | undefined) || `결제가 취소되었습니다. 다시 시도해주세요.`
+		return decodeURIComponent(this.$route.query.error_msg as string)
+	}
+
+
+	created(){
+		console.log( decodeURIComponent( this.$route.query.submit_obj as string) )
 	}
 }
 </script>

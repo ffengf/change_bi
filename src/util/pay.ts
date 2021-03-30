@@ -71,11 +71,10 @@ export const naverpay = (amount: number,name:string,naverUseCfm:string,submit_ob
 			merchant_uid:"switch_" + new Date().getTime() ,
 			//读书会截止时间
 			naverUseCfm,
-			// naverUseCfm: `${new Date().getFullYear()}${new Date().getMonth()+1 < 10 ? '0' + (new Date().getMonth()+1): new Date().getMonth()+1}${new Date().getDate() < 10 ? '0'+new Date().getDate():new Date().getDate()}`,
 			m_redirect_url:`https://switch.changbi.com/other/naverpay?submit_obj=${submit_obj}`,
 			amount,
 			pay_method:"naverpay",
-			naverPopupMode:true,
+			naverPopupMode:false,
 			naverProducts:[
 				{
 					"categoryType": "ETC",

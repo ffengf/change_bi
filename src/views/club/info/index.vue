@@ -57,7 +57,7 @@
 						<div>참여방식</div>
 						<el-select class="select_what" v-model="is_self" placeholder="쿠폰을 선택" :popper-append-to-body="false">
 							<el-option :value="true" label="개인 신청"></el-option>
-							<el-option :value="false" label="조별 신청" :disabled="$route.fullPath.includes('/club/creation/')"></el-option>
+							<el-option :value="false" label="조별 신청" :disabled="$route.fullPath.includes('/club/apply/')"></el-option>
 						</el-select>
 					</div>
 					<template v-if="!is_self">
@@ -77,7 +77,7 @@
 						<div>참여방식</div>
 						<el-select class="select_what" v-model="is_self" placeholder="쿠폰을 선택" :popper-append-to-body="false">
 							<el-option :value="true" label="개인 신청"></el-option>
-							<el-option :value="false" label="조별 신청" :disabled="$route.fullPath.includes('/club/creation/')"></el-option>
+							<el-option :value="false" label="조별 신청" :disabled="$route.fullPath.includes('/club/apply/')"></el-option>
 						</el-select>
 					</div>
 					<template v-if="!is_self">
@@ -219,6 +219,7 @@ export default class extends Vue {
 			data = dissoc('group_leader',data)
 		}
 		if(this.pay_type === 'naverpay'){
+			console.log(123)
 			return naverpay(this.price,this.info.title,this.info.end_time.replace(/\./g,''),JSON.stringify(data))
 		}
 		pay(this.price,this.pay_type,{ name:this.info.title },this.info.end_time.replace(/\./g,''),this.info.title)
