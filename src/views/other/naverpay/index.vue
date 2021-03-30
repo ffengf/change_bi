@@ -31,7 +31,7 @@ import { Vue, Component } from "vue-property-decorator";
 export default class extends Vue {
 
 	get pay_type():boolean{
-		return Boolean(this.$route.query.imp_success)
+		return this.$route.query.imp_success === 'true'
 	}
 
 	// go_1(){
@@ -50,6 +50,8 @@ export default class extends Vue {
 
 	created(){
 		console.log( decodeURIComponent( this.$route.query.submit_obj as string) )
+		console.log(this.pay_type)
+		console.log(this.$route.query)
 	}
 }
 </script>
