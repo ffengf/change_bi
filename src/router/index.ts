@@ -296,6 +296,11 @@ const routes: RouteConfig[] = [
 						component: () => import('@/views/other/pay/index.vue'),
 					},
 					{
+						path: 'naverpay',
+						name: 'naverpay',
+						component: () => import('@/views/other/naverpay/index.vue'),
+					},
+					{
 						path: 'search',
 						name: 'search',
 						component: () => import('@/views/other/search/index.vue'),

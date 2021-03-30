@@ -105,7 +105,7 @@
 import { api_club, api_user, club_info, user_coupon } from "@/api";
 import { Vue, Component, Watch, Emit } from "vue-property-decorator";
 import { numFormat } from "@/util/string"
-import { pay, pay_type } from "@/util/pay";
+import { naverpay, pay, pay_type } from "@/util/pay";
 import Inner from "@/components/inner/index.vue"
 import { Encryption } from "@/util/encryption";
 import { UserModule } from '@/store/user';
@@ -214,14 +214,18 @@ export default class extends Vue {
 			return this.$message.error('조장ID를 입력해 주세요.')
 		}
 		this._loading = true
+		let data = { coupon_id,club_id,group_leader:this.username,merchant_uid:'' }
+		if(this.is_self === false){
+			data = dissoc('group_leader',data)
+		}
+		if(this.pay_type === 'naverpay'){
+			return naverpay(this.price,this.info.title,this.info.end_time.replace(/\./g,''),JSON.stringify(data))
+		}
 		pay(this.price,this.pay_type,{ name:this.info.title },this.info.end_time.replace(/\./g,''),this.info.title)
 			.then((res:any)=>{
 				console.log('success',res)
 				const merchant_uid:string = res.merchant_uid
-				let data = { merchant_uid,coupon_id,club_id,group_leader:this.username }
-				if(this.is_self === false){
-					data = dissoc('group_leader',data)
-				}
+				data.merchant_uid = merchant_uid
 				api_club.pay_join(data).then(()=>{
 					this.$router.push({
 						path: '/other/pay/success',
