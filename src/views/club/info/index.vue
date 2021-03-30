@@ -215,11 +215,10 @@ export default class extends Vue {
 		}
 		this._loading = true
 		let data = { coupon_id,club_id,group_leader:this.username,merchant_uid:'' }
-		if(this.is_self === false){
+		if(this.is_self === true){
 			data = dissoc('group_leader',data)
 		}
 		if(this.pay_type === 'naverpay'){
-			console.log(123)
 			return naverpay(this.price,this.info.title,this.info.end_time.replace(/\./g,''),JSON.stringify(data))
 		}
 		pay(this.price,this.pay_type,{ name:this.info.title },this.info.end_time.replace(/\./g,''),this.info.title)

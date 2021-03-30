@@ -47,11 +47,21 @@ export default class extends Vue {
 		return decodeURIComponent(this.$route.query.error_msg as string)
 	}
 
+	submit(){
+		const merchant_uid = this.$route.query.merchant_uid
+		const data = JSON.parse(this.$route.query.submit_obj as string)
+		data.merchant_uid = merchant_uid
+		console.log(data)
+	}
+
 
 	created(){
 		console.log( decodeURIComponent( this.$route.query.submit_obj as string) )
 		console.log(this.pay_type)
 		console.log(this.$route.query)
+		if(this.pay_type === true){
+			this.submit()
+		}
 	}
 }
 </script>
