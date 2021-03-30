@@ -38,6 +38,7 @@ export interface book_info extends book_data {
 	like_num:number
 	first_chapter:number
 	is_subscribe:0|1
+	cover:string
 }
 
 export interface chapter_list {

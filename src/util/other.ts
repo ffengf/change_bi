@@ -24,3 +24,19 @@ export const winopen = (str:string) => {
 
 	open(str,'_self')//ios app
 }
+
+
+export const kakao_export = (title:string,imageUrl:string,url:string) =>{
+	Kakao.Link.sendDefault({
+		objectType:"feed",
+		content:{
+			title,
+			imageUrl,
+			link:{
+				mobileWebUrl:url,
+				webUrl:url
+			}
+		}
+
+	})
+}

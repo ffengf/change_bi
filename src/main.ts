@@ -18,6 +18,7 @@ import { UserModule } from '@/store/user';
 
 
 IMP.init('imp07867187')
+Kakao.init('046f7d987276c7458c5069ef55118b20')
 
 Vue.config.productionTip = true;
 

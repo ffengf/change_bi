@@ -53,6 +53,7 @@
 						<span>{{ info.like_num }} 명이 좋아합니다.</span>
 					</div>
 					<div class="zan_right">
+						<img src="@/assets/img/kakao.jpg" alt="" @click="kakao_export">
 						<ShareNetwork
 							network="Facebook"
 							:title="info.book_desc"
@@ -80,7 +81,7 @@ import { Vue, Component, Watch } from "vue-property-decorator";
 import Bread from "@/components/bread/index.vue";
 import Inner from "@/components/inner/index.vue"
 import { api_serial, book_info,chapter_list } from "@/api";
-import { winopen } from "@/util/other"
+import { kakao_export, winopen } from "@/util/other"
 @Component({
     components: {
 		Bread,
@@ -107,7 +108,8 @@ export default class extends Vue {
 		like_num:0,
 		is_like:0,
 		first_chapter:0,
-		is_subscribe:0
+		is_subscribe:0,
+		cover:"",
     };
 
     bread = [
@@ -200,6 +202,11 @@ export default class extends Vue {
 
 	go_first(){
 		this.$router.push(`/serial/chapter_info/${this.id}/${this.info.first_chapter}?bread_date=${this.bread_date}`)
+	}
+
+	kakao_export(){
+		const url = `https://switch.changbi.com${this.$route.fullPath}`
+		kakao_export(this.info.title,this.info.cover,url)
 	}
 
     created() {

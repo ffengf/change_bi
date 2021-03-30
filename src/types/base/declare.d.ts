@@ -5,3 +5,4 @@ declare module "element-ui/lib/locale" {
 
 declare var daum:any;
 declare var IMP:any;
+declare var Kakao:any;
