@@ -53,6 +53,7 @@ interface info {
 	start_time:string
 	end_time:string
 	title:string
+	type:0|1
 }
 
 @Component
@@ -63,7 +64,7 @@ export default class extends Vue {
 
 	img_src():Promise<string[]>{
 		return new Promise((resolve)=>{
-			require(['@/assets/img/paper.jpg','@/assets/img/paper_line.jpg'],(...arg)=>{
+			require(['@/assets/img/paper_0.jpg','@/assets/img/paper_1.jpg'],(...arg)=>{
 				resolve(arg)
 			})
 		})
@@ -80,12 +81,9 @@ export default class extends Vue {
 		const ctx = canvas.getContext('2d') as CanvasRenderingContext2D
 
 		const img = new Image()
-		const img_line = new Image()
-		const [base,line] = await this.img_src()
-		img.src = base
-		img_line.src = line
-
-
+		const [type_0,type_1] = await this.img_src()
+		img.src = info.type === 0 ? type_0 : type_1
+		const color = info.type === 0 ? "#20BADC" : "#76522B"
 
 		img.onload = ()=>{
 			const width = img.width
@@ -93,32 +91,34 @@ export default class extends Vue {
 			canvas.width = width
 			canvas.height = height
 			ctx.drawImage(img, 0, 0,2128,3198);
+			if(info.type === 0){
+				ctx.font = '135px NotoSansKR-Bold'
+				ctx.fillStyle = color
+				ctx.textAlign = 'center';
+				ctx.fillText(info.title,width/2,550)
 
-			ctx.font = '100px NotoSansKR'
-			ctx.fillStyle = '#2b8e6d'
-			ctx.textAlign = 'center';
-			ctx.fillText(info.title,width/2,400)
-			ctx.fillText('수료증',width/2,550)
 
-			ctx.font = '60px NotoSansKR'
-			ctx.fillStyle = '#2b8e6d'
-			ctx.fillText(`${this.user_name}`,width/2,750)
-			ctx.font = '60px NotoSansKR'
-			ctx.fillStyle = '#2b8e6d'
+				ctx.font = '60px NotoSansKR'
+				ctx.fillStyle = color
+				ctx.fillText(`${this.user_name}`,width/2,1080)
+				ctx.fillText(info.title,width/2,1220)
 
-			ctx.drawImage(img_line, width/2 - (img_line.width / 2), 770);
+				ctx.font = '40px NotoSansKR'
+				ctx.fillStyle = '#000'
+				ctx.fillText(`활동기간 ${info.start_time} - ${info.end_time}`,width/2,1320)
+			}else{
 
-			ctx.font = '50px NotoSansKR'
-			ctx.fillText(info.title,width/2,950)
+				ctx.font = '60px NotoSansKR'
+				ctx.textAlign = 'center';
+				ctx.fillStyle = color
+				ctx.fillText(`${this.user_name}`,width/2,980)
+				ctx.fillText('북클럽 필라멘트',width/2,1140)
+				ctx.fillText(info.title,width/2,1220)
 
-			ctx.fillStyle = '#000'
-			ctx.fillText(`활동기간 ${info.start_time} - ${info.end_time}`,width/2,1050)
-
-			ctx.font = '60px NotoSansKR'
-			ctx.fillText('위 사람은 창비에서 주관하는',width/2,1400)
-			ctx.fillText(`'${info.title}'에 참여하여`,width/2,1500)
-			ctx.fillText('모든 활동을 성실히 수행하였기에',width/2,1600)
-			ctx.fillText('이 증서를 드립니다.',width/2,1700)
+				ctx.font = '40px NotoSansKR'
+				ctx.fillStyle = '#000'
+				ctx.fillText(`활동기간 ${info.start_time} - ${info.end_time}`,width/2,1320)
+			}
 
 
 			const url = canvas.toDataURL('image/png', 1.0);

@@ -61,7 +61,8 @@ export default class extends More(api_user.get_club) {
 		(this.$refs['paper'] as any).open({
 			start_time:ele.club.start_time,
 			end_time:ele.club.end_time,
-			title:ele.club.title
+			title:ele.club.title,
+			type:ele.club.type,
 		})
 	}
 
